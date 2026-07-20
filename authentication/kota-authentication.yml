@@ -1,0 +1,59 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/kota-openapi-original.json, openapi/kota-api-reference-openapi.json
+docs: https://docs.kota.io/core-components/authentication
+reference: https://docs.kota.io/api-reference#authentication
+summary:
+  types:
+  - http
+  http_schemes:
+  - bearer
+  api_key_in: []
+  oauth2_flows: []
+  model: >-
+    Single-credential bearer API key. No OAuth 2.0, no OpenID Connect, no scope surface — access is
+    bounded by the platform the key belongs to and that platform's type, not by scopes.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Authorization header using the Bearer scheme
+  header: 'Authorization: Bearer <YOUR_API_SECRET_KEY>'
+  env_var_convention: KOTA_API_KEY
+  applied: globally (root-level security requirement in the published spec)
+  sources:
+  - openapi/kota-api-reference-openapi.json
+  - openapi/kota-openapi-original.json
+key_model:
+  prefixes:
+  - prefix: pk_test_
+    mode: test
+    base_url: https://test.api.kota.io
+  - prefix: pk_live_
+    mode: live
+    base_url: https://api.kota.io
+  scoping: >-
+    API keys are tied to an individual platform and restricted to that platform's type, such as
+    employer_of_record or payroll_provider. Endpoints restricted to specific platform types are
+    noted in the API reference and return 403 forbidden to keys of the wrong type.
+  handling: >-
+    Secret keys must not be shared in publicly accessible areas such as GitHub or client-side code.
+    Browser-side flows use short-lived Embed session tokens from POST /embed/sessions instead.
+transport:
+  https_required: true
+  note: >-
+    All API requests must be made over HTTPS; calls made over plain HTTP will fail. Requests
+    without authentication also fail.
+browser_credentials:
+  mechanism: Embed session access token
+  issued_by: POST /embed/sessions (server-side, with the secret key)
+  scope: bound to a single employer or employee UI context
+  docs: https://docs.kota.io/embed/server-side
+auth_errors:
+- status: 401
+  error_code: unauthorized
+  meaning: Authorization header missing or invalid
+- status: 403
+  error_code: forbidden
+  meaning: Token lacks permission for the operation (often a platform-type restriction)
+oauth_scopes: none - Kota publishes no OAuth 2.0 or scope surface
