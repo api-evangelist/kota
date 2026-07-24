@@ -1,0 +1,978 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons employees API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: employees
+paths:
+  /employees:
+    get:
+      operationId: list-employees
+      summary: List all employees
+      description: Returns a list of your `employees`. The `employees` are returned sorted by creation date, with the most recent `employees` appearing first.
+      tags:
+      - employees
+      parameters:
+      - name: filter
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`.'
+        required: false
+        schema:
+          type: string
+      - name: employer_id
+        in: query
+        description: Filter by employer ID.
+        required: false
+        schema:
+          type: string
+      - name: external_customer_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: metadata_id
+        in: query
+        description: Filter by the employee's metadata "id" value (case-insensitive, accent-insensitive, partial match)
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponsePagedList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+    post:
+      operationId: create-employee
+      summary: Create an employee
+      description: Creates an `employee` with the linked `employer`. If the `employer` has an active health insurance scheme that automatically provides insurance to employees the `employee` will be enrolled.
+      tags:
+      - employees
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmployeeRequest'
+  /employees/{employee_id}:
+    get:
+      operationId: retrieve-employee
+      summary: Retrieve an employee
+      description: Retrieves an `employee` object.
+      tags:
+      - employees
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      operationId: update-employee
+      summary: Update an employee
+      description: 'Updates the specified `employee` by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `email` parameter only the `email` value will be changed.
+
+
+        Note that the `home_address` field is treated as single object that is updated entirely. If you provide this field, the entire address object will be replaced with the new data, not just the individual sub-fields you include in the request, potentially removing any sub-fields you didn''t include in the request.
+
+
+        This request accepts mostly the same arguments as the `employee` creation call.'
+      tags:
+      - employees
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEmployeeRequest'
+  /employees/{employee_id}/offboard:
+    post:
+      operationId: offboard-employee
+      summary: Offboard an employee
+      description: Schedules an `employee` to be offboarded. Changes affecting payroll will be reflected in the next available payroll cycle data run. Offboarding an `employee` can be cancelled up to, and including, the day before they are scheduled for offboarding. A `webhook` is available to inform you when this completes.
+      tags:
+      - employees
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OffboardEmployeeRequest'
+  /employees/{employee_id}/offboard/cancel:
+    post:
+      operationId: cancel-offboarding-employee
+      summary: Cancel offboarding an employee
+      description: Cancels the scheduled offboarding of an `employee`. Adjusts the next payroll cycle data to compensate for this change and if payroll ran while the offboarding was scheduled the next payroll cycle data will be adjusted to bring the scheme back to balance.
+      tags:
+      - employees
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    AddressModelWithoutCountry:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+      required:
+      - line1
+      - city
+      - postal_code
+      title: AddressModelWithoutCountry
+    EmployeeBankAccount:
+      type: object
+      properties:
+        account_number_last4:
+          type: string
+          description: Last 4 digits of the account number
+      required:
+      - account_number_last4
+      title: EmployeeBankAccount
+    EmployeeStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      title: EmployeeStatus
+    CountryCode:
+      type: string
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      title: CountryCode
+    AddressModel:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      required:
+      - line1
+      - city
+      - postal_code
+      - country_code
+      title: AddressModel
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
+    EmployeeResponse:
+      type: object
+      properties:
+        platform_id:
+          type: string
+          description: Unique identifier for the platform
+        id:
+          type: string
+          description: Unique identifier for the employee
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        status:
+          $ref: '#/components/schemas/EmployeeStatus'
+          description: Current status of the employee
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        first_name:
+          type: string
+          description: First name of the employee. It can include the middle name
+        last_name:
+          type: string
+          description: Last name of the employee
+        date_of_birth:
+          type: string
+          format: date
+          description: Date of birth of the employee
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
+        national_tax_id:
+          type: string
+          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
+        start_on:
+          type: string
+          format: date
+          description: Employment start date
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        phone_number:
+          type: string
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type: string
+          description: Email address of the employee
+        offboard_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Date when the employee was or will be offboarded
+        bank_account:
+          $ref: '#/components/schemas/EmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - national_tax_id
+      - phone_number
+      - email
+      title: EmployeeResponse
+    UpdateEmployeeRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        home_address:
+          $ref: '#/components/schemas/AddressModelWithoutCountry'
+          description: Treated as a single object that is updated entirely, `null` sub-fields (e.g. Line 3) will delete the existing values
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+        national_tax_id:
+          type:
+          - string
+          - 'null'
+          description: National tax ID, e.g. PPSN in Ireland, NINO in the UK, DNI/NIE in Spain
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type:
+          - string
+          - 'null'
+        start_on:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The start date of the employee.
+
+
+            **Constraints:**
+
+
+            - On update, may only be changed if no policy or offer exists for this employee.
+
+            - Must be a valid date.
+
+            - The employee''s existing start_on and the new start_on date must both be in the future.'
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
+
+
+            **Constraints:**
+
+
+            - On update, may only be changed if no policy or offer exists for this employee.
+
+            - Must be a valid date.
+
+            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        bank_account:
+          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          description: Treated as a single object that is updated entirely.
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
+      title: UpdateEmployeeRequest
+    CreateEmployeeBankAccount:
+      type: object
+      properties:
+        account_number:
+          type: string
+          description: 'Account number in IBAN format. NOTE: This field will be normalized according to our internal formatting rules.'
+      required:
+      - account_number
+      title: CreateEmployeeBankAccount
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    CreateEmployeeRequest:
+      type: object
+      properties:
+        employer_id:
+          type: string
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only required for EoR platforms.
+        first_name:
+          type: string
+          description: 'It can include the middle name. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        last_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        date_of_birth:
+          type: string
+          format: date
+          description: Must be in the past, but after 1900-01-01
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+        national_tax_id:
+          type: string
+          description: 'PPSN in Ireland, NINo in the UK, DNI/NIE in Spain. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        start_on:
+          type: string
+          format: date
+          description: Employment start date. Must be after 1900-01-01, can be in the future
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
+
+
+            **Constraints:**
+
+
+            - Must be a valid date.
+
+
+            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        phone_number:
+          type: string
+          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
+        email:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        bank_account:
+          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+      required:
+      - employer_id
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - home_address
+      - national_tax_id
+      - start_on
+      - phone_number
+      - email
+      title: CreateEmployeeRequest
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    EmployeeResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployeeResponsePagedList
+    OffboardEmployeeRequest:
+      type: object
+      properties:
+        offboard_on:
+          type: string
+          format: date-time
+          description: The date when the employee should be offboarded. Can be a future date, today, or up to 30 days in the past if the employee has active insurance policies. Past dates beyond 30 days are allowed only if there are no active policies.
+        offboard_reason:
+          type: string
+      required:
+      - offboard_on
+      - offboard_reason
+      title: OffboardEmployeeRequest
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

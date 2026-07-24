@@ -1,0 +1,743 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons groupQuoteIntents API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: groupQuoteIntents
+paths:
+  /group_quote_intents:
+    get:
+      operationId: list-group-quote-intents
+      summary: List group quote intents
+      description: Returns a paginated list of `group_quote_intent`'s. The results are returned sorted by creation date, with the most recent appearing first.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: group_id
+        in: query
+        description: Filter by group ID
+        required: false
+        schema:
+          type: string
+      - name: plan_id
+        in: query
+        description: Filter by plan ID
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `awaiting_quote`, `quote_available`, `rejected`, `rejected_by_insurer`, `quote_expired`.'
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQuoteIntentResponsePagedList'
+    post:
+      operationId: create-group-quote-intent
+      summary: Create a group quote intent
+      description: Creates a `group_quote_intent` to request a quote for a `group` and `plan` combination. The intent coordinates the quote workflow including requirements collection and quote generation.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQuoteIntentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupQuoteIntentRequest'
+  /group_quote_intents/{group_quote_intent_id}:
+    get:
+      operationId: retrieve-group-quote-intent
+      summary: Retrieve a group quote intent
+      description: Retrieves a `group_quote_intent` object.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: group_quote_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQuoteIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /group_quote_intents/{group_quote_intent_id}/requirements:
+    get:
+      operationId: list-group-quote-intent-requirements
+      summary: List requirements for a group quote intent
+      description: Returns a paginated list of adaptive requirements for a `group_quote_intent`. Requirements must be fulfilled before a quote can be generated.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: group_quote_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: object_type
+        in: query
+        description: Filter by object type (employee or employer)
+        required: false
+        schema:
+          $ref: '#/components/schemas/RequirementObjectTypeEnumParameter'
+      - name: object_id
+        in: query
+        description: Filter by object ID (employee ID or employer ID)
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQuoteIntentRequirementResponsePagedList'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /group_quote_intents/{group_quote_intent_id}/quote:
+    get:
+      operationId: get-group-quote-intent-quote
+      summary: Retrieve the quote for a group quote intent
+      description: Retrieves the quote details for a `group_quote_intent`. Returns pricing information and a fresh PDF URL. Only available when status is `quote_available`.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: group_quote_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQuoteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /group_quote_intents/{group_quote_intent_id}/reject:
+    post:
+      operationId: reject-group-quote-intent
+      summary: Reject a group quote intent
+      description: Rejects a `group_quote_intent` when the employer decides not to proceed with the quote. Can only reject intents in `quote_available` status.
+      tags:
+      - groupQuoteIntents
+      parameters:
+      - name: group_quote_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group Quote Intents_RejectGroupQuoteIntent_Response_204'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    GroupQuoteIntentResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupQuoteIntentResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: GroupQuoteIntentResponsePagedList
+    GroupQuoteIntentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the group quote intent
+        group_id:
+          type: string
+          description: Unique identifier for the group
+        plan_id:
+          type: string
+          description: Unique identifier for the plan
+        status:
+          $ref: '#/components/schemas/GroupQuoteIntentStatus'
+          description: Current status of the group quote intent
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        expected_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Expected start date for the insurance coverage
+        action_required:
+          $ref: '#/components/schemas/GroupQuoteIntentActionRequiredResponse'
+          description: Details of the action required from the caller, if the intent is in action_required status.
+        consent_links:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentLinkResponse'
+          description: Consent links that need to be acknowledged
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this intent.
+        object:
+          type: string
+          description: Object type identifier
+      required:
+      - id
+      - group_id
+      - plan_id
+      - status
+      - consent_links
+      - disclosures
+      title: GroupQuoteIntentResponse
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      required:
+      - type
+      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
+    RequirementType:
+      type: string
+      enum:
+      - group_quote_intent
+      - group_policy_intent
+      - dependent_management_intent
+      - policy_amendment_intent
+      - enrolment_intent
+      title: RequirementType
+    GroupQuoteIntentActionRequiredResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/IntentActionType'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action.
+        due_by:
+          type: string
+          format: date-time
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+      required:
+      - code
+      - reason
+      - reason_description
+      - due_by
+      title: GroupQuoteIntentActionRequiredResponse
+    PlanCoverageOptionSelectionRequest:
+      type: object
+      properties:
+        configuration_id:
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Selected options with optional sub-options.
+      required:
+      - configuration_id
+      - options
+      title: PlanCoverageOptionSelectionRequest
+    ConsentType:
+      type: string
+      enum:
+      - terms_of_business
+      - privacy_policy
+      title: ConsentType
+    SelectedOptionRequest:
+      type: object
+      properties:
+        option_id:
+          type: string
+          description: Option ID (prefixed with `pco_`).
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Sub-option selections, if applicable.
+      required:
+      - option_id
+      title: SelectedOptionRequest
+    CreateGroupQuoteIntentRequest:
+      type: object
+      properties:
+        group_id:
+          type: string
+          description: Unique identifier for the group to get a quote for
+        plan_id:
+          type: string
+          description: Unique identifier for the plan to get a quote for
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        expected_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Expected start date for the insurance coverage
+        coverage_selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
+          description: Plan coverage option selections for group-policy-scoped configurations.
+      required:
+      - group_id
+      - plan_id
+      title: CreateGroupQuoteIntentRequest
+    GroupQuoteIntentRequirementResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the requirement
+        object_type:
+          $ref: '#/components/schemas/RequirementObjectType'
+          description: Type of object this requirement is for (employee or employer)
+        object_id:
+          type: string
+          description: Identifier of the object (employee ID or employer ID)
+        is_fulfilled:
+          type: boolean
+          description: Whether the requirement has been fulfilled
+        requirement_type:
+          $ref: '#/components/schemas/RequirementType'
+          description: Type of requirement
+        object:
+          type: string
+          description: Object type identifier
+      required:
+      - id
+      - object_type
+      - object_id
+      - is_fulfilled
+      - requirement_type
+      title: GroupQuoteIntentRequirementResponse
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+        children:
+          type: boolean
+          description: If children are covered.
+      required:
+      - partner
+      - children
+      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
+    GroupQuoteIntentStatus:
+      type: string
+      enum:
+      - processing
+      - action_required
+      - awaiting_quote
+      - quote_available
+      - rejected
+      - rejected_by_insurer
+      - quote_expired
+      title: GroupQuoteIntentStatus
+    HealthInsuranceCostSharingType:
+      type: string
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      title: HealthInsuranceCostSharingType
+    RequirementObjectType:
+      type: string
+      enum:
+      - employee
+      - employer
+      - associated_person
+      title: RequirementObjectType
+    GroupQuoteIntentRequirementResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupQuoteIntentRequirementResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: GroupQuoteIntentRequirementResponsePagedList
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    HealthInsurancePercentageCostSharingConfigurationResponse:
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+      required:
+      - percentage
+      title: HealthInsurancePercentageCostSharingConfigurationResponse
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+        children:
+          type: integer
+          description: Number of additional children covered.
+      required:
+      - adults
+      - children
+      title: HealthInsuranceMemberCountCostSharingConfigurationResponse
+    GroupQuoteResponse:
+      type: object
+      properties:
+        employee_count:
+          type: integer
+          description: Number of employees covered by the quote
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        total_monthly_premium:
+          type: number
+          format: double
+          description: Total monthly premium for the group
+        currency:
+          type: string
+          description: Currency of the premium (e.g. EUR, GBP)
+        pdf_url:
+          type:
+          - string
+          - 'null'
+          description: URL to download the quote PDF
+        pdf_expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the PDF URL expires
+        generated_at:
+          type: string
+          format: date-time
+          description: When the quote was generated
+        expires_at:
+          type: string
+          format: date-time
+          description: When the quote expires
+        object:
+          type: string
+          description: Object type identifier
+      required:
+      - employee_count
+      - cost_sharing
+      - total_monthly_premium
+      - currency
+      - generated_at
+      - expires_at
+      title: GroupQuoteResponse
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    IntentActionType:
+      type: string
+      enum:
+      - provide_dependant_information
+      - provide_beneficiary_information
+      - provide_missing_information
+      title: IntentActionType
+    Group Quote Intents_RejectGroupQuoteIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Group Quote Intents_RejectGroupQuoteIntent_Response_204
+    HealthInsuranceCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingType'
+          description: Cost sharing type. Determines which sub-object is populated.
+        member_count:
+          $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
+          description: Numbers of additional members covered by the employer.
+        member_selection:
+          $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
+          description: Whether specific member types are covered by the employer.
+        percentage:
+          $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
+          description: Percentage of the premium the employer covers.
+        family_type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
+          description: Type of the family covered by the employer.
+      required:
+      - type
+      title: HealthInsuranceCostSharingConfigurationResponse
+    RequirementObjectTypeEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/RequirementObjectType'
+      title: RequirementObjectTypeEnumParameter
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    ConsentLinkResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ConsentType'
+          description: Type of consent
+        url:
+          type: string
+          description: URL to the consent document
+        version:
+          type: string
+          description: Version of the consent document
+      required:
+      - type
+      - url
+      - version
+      title: ConsentLinkResponse
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    HealthInsuranceFamilyCostSharingType:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      title: HealthInsuranceFamilyCostSharingType
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

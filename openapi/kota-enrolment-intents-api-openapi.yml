@@ -1,0 +1,1892 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons Enrolment Intents API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: Enrolment Intents
+paths:
+  /enrolment_intents:
+    post:
+      tags:
+      - Enrolment Intents
+      summary: Create a new enrolment intent
+      description: Creates a new `enrolment_intent` to manage the enrolment of an employee into a group. An enrolment intent represents the intention to enrol an employee into a specific group, and tracks the status and progress of that enrolment process.
+      operationId: CreateEnrolmentIntent
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateEnrolmentIntentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrolmentIntentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+      - Enrolment Intents
+      summary: List all enrolment intents
+      description: Returns a list of `enrolment_intents`. The `enrolment_intents` are returned sorted by creation date, with the most recent `enrolment_intent` appearing first.
+      operationId: ListEnrolmentIntents
+      parameters:
+      - name: employee_id
+        in: query
+        description: Filters enrolment intents by employee.
+        schema:
+          pattern: ee_.+
+          type: string
+          description: Filters enrolment intents by employee.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: group_id
+        in: query
+        description: Filters enrolment intents  by group.
+        schema:
+          pattern: gr_.+
+          type: string
+          description: Filters enrolment intents  by group.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`.'
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        schema:
+          type: integer
+          description: The page of results to return. Defaults to 1 if not provided.
+          format: int32
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        schema:
+          type: integer
+          description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrolmentIntentResponsePagedList'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}:
+    put:
+      tags:
+      - Enrolment Intents
+      summary: Update policy configuration enrolment intent
+      description: Updates the policy configuration for an existing `enrolment_intent`. This will reset the enrolment intent back to `processing` status and re-evaluate the enrolment intent based on the new configuration provided.Unavailable for enrolment intents that are already `enrolling` or `enrolled`.
+      operationId: UpdateEnrolmentIntentConfiguration
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/PolicyConfigurationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrolmentIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+      - Enrolment Intents
+      summary: Retrieve an enrolment intent
+      description: Retrieves an `enrolment_intent` object.
+      operationId: RetrieveEnrolmentIntent
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrolmentIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}/requirements:
+    get:
+      tags:
+      - Enrolment Intents
+      summary: List requirements for an enrolment intent
+      description: Returns a paginated list of adaptive requirements for an `enrolment_intent`. Requirements must be fulfilled before enrolment can proceed.
+      operationId: ListEnrolmentIntentRequirements
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: object_type
+        in: query
+        description: Filter by object type (employee or employer)
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectTypeEnumParameter'
+          description: Filter by object type (employee or employer)
+      - name: object_id
+        in: query
+        description: Filter by object ID (employee ID or employer ID)
+        schema:
+          type: string
+          description: Filter by object ID (employee ID or employer ID)
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        schema:
+          type: integer
+          description: The page of results to return. Defaults to 1 if not provided.
+          format: int32
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        schema:
+          type: integer
+          description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrolmentIntentRequirementResponsePagedList'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}/confirm:
+    post:
+      tags:
+      - Enrolment Intents
+      summary: Confirm an enrolment intent
+      description: Confirms an `enrolment_intent` that is in `PendingConfirmation` status. This transitions the enrolment intent to `Enrolling` status and initiates the enrolment process with the insurance provider.
+      operationId: ConfirmEnrolmentIntent
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}/reject:
+    post:
+      tags:
+      - Enrolment Intents
+      summary: Reject an enrolment intent
+      description: Rejects an `enrolment_intent` that is in `PendingConfirmation`, `ActionRequired`, or `AddonSelectionRequired` status. This transitions the enrolment intent to `NotUndertaken` status.
+      operationId: RejectEnrolmentIntent
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}/coverage-selections:
+    post:
+      tags:
+      - Enrolment Intents
+      summary: Submit coverage selections for an enrolment intent
+      description: Submits plan coverage option selections for an enrolment intent in the `addon_selection_required` status.
+      operationId: SubmitEnrolmentIntentCoverageSelections
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SubmitCoverageSelectionsRequest'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /enrolment_intents/{enrolment_intent_id}/create_dependents_management_intent:
+    post:
+      tags:
+      - Enrolment Intents
+      summary: Create a dependents management intent for an enrolment intent
+      description: Creates a dependents management intent as a sub-intent of an enrolment intent. The enrolment intent must be in `pending_confirmation` status.
+      operationId: CreateDependentsManagementIntentForEnrolmentIntent
+      parameters:
+      - name: enrolment_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: ei_.+
+          type: string
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependentsManagementIntentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    PlanWithPricingResponse:
+      required:
+      - description
+      - id
+      - name
+      - pricing
+      type: object
+      properties:
+        id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+        pricing:
+          allOf:
+          - $ref: '#/components/schemas/PlanPricingResponse'
+          description: Pricing information for the plan.
+      additionalProperties: false
+    PlanCoverageOptionInputType:
+      enum:
+      - single_select
+      - multi_select
+      type: string
+    PolicyType:
+      enum:
+      - health_insurance
+      - life_assurance
+      type: string
+    PlanCoverageOptionScope:
+      enum:
+      - group_policy
+      - policy
+      - member
+      type: string
+    RequirementType:
+      enum:
+      - group_quote_intent
+      - group_policy_intent
+      - dependent_management_intent
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    PlanCoverageResponse:
+      required:
+      - id
+      - input_type
+      - name
+      - options
+      - required
+      - scope
+      type: object
+      properties:
+        id:
+          pattern: pc_.+
+          type: string
+          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Title for this coverage selection. Typically used as the display heading.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Full description of this coverage selection.
+        scope:
+          allOf:
+          - $ref: '#/components/schemas/PlanCoverageOptionScope'
+          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
+        input_type:
+          allOf:
+          - $ref: '#/components/schemas/PlanCoverageOptionInputType'
+          description: Describes whether this input allows selecting a single option or multiple options.
+        required:
+          type: boolean
+          description: Whether a selection is mandatory.
+          example: true
+        min_selections:
+          type:
+          - 'null'
+          - integer
+          description: Minimum required selections (multi-select only).
+          format: int32
+        max_selections:
+          type:
+          - 'null'
+          - integer
+          description: Maximum allowed selections (multi-select only).
+          format: int32
+        sort_order:
+          type:
+          - 'null'
+          - integer
+          description: Display ordering hint.
+          format: int32
+        group_label:
+          type:
+          - 'null'
+          - string
+          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Available options within this coverage selection.
+      additionalProperties: false
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      additionalProperties: false
+    PlanCoverageOptionSelectionRequest:
+      required:
+      - configuration_id
+      - options
+      type: object
+      properties:
+        configuration_id:
+          pattern: pc_.+
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Selected options with optional sub-options.
+      additionalProperties: false
+    DependentsManagementIntentStatus:
+      enum:
+      - action_required
+      - processing
+      - completed
+      - not_undertaken
+      type: string
+      x-fern-enum:
+        action_required:
+          description: Dependents information needs to be provided.
+        processing:
+          description: Dependents are being validated and processed.
+        completed:
+          description: Dependents have been successfully processed and validated.
+        not_undertaken:
+          description: Dependents management intent has been aborted.
+    PolicyConfigurationResponse:
+      type: object
+      properties:
+        desired_policy_start_date:
+          type:
+          - 'null'
+          - string
+          description: Desired policy start date, not guaranteed to be honoured by the provider.
+          format: date
+          example: '2024-12-01'
+        enrolment_date:
+          type:
+          - 'null'
+          - string
+          description: The date on which the employee has agreed to enrol into a the group policy. This date may be used by some providers to determine policy start date.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    HealthInsurancePolicyConfigurationResponse:
+      required:
+      - cost_sharing
+      type: object
+      properties:
+        cost_sharing:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Defines how the policy total cost is shared between employer and employee.
+      additionalProperties: false
+    EnrolmentIntentAssociatedPersonResponse:
+      required:
+      - dependent
+      - optional
+      - type
+      type: object
+      properties:
+        optional:
+          type: boolean
+          description: Indicates whether providing information for the related type is optional.
+          example: true
+        type:
+          allOf:
+          - $ref: '#/components/schemas/AssociatedPersonType'
+          description: The type of associated person.
+        dependent:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentDependentResponse'
+          description: Dependents-specific information if type is 'dependents'.
+      additionalProperties: false
+    EnrolmentIntentDependentResponse:
+      required:
+      - intent_id
+      - status
+      type: object
+      properties:
+        intent_id:
+          pattern: dmi_.+
+          type: string
+          description: Unique identifier for the dependents management intent. Prefixed with `dmi_`.
+          example: dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DependentStatus'
+          description: Current status of the dependent.
+      additionalProperties: false
+    TierBasedPricingResponse:
+      required:
+      - currency
+      - tiers
+      type: object
+      properties:
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingTierResponse'
+          description: Pricing tiers for different family compositions.
+      additionalProperties: false
+    SelectedOptionRequest:
+      required:
+      - option_id
+      type: object
+      properties:
+        option_id:
+          pattern: pco_.+
+          type: string
+          description: Option ID (prefixed with `pco_`).
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        sub_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Sub-option selections, if applicable.
+      additionalProperties: false
+    PolicyPlanResponse:
+      required:
+      - currency
+      - description
+      - documents
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan. Prefixed with pl_.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Plan display name.
+        description:
+          type: string
+          description: Short description of the plan.
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: ISO 4217 currency code for pricing under this plan.
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanDocumentResponse'
+          description: List of plan documents (e.g., IPIDs, T&Cs).
+      additionalProperties: false
+    PlanPricingResponse:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/PlanPricingType'
+          description: Type of pricing structure
+        per_member:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/PerMemberPricingResponse'
+          description: Per-member pricing details (populated when type is 'per_member').
+        tier_based:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/TierBasedPricingResponse'
+          description: Tier-based pricing details (populated when type is 'tier_based').
+      additionalProperties: false
+    PlanCoverageOptionResponse:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pco_.+
+          type: string
+          description: Unique identifier for this coverage option. Prefixed with `pco_`.
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Display name for this coverage option.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Longer explanation of this coverage option.
+        learn_more_url:
+          type:
+          - 'null'
+          - string
+          description: Link to learn more about this coverage option.
+        from_price:
+          type:
+          - 'null'
+          - number
+          description: Lowest applicable monthly price for this coverage option.
+          format: double
+        benefits:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
+          description: Benefit items included with this coverage option.
+        sub_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Nested sub-options available when this option is selected.
+        eligibility_criteria:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that must be met to select this coverage option.
+      additionalProperties: false
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+      required:
+      - children
+      - partner
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+          example: true
+        children:
+          type: boolean
+          description: If children are covered.
+          example: true
+      additionalProperties: false
+    PlanPricingType:
+      enum:
+      - per_member
+      - tier_based
+      type: string
+    DependentStatus:
+      enum:
+      - processing
+      - confirmed
+      type: string
+    DependentsManagementIntentDependentStatus:
+      enum:
+      - pending_confirmation
+      - action_required
+      - ineligible
+      - processing
+      - restricted
+      - ready
+      type: string
+    MemberTypeCode:
+      enum:
+      - adult
+      - young_adult
+      - child
+      type: string
+    EnrolmentIntentResponse:
+      required:
+      - disclosures
+      - employee_id
+      - force_confirmation
+      - group_id
+      - id
+      - policy_enrolments
+      - status
+      type: object
+      properties:
+        id:
+          pattern: ei_.+
+          type: string
+          description: Unique identifier for the enrolment intent. Prefixed with `ei_`.
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier for the employee associated with this enrolment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier for the group associated with this enrolment intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentStatus'
+          description: Current status of the enrolment intent.
+        force_confirmation:
+          type: boolean
+          description: If set to true, the system will always force the `PendingConfirmation` state before enrolling the employee, even if no action is required. This can be useful in scenarios where you want to ensure that the employee explicitly confirms their enrolment, regardless of their eligibility or any other factors. Defaults to false.
+          example: true
+        policy_enrolments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrolmentIntentPolicyEnrolmentResponse'
+          description: Policy enrolment information
+        object:
+          type: string
+          description: Object type identifier.
+          readOnly: true
+        ineligibility_reason:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentInelgibilityReason'
+          description: If the enrolment intent status is `ineligible`, this field provides details about the reason for employees ineligibility.
+        policy_configuration:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/PolicyConfigurationResponse'
+          description: Policy configuration associated with this enrolment intent.
+        action_required:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentActionRequiredResponse'
+          description: If the enrolment intent status is `action_required`, this field provides details about the action that needs to be taken to proceed with the enrolment.
+        pending_confirmation:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentPendingConfirmationResponse'
+          description: If the enrolment intent status is `pending_confirmation`, this field provides details about the pending confirmation state.
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this intent.
+      additionalProperties: false
+    RequirementObjectType:
+      enum:
+      - employee
+      - employer
+      - associated_person
+      type: string
+    HealthInsuranceCostSharingType:
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      type: string
+      x-fern-enum:
+        member_count:
+          description: The number of additional adults and children to cover is specified.
+        member_selection:
+          description: Dependent categories to cover are selected (partner and/or children).
+        percentage:
+          description: A percentage of the total premium is covered.
+        policyholder_only:
+          description: Only the policyholder is covered.
+        family_type:
+          description: Coverage is based on a predefined family tier (e.g. Single, Couple, Family).
+    EnrolmentIntentConfirmationType:
+      enum:
+      - confirm_enrolment
+      type: string
+    DisclosureType:
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      type: string
+    EmployerEligibilityCriterionType:
+      enum:
+      - employees_count
+      - members_count
+      - industry_exclusions
+      type: string
+    MembersCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - 'null'
+          - integer
+          description: Minimum number of members required.
+          format: int32
+        max:
+          type:
+          - 'null'
+          - integer
+          description: Maximum number of members allowed.
+          format: int32
+      additionalProperties: false
+    CurrencyCode:
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      type: string
+    PricingTierResponse:
+      required:
+      - annual_premium
+      - code
+      - display_dependent_requirements
+      - display_name
+      - monthly_premium
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/FamilyTierCode'
+          description: Tier code.
+        display_name:
+          type: string
+          description: Display name for the tier.
+        monthly_premium:
+          type: number
+          description: Monthly premium amount for this tier.
+          format: double
+          example: 123.45
+        annual_premium:
+          type: number
+          description: Annual premium amount for this tier.
+          format: double
+          example: 123.45
+        display_dependent_requirements:
+          type: string
+          description: Description of dependent requirements for this tier.
+      additionalProperties: false
+    HealthInsurancePercentageCostSharingConfigurationResponse:
+      required:
+      - percentage
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+          format: int32
+          example: 123
+      additionalProperties: false
+    EnrolmentIntentPolicyEnrolmentResponse:
+      required:
+      - estimated_effective_from
+      - plan
+      - provider
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/PolicyType'
+          description: Type of policy to be created as part of this enrolment intent.
+        estimated_effective_from:
+          type: string
+          description: Estimated date when the policy of this type is expected to become effective in ISO 8601 (YYYY-MM-DD).
+          format: date
+          example: '2024-12-01'
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/PolicyProviderResponse'
+          description: Provider information for this policy (from group policy).
+        plan:
+          allOf:
+          - $ref: '#/components/schemas/PolicyPlanResponse'
+          description: Plan information for this policy (from group policy).
+        health_insurance:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceEnrolmentIntentResponse'
+          description: Health insurance intent information (always present when type=health_insurance).
+        id:
+          pattern: p_.+
+          type:
+          - 'null'
+          - string
+          description: Unique identifier for the policy created as part of this enrolment intent. Prefixed with `p_`. Only populated once the policy has been created.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    MemberTypePricingResponse:
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/MemberTypeCode'
+          description: Member type code.
+        display_name:
+          type: string
+          description: Display name for the member type.
+        monthly_premium:
+          type: number
+          description: Monthly premium amount.
+          format: double
+          example: 123.45
+      additionalProperties: false
+    IndustryExclusionsDetails:
+      required:
+      - excluded_industries
+      type: object
+      properties:
+        excluded_industries:
+          type: array
+          items:
+            type: string
+          description: List of excluded industries.
+      additionalProperties: false
+    FamilyTierCode:
+      enum:
+      - single
+      - couple
+      - single_parent
+      - family
+      type: string
+    DependentsManagementIntentActionRequiredResponse:
+      required:
+      - code
+      - due_by
+      - reason
+      - reason_description
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentActionCode'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action. This is intended to be understandable by the end user.
+        due_by:
+          type: string
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    EnrolmentIntentInelgibilityReason:
+      required:
+      - code
+      - reason
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentIneligibilityReasonCode'
+          description: Code representing the reason for ineligibility. This can be used to programmatically handle different ineligibility scenarios. As these amount of codes could increase with new providers we strongly suggest to use the fallback public message for displaying to end users.
+        reason:
+          type: string
+          description: A reason that can be displayed to the end user explaining why the enrolment intent is ineligible.
+      additionalProperties: false
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      required:
+      - adults
+      - children
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+          format: int32
+          example: 123
+        children:
+          type: integer
+          description: Number of additional children covered.
+          format: int32
+          example: 123
+      additionalProperties: false
+    DependentsManagementIntentActionCode:
+      enum:
+      - remove_restricted_or_ineligible_dependents
+      type: string
+      x-fern-enum:
+        remove_restricted_or_ineligible_dependents:
+          description: One or more dependents are restricted or ineligible and must be removed before proceeding.
+    EnrolmentIntentResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrolmentIntentResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    EnrolmentIntentRequirementResponse:
+      required:
+      - id
+      - is_fulfilled
+      - object_id
+      - object_type
+      - requirement_type
+      type: object
+      properties:
+        id:
+          pattern: ar_.+
+          type: string
+          description: Unique identifier for the requirement
+          example: ar_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+          description: Type of object this requirement is for (employee or employer)
+        object_id:
+          type: string
+          description: Identifier of the object (employee ID or employer ID)
+        is_fulfilled:
+          type: boolean
+          description: Whether the requirement has been fulfilled
+          example: true
+        requirement_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementType'
+          description: Type of requirement
+        object:
+          type: string
+          description: Object type identifier
+          readOnly: true
+      additionalProperties: false
+    DependentInfoResponse:
+      required:
+      - associated_person_id
+      - status
+      type: object
+      properties:
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentDependentStatus'
+          description: The status of this dependent in the dependents management intent.
+        coverage_selections:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionResponse'
+          description: Coverage option selections for this dependent. Populated when member-scoped selections have been provided.
+        requirement_id:
+          type:
+          - 'null'
+          - string
+          description: The adaptive requirement ID for this dependent. Populated when the dependent has an open adaptive requirement (status is `pending_requirement`).
+          format: uuid
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    EnrolmentIntentStatus:
+      enum:
+      - processing
+      - scheduled
+      - action_required
+      - addon_selection_required
+      - pending_confirmation
+      - enrolling
+      - enrolled
+      - not_undertaken
+      - ineligible
+      type: string
+    IntentActionType:
+      enum:
+      - provide_dependant_information
+      - provide_beneficiary_information
+      - provide_missing_information
+      type: string
+    CreateEnrolmentIntentRequest:
+      required:
+      - employee_id
+      - force_confirmation
+      - group_id
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier for the employee associated with this enrolment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier for the group associated with this enrolment intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policy_configuration:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/PolicyConfigurationRequest'
+          description: Policy configuration associated with this enrolment intent. You do not have to explicitly provide this field if you want to use the default policy configuration for the group. This simply lets you override specific settings for this enrolment intent.
+        force_confirmation:
+          type: boolean
+          description: If set to true, the system will always force the `PendingConfirmation` state before enrolling the employee, even if no action is required. This can be useful in scenarios where you want to ensure that the employee explicitly confirms their enrolment, regardless of their eligibility or any other factors. Defaults to false.
+          example: true
+        coverage_selections:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
+          description: Optional plan coverage option selections for policy-scoped configurations. If provided and valid, the addon_selection_required step will be skipped.
+      additionalProperties: false
+    DependentsManagementIntentResponse:
+      required:
+      - dependents
+      - disclosures
+      - id
+      - parent_intent_id
+      - parent_intent_type
+      - plan
+      - status
+      type: object
+      properties:
+        id:
+          pattern: dmi_.+
+          type: string
+          description: Unique identifier for the dependents management intent. Prefixed with `dmi_`.
+          example: dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object:
+          type: string
+          description: Object type identifier.
+          readOnly: true
+        parent_intent_id:
+          type: string
+          description: The parent intent ID (e.g. Policy Amendment Intent ID). Prefixed based on type.
+        parent_intent_type:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentParentType'
+          description: The type of parent intent.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentStatus'
+          description: Current status of the dependents management intent.
+        dependents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DependentInfoResponse'
+          description: List of dependents being managed.
+        plan:
+          allOf:
+          - $ref: '#/components/schemas/PlanWithPricingResponse'
+          description: Plan information including pricing details.
+        coverage_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageResponse'
+          description: Available member-scoped coverage options for the plan. Present when the plan has member-scoped coverage configurations.
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this intent.
+        action_required:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentActionRequiredResponse'
+          description: Details of the action required from the caller. Populated only when `status` is `action_required` and a required action has been recorded on the intent (e.g. restricted dependents detected by compliance screening).
+      additionalProperties: false
+    HealthInsuranceCostSharingConfigurationResponse:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingType'
+          description: Cost sharing type. Determines which sub-object is populated.
+        member_count:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
+          description: Numbers of additional members covered by the employer.
+        member_selection:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
+          description: Whether specific member types are covered by the employer.
+        percentage:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
+          description: Percentage of the premium the employer covers.
+        family_type:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
+          description: Type of the family covered by the employer.
+      additionalProperties: false
+    RequirementObjectTypeEnumParameter:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+      additionalProperties: false
+    HealthInsuranceEnrolmentIntentResponse:
+      required:
+      - configuration
+      type: object
+      properties:
+        configuration:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyConfigurationResponse'
+          description: How benefit costs will be shared between employer and employee.
+        coverage_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageResponse'
+          description: Available plan coverage options at the policy scope. Only present when the plan has policy-scoped coverage configurations.
+        coverage_selections:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionResponse'
+          description: Current coverage option selections. Populated when selections have been submitted.
+      additionalProperties: false
+    PlanCoverageOptionBenefitResponse:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Benefit name.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Benefit description.
+      additionalProperties: false
+    DisclosureResponse:
+      required:
+      - category
+      - text
+      - type
+      type: object
+      properties:
+        category:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      additionalProperties: false
+    SelectedOptionResponse:
+      required:
+      - option_id
+      type: object
+      properties:
+        option_id:
+          pattern: pco_.+
+          type: string
+          description: Option ID (prefixed with `pco_`).
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        sub_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected sub-options, if applicable.
+      additionalProperties: false
+    PlanCoverageOptionSelectionResponse:
+      required:
+      - configuration_id
+      - options
+      type: object
+      properties:
+        configuration_id:
+          pattern: pc_.+
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected options.
+      additionalProperties: false
+    HealthInsuranceFamilyCostSharingType:
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      type: string
+    EnrolmentIntentPendingConfirmationResponse:
+      required:
+      - code
+      - due_by
+      - reason
+      - reason_description
+      type: object
+      properties:
+        due_by:
+          type: string
+          description: The deadline by which the confirmation must be completed.
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        code:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentConfirmationType'
+          description: The code for the confirmation that needs to be taken.
+        reason:
+          type: string
+          description: 'A reason for the confirmation action that needs to be taken. '
+        reason_description:
+          type: string
+          description: 'A reason description explaining the confirmation action that needs to be taken. '
+        associated_persons:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentIntentAssociatedPersonResponse'
+          description: Information about associated persons related to this enrolment. Used to manage dependents.
+      additionalProperties: false
+    AssociatedPersonType:
+      enum:
+      - dependents
+      type: string
+      x-fern-enum:
+        dependents:
+          description: Dependents (e.g., spouse, children).
+    EnrolmentIntentRequirementResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrolmentIntentRequirementResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    PlanDocumentResponse:
+      required:
+      - link
+      - title
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/PlanDocumentType'
+          description: Machine-readable document kind used for display and i18n. Possible values are listed below; as this enum can expand with new benefits, unknown values MUST be handled gracefully by clients (fallback to a generic `document` label).
+        title:
+          type: string
+          description: Title of the document.
+        link:
+          type: string
+          description: Public URL to the document. This could be any format (PDF, HTML, etc.).
+      additionalProperties: false
+    SubmitCoverageSelectionsRequest:
+      required:
+      - coverage_selections
+      type: object
+      properties:
+        coverage_selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
+          description: Coverage option selections for policy-scoped configurations.
+      additionalProperties: false
+    DisclosureCategory:
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      type: string
+    PolicyConfigurationRequest:
+      type: object
+      properties:
+        desired_policy_start_date:
+          type:
+          - 'null'
+          - string
+          description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements. If unspecified, the policy start date will be determined by the insurance provider.
+          format: date
+          example: '2024-12-01'
+        enrolment_date:
+          type:
+          - 'null'
+          - string
+          description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date. If unspecified, the enrolment date will default to the date the enrolment intent is processed.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    PerMemberPricingResponse:
+      required:
+      - currency
+      - member_type_pricing
+      type: object
+      properties:
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        member_type_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberTypePricingResponse'
+          description: Pricing for each member type.
+      additionalProperties: false
+    PlanDocumentType:
+      enum:
+      - ipid
+      - table_of_cover
+      - waiting_periods
+      - hospital_list
+      - plan_summary
+      - terms_and_conditions
+      - other
+      type: string
+    EnrolmentIntentActionRequiredResponse:
+      required:
+      - code
+      - due_by
+      - reason
+      - reason_description
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/IntentActionType'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action.
+        due_by:
+          type: string
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    EmployerEligibilityCriterionResponse:
+      required:
+      - description
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/EmployerEligibilityCriterionType'
+          description: The type of eligibility criterion.
+        description:
+          type: string
+          description: Human-readable description of the criterion.
+        employees_count:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EmployeesCountDetails'
+          description: Employee count constraints. Only populated when type is `employees_count`.
+        members_count:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/MembersCountDetails'
+          description: Member count constraints. Only populated when type is `members_count`.
+        industry_exclusions:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/IndustryExclusionsDetails'
+          description: Industry exclusion details. Only populated when type is `industry_exclusions`.
+      additionalProperties: false
+    DependentsManagementIntentParentType:
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    PolicyProviderResponse:
+      required:
+      - description
+      - id
+      - logo_url
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pr_.+
+          type: string
+          description: Unique identifier for the provider. Prefixed with pr_.
+          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Provider display name.
+        description:
+          type: string
+          description: Short description of the provider.
+        logo_url:
+          type: string
+          description: ''
+        employer_portal_url:
+          type:
+          - 'null'
+          - string
+          description: URL for the employer portal.
+        employee_portal_url:
+          type:
+          - 'null'
+          - string
+          description: URL for the employee portal (may include claims management).
+        support_phone_number:
+          type:
+          - 'null'
+          - string
+          description: Provider support phone number in E.164 format.
+      additionalProperties: false
+    EmployeesCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - 'null'
+          - integer
+          description: Minimum number of employees required.
+          format: int32
+        max:
+          type:
+          - 'null'
+          - integer
+          description: Maximum number of employees allowed.
+          format: int32
+      additionalProperties: false
+    EnrolmentIntentIneligibilityReasonCode:
+      enum:
+      - employee_restricted
+      - employee_under_minimum_age
+      - employee_above_maximum_age
+      - employee_not_active
+      - employment_not_started
+      - unknown
+      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

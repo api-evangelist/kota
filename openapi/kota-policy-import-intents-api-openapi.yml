@@ -1,0 +1,381 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons Policy Import Intents API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: Policy Import Intents
+paths:
+  /policy_import_intents:
+    post:
+      tags:
+      - Policy Import Intents
+      summary: Create a new policy import intent
+      description: Initiates a policy import process for an employee with an existing policy created outside of Kota's systems. This endpoint allows importing policy details for an employee who has an existing policy with one of our existing providers.
+      operationId: CreatePolicyImportIntent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreatePolicyImportIntentRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyImportIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+      - Policy Import Intents
+      summary: List all policy import intents
+      description: Returns a paginated list of policy import intents. The intents are returned sorted by creation date, with the most recent intent appearing first. Results can be filtered by employee ID, group ID, and status.
+      operationId: ListPolicyImportIntents
+      parameters:
+      - name: employee_id
+        in: query
+        description: Filters policy import intents by employee ID. Prefixed with `ee_`.
+        schema:
+          pattern: ee_.+
+          type: string
+          description: Filters policy import intents by employee ID. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: group_id
+        in: query
+        description: Filters policy import intents by group ID. Prefixed with `g_`.
+        schema:
+          pattern: gr_.+
+          type: string
+          description: Filters policy import intents by group ID. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`.'
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        schema:
+          type: integer
+          description: The page of results to return. Defaults to 1 if not provided.
+          format: int32
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        schema:
+          type: integer
+          description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyImportIntentResponsePagedList'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /policy_import_intents/{policy_import_intent_id}:
+    get:
+      tags:
+      - Policy Import Intents
+      summary: Retrieve a policy import intent
+      description: Retrieves a `policy_import_intent` object.
+      operationId: RetrievePolicyImportIntent
+      parameters:
+      - name: policy_import_intent_id
+        in: path
+        required: true
+        schema:
+          pattern: pii_.+
+          type: string
+          example: pii_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyImportIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    PolicyImportIntentAssociatedPersonResponse:
+      required:
+      - associated_person_id
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the associated person import.
+          format: uuid
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        member_number:
+          type:
+          - 'null'
+          - string
+          description: The member number assigned by the provider for this associated person.
+        start_date:
+          type:
+          - 'null'
+          - string
+          description: The start date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    CreatePolicyImportIntentAssociatedPersonRequest:
+      required:
+      - associated_person_id
+      type: object
+      properties:
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        member_number:
+          type:
+          - 'null'
+          - string
+          description: The member number assigned by the provider for this associated person.
+        start_date:
+          type:
+          - 'null'
+          - string
+          description: The start date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    PolicyImportIntentStatus:
+      enum:
+      - processing
+      - failed
+      - success
+      type: string
+      x-fern-enum:
+        processing:
+          description: The policy import is being processed.
+        failed:
+          description: The policy import has failed.
+        success:
+          description: The policy import has completed successfully.
+    PolicyImportIntentResponse:
+      required:
+      - associated_persons
+      - employee_id
+      - group_id
+      - id
+      - member_number
+      - policy_start_date
+      - provider_policy_number
+      - status
+      type: object
+      properties:
+        id:
+          pattern: pii_.+
+          type: string
+          description: Unique identifier for the policy import intent. Prefixed with `pii_`.
+          example: pii_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object:
+          type: string
+          description: Object type identifier.
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/PolicyImportIntentStatus'
+          description: Current status of the policy import intent.
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The employee ID for the policy import. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: The group ID for the policy import. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        provider_policy_number:
+          type: string
+          description: The provider's policy number.
+        member_number:
+          type: string
+          description: The member number assigned by the provider.
+        policy_start_date:
+          type: string
+          description: The start date of the policy.
+          format: date
+          example: '2024-12-01'
+        policy_end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date of the policy. Null if the policy has no end date, or end date is not known.
+          format: date
+          example: '2024-12-01'
+        associated_persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyImportIntentAssociatedPersonResponse'
+          description: List of associated persons linked to this policy import.
+      additionalProperties: false
+    PolicyImportIntentResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyImportIntentResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    CreatePolicyImportIntentRequest:
+      required:
+      - employee_id
+      - group_id
+      - member_number
+      - policy_start_date
+      - provider_policy_number
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The employee ID for the policy import. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: The group ID for the policy import. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        provider_policy_number:
+          type: string
+          description: The provider's policy number.
+        member_number:
+          type: string
+          description: The member number assigned by the provider.
+        policy_start_date:
+          type: string
+          description: The start date of the policy.
+          format: date
+          example: '2024-12-01'
+        policy_end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date of the policy. Leave null if the policy has no end date.
+          format: date
+          example: '2024-12-01'
+        associated_persons:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/CreatePolicyImportIntentAssociatedPersonRequest'
+          description: List of associated persons to be linked to this policy import.
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

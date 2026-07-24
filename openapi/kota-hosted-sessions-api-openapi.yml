@@ -1,0 +1,99 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons Hosted Sessions API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: Hosted Sessions
+paths:
+  /hosted/sessions:
+    post:
+      tags:
+      - Hosted Sessions
+      summary: Get One-off Hosted Session Link
+      description: Retrieve a hosted `link` to authenticate an `employee` with the Kota Hosted. This link is valid for a single use and expires after 60 minutes.
+      operationId: CreateHostedSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateSessionTokenLinkRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedSessionTokenResponse'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    CreateHostedSessionTokenResponse:
+      required:
+      - expiry
+      - link
+      type: object
+      properties:
+        link:
+          type: string
+        expiry:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    CreateSessionTokenLinkRequest:
+      required:
+      - employee_id
+      - employer_id
+      type: object
+      properties:
+        employer_id:
+          pattern: er_.+
+          type: string
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

@@ -1,0 +1,1085 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons healthInsurance API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: healthInsurance
+paths:
+  /employers/{employer_id}/health_insurance/quotes/{employer_quote_id}:
+    get:
+      operationId: retrieve-employer-health-insurance-quote
+      summary: Retrieve employer quote
+      description: Returns group's health insurance `quote` for an `employer` by `employer_quote_id`.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: employer_quote_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employers/{employer_id}/health_insurance/quotes:
+    get:
+      operationId: list-employer-health-insurance-quotes
+      summary: List all employer quotes
+      description: Returns a list of health insurance `quotes` for an `employer`. The `quotes` are returned sorted by creation date, with the most recent `quote` appearing first.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `pending_quote`, `action_required`, `not_undertaken`, `accepted`, `pending_insurer_acceptance`.'
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponsePagedList'
+  /employers/{employer_id}/health_insurance/policies/{employer_policy_id}:
+    get:
+      operationId: retrieve-employer-health-insurance-policy
+      summary: Retrieve an employer policy
+      description: Retrieve group's health insurance `policy` for an `employer` by `employer_policy_id`.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: employer_policy_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerHealthInsurancePolicyResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employers/{employer_id}/health_insurance/policies:
+    get:
+      operationId: list-employer-health-insurance-policies
+      summary: List all employer policies
+      description: Returns a list of group health insurance `policies` for an `employer`. The `policies` are returned sorted by creation date, with the most recent `policy` appearing first.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.'
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerHealthInsurancePolicyResponsePagedList'
+  /employees/{employee_id}/health_insurance/offers/{employee_offer_id}:
+    get:
+      operationId: retrieve-employee-health-insurance-offer
+      summary: Retrieve an employee offer
+      description: Retrieve group's health insurance `offer` for an `employee` by `employee_offer_id`.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: employee_offer_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employees/{employee_id}/health_insurance/offers:
+    get:
+      operationId: list-employee-health-insurance-offers
+      summary: List all employee offers
+      description: Returns a list of group health insurance `offers` for an `employee`. The `offers` are returned sorted by creation date, with the most recent `offer` appearing first.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponsePagedList'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /employees/{employee_id}/health_insurance/policies:
+    get:
+      operationId: list-employee-health-insurance-policies
+      summary: List all employee policies
+      description: Returns a list of group health insurance `policies` for an `employee`. The `policies` are returned sorted by creation date, with the most recent `policy` appearing first.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.'
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponsePagedList'
+  /employees/{employee_id}/health_insurance/policies/{employee_policy_id}:
+    get:
+      operationId: retrieve-employee-health-insurance-policy
+      summary: Retrieve an employee policy
+      description: Retrieve group's health insurance `policy` for an `employee` by `employee_policy_id`.
+      tags:
+      - healthInsurance
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: employee_policy_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    EmployerHealthInsuranceQuoteResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for the quote
+        employer_id:
+          type: string
+          description: The Id of the employer for which the is created
+        quoted_at:
+          type: string
+          format: date-time
+          description: Date and time the quote was created at
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteStatus'
+          description: Current status of the quote
+        required_action:
+          $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Actions required by the employer to proceed with the quote. Set only when `status` is `action_required`.
+        coverage_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: List of levels covered under the policy, each item representing details about the plan’s cover. Currently Kota only supports a single level of cover.
+      required:
+      - id
+      - employer_id
+      - quoted_at
+      - status
+      - coverage_levels
+      title: EmployerHealthInsuranceQuoteResponse
+    EmployeeHealthInsuranceOfferStatus:
+      type: string
+      enum:
+      - action_required
+      - not_undertaken
+      - accepted
+      title: EmployeeHealthInsuranceOfferStatus
+    EmployerHealthInsuranceQuoteResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployerHealthInsuranceQuoteResponsePagedList
+    HealthInsuranceRequiredActionResponse:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Concise reason for the required action
+        reason_description:
+          type: string
+          description: Description for the required action
+        code:
+          type: string
+          description: Identified the type of action required, not unique across health insurance providers
+        due_at:
+          type: string
+          format: date
+          description: Date and time by which the action is due, if this is not completed then the policy will not be issued.
+      required:
+      - reason
+      - reason_description
+      - code
+      - due_at
+      title: HealthInsuranceRequiredActionResponse
+    HealthInsuranceGrossEstimationAmountResponse:
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount deducted from employee payroll
+        employer_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount paid by the employer
+        total:
+          type: number
+          format: double
+          description: Total gross premium amount (sum of employee and employer contributions).
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      title: HealthInsuranceGrossEstimationAmountResponse
+    EmployeeHealthInsuranceOfferResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployeeHealthInsuranceOfferResponsePagedList
+    EmployerHealthInsurancePolicyResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for policy
+        employer_id:
+          type: string
+          description: The Id of the employer for which the policy is created
+        start_date:
+          type: string
+          format: date
+          description: Policy starts on this date
+        end_date:
+          type: string
+          format: date
+          description: Policy ends on this date
+        cancellation_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Policy was cancelled on this date, if cancellation occured
+        group_policy_number:
+          type:
+          - string
+          - 'null'
+          description: Group’s health insurance policy number, if available
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsurancePolicyStatus'
+          description: Current status of policy
+        enrolment_type:
+          $ref: '#/components/schemas/EnrolmentType'
+          description: Enrolment type of the policy
+        renewal:
+          $ref: '#/components/schemas/GetEmployerHealthPolicyRenewal'
+          description: Renewal information for the policy
+        employer_cancellation_period_length:
+          type: integer
+          description: How many days the employer has to cancel the policy since the policy starts
+        coverage_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Represents the available coverage levels for this policy
+      required:
+      - id
+      - employer_id
+      - start_date
+      - end_date
+      - status
+      - enrolment_type
+      - renewal
+      - employer_cancellation_period_length
+      - coverage_levels
+      title: EmployerHealthInsurancePolicyResponse
+    EmployeeHealthInsurancePolicyResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployeeHealthInsurancePolicyResponsePagedList
+    CurrencyCode:
+      type: string
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      title: CurrencyCode
+    HealthInsuranceCoverageLevelResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier for the health insurance plan
+        plan_name:
+          type: string
+          description: Name of the health insurance plan
+        plan_currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code of the health insurance plan
+        provider_name:
+          type: string
+          description: Name of the health insurance provider
+        provider_logo_url:
+          type: string
+          description: Logo URL of the health insurance provider
+        provider_employer_platform_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the health insurance provider's website for Employer Management
+        provider_support_phone:
+          type:
+          - string
+          - 'null'
+          description: Support phone number to the health insurance provider's website for Employer Management
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelDocumentResponse'
+          description: Documents related to the health insurance plan, these documents may change at renewal, this includes the documents like `Insurance Product Information Document`, `Hospital Lists`, `Table of Cover` etc
+      required:
+      - plan_id
+      - plan_name
+      - plan_currency
+      - provider_name
+      - provider_logo_url
+      - documents
+      title: HealthInsuranceCoverageLevelResponse
+    EmployerHealthInsurancePolicyStatus:
+      type: string
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      title: EmployerHealthInsurancePolicyStatus
+    EmployerHealthInsurancePolicyRenewalStatus:
+      type: string
+      enum:
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      title: EmployerHealthInsurancePolicyRenewalStatus
+    EmployeeHealthPolicyRenewal:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          format: date
+          description: Policy renewal date
+        window_start_date:
+          type: string
+          format: date
+          description: Renewal window starts on this day
+        window_end_date:
+          type: string
+          format: date
+          description: Renewal window ends at the end of this day
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+        renewed_health_insurance_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the renewed health insurance policy, if renewed
+      required:
+      - status
+      - renewal_date
+      - window_start_date
+      - window_end_date
+      - decision_confirmed
+      title: EmployeeHealthPolicyRenewal
+    HealthInsuranceCoverageLevelDocumentResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Health Insurance Document Title
+        link:
+          type: string
+          description: Health Insurance Document Link (can be a link to a website or a file path)
+      required:
+      - title
+      - link
+      title: HealthInsuranceCoverageLevelDocumentResponse
+    EmployeeHealthInsuranceOfferResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for offer
+        employer_id:
+          type: string
+          description: The Id of the employer for which the offer is available
+        employee_id:
+          type: string
+          description: The Id of the employee for which the offer is available
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        status:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferStatus'
+          description: Current status of offer
+        required_action:
+          $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Required action to progress the offer, if any. Set only when `status` is `action_required`.
+        coverage_level:
+          $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Details about the coverage level for the offer. Only a single level of cover is available for a specific employee!
+      required:
+      - id
+      - employer_id
+      - employee_id
+      - status
+      - coverage_level
+      title: EmployeeHealthInsuranceOfferResponse
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    EmployerHealthInsuranceQuoteStatus:
+      type: string
+      enum:
+      - pending_quote
+      - action_required
+      - not_undertaken
+      - accepted
+      - pending_insurer_acceptance
+      title: EmployerHealthInsuranceQuoteStatus
+    GetEmployerHealthPolicyRenewal:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          format: date
+          description: Policy renewal date
+        window_start_date:
+          type: string
+          format: date
+          description: Renewal window starts on this day
+        window_end_date:
+          type: string
+          format: date
+          description: Renewal window ends at the end of this day
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+        renewed_health_insurance_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the renewed health insurance policy, if renewed
+      required:
+      - status
+      - renewal_date
+      - window_start_date
+      - window_end_date
+      - decision_confirmed
+      title: GetEmployerHealthPolicyRenewal
+    EmployerHealthInsurancePolicyResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerHealthInsurancePolicyResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployerHealthInsurancePolicyResponsePagedList
+    EnrolmentType:
+      type: string
+      enum:
+      - opt_out
+      - opt_in
+      title: EnrolmentType
+    EmployeeHealthInsurancePolicyStatus:
+      type: string
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      title: EmployeeHealthInsurancePolicyStatus
+    EmployeeHealthInsurancePolicyResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for policy
+        employer_id:
+          type: string
+          description: The Id of the employer for which the policy is created
+        employee_id:
+          type: string
+          description: The Id of the employee for which the policy is created
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        start_date:
+          type: string
+          format: date
+          description: Policy starts on this date
+        end_date:
+          type: string
+          format: date
+          description: Policy ends on this date
+        cancellation_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Policy was cancelled on this date, if cancellation occured
+        policy_number:
+          type:
+          - string
+          - 'null'
+          description: Health insurance policy number, if available
+        status:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyStatus'
+          description: Current status of policy
+        enrolment_type:
+          $ref: '#/components/schemas/EnrolmentType'
+          description: Enrolment type of the policy
+        renewal:
+          $ref: '#/components/schemas/EmployeeHealthPolicyRenewal'
+          description: Renewal information for the policy
+        opt_out_deadline_date:
+          type: string
+          format: date
+          description: Last day to opt out from the policy
+        coverage_level:
+          $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Represents the current coverage level for the policy
+        enrolled_dependants_count:
+          type: integer
+          description: Number of dependants (spouse, children, or other eligible family members) currently enrolled in this health insurance policy.
+        estimated_gross_premium:
+          $ref: '#/components/schemas/HealthInsuranceEstimatedGrossPremiumResponse'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
+      required:
+      - id
+      - employer_id
+      - employee_id
+      - start_date
+      - end_date
+      - status
+      - enrolment_type
+      - renewal
+      - opt_out_deadline_date
+      - coverage_level
+      - enrolled_dependants_count
+      - estimated_gross_premium
+      title: EmployeeHealthInsurancePolicyResponse
+    HealthInsuranceEstimatedGrossPremiumResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      required:
+      - currency
+      - monthly
+      - term
+      title: HealthInsuranceEstimatedGrossPremiumResponse
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

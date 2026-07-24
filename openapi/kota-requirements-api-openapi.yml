@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons requirements API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: requirements
+paths:
+  /requirements/{requirement_id}:
+    get:
+      operationId: get-requirement
+      summary: Get a requirement
+      description: Retrieve a requirement's current state and the schema of the fields it needs. The response reports whether the requirement has already been fulfilled (and when), and includes the JSON Schema describing the fields to collect.
+      tags:
+      - requirements
+      parameters:
+      - name: requirement_id
+        in: path
+        description: A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789).
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Requirements_get-requirement_Response_200'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get-requirementRequestBadRequestError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get-requirementRequestUnauthorizedError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get-requirementRequestNotFoundError'
+        '500':
+          description: An error occurred while processing your request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Get-requirementRequestInternalServerError'
+    post:
+      operationId: submit-answers
+      summary: Submit answers
+      description: 'Submit answers for a requirement. Answers are merged with any previously submitted and re-evaluated against the requirement''s schema: it becomes `fulfilled` once all required fields are satisfied, otherwise it stays `in_progress` and the response lists the fields still outstanding.'
+      tags:
+      - requirements
+      parameters:
+      - name: requirement_id
+        in: path
+        description: A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789).
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Requirements_submit-answers_Response_200'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submit-answersRequestBadRequestError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submit-answersRequestUnauthorizedError'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submit-answersRequestNotFoundError'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submit-answersRequestConflictError'
+        '500':
+          description: An error occurred while processing your request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submit-answersRequestInternalServerError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  $ref: '#/components/schemas/RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers'
+                  description: A key-value map of field IDs to answer values.
+              required:
+              - answers
+components:
+  schemas:
+    Submit-answersRequestInternalServerError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: An internal error occurred.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestInternalServerError
+    RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema:
+      type: object
+      properties: {}
+      description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
+      title: RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema
+    Requirements_get-requirement_Response_200:
+      type: object
+      properties:
+        is_fulfilled:
+          type: boolean
+          description: Whether this requirement has already been fulfilled.
+        fulfilled_at:
+          type: string
+          format: date-time
+          description: When the requirement was fulfilled. Present only when fulfilled.
+        schema:
+          $ref: '#/components/schemas/RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema'
+          description: A JSON Schema object describing the fields required for this requirement. Present for pending requirements and may also be returned for fulfilled requirements.
+      required:
+      - is_fulfilled
+      title: Requirements_get-requirement_Response_200
+    Submit-answersRequestConflictError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The requirement has already been fulfilled.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestConflictError
+    Get-requirementRequestBadRequestError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The request did not match the expected schema.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Get-requirementRequestBadRequestError
+    Submit-answersRequestUnauthorizedError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The authentication token is invalid or missing.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestUnauthorizedError
+    RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers:
+      type: object
+      properties: {}
+      description: A key-value map of field IDs to answer values.
+      title: RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers
+    Requirements_submit-answers_Response_200:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus'
+          description: The derived submission status. "fulfilled" once the cumulative answers satisfy the whole schema; "in_progress" when answers are stored but the schema is not yet complete; "pending" when no answers are stored.
+        outstanding_fields:
+          type: array
+          items:
+            type: string
+          description: Field IDs still blocking fulfillment. Present only for an "in_progress" submission.
+        schema:
+          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema'
+          description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
+      required:
+      - status
+      - schema
+      title: Requirements_submit-answers_Response_200
+    RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems:
+      type: object
+      properties:
+        field_id:
+          type: string
+          description: The field that failed validation.
+        error_type:
+          type: string
+          description: The type of validation error.
+        message:
+          type: string
+          description: A human-readable error message.
+      required:
+      - field_id
+      - error_type
+      - message
+      title: RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems
+    RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      - in_progress
+      - fulfilled
+      description: The derived submission status. "fulfilled" once the cumulative answers satisfy the whole schema; "in_progress" when answers are stored but the schema is not yet complete; "pending" when no answers are stored.
+      title: RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus
+    Submit-answersRequestNotFoundError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The requirement was not found.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestNotFoundError
+    RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema:
+      type: object
+      properties: {}
+      description: A JSON Schema object describing the fields required for this requirement. Present for pending requirements and may also be returned for fulfilled requirements.
+      title: RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema
+    Get-requirementRequestNotFoundError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The requirement was not found.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Get-requirementRequestNotFoundError
+    Get-requirementRequestInternalServerError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: An internal error occurred.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Get-requirementRequestInternalServerError
+    Get-requirementRequestUnauthorizedError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The authentication token is invalid or missing.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Get-requirementRequestUnauthorizedError
+    Submit-answersRequestBadRequestError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: A human-readable explanation of the validation failure.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems'
+          description: Per-field validation errors. Present when error_code is invalid_request and the failure is a field-level validation error (AnswerValidationFailedError).
+        unknown_fields:
+          type: array
+          items:
+            type: string
+          description: Submitted field IDs not present in the resolved schema. Present when error_code is invalid_request and the failure is UnknownFieldsError.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestBadRequestError
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

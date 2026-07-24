@@ -1,0 +1,326 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons events API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: events
+paths:
+  /events:
+    get:
+      operationId: list-events
+      summary: List all events
+      description: 'Returns a list of `events` sorted by creation date, with the most recently created event appearing first. The event list includes data from up to the last 30 days.
+
+
+        Each `event`’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version.'
+      tags:
+      - events
+      parameters:
+      - name: created_after
+        in: query
+        description: Filter events created after this date (limited to the last 30 days)
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: order_direction
+        in: query
+        description: 'Order direction of the events list `asc` or `desc` (default: `desc`)'
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderDirectionEnumParameter'
+      - name: version
+        in: query
+        description: 'API version of the events to return `v1` or `v2` (default: based on registered webhook endpoint versions)'
+        required: false
+        schema:
+          $ref: '#/components/schemas/WebhookVersionEnumParameter'
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponsePagedList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+  /events/{event_id}:
+    get:
+      operationId: retrieve-event
+      summary: Retrieve an event
+      description: 'Retrieve an `event` object. Events are available for up to 30 days.
+
+
+        The event’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version'
+      tags:
+      - events
+      parameters:
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /events/{event_id}/replay:
+    post:
+      operationId: replay-event
+      summary: Replay an event
+      description: Replays an event by creating new deliveries to all currently matching subscription endpoints. Each delivery performs a single attempt and does not trigger automatic retries.
+      tags:
+      - events
+      parameters:
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplayEventResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ReplayDeliveryResponse:
+      type: object
+      properties:
+        delivery_id:
+          type: string
+        success:
+          type: boolean
+        response_status_code:
+          type:
+          - integer
+          - 'null'
+        elapsed_time_ms:
+          type: number
+          format: double
+      required:
+      - delivery_id
+      - success
+      - response_status_code
+      - elapsed_time_ms
+      title: ReplayDeliveryResponse
+    WebhookVersion:
+      type: string
+      enum:
+      - v1
+      - v2
+      title: WebhookVersion
+    JsonNodeOptions:
+      type: object
+      properties:
+        property_name_case_insensitive:
+          type: boolean
+      title: JsonNodeOptions
+    OrderDirectionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/OrderDirection'
+      title: OrderDirectionEnumParameter
+    EventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        platform_id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        type:
+          type: string
+        data:
+          $ref: '#/components/schemas/JsonNode'
+        api_version:
+          type: string
+      required:
+      - id
+      - platform_id
+      - created
+      - type
+      - data
+      title: EventResponse
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    EventResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EventResponsePagedList
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    ReplayEventResponse:
+      type: object
+      properties:
+        event_id:
+          type: string
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayDeliveryResponse'
+      required:
+      - event_id
+      - deliveries
+      title: ReplayEventResponse
+    JsonNode:
+      type: object
+      properties:
+        options:
+          $ref: '#/components/schemas/JsonNodeOptions'
+        parent:
+          $ref: '#/components/schemas/JsonNode'
+        root:
+          $ref: '#/components/schemas/JsonNode'
+      title: JsonNode
+    OrderDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: OrderDirection
+    WebhookVersionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/WebhookVersion'
+      title: WebhookVersionEnumParameter
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

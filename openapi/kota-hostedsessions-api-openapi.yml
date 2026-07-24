@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons hostedSessions API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: hostedSessions
+paths:
+  /hosted/sessions:
+    post:
+      operationId: create-hosted-session
+      summary: Get One-off Hosted Session Link
+      description: Retrieve a hosted `link` to authenticate an `employee` with the Kota Hosted. This link is valid for a single use and expires after 60 minutes.
+      tags:
+      - hostedSessions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateHostedSessionTokenResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionTokenLinkRequest'
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    CreateHostedSessionTokenResponse:
+      type: object
+      properties:
+        link:
+          type: string
+        expiry:
+          type: string
+          format: date-time
+      required:
+      - link
+      - expiry
+      title: CreateHostedSessionTokenResponse
+    CreateSessionTokenLinkRequest:
+      type: object
+      properties:
+        employer_id:
+          type: string
+        employee_id:
+          type: string
+      required:
+      - employer_id
+      - employee_id
+      title: CreateSessionTokenLinkRequest
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

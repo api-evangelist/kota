@@ -1,0 +1,1242 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons plans API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: plans
+paths:
+  /plans:
+    get:
+      operationId: list-plans
+      summary: List all plans
+      description: Returns a list of `plans`.
+      tags:
+      - plans
+      parameters:
+      - name: type
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`.'
+        required: false
+        schema:
+          type: string
+      - name: provider_id
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`.'
+        required: false
+        schema:
+          type: string
+      - name: country
+        in: query
+        description: Filters plans by country.
+        required: false
+        schema:
+          $ref: '#/components/schemas/CountryCodeEnumParameter'
+      - name: available_on
+        in: query
+        description: Filters plans available on a specific date. Defaults to today.
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: group_id
+        in: query
+        description: Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored.
+        required: false
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response.
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanResponsePagedList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /plans/{plan_id}:
+    get:
+      operationId: retrieve-plan
+      summary: Retrieve a plan
+      description: Retrieves a `plan` object by its ID.
+      tags:
+      - plans
+      parameters:
+      - name: plan_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: group_id
+        in: query
+        description: When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`.
+        required: false
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included.
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    PlanCoverageOptionInputType:
+      type: string
+      enum:
+      - single_select
+      - multi_select
+      title: PlanCoverageOptionInputType
+    PlanResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Object type. Always `plan`.
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+        type:
+          $ref: '#/components/schemas/BenefitType'
+          description: The benefit type of the plan.
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+        country:
+          $ref: '#/components/schemas/CountryCode'
+          description: The country this plan is available in.
+        provider:
+          $ref: '#/components/schemas/PlanProviderResponse'
+          description: The provider offering this plan.
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanDocumentResponse'
+          description: List of plan documents (e.g., IPIDs, T&Cs).
+        employer_eligibility_criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that employers must meet.
+        employee_eligibility_criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeEligibilityCriterionResponse'
+          description: Eligibility criteria that employees must meet.
+        health_insurance:
+          $ref: '#/components/schemas/PlanHealthInsuranceResponse'
+          description: Health insurance-specific details. Only populated when type is `health_insurance`.
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this plan.
+        available_from:
+          type: string
+          format: date
+          description: The date from which this plan is available (inclusive).
+        available_to:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The date until which this plan is available (inclusive). Null if the plan has no end date.
+        coverage_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageResponse'
+          description: Coverage options available for this plan, organized by scope and input type.
+        eligible_count:
+          type:
+          - integer
+          - 'null'
+          description: Number of employees in the queried group eligible for this plan as-of `start_date`. Only present when both `group_id` and `start_date` query parameters are provided.
+        ineligible_count:
+          type:
+          - integer
+          - 'null'
+          description: Number of employees in the queried group ineligible for this plan as-of `start_date`. Only present when both `group_id` and `start_date` query parameters are provided.
+        total_count:
+          type:
+          - integer
+          - 'null'
+          description: Total employees in the queried group. Only present when both `group_id` and `start_date` query parameters are provided.
+      required:
+      - id
+      - type
+      - name
+      - description
+      - country
+      - provider
+      - documents
+      - employer_eligibility_criteria
+      - employee_eligibility_criteria
+      - disclosures
+      - available_from
+      title: PlanResponse
+    PlanCoverageOptionScope:
+      type: string
+      enum:
+      - group_policy
+      - policy
+      - member
+      title: PlanCoverageOptionScope
+    PlanCoverageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
+        name:
+          type: string
+          description: Title for this coverage selection. Typically used as the display heading.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Full description of this coverage selection.
+        scope:
+          $ref: '#/components/schemas/PlanCoverageOptionScope'
+          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
+        input_type:
+          $ref: '#/components/schemas/PlanCoverageOptionInputType'
+          description: Describes whether this input allows selecting a single option or multiple options.
+        required:
+          type: boolean
+          description: Whether a selection is mandatory.
+        min_selections:
+          type:
+          - integer
+          - 'null'
+          description: Minimum required selections (multi-select only).
+        max_selections:
+          type:
+          - integer
+          - 'null'
+          description: Maximum allowed selections (multi-select only).
+        sort_order:
+          type:
+          - integer
+          - 'null'
+          description: Display ordering hint.
+        group_label:
+          type:
+          - string
+          - 'null'
+          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Available options within this coverage selection.
+      required:
+      - id
+      - name
+      - scope
+      - input_type
+      - required
+      - options
+      title: PlanCoverageResponse
+    AgeRangeDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum age required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum age allowed.
+      title: AgeRangeDetails
+    TierBasedPricingResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingTierResponse'
+          description: Pricing tiers for different family compositions.
+      required:
+      - currency
+      - tiers
+      title: TierBasedPricingResponse
+    PlanProviderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the provider. Prefixed with `pr_`.
+        name:
+          type: string
+          description: The name of the provider.
+        description:
+          type: string
+          description: Description of the provider.
+        logo_url:
+          type: string
+          description: URL to the provider's logo.
+      required:
+      - id
+      - name
+      - description
+      - logo_url
+      title: PlanProviderResponse
+    PlanCoverageOptionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this coverage option. Prefixed with `pco_`.
+        name:
+          type: string
+          description: Display name for this coverage option.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Longer explanation of this coverage option.
+        learn_more_url:
+          type:
+          - string
+          - 'null'
+          description: Link to learn more about this coverage option.
+        from_price:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Lowest applicable monthly price for this coverage option.
+        benefits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
+          description: Benefit items included with this coverage option.
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Nested sub-options available when this option is selected.
+        eligibility_criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that must be met to select this coverage option.
+      required:
+      - id
+      - name
+      title: PlanCoverageOptionResponse
+    PlanPricingType:
+      type: string
+      enum:
+      - per_member
+      - tier_based
+      title: PlanPricingType
+    EmployeeEligibilityCriterionType:
+      type: string
+      enum:
+      - age_range
+      title: EmployeeEligibilityCriterionType
+    CostSharingOption:
+      type: string
+      enum:
+      - percentage
+      - fixed_amount
+      - member_count
+      - policyholder_only
+      - member_selection
+      - family_type
+      - full_coverage
+      title: CostSharingOption
+    MemberTypeCode:
+      type: string
+      enum:
+      - adult
+      - young_adult
+      - child
+      title: MemberTypeCode
+    CountryCodeEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/CountryCode'
+      title: CountryCodeEnumParameter
+    MemberType:
+      type: string
+      enum:
+      - policyholder
+      - spouse
+      - partner
+      - adult_dependant
+      - child
+      title: MemberType
+    PlanResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: PlanResponsePagedList
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    EmployerEligibilityCriterionType:
+      type: string
+      enum:
+      - employees_count
+      - members_count
+      - industry_exclusions
+      title: EmployerEligibilityCriterionType
+    MembersCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of members required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of members allowed.
+      title: MembersCountDetails
+    CurrencyCode:
+      type: string
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      title: CurrencyCode
+    PricingTierResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/FamilyTierCode'
+          description: Tier code.
+        display_name:
+          type: string
+          description: Display name for the tier.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount for this tier.
+        annual_premium:
+          type: number
+          format: double
+          description: Annual premium amount for this tier.
+        display_dependent_requirements:
+          type: string
+          description: Description of dependent requirements for this tier.
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      - annual_premium
+      - display_dependent_requirements
+      title: PricingTierResponse
+    MemberTypePricingResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/MemberTypeCode'
+          description: Member type code.
+        display_name:
+          type: string
+          description: Display name for the member type.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount.
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      title: MemberTypePricingResponse
+    IndustryExclusionsDetails:
+      type: object
+      properties:
+        excluded_industries:
+          type: array
+          items:
+            type: string
+          description: List of excluded industries.
+      required:
+      - excluded_industries
+      title: IndustryExclusionsDetails
+    FamilyTierCode:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_parent
+      - family
+      title: FamilyTierCode
+    BenefitType:
+      type: string
+      enum:
+      - health_insurance
+      title: BenefitType
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    EmployeeEligibilityCriterionResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EmployeeEligibilityCriterionType'
+          description: The type of eligibility criterion.
+        description:
+          type: string
+          description: Human-readable description of the criterion.
+        age_range:
+          $ref: '#/components/schemas/AgeRangeDetails'
+          description: Age range constraints. Only populated when type is `age_range`.
+      required:
+      - type
+      - description
+      title: EmployeeEligibilityCriterionResponse
+    PlanCoverageOptionBenefitResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Benefit name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Benefit description.
+      required:
+      - name
+      title: PlanCoverageOptionBenefitResponse
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    CountryCode:
+      type: string
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      title: CountryCode
+    PlanDocumentResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PlanDocumentType'
+          description: Machine-readable document kind used for display and i18n. Possible values are listed below; as this enum can expand with new benefits, unknown values MUST be handled gracefully by clients (fallback to a generic `document` label).
+        title:
+          type: string
+          description: Title of the document.
+        link:
+          type: string
+          description: Public URL to the document. This could be any format (PDF, HTML, etc.).
+      required:
+      - title
+      - link
+      title: PlanDocumentResponse
+    PlanHealthInsuranceResponse:
+      type: object
+      properties:
+        health_insurance_type:
+          $ref: '#/components/schemas/HealthInsuranceType'
+          description: Whether this is an international or local insurance plan.
+        supported_cost_sharing_options:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostSharingOption'
+          description: Cost sharing options supported by this plan.
+        supported_member_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberType'
+          description: Member types supported by this plan.
+        pricing:
+          $ref: '#/components/schemas/PlanPricingResponse'
+          description: Pricing information for the plan.
+      required:
+      - health_insurance_type
+      - supported_cost_sharing_options
+      - supported_member_types
+      - pricing
+      title: PlanHealthInsuranceResponse
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    PlanDocumentType:
+      type: string
+      enum:
+      - ipid
+      - table_of_cover
+      - waiting_periods
+      - hospital_list
+      - plan_summary
+      - terms_and_conditions
+      - other
+      title: PlanDocumentType
+    PerMemberPricingResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        member_type_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberTypePricingResponse'
+          description: Pricing for each member type.
+      required:
+      - currency
+      - member_type_pricing
+      title: PerMemberPricingResponse
+    EmployerEligibilityCriterionResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EmployerEligibilityCriterionType'
+          description: The type of eligibility criterion.
+        description:
+          type: string
+          description: Human-readable description of the criterion.
+        employees_count:
+          $ref: '#/components/schemas/EmployeesCountDetails'
+          description: Employee count constraints. Only populated when type is `employees_count`.
+        members_count:
+          $ref: '#/components/schemas/MembersCountDetails'
+          description: Member count constraints. Only populated when type is `members_count`.
+        industry_exclusions:
+          $ref: '#/components/schemas/IndustryExclusionsDetails'
+          description: Industry exclusion details. Only populated when type is `industry_exclusions`.
+      required:
+      - type
+      - description
+      title: EmployerEligibilityCriterionResponse
+    PlanPricingResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PlanPricingType'
+          description: Type of pricing structure
+        per_member:
+          $ref: '#/components/schemas/PerMemberPricingResponse'
+          description: Per-member pricing details (populated when type is 'per_member').
+        tier_based:
+          $ref: '#/components/schemas/TierBasedPricingResponse'
+          description: Tier-based pricing details (populated when type is 'tier_based').
+      required:
+      - type
+      title: PlanPricingResponse
+    HealthInsuranceType:
+      type: string
+      enum:
+      - international
+      - local
+      title: HealthInsuranceType
+    EmployeesCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of employees required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of employees allowed.
+      title: EmployeesCountDetails
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

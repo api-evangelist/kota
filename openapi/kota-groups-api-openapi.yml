@@ -1,0 +1,751 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons groups API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: groups
+paths:
+  /groups:
+    get:
+      operationId: list-groups
+      summary: List all groups
+      description: Returns a list of your `groups`. The `groups` are returned sorted by creation date, with the most recent `groups` appearing first.
+      tags:
+      - groups
+      parameters:
+      - name: employer_id
+        in: query
+        description: Filter by employer ID.
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: 'Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `ready`, `archived`.'
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponsePagedList'
+    post:
+      operationId: create-group
+      summary: Create a group
+      description: Creates a `group` for the specified `employer`.
+      tags:
+      - groups
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+  /groups/{group_id}:
+    get:
+      operationId: retrieve-group
+      summary: Retrieve a group
+      description: Retrieves a `group` object.
+      tags:
+      - groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      operationId: update-group
+      summary: Update a group
+      description: Updates the specified `group`. Only `name` and `description` can be updated. Any parameters not provided will be left unchanged.
+      tags:
+      - groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+  /groups/{group_id}/employees:
+    get:
+      operationId: list-group-employees
+      summary: List employees in a group
+      description: Returns a list of `employees` in a `group` with their policies and enrolments. The `employees` are returned sorted by addition date, with the most recently added `employees` appearing first.
+      tags:
+      - groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: employee_id
+        in: query
+        description: Filter by employee ID.
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEmployeeResponsePagedList'
+    post:
+      operationId: add-employee-to-group
+      summary: Add an employee to a group
+      description: Adds an existing employee to a `group`. The employee must belong to the same employer as the `group`. If there is a `group_policy` associated with the `group`, a corresponding `enrolment_intent` will be created for the employee.
+      tags:
+      - groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        description: Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupEmployeeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEmployeeToGroupRequest'
+  /groups/{group_id}/eligibility_check:
+    post:
+      operationId: check-group-eligibility
+      summary: Check employee eligibility for a group
+      description: Checks whether an `employee` qualifies for a `group` without adding them to it. This is a dry-run eligibility check — the employee is not enrolled or added. The response includes provider and plan information.
+      tags:
+      - groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibilityCheckResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckGroupEligibilityRequest'
+components:
+  schemas:
+    AddEmployeeToGroupRequest:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          description: Employee Id
+        create_enrolment_intents:
+          type:
+          - boolean
+          - 'null'
+          description: Controls whether enrolment intents are automatically created for the employee. Defaults to `true` for hosted platforms. When `true` on a hosted platform, the response includes an `enrolment_intent_id`. For non-hosted platforms, the `enrolment_intent_id` is not included in the response, subscribe to the `enrolment_intent.processing` webhook to be notified when the enrolment intent is created.
+        policy_configuration:
+          $ref: '#/components/schemas/PolicyConfigurationRequest'
+          description: Policy configuration for the employee in this group. Leave null to use `group` defaults.
+      required:
+      - employee_id
+      title: AddEmployeeToGroupRequest
+    EnrolmentStatus:
+      type: string
+      enum:
+      - enrolled
+      - enrolling
+      - opted_out
+      - cancelled
+      - enrolment_available
+      - not_available
+      title: EnrolmentStatus
+    GroupType:
+      type: string
+      enum:
+      - undefined
+      - single
+      - bundled
+      title: GroupType
+    PlanProviderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the provider. Prefixed with `pr_`.
+        name:
+          type: string
+          description: The name of the provider.
+        description:
+          type: string
+          description: Description of the provider.
+        logo_url:
+          type: string
+          description: URL to the provider's logo.
+      required:
+      - id
+      - name
+      - description
+      - logo_url
+      title: PlanProviderResponse
+    EnrolmentReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the enrolment.
+      required:
+      - id
+      title: EnrolmentReference
+    PolicyReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the policy.
+      required:
+      - id
+      title: PolicyReference
+    UpdateGroupRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Short description of the purpose or scope of the `group`.
+      title: UpdateGroupRequest
+    GroupStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - archived
+      title: GroupStatus
+    GroupResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the `group`. Prefixed with `gr_`.
+        name:
+          type: string
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Short description of the purpose or scope of the `group`.
+        status:
+          $ref: '#/components/schemas/GroupStatus'
+          description: "Current lifecycle state of the `group`, indicating its current progress. Possible values are:\n - `pending`: Group is being configured, may require a `quote_intent` or a `setup_intent` to be ready.\n - `ready`: Setup is complete, regardless of policy start dates employees could start enrolling into policies.\n - `archived`: Archived as the group is no longer active or in use for any reason. Employees can no longer be added to the group."
+        group_type:
+          $ref: '#/components/schemas/GroupType'
+          description: "Indicates how policies are organized for this group.\n - `single`: exactly one policy is associated to the group.\n - `bundled`: multiple policies are bundled under the group.\n - `undefined`: type not yet determined or not applicable."
+        enrolment_type:
+          $ref: '#/components/schemas/GroupEnrolmentType'
+          description: "Indicates how employees are enrolled into the group.\n - `manual`: employees must be enrolled through an API.\n - `automatic`: employees are enrolled automatically upon being created with the Employer."
+        employer_id:
+          type: string
+          description: Identifier for the `employer` that owns this `group`. Prefixed with `er_`.
+        object:
+          type: string
+          description: The object type
+        group_policy_ids:
+          type: array
+          items:
+            type: string
+          description: Group policy unique identifiers associated with this group.
+        group_quote_intent_ids:
+          type: array
+          items:
+            type: string
+          description: Group quote intent unique identifiers associated with this group.
+        group_policy_intent_ids:
+          type: array
+          items:
+            type: string
+          description: Group policy intent unique identifiers associated with this group.
+      required:
+      - id
+      - name
+      - status
+      - group_type
+      - enrolment_type
+      - employer_id
+      - group_policy_ids
+      - group_quote_intent_ids
+      - group_policy_intent_ids
+      title: GroupResponse
+    CreateGroupRequest:
+      type: object
+      properties:
+        employer_id:
+          type: string
+          description: Identifier of the `employer` to create the group for. Prefixed with `er_`.
+        name:
+          type: string
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Short description of the purpose or scope of the `group`.
+      required:
+      - employer_id
+      - name
+      title: CreateGroupRequest
+    ScheduledGroupTransitionResponse:
+      type: object
+      properties:
+        new_group_id:
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+        scheduled_date:
+          type: string
+          format: date
+          description: The date when the employee will be moved to the new group
+      required:
+      - new_group_id
+      - scheduled_date
+      title: ScheduledGroupTransitionResponse
+    EligibilityCheckResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type.
+        eligibility_status:
+          $ref: '#/components/schemas/EligibilityStatus'
+          description: 'Eligibility status: `eligible` or `ineligible`.'
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/EligibilityCheckReasonResponse'
+          description: List of reasons why the employee is ineligible. Empty if eligible.
+        provider:
+          $ref: '#/components/schemas/PlanProviderResponse'
+          description: The insurance provider associated with the group.
+        plan:
+          $ref: '#/components/schemas/EligibilityCheckPlanResponse'
+          description: The insurance plan associated with the group.
+      required:
+      - eligibility_status
+      - reasons
+      - provider
+      - plan
+      title: EligibilityCheckResponse
+    GroupEmployeeResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for the employee.
+        group_id:
+          type: string
+          description: Unique identifier for the group.
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyReference'
+          description: List of policies associated with the employee in this group.
+        enrolments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrolmentReference'
+          description: List of enrolments associated with the employee in this group.
+        desired_policy_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements.
+        enrolment_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date.
+        eligibility_status:
+          $ref: '#/components/schemas/EligibilityStatus'
+          description: Eligibility status for the employee in this group. `Pending` = no eligibility check performed (no group policy), `Eligible` = employee meets provider's eligibility criteria, `Ineligible` = employee does not meet eligibility criteria (e.g., age restrictions).
+        enrolment_status:
+          $ref: '#/components/schemas/EnrolmentStatus'
+          description: Enrolment status for the employee in this group. Derived from policy and enrolment intent statuses.
+        scheduled_group_transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledGroupTransitionResponse'
+          description: List of scheduled group transitions for the employee. Only includes pending transitions.
+      required:
+      - id
+      - group_id
+      - policies
+      - enrolments
+      - eligibility_status
+      - enrolment_status
+      - scheduled_group_transitions
+      title: GroupEmployeeResponse
+    GroupEmployeeResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEmployeeResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: GroupEmployeeResponsePagedList
+    GroupResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: GroupResponsePagedList
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    EligibilityCheckReasonResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Machine-readable ineligibility reason code in snake_case.
+        message:
+          type: string
+          description: Human-readable description of the ineligibility reason.
+      required:
+      - code
+      - message
+      title: EligibilityCheckReasonResponse
+    EligibilityCheckPlanResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+      required:
+      - id
+      - name
+      - description
+      title: EligibilityCheckPlanResponse
+    GroupEnrolmentType:
+      type: string
+      enum:
+      - manual
+      - automatic
+      title: GroupEnrolmentType
+    CheckGroupEligibilityRequest:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          description: The employee to check eligibility for.
+      required:
+      - employee_id
+      title: CheckGroupEligibilityRequest
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    EligibilityStatus:
+      type: string
+      enum:
+      - pending
+      - eligible
+      - ineligible
+      title: EligibilityStatus
+    PolicyConfigurationRequest:
+      type: object
+      properties:
+        desired_policy_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements. If unspecified, the policy start date will be determined by the insurance provider.
+        enrolment_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date. If unspecified, the enrolment date will default to the date the enrolment intent is processed.
+      title: PolicyConfigurationRequest
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

@@ -1,0 +1,464 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: Associated Persons
+paths:
+  /employees/{employee_id}/associated_persons:
+    post:
+      tags:
+      - Associated Persons
+      summary: Create an associated person
+      description: Creates an associated person (dependent or beneficiary) linked to an employee.
+      operationId: CreateAssociatedPerson
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateAssociatedPersonRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonResponse'
+    get:
+      tags:
+      - Associated Persons
+      summary: List associated persons
+      description: Returns a list of all `associated person`'s for a specific `employee`. The `associated person`'s are returned sorted by creation date, with the most recent `associated person` appearing first.
+      operationId: ListAssociatedPersons
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        schema:
+          type: integer
+          description: The page of results to return. Defaults to 1 if not provided.
+          format: int32
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        schema:
+          type: integer
+          description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+          format: int32
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonResponsePagedList'
+  /employees/{employee_id}/associated_persons/{associated_person_id}:
+    get:
+      tags:
+      - Associated Persons
+      summary: Retrieve an associated person
+      description: Retrieves an associated person object.
+      operationId: RetrieveAssociatedPerson
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: associated_person_id
+        in: path
+        required: true
+        schema:
+          pattern: ap_.+
+          type: string
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonResponse'
+    put:
+      tags:
+      - Associated Persons
+      summary: Update an associated person
+      description: Updates the specified associated person by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+      operationId: UpdateAssociatedPerson
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: associated_person_id
+        in: path
+        required: true
+        schema:
+          pattern: ap_.+
+          type: string
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateAssociatedPersonRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/HttpValidationProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonResponse'
+    delete:
+      tags:
+      - Associated Persons
+      summary: Delete an associated person
+      description: Permanently deletes an associated person. It cannot be undone.
+      operationId: DeleteAssociatedPerson
+      parameters:
+      - name: employee_id
+        in: path
+        required: true
+        schema:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      - name: associated_person_id
+        in: path
+        required: true
+        schema:
+          pattern: ap_.+
+          type: string
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      responses:
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonResponse'
+components:
+  schemas:
+    RelationshipType:
+      enum:
+      - spouse
+      - partner
+      - child
+      - other
+      type: string
+    UpdateAssociatedPersonRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        last_name:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        date_of_birth:
+          type:
+          - 'null'
+          - string
+          description: Must be in the past, but after 1900-01-01
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the associated person at birth
+        relationship_type:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/RelationshipType'
+          description: The relationship type between the employee and the associated person
+        email:
+          type:
+          - 'null'
+          - string
+          description: 'Email address of the associated person. If null is provided, the email will be cleared. NOTE: This field will be normalized according to our internal formatting rules.'
+        phone_number:
+          type:
+          - 'null'
+          - string
+          description: 'Phone number in E.164 international format (e.g. +447700900999). If null is provided, the phone number will be cleared. NOTE: This field will be normalized according to our internal formatting rules.'
+      additionalProperties: false
+    SexAtBirth:
+      enum:
+      - male
+      - female
+      type: string
+    CreateAssociatedPersonRequest:
+      required:
+      - date_of_birth
+      - first_name
+      - last_name
+      - relationship_type
+      - sex_at_birth
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        last_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        date_of_birth:
+          type: string
+          description: Must be in the past, but after 1900-01-01
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the associated person at birth
+        relationship_type:
+          allOf:
+          - $ref: '#/components/schemas/RelationshipType'
+          description: The relationship type between the employee and the associated person
+        email:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        phone_number:
+          type:
+          - 'null'
+          - string
+          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
+      additionalProperties: false
+    AssociatedPersonResponse:
+      required:
+      - date_of_birth
+      - employee_id
+      - first_name
+      - id
+      - last_name
+      - relationship_type
+      - sex_at_birth
+      type: object
+      properties:
+        id:
+          pattern: ap_.+
+          type: string
+          description: Unique identifier for the associated person
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          description: Unique identifier for the platform
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee this person is associated with
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        first_name:
+          type: string
+          description: First name of the associated person
+        last_name:
+          type: string
+          description: Last name of the associated person
+        date_of_birth:
+          type: string
+          description: Date of birth of the associated person
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the associated person at birth
+        relationship_type:
+          allOf:
+          - $ref: '#/components/schemas/RelationshipType'
+          description: The relationship type between the employee and the associated person
+        email:
+          type:
+          - 'null'
+          - string
+          description: Email address of the associated person
+        phone_number:
+          type:
+          - 'null'
+          - string
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    AssociatedPersonResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociatedPersonResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

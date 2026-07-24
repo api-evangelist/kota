@@ -1,0 +1,1147 @@
+openapi: 3.1.0
+info:
+  title: API Reference Associated Persons dependentsManagementIntents API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: dependentsManagementIntents
+paths:
+  /dependents_management_intents/{dependents_management_intent_id}:
+    get:
+      operationId: retrieve-dependents-management-intent
+      summary: Retrieve a dependents management intent
+      description: Retrieves a `dependents_management_intent` object by ID.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependentsManagementIntentResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dependents_management_intents/{dependents_management_intent_id}/associated_persons_eligibility:
+    get:
+      operationId: get-associated-persons-eligibility
+      summary: Retrieve associated persons eligibility for a dependents management intent
+      description: Retrieves all associated persons for the employee with their eligibility status for the specific policy/plan.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page of results to return. Defaults to 1 if not provided.
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        description: The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.
+        required: false
+        schema:
+          type: integer
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociatedPersonEligibilityResponsePagedList'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dependents_management_intents/{dependents_management_intent_id}/dependents:
+    post:
+      operationId: add-dependents-to-dependents-management-intent
+      summary: Add dependents to a dependents management intent
+      description: Adds one or more existing associated persons as dependents to a dependents management intent.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependentsManagementIntentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDependentsRequest'
+  /dependents_management_intents/{dependents_management_intent_id}/dependents/{associated_person_id}:
+    delete:
+      operationId: remove-dependent-from-dependents-management-intent
+      summary: Remove a dependent from a Dependents Management Intent
+      description: Removes a specific dependent from a Dependents Management Intent by their associated person ID. The operation returns the updated DMI state.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: associated_person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DependentsManagementIntentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dependents_management_intents/{dependents_management_intent_id}/confirm:
+    post:
+      operationId: confirm-dependents-management-intent
+      summary: Confirm dependent list
+      description: Submits the finalized dependent list for processing. Call this endpoint after adding all dependents to the intent. The system validates the list and transitions the intent to `processing` status. If any dependents are marked as `ineligible` or `restricted`, they must be removed before confirmation. The parent intent's action deadline must not have passed.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dependents Management Intents_ConfirmDependentsManagementIntent_Response_204'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dependents_management_intents/{dependents_management_intent_id}/cancel:
+    post:
+      operationId: cancel-dependents-management-intent
+      summary: Cancel the dependents management intent
+      description: Cancels the `dependents_management_intent` in case an employee decides not to proceed with changes to their dependents. Canceling is only allowed from `action_required` status. If the intent is already `canceled`, the operation succeeds without changes. After canceling, a new dependents management intent can be created from the parent intent.
+      tags:
+      - dependentsManagementIntents
+      parameters:
+      - name: dependents_management_intent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Authorization header using the Bearer scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dependents Management Intents_CancelDependentsManagementIntent_Response_204'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    PlanWithPricingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+        pricing:
+          $ref: '#/components/schemas/PlanPricingResponse'
+          description: Pricing information for the plan.
+      required:
+      - id
+      - name
+      - description
+      - pricing
+      title: PlanWithPricingResponse
+    PlanCoverageOptionInputType:
+      type: string
+      enum:
+      - single_select
+      - multi_select
+      title: PlanCoverageOptionInputType
+    PlanCoverageOptionScope:
+      type: string
+      enum:
+      - group_policy
+      - policy
+      - member
+      title: PlanCoverageOptionScope
+    PlanCoverageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
+        name:
+          type: string
+          description: Title for this coverage selection. Typically used as the display heading.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Full description of this coverage selection.
+        scope:
+          $ref: '#/components/schemas/PlanCoverageOptionScope'
+          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
+        input_type:
+          $ref: '#/components/schemas/PlanCoverageOptionInputType'
+          description: Describes whether this input allows selecting a single option or multiple options.
+        required:
+          type: boolean
+          description: Whether a selection is mandatory.
+        min_selections:
+          type:
+          - integer
+          - 'null'
+          description: Minimum required selections (multi-select only).
+        max_selections:
+          type:
+          - integer
+          - 'null'
+          description: Maximum allowed selections (multi-select only).
+        sort_order:
+          type:
+          - integer
+          - 'null'
+          description: Display ordering hint.
+        group_label:
+          type:
+          - string
+          - 'null'
+          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Available options within this coverage selection.
+      required:
+      - id
+      - name
+      - scope
+      - input_type
+      - required
+      - options
+      title: PlanCoverageResponse
+    PlanCoverageOptionSelectionRequest:
+      type: object
+      properties:
+        configuration_id:
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Selected options with optional sub-options.
+      required:
+      - configuration_id
+      - options
+      title: PlanCoverageOptionSelectionRequest
+    DependentsManagementIntentStatus:
+      type: string
+      enum:
+      - action_required
+      - processing
+      - completed
+      - not_undertaken
+      title: DependentsManagementIntentStatus
+    AssociatedPersonEligibilityResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociatedPersonEligibilityResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: AssociatedPersonEligibilityResponsePagedList
+    TierBasedPricingResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingTierResponse'
+          description: Pricing tiers for different family compositions.
+      required:
+      - currency
+      - tiers
+      title: TierBasedPricingResponse
+    DependentCoverageSelectionsRequest:
+      type: object
+      properties:
+        associated_person_id:
+          type: string
+          description: The associated person ID this selection applies to.
+        coverage_selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
+          description: Coverage option selections for member-scoped configurations.
+      required:
+      - associated_person_id
+      - coverage_selections
+      title: DependentCoverageSelectionsRequest
+    SelectedOptionRequest:
+      type: object
+      properties:
+        option_id:
+          type: string
+          description: Option ID (prefixed with `pco_`).
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Sub-option selections, if applicable.
+      required:
+      - option_id
+      title: SelectedOptionRequest
+    PlanPricingResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PlanPricingType'
+          description: Type of pricing structure
+        per_member:
+          $ref: '#/components/schemas/PerMemberPricingResponse'
+          description: Per-member pricing details (populated when type is 'per_member').
+        tier_based:
+          $ref: '#/components/schemas/TierBasedPricingResponse'
+          description: Tier-based pricing details (populated when type is 'tier_based').
+      required:
+      - type
+      title: PlanPricingResponse
+    Dependents Management Intents_ConfirmDependentsManagementIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Dependents Management Intents_ConfirmDependentsManagementIntent_Response_204
+    PlanCoverageOptionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this coverage option. Prefixed with `pco_`.
+        name:
+          type: string
+          description: Display name for this coverage option.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Longer explanation of this coverage option.
+        learn_more_url:
+          type:
+          - string
+          - 'null'
+          description: Link to learn more about this coverage option.
+        from_price:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Lowest applicable monthly price for this coverage option.
+        benefits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
+          description: Benefit items included with this coverage option.
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Nested sub-options available when this option is selected.
+        eligibility_criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that must be met to select this coverage option.
+      required:
+      - id
+      - name
+      title: PlanCoverageOptionResponse
+    PlanPricingType:
+      type: string
+      enum:
+      - per_member
+      - tier_based
+      title: PlanPricingType
+    RelationshipType:
+      type: string
+      enum:
+      - spouse
+      - partner
+      - child
+      - other
+      title: RelationshipType
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
+    DependentsManagementIntentDependentStatus:
+      type: string
+      enum:
+      - pending_confirmation
+      - action_required
+      - ineligible
+      - processing
+      - restricted
+      - ready
+      title: DependentsManagementIntentDependentStatus
+    MemberTypeCode:
+      type: string
+      enum:
+      - adult
+      - young_adult
+      - child
+      title: MemberTypeCode
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    EmployerEligibilityCriterionType:
+      type: string
+      enum:
+      - employees_count
+      - members_count
+      - industry_exclusions
+      title: EmployerEligibilityCriterionType
+    MembersCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of members required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of members allowed.
+      title: MembersCountDetails
+    CurrencyCode:
+      type: string
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      title: CurrencyCode
+    PricingTierResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/FamilyTierCode'
+          description: Tier code.
+        display_name:
+          type: string
+          description: Display name for the tier.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount for this tier.
+        annual_premium:
+          type: number
+          format: double
+          description: Annual premium amount for this tier.
+        display_dependent_requirements:
+          type: string
+          description: Description of dependent requirements for this tier.
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      - annual_premium
+      - display_dependent_requirements
+      title: PricingTierResponse
+    MemberTypePricingResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/MemberTypeCode'
+          description: Member type code.
+        display_name:
+          type: string
+          description: Display name for the member type.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount.
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      title: MemberTypePricingResponse
+    IndustryExclusionsDetails:
+      type: object
+      properties:
+        excluded_industries:
+          type: array
+          items:
+            type: string
+          description: List of excluded industries.
+      required:
+      - excluded_industries
+      title: IndustryExclusionsDetails
+    FamilyTierCode:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_parent
+      - family
+      title: FamilyTierCode
+    DependentsManagementIntentActionRequiredResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/DependentsManagementIntentActionCode'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action. This is intended to be understandable by the end user.
+        due_by:
+          type: string
+          format: date-time
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+      required:
+      - code
+      - reason
+      - reason_description
+      - due_by
+      title: DependentsManagementIntentActionRequiredResponse
+    AssociatedPersonEligibilityResponse:
+      type: object
+      properties:
+        associated_person_id:
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+        first_name:
+          type: string
+          description: First name of the associated person.
+        last_name:
+          type: string
+          description: Last name of the associated person.
+        date_of_birth:
+          type: string
+          format: date
+          description: Date of birth of the associated person.
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: Sex at birth of the associated person.
+        relationship:
+          $ref: '#/components/schemas/RelationshipType'
+          description: Relationship type to the employee.
+        eligibility_status:
+          $ref: '#/components/schemas/EligibilityStatus'
+          description: Eligibility status for the policy/plan.
+        ineligibility_reason:
+          type:
+          - string
+          - 'null'
+          description: Reason for ineligibility if status is ineligible.
+        object:
+          type: string
+          description: The object type
+      required:
+      - associated_person_id
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - relationship
+      - eligibility_status
+      title: AssociatedPersonEligibilityResponse
+    DependentsManagementIntentActionCode:
+      type: string
+      enum:
+      - remove_restricted_or_ineligible_dependents
+      title: DependentsManagementIntentActionCode
+    DependentInfoResponse:
+      type: object
+      properties:
+        associated_person_id:
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+        status:
+          $ref: '#/components/schemas/DependentsManagementIntentDependentStatus'
+          description: The status of this dependent in the dependents management intent.
+        coverage_selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionResponse'
+          description: Coverage option selections for this dependent. Populated when member-scoped selections have been provided.
+        requirement_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The adaptive requirement ID for this dependent. Populated when the dependent has an open adaptive requirement (status is `pending_requirement`).
+      required:
+      - associated_person_id
+      - status
+      title: DependentInfoResponse
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    DependentsManagementIntentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the dependents management intent. Prefixed with `dmi_`.
+        object:
+          type: string
+          description: Object type identifier.
+        parent_intent_id:
+          type: string
+          description: The parent intent ID (e.g. Policy Amendment Intent ID). Prefixed based on type.
+        parent_intent_type:
+          $ref: '#/components/schemas/DependentsManagementIntentParentType'
+          description: The type of parent intent.
+        status:
+          $ref: '#/components/schemas/DependentsManagementIntentStatus'
+          description: Current status of the dependents management intent.
+        dependents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DependentInfoResponse'
+          description: List of dependents being managed.
+        plan:
+          $ref: '#/components/schemas/PlanWithPricingResponse'
+          description: Plan information including pricing details.
+        coverage_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageResponse'
+          description: Available member-scoped coverage options for the plan. Present when the plan has member-scoped coverage configurations.
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this intent.
+        action_required:
+          $ref: '#/components/schemas/DependentsManagementIntentActionRequiredResponse'
+          description: Details of the action required from the caller. Populated only when `status` is `action_required` and a required action has been recorded on the intent (e.g. restricted dependents detected by compliance screening).
+      required:
+      - id
+      - parent_intent_id
+      - parent_intent_type
+      - status
+      - dependents
+      - plan
+      - disclosures
+      title: DependentsManagementIntentResponse
+    PlanCoverageOptionBenefitResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Benefit name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Benefit description.
+      required:
+      - name
+      title: PlanCoverageOptionBenefitResponse
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    SelectedOptionResponse:
+      type: object
+      properties:
+        option_id:
+          type: string
+          description: Option ID (prefixed with `pco_`).
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected sub-options, if applicable.
+      required:
+      - option_id
+      title: SelectedOptionResponse
+    PlanCoverageOptionSelectionResponse:
+      type: object
+      properties:
+        configuration_id:
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected options.
+      required:
+      - configuration_id
+      - options
+      title: PlanCoverageOptionSelectionResponse
+    EligibilityStatus:
+      type: string
+      enum:
+      - pending
+      - eligible
+      - ineligible
+      title: EligibilityStatus
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    PerMemberPricingResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        member_type_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberTypePricingResponse'
+          description: Pricing for each member type.
+      required:
+      - currency
+      - member_type_pricing
+      title: PerMemberPricingResponse
+    AddDependentsRequest:
+      type: object
+      properties:
+        associated_person_ids:
+          type: array
+          items:
+            type: string
+          description: List of associated person IDs to add as dependents. Must not be empty.
+        dependent_coverage_selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DependentCoverageSelectionsRequest'
+          description: Optional coverage selections per dependent. Keyed by associated person ID.
+      required:
+      - associated_person_ids
+      title: AddDependentsRequest
+    EmployerEligibilityCriterionResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/EmployerEligibilityCriterionType'
+          description: The type of eligibility criterion.
+        description:
+          type: string
+          description: Human-readable description of the criterion.
+        employees_count:
+          $ref: '#/components/schemas/EmployeesCountDetails'
+          description: Employee count constraints. Only populated when type is `employees_count`.
+        members_count:
+          $ref: '#/components/schemas/MembersCountDetails'
+          description: Member count constraints. Only populated when type is `members_count`.
+        industry_exclusions:
+          $ref: '#/components/schemas/IndustryExclusionsDetails'
+          description: Industry exclusion details. Only populated when type is `industry_exclusions`.
+      required:
+      - type
+      - description
+      title: EmployerEligibilityCriterionResponse
+    DependentsManagementIntentParentType:
+      type: string
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      title: DependentsManagementIntentParentType
+    Dependents Management Intents_CancelDependentsManagementIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Dependents Management Intents_CancelDependentsManagementIntent_Response_204
+    EmployeesCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of employees required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of employees allowed.
+      title: EmployeesCountDetails
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme
