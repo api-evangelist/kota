@@ -1,28 +1,605 @@
 aid: kota
 name: Kota
-description: 'Kota is a company surfaced as a portfolio company of eqt-ventures, northzone and added to
-  the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Kota is a Dublin-headquartered employee benefits platform that gives payroll, HR
+  and employer-of-record platforms embedded access to health insurance, workplace pensions, life
+  assurance, flexible benefits and spend cards across Ireland, the UK, Spain and other markets. Kota
+  Embedded is sold as three developer products — a Hosted redirect experience, an Embed JavaScript
+  SDK (Kota.js) that drops themed employer and employee benefit UIs into a partner platform, and a
+  full REST API for building a completely custom benefits journey. The Kota API is an OpenAPI 3.1
+  contract at api.kota.io covering employers, employees, groups, group policies, policies, plans,
+  health insurance quotes and offers, contribution reports, associated persons/dependents, and a
+  family of intent resources (group quote, group policy, enrolment, dependents management, policy
+  amendment, policy import) that model each step of the benefits lifecycle. Authentication is API
+  key bearer tokens with pk_test_/pk_live_ prefixes, POST requests accept an Idempotency-Key header,
+  errors conform to RFC 9457 Problem Details, and a large webhook catalog (v1 and v2 event families)
+  publishes employer, employee, group, policy, quote and contribution-report state changes.'
 url: https://raw.githubusercontent.com/api-evangelist/kota/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - eqt-ventures
 - northzone
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: real-openapi-and-docs
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
+image: https://www.kota.io/favicon.ico
 tags:
 - Company
 - Fintech
-apis: []
+- Insurance
+- Employee Benefits
+- Health Insurance
+- Pensions
+- Insurtech
+- Embedded Finance
+- Human Resources
+- Payroll
+apis:
+- aid: kota:kota-associated-persons-api
+  name: Kota Associated Persons API
+  description: The Associated Persons API from Kota — 2 operation(s) for associated persons.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Associated Persons
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-associated-persons-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-associatedpersons-api
+  name: Kota associatedPersons API
+  description: The associatedPersons API from Kota — 2 operation(s) for associatedpersons.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - associatedPersons
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-associatedpersons-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-contribution-reports-api
+  name: Kota Contribution Reports API
+  description: The Contribution Reports API from Kota — 5 operation(s) for contribution reports.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Contribution Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-contribution-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-contributionreports-api
+  name: Kota contributionReports API
+  description: The contributionReports API from Kota — 5 operation(s) for contributionreports.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - contributionReports
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-contributionreports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-dependents-management-intents-api
+  name: Kota Dependents Management Intents API
+  description: >-
+    The Dependents Management Intents API from Kota — 6 operation(s) for dependents management intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Dependents Management Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-dependents-management-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-dependentsmanagementintents-api
+  name: Kota dependentsManagementIntents API
+  description: >-
+    The dependentsManagementIntents API from Kota — 6 operation(s) for dependentsmanagementintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - dependentsManagementIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-dependentsmanagementintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-embed-sessions-api
+  name: Kota Embed Sessions API
+  description: The Embed Sessions API from Kota — 1 operation(s) for embed sessions.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Embed Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-embed-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-embedsessions-api
+  name: Kota embedSessions API
+  description: The embedSessions API from Kota — 1 operation(s) for embedsessions.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - embedSessions
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-embedsessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-employees-api
+  name: Kota employees API
+  description: The employees API from Kota — 4 operation(s) for employees.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - employees
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-employees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-employers-api
+  name: Kota employers API
+  description: The employers API from Kota — 3 operation(s) for employers.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - employers
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-employers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-enrolment-intents-api
+  name: Kota Enrolment Intents API
+  description: The Enrolment Intents API from Kota — 7 operation(s) for enrolment intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Enrolment Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-enrolment-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-enrolmentintents-api
+  name: Kota enrolmentIntents API
+  description: The enrolmentIntents API from Kota — 7 operation(s) for enrolmentintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - enrolmentIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-enrolmentintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-events-api
+  name: Kota events API
+  description: The events API from Kota — 3 operation(s) for events.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-group-policies-api
+  name: Kota Group Policies API
+  description: The Group Policies API from Kota — 2 operation(s) for group policies.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Group Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-group-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-group-policy-intents-api
+  name: Kota Group Policy Intents API
+  description: The Group Policy Intents API from Kota — 3 operation(s) for group policy intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Group Policy Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-group-policy-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-group-quote-intents-api
+  name: Kota Group Quote Intents API
+  description: The Group Quote Intents API from Kota — 5 operation(s) for group quote intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Group Quote Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-group-quote-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-grouppolicies-api
+  name: Kota groupPolicies API
+  description: The groupPolicies API from Kota — 2 operation(s) for grouppolicies.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - groupPolicies
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-grouppolicies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-grouppolicyintents-api
+  name: Kota groupPolicyIntents API
+  description: The groupPolicyIntents API from Kota — 3 operation(s) for grouppolicyintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - groupPolicyIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-grouppolicyintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-groupquoteintents-api
+  name: Kota groupQuoteIntents API
+  description: The groupQuoteIntents API from Kota — 5 operation(s) for groupquoteintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - groupQuoteIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-groupquoteintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-groups-api
+  name: Kota groups API
+  description: The groups API from Kota — 4 operation(s) for groups.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - groups
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-groups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-health-insurance-api
+  name: Kota Health Insurance API
+  description: The Health Insurance API from Kota — 8 operation(s) for health insurance.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Health Insurance
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-health-insurance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-healthinsurance-api
+  name: Kota healthInsurance API
+  description: The healthInsurance API from Kota — 8 operation(s) for healthinsurance.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - healthInsurance
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-healthinsurance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-hosted-sessions-api
+  name: Kota Hosted Sessions API
+  description: The Hosted Sessions API from Kota — 1 operation(s) for hosted sessions.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Hosted Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-hosted-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-hostedsessions-api
+  name: Kota hostedSessions API
+  description: The hostedSessions API from Kota — 1 operation(s) for hostedsessions.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - hostedSessions
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-hostedsessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-plans-api
+  name: Kota plans API
+  description: The plans API from Kota — 2 operation(s) for plans.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - plans
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-policies-api
+  name: Kota policies API
+  description: The policies API from Kota — 2 operation(s) for policies.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - policies
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-policies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-policy-amendment-intents-api
+  name: Kota Policy Amendment Intents API
+  description: >-
+    The Policy Amendment Intents API from Kota — 5 operation(s) for policy amendment intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Policy Amendment Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-policy-amendment-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-policy-import-intents-api
+  name: Kota Policy Import Intents API
+  description: The Policy Import Intents API from Kota — 2 operation(s) for policy import intents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Policy Import Intents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-policy-import-intents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-policyamendmentintents-api
+  name: Kota policyAmendmentIntents API
+  description: The policyAmendmentIntents API from Kota — 5 operation(s) for policyamendmentintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - policyAmendmentIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-policyamendmentintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-policyimportintents-api
+  name: Kota policyImportIntents API
+  description: The policyImportIntents API from Kota — 2 operation(s) for policyimportintents.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - policyImportIntents
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-policyimportintents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-providers-api
+  name: Kota providers API
+  description: The providers API from Kota — 2 operation(s) for providers.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - providers
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-providers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-requirements-api
+  name: Kota requirements API
+  description: The requirements API from Kota — 1 operation(s) for requirements.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - requirements
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-requirements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
+- aid: kota:kota-webhooks-api
+  name: Kota webhooks API
+  description: The webhooks API from Kota — 2 operation(s) for webhooks.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kota.io/getting-started
+  - type: APIReference
+    url: https://docs.kota.io/api-reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/kota/overview
+- type: AgenticAccess
+  url: agentic-access/kota-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/kota-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/kota-domain-security.yml
+- type: Authentication
+  url: authentication/kota-authentication.yml
 - type: Website
   url: https://www.kota.io/
+- type: DeveloperPortal
+  url: https://docs.kota.io/getting-started
+- type: Documentation
+  url: https://docs.kota.io/getting-started
+- type: APIReference
+  url: https://docs.kota.io/api-reference
+- type: GettingStarted
+  url: https://docs.kota.io/getting-started
+- type: Support
+  url: https://help.kota.io/en/
+- type: Blog
+  url: https://www.kota.io/blog
+- type: Pricing
+  url: https://www.kota.io/pricing
+- type: SignUp
+  url: https://www.kota.io/demo
+- type: Login
+  url: https://my.kota.io/login
+- type: TermsOfService
+  url: https://www.kota.io/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.kota.io/privacy-policy
+- type: Security
+  url: https://www.kota.io/security
+- type: Compliance
+  url: https://trust.kota.io/
+- type: TrustCenter
+  url: security/kota-trust-center.yml
+- type: ChangeLog
+  url: https://www.kota.io/changelog
+- type: ChangeLog
+  url: changelog/kota-changelog.yml
+- type: Conventions
+  url: conventions/kota-conventions.yml
+- type: Idempotency
+  url: conventions/kota-conventions.yml
+- type: ErrorCatalog
+  url: errors/kota-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/kota-lifecycle.yml
+- type: Conformance
+  url: conformance/kota-conformance.yml
+- type: DataModel
+  url: data-model/kota-data-model.yml
+- type: Webhooks
+  url: asyncapi/kota-webhooks.yml
+- type: MCPServer
+  url: mcp/kota-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/kota-llms.txt
+- type: WellKnown
+  url: well-known/kota-well-known.yml
+- type: Packages
+  url: packages/kota-packages.yml
+- type: SDKs
+  url: packages/kota-packages.yml
+- type: Sandbox
+  url: sandbox/kota-sandbox.yml
+- type: Components
+  url: components/kota-components.yml
+- type: Overlay
+  url: overlays/kota-api-overlay.yaml
+- type: Overlay
+  url: overlays/kota-api-reference-overlay.yaml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
