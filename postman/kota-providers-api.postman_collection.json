@@ -1,0 +1,319 @@
+{
+  "info": {
+    "_postman_id": "2f023868-ceaa-4630-80cb-b3f7635f1cee",
+    "name": "API Reference Associated Persons providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:24.000Z",
+    "updatedAt": "2026-07-28T02:02:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f023868-ceaa-4630-80cb-b3f7635f1cee"
+  },
+  "item": [
+    {
+      "name": "providers",
+      "item": [
+        {
+          "name": "{provider_id}",
+          "item": [
+            {
+              "name": "Retrieve a provider",
+              "id": "b14267bd-f1b6-4aca-bb24-a9f5b74d6d33",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/providers/:provider_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "providers",
+                    ":provider_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a906d5e5-3602-4c54-8320-3976573c60c8",
+                      "key": "provider_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `provider` object by its ID."
+              },
+              "response": [
+                {
+                  "id": "4a4816f2-3b63-40de-8048-451c4219896f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/providers/:provider_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "providers",
+                        ":provider_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"website_url\": \"<string>\",\n  \"logo_url\": \"<string>\",\n  \"support_phone\": \"<string>\",\n  \"supported_countries\": [\n    \"jo\",\n    \"sd\"\n  ],\n  \"object\": \"<string>\",\n  \"employer_platform_url\": \"<string,null>\",\n  \"kota_hub_url\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-4a4816f2-3b63-40de-8048-451c4219896f"
+                },
+                {
+                  "id": "392c359f-32b7-4746-b177-85934af15163",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/providers/:provider_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "providers",
+                        ":provider_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "provider_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:02:24.000Z",
+                  "updatedAt": "2026-07-28T02:02:24.000Z",
+                  "uid": "35240-392c359f-32b7-4746-b177-85934af15163"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-b14267bd-f1b6-4aca-bb24-a9f5b74d6d33"
+            }
+          ],
+          "id": "54935e3c-d0c0-4e39-ae18-7286818d18ab",
+          "createdAt": "2026-07-28T02:02:24.000Z",
+          "updatedAt": "2026-07-28T02:02:24.000Z",
+          "uid": "35240-54935e3c-d0c0-4e39-ae18-7286818d18ab"
+        },
+        {
+          "name": "List all providers",
+          "id": "8e536169-99a2-42c0-bd11-723aef9998e8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/providers?value=rw&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "providers"
+              ],
+              "query": [
+                {
+                  "description": "Filter by country; only providers that support this country are returned.",
+                  "key": "value",
+                  "value": "rw"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `providers`."
+          },
+          "response": [
+            {
+              "id": "dbbef6b4-5318-43e2-8e6e-502d0dc5c00d",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/providers?value=rw&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "providers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by country; only providers that support this country are returned.",
+                      "key": "value",
+                      "value": "rw"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"website_url\": \"<string>\",\n      \"logo_url\": \"<string>\",\n      \"support_phone\": \"<string>\",\n      \"supported_countries\": [\n        \"gn\",\n        \"cv\"\n      ],\n      \"object\": \"<string>\",\n      \"employer_platform_url\": \"<string,null>\",\n      \"kota_hub_url\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"website_url\": \"<string>\",\n      \"logo_url\": \"<string>\",\n      \"support_phone\": \"<string>\",\n      \"supported_countries\": [\n        \"cg\",\n        \"ly\"\n      ],\n      \"object\": \"<string>\",\n      \"employer_platform_url\": \"<string,null>\",\n      \"kota_hub_url\": \"<string,null>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-dbbef6b4-5318-43e2-8e6e-502d0dc5c00d"
+            },
+            {
+              "id": "47665bec-0b05-4b53-8022-200ce5743df0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/providers?value=rw&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "providers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by country; only providers that support this country are returned.",
+                      "key": "value",
+                      "value": "rw"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"elit_7\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:02:24.000Z",
+              "updatedAt": "2026-07-28T02:02:24.000Z",
+              "uid": "35240-47665bec-0b05-4b53-8022-200ce5743df0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:24.000Z",
+          "updatedAt": "2026-07-28T02:02:24.000Z",
+          "uid": "35240-8e536169-99a2-42c0-bd11-723aef9998e8"
+        }
+      ],
+      "id": "191699e5-72bc-4f3f-b7f2-c16c029a429c",
+      "createdAt": "2026-07-28T02:02:24.000Z",
+      "updatedAt": "2026-07-28T02:02:24.000Z",
+      "uid": "35240-191699e5-72bc-4f3f-b7f2-c16c029a429c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

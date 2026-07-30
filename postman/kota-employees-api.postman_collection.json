@@ -1,0 +1,1192 @@
+{
+  "info": {
+    "_postman_id": "91b6a106-4236-4774-ab82-a708c9111bef",
+    "name": "API Reference Associated Persons employees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:30.000Z",
+    "updatedAt": "2026-07-28T02:01:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-91b6a106-4236-4774-ab82-a708c9111bef"
+  },
+  "item": [
+    {
+      "name": "employees",
+      "item": [
+        {
+          "name": "{employee_id}",
+          "item": [
+            {
+              "name": "offboard",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel offboarding an employee",
+                      "id": "f365d836-b160-4f82-bca6-0f11fea93dd6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/offboard/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "offboard",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8d2ceee0-4ea1-46ba-ac88-a8541965c631",
+                              "key": "employee_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Cancels the scheduled offboarding of an `employee`. Adjusts the next payroll cycle data to compensate for this change and if payroll ran while the offboarding was scheduled the next payroll cycle data will be adjusted to bring the scheme back to balance."
+                      },
+                      "response": [
+                        {
+                          "id": "2d44f79e-5df3-43fb-86a7-6cdcdd4f640a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                                "key": "Idempotency-Key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/offboard/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "offboard",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"female\",\n  \"national_tax_id\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"status\": \"offboarding\",\n  \"external_customer_id\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"be\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"bq\",\n  \"start_on\": \"<date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"offboard_on\": \"<string,null-date-time>\",\n  \"bank_account\": {\n    \"account_number_last4\": \"<string>\"\n  },\n  \"metadata\": null,\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:01:31.000Z",
+                          "updatedAt": "2026-07-28T02:01:31.000Z",
+                          "uid": "35240-2d44f79e-5df3-43fb-86a7-6cdcdd4f640a"
+                        },
+                        {
+                          "id": "b82f958b-45ca-4fd9-8382-4ca2476c834a",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                                "key": "Idempotency-Key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/offboard/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "offboard",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:01:31.000Z",
+                          "updatedAt": "2026-07-28T02:01:31.000Z",
+                          "uid": "35240-b82f958b-45ca-4fd9-8382-4ca2476c834a"
+                        },
+                        {
+                          "id": "8f2af63e-1882-470e-b51f-5f17d9dbf1f5",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                                "key": "Idempotency-Key",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/offboard/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "offboard",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                          "createdAt": "2026-07-28T02:01:31.000Z",
+                          "updatedAt": "2026-07-28T02:01:31.000Z",
+                          "uid": "35240-8f2af63e-1882-470e-b51f-5f17d9dbf1f5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:31.000Z",
+                      "updatedAt": "2026-07-28T02:01:31.000Z",
+                      "uid": "35240-f365d836-b160-4f82-bca6-0f11fea93dd6"
+                    }
+                  ],
+                  "id": "701cdebe-a13f-4b4f-961e-a2e9deadc747",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-701cdebe-a13f-4b4f-961e-a2e9deadc747"
+                },
+                {
+                  "name": "Offboard an employee",
+                  "id": "8396e4ce-cc72-4bae-a8d5-5c2cebc23e61",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"offboard_on\": \"<dateTime>\",\n  \"offboard_reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id/offboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id",
+                        "offboard"
+                      ],
+                      "variable": [
+                        {
+                          "id": "228761b1-c9eb-4993-be17-19efe2033979",
+                          "key": "employee_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Schedules an `employee` to be offboarded. Changes affecting payroll will be reflected in the next available payroll cycle data run. Offboarding an `employee` can be cancelled up to, and including, the day before they are scheduled for offboarding. A `webhook` is available to inform you when this completes."
+                  },
+                  "response": [
+                    {
+                      "id": "5baf6c20-c728-42fe-b89f-9c21201cc1b9",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"offboard_on\": \"<dateTime>\",\n  \"offboard_reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/offboard",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "offboard"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"female\",\n  \"national_tax_id\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"status\": \"offboarding\",\n  \"external_customer_id\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"be\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"bq\",\n  \"start_on\": \"<date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"offboard_on\": \"<string,null-date-time>\",\n  \"bank_account\": {\n    \"account_number_last4\": \"<string>\"\n  },\n  \"metadata\": null,\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:31.000Z",
+                      "updatedAt": "2026-07-28T02:01:31.000Z",
+                      "uid": "35240-5baf6c20-c728-42fe-b89f-9c21201cc1b9"
+                    },
+                    {
+                      "id": "5e2c1e45-ba64-4260-a3f3-07ee39a2c66d",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"offboard_on\": \"<dateTime>\",\n  \"offboard_reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/offboard",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "offboard"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:01:31.000Z",
+                      "updatedAt": "2026-07-28T02:01:31.000Z",
+                      "uid": "35240-5e2c1e45-ba64-4260-a3f3-07ee39a2c66d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-8396e4ce-cc72-4bae-a8d5-5c2cebc23e61"
+                }
+              ],
+              "id": "a03640d3-f3eb-41be-9cd3-e04d0c25bc1d",
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-a03640d3-f3eb-41be-9cd3-e04d0c25bc1d"
+            },
+            {
+              "name": "Retrieve an employee",
+              "id": "bad93f9a-1d14-4200-9dae-334a52f30b7c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/employees/:employee_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees",
+                    ":employee_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fea24899-35a5-41ff-8593-02d82fd7a7db",
+                      "key": "employee_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves an `employee` object."
+              },
+              "response": [
+                {
+                  "id": "fa74c385-4274-42ca-861d-ba09a3a40ebb",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"female\",\n  \"national_tax_id\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"status\": \"offboarding\",\n  \"external_customer_id\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"be\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"bq\",\n  \"start_on\": \"<date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"offboard_on\": \"<string,null-date-time>\",\n  \"bank_account\": {\n    \"account_number_last4\": \"<string>\"\n  },\n  \"metadata\": null,\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-fa74c385-4274-42ca-861d-ba09a3a40ebb"
+                },
+                {
+                  "id": "0813bfb9-6a35-4dcd-bcf3-410a01a5abcd",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-0813bfb9-6a35-4dcd-bcf3-410a01a5abcd"
+                },
+                {
+                  "id": "c50c69b7-9ee8-46d6-b65f-a945ce5c34ea",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-c50c69b7-9ee8-46d6-b65f-a945ce5c34ea"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-bad93f9a-1d14-4200-9dae-334a52f30b7c"
+            },
+            {
+              "name": "Update an employee",
+              "id": "da693960-62e7-4c39-94b2-45becf22440e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string,null>\",\n  \"last_name\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"je\",\n  \"national_tax_id\": \"<string,null>\",\n  \"phone_number\": \"<string,null>\",\n  \"email\": \"<string,null>\",\n  \"start_on\": \"<string,null-date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": null\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/employees/:employee_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees",
+                    ":employee_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c71681fb-c401-4b3b-86c1-6c5f1e61e3e6",
+                      "key": "employee_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates the specified `employee` by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `email` parameter only the `email` value will be changed.\n\nNote that the `home_address` field is treated as single object that is updated entirely. If you provide this field, the entire address object will be replaced with the new data, not just the individual sub-fields you include in the request, potentially removing any sub-fields you didn't include in the request.\n\nThis request accepts mostly the same arguments as the `employee` creation call."
+              },
+              "response": [
+                {
+                  "id": "262eb803-7030-4b1e-80c3-637a680be40c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string,null>\",\n  \"last_name\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"je\",\n  \"national_tax_id\": \"<string,null>\",\n  \"phone_number\": \"<string,null>\",\n  \"email\": \"<string,null>\",\n  \"start_on\": \"<string,null-date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"female\",\n  \"national_tax_id\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"status\": \"offboarding\",\n  \"external_customer_id\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"be\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"bq\",\n  \"start_on\": \"<date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"offboard_on\": \"<string,null-date-time>\",\n  \"bank_account\": {\n    \"account_number_last4\": \"<string>\"\n  },\n  \"metadata\": null,\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-262eb803-7030-4b1e-80c3-637a680be40c"
+                },
+                {
+                  "id": "75f8002f-2716-47a0-bd1e-7806a1c777bb",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string,null>\",\n  \"last_name\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"je\",\n  \"national_tax_id\": \"<string,null>\",\n  \"phone_number\": \"<string,null>\",\n  \"email\": \"<string,null>\",\n  \"start_on\": \"<string,null-date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-75f8002f-2716-47a0-bd1e-7806a1c777bb"
+                },
+                {
+                  "id": "6aa7078a-827f-4437-8179-a57b8fdd0d1b",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string,null>\",\n  \"last_name\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"je\",\n  \"national_tax_id\": \"<string,null>\",\n  \"phone_number\": \"<string,null>\",\n  \"email\": \"<string,null>\",\n  \"start_on\": \"<string,null-date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": null\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "employee_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:31.000Z",
+                  "updatedAt": "2026-07-28T02:01:31.000Z",
+                  "uid": "35240-6aa7078a-827f-4437-8179-a57b8fdd0d1b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-da693960-62e7-4c39-94b2-45becf22440e"
+            }
+          ],
+          "id": "8cae1642-7dc3-4270-80b8-1d70f60722e5",
+          "createdAt": "2026-07-28T02:01:31.000Z",
+          "updatedAt": "2026-07-28T02:01:31.000Z",
+          "uid": "35240-8cae1642-7dc3-4270-80b8-1d70f60722e5"
+        },
+        {
+          "name": "List all employees",
+          "id": "4945ad21-d0d7-406b-9d08-9652d2213ff6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/employees?filter=<string>&employer_id=<string>&external_customer_id=<string>&metadata_id=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "employees"
+              ],
+              "query": [
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`.",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by employer ID.",
+                  "key": "employer_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "external_customer_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the employee's metadata \"id\" value (case-insensitive, accent-insensitive, partial match)",
+                  "key": "metadata_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of your `employees`. The `employees` are returned sorted by creation date, with the most recent `employees` appearing first."
+          },
+          "response": [
+            {
+              "id": "d0debaa0-0ee3-4209-a903-01ccb3ad6eb6",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/employees?filter=<string>&employer_id=<string>&external_customer_id=<string>&metadata_id=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees"
+                  ],
+                  "query": [
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by employer ID.",
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the employee's metadata \"id\" value (case-insensitive, accent-insensitive, partial match)",
+                      "key": "metadata_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"sex_at_birth\": \"female\",\n      \"national_tax_id\": \"<string>\",\n      \"phone_number\": \"<string>\",\n      \"email\": \"<string>\",\n      \"platform_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"employer_id\": \"<string>\",\n      \"status\": \"restricted\",\n      \"external_customer_id\": \"<string,null>\",\n      \"home_address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"vc\",\n        \"line2\": \"<string,null>\",\n        \"line3\": \"<string,null>\",\n        \"state\": \"<string,null>\"\n      },\n      \"nationality\": \"nl\",\n      \"start_on\": \"<date>\",\n      \"earliest_benefits_start_date\": \"<string,null-date>\",\n      \"offboard_on\": \"<string,null-date-time>\",\n      \"bank_account\": {\n        \"account_number_last4\": \"<string>\"\n      },\n      \"metadata\": null,\n      \"object\": \"<string>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"sex_at_birth\": \"female\",\n      \"national_tax_id\": \"<string>\",\n      \"phone_number\": \"<string>\",\n      \"email\": \"<string>\",\n      \"platform_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"employer_id\": \"<string>\",\n      \"status\": \"inactive\",\n      \"external_customer_id\": \"<string,null>\",\n      \"home_address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"ni\",\n        \"line2\": \"<string,null>\",\n        \"line3\": \"<string,null>\",\n        \"state\": \"<string,null>\"\n      },\n      \"nationality\": \"mn\",\n      \"start_on\": \"<date>\",\n      \"earliest_benefits_start_date\": \"<string,null-date>\",\n      \"offboard_on\": \"<string,null-date-time>\",\n      \"bank_account\": {\n        \"account_number_last4\": \"<string>\"\n      },\n      \"metadata\": null,\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-d0debaa0-0ee3-4209-a903-01ccb3ad6eb6"
+            },
+            {
+              "id": "a7364517-99d1-431a-a578-13a6a5182397",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/employees?filter=<string>&employer_id=<string>&external_customer_id=<string>&metadata_id=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees"
+                  ],
+                  "query": [
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by employer ID.",
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "external_customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the employee's metadata \"id\" value (case-insensitive, accent-insensitive, partial match)",
+                      "key": "metadata_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-a7364517-99d1-431a-a578-13a6a5182397"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:31.000Z",
+          "updatedAt": "2026-07-28T02:01:31.000Z",
+          "uid": "35240-4945ad21-d0d7-406b-9d08-9652d2213ff6"
+        },
+        {
+          "name": "Create an employee",
+          "id": "c8fb6ed8-7471-4de2-93a4-30554e93a27e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"male\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"gm\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"national_tax_id\": \"<string>\",\n  \"start_on\": \"<date>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"external_customer_id\": \"<string,null>\",\n  \"nationality\": \"wf\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": {\n    \"consectetur3\": \"<string>\",\n    \"quisc\": \"<string>\",\n    \"in_85f\": \"<string>\",\n    \"cupidatat_4\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "employees"
+              ]
+            },
+            "description": "Creates an `employee` with the linked `employer`. If the `employer` has an active health insurance scheme that automatically provides insurance to employees the `employee` will be enrolled."
+          },
+          "response": [
+            {
+              "id": "1390f17f-56c2-401c-8de6-39aebade692c",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"male\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"gm\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"national_tax_id\": \"<string>\",\n  \"start_on\": \"<date>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"external_customer_id\": \"<string,null>\",\n  \"nationality\": \"wf\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": {\n    \"consectetur3\": \"<string>\",\n    \"quisc\": \"<string>\",\n    \"in_85f\": \"<string>\",\n    \"cupidatat_4\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/employees",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"female\",\n  \"national_tax_id\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"status\": \"offboarding\",\n  \"external_customer_id\": \"<string,null>\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"be\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"nationality\": \"bq\",\n  \"start_on\": \"<date>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"offboard_on\": \"<string,null-date-time>\",\n  \"bank_account\": {\n    \"account_number_last4\": \"<string>\"\n  },\n  \"metadata\": null,\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-1390f17f-56c2-401c-8de6-39aebade692c"
+            },
+            {
+              "id": "877376c6-2c94-4574-b47f-5cc0baab9ad2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"sex_at_birth\": \"male\",\n  \"home_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"gm\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"national_tax_id\": \"<string>\",\n  \"start_on\": \"<date>\",\n  \"phone_number\": \"<string>\",\n  \"email\": \"<string>\",\n  \"external_customer_id\": \"<string,null>\",\n  \"nationality\": \"wf\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"bank_account\": {\n    \"account_number\": \"<string>\"\n  },\n  \"metadata\": {\n    \"consectetur3\": \"<string>\",\n    \"quisc\": \"<string>\",\n    \"in_85f\": \"<string>\",\n    \"cupidatat_4\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/employees",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "employees"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"eiusmod_6\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"anim2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:01:31.000Z",
+              "updatedAt": "2026-07-28T02:01:31.000Z",
+              "uid": "35240-877376c6-2c94-4574-b47f-5cc0baab9ad2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:31.000Z",
+          "updatedAt": "2026-07-28T02:01:31.000Z",
+          "uid": "35240-c8fb6ed8-7471-4de2-93a4-30554e93a27e"
+        }
+      ],
+      "id": "0774329f-b2c5-4afa-be55-26bc6380a4bc",
+      "createdAt": "2026-07-28T02:01:31.000Z",
+      "updatedAt": "2026-07-28T02:01:31.000Z",
+      "uid": "35240-0774329f-b2c5-4afa-be55-26bc6380a4bc"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "info": {
+    "_postman_id": "245f2660-29cc-4e76-9ec2-418838b438d2",
+    "name": "API Reference Associated Persons events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:35.000Z",
+    "updatedAt": "2026-07-28T02:01:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-245f2660-29cc-4e76-9ec2-418838b438d2"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{event_id}",
+          "item": [
+            {
+              "name": "replay",
+              "item": [
+                {
+                  "name": "Replay an event",
+                  "id": "5f9d7e61-480e-4611-8e3b-04baf804a3f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:event_id/replay",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":event_id",
+                        "replay"
+                      ],
+                      "variable": [
+                        {
+                          "id": "50ae789d-d9c9-4b95-94a0-22c8e8179127",
+                          "key": "event_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Replays an event by creating new deliveries to all currently matching subscription endpoints. Each delivery performs a single attempt and does not trigger automatic retries."
+                  },
+                  "response": [
+                    {
+                      "id": "cb2528b1-c487-45df-af3d-35b77074f560",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/replay",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "replay"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"event_id\": \"<string>\",\n  \"deliveries\": [\n    {\n      \"delivery_id\": \"<string>\",\n      \"success\": \"<boolean>\",\n      \"response_status_code\": \"<integer,null>\",\n      \"elapsed_time_ms\": \"<double>\"\n    },\n    {\n      \"delivery_id\": \"<string>\",\n      \"success\": \"<boolean>\",\n      \"response_status_code\": \"<integer,null>\",\n      \"elapsed_time_ms\": \"<double>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-cb2528b1-c487-45df-af3d-35b77074f560"
+                    },
+                    {
+                      "id": "4c8b9136-07cf-42af-a850-e3db653b0798",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/replay",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "replay"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:36.000Z",
+                      "updatedAt": "2026-07-28T02:01:36.000Z",
+                      "uid": "35240-4c8b9136-07cf-42af-a850-e3db653b0798"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-5f9d7e61-480e-4611-8e3b-04baf804a3f2"
+                }
+              ],
+              "id": "cec6de61-a574-4680-b0d0-ba2cc51b0ffa",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-cec6de61-a574-4680-b0d0-ba2cc51b0ffa"
+            },
+            {
+              "name": "Retrieve an event",
+              "id": "4d16c4a5-f760-4ffc-80e5-7e2e111ec106",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:event_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":event_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "10fe262c-9038-4ff2-a1bf-d9bb5a3ff3ef",
+                      "key": "event_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve an `event` object. Events are available for up to 30 days.\n\nThe event\u2019s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version"
+              },
+              "response": [
+                {
+                  "id": "48fcb2e1-038b-45d5-920b-34701a4b7c1d",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:event_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":event_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "event_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"platform_id\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"options\": {\n      \"property_name_case_insensitive\": \"<boolean>\"\n    },\n    \"parent\": {\n      \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n    },\n    \"root\": {\n      \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n    }\n  },\n  \"api_version\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-48fcb2e1-038b-45d5-920b-34701a4b7c1d"
+                },
+                {
+                  "id": "9c4fc101-e8f4-459f-a4a4-3b6ed3fbb76e",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:event_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":event_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "event_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-9c4fc101-e8f4-459f-a4a4-3b6ed3fbb76e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-4d16c4a5-f760-4ffc-80e5-7e2e111ec106"
+            }
+          ],
+          "id": "87c5c298-81b8-4a9d-b52d-475881ffb4c1",
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-87c5c298-81b8-4a9d-b52d-475881ffb4c1"
+        },
+        {
+          "name": "List all events",
+          "id": "19f98713-92a7-4519-ad41-8855e1706a97",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?created_after=<dateTime>&value=asc&value=v2&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "Filter events created after this date (limited to the last 30 days)",
+                  "key": "created_after",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Order direction of the events list `asc` or `desc` (default: `desc`)",
+                  "key": "value",
+                  "value": "asc"
+                },
+                {
+                  "description": "API version of the events to return `v1` or `v2` (default: based on registered webhook endpoint versions)",
+                  "key": "value",
+                  "value": "v2"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `events` sorted by creation date, with the most recently created event appearing first. The event list includes data from up to the last 30 days.\n\nEach `event`\u2019s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version."
+          },
+          "response": [
+            {
+              "id": "746cac83-539b-4c6b-8829-b19c1582a3b9",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?created_after=<dateTime>&value=v2&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter events created after this date (limited to the last 30 days)",
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Order direction of the events list `asc` or `desc` (default: `desc`)",
+                      "key": "value",
+                      "value": "v2"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"platform_id\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"type\": \"<string>\",\n      \"data\": {\n        \"options\": {\n          \"property_name_case_insensitive\": \"<boolean>\"\n        },\n        \"parent\": {\n          \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n        },\n        \"root\": {\n          \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n        }\n      },\n      \"api_version\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"platform_id\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"type\": \"<string>\",\n      \"data\": {\n        \"options\": {\n          \"property_name_case_insensitive\": \"<boolean>\"\n        },\n        \"parent\": {\n          \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n        },\n        \"root\": {\n          \"value\": \"<Circular reference to #/components/schemas/JsonNode detected>\"\n        }\n      },\n      \"api_version\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-746cac83-539b-4c6b-8829-b19c1582a3b9"
+            },
+            {
+              "id": "2b89cf3b-c70f-4000-b589-cd2e2c7b1baf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?created_after=<dateTime>&value=v2&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter events created after this date (limited to the last 30 days)",
+                      "key": "created_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Order direction of the events list `asc` or `desc` (default: `desc`)",
+                      "key": "value",
+                      "value": "v2"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"ut_a9\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"minim52f\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-2b89cf3b-c70f-4000-b589-cd2e2c7b1baf"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-19f98713-92a7-4519-ad41-8855e1706a97"
+        }
+      ],
+      "id": "13dbf9b5-5e25-45f7-992b-865e9eb2ebc0",
+      "createdAt": "2026-07-28T02:01:36.000Z",
+      "updatedAt": "2026-07-28T02:01:36.000Z",
+      "uid": "35240-13dbf9b5-5e25-45f7-992b-865e9eb2ebc0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

@@ -1,0 +1,1051 @@
+{
+  "info": {
+    "_postman_id": "103115c5-733d-4cbd-a106-898e5dcec869",
+    "name": "API Reference Associated Persons groupQuoteIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:44.000Z",
+    "updatedAt": "2026-07-28T02:01:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-103115c5-733d-4cbd-a106-898e5dcec869"
+  },
+  "item": [
+    {
+      "name": "group_quote_intents",
+      "item": [
+        {
+          "name": "{group_quote_intent_id}",
+          "item": [
+            {
+              "name": "requirements",
+              "item": [
+                {
+                  "name": "List requirements for a group quote intent",
+                  "id": "59b28c0b-382c-4077-b8af-1d5bc58b325e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=associated_person&object_id=<string>&page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "requirements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by object type (employee or employer)",
+                          "key": "value",
+                          "value": "associated_person"
+                        },
+                        {
+                          "description": "Filter by object ID (employee ID or employer ID)",
+                          "key": "object_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "cb07eb0b-0eb7-40e4-95b6-f966f074eb47",
+                          "key": "group_quote_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of adaptive requirements for a `group_quote_intent`. Requirements must be fulfilled before a quote can be generated."
+                  },
+                  "response": [
+                    {
+                      "id": "15c5a30b-dc48-47b8-a628-c468a6a705d3",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=associated_person&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "associated_person"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"object_type\": \"associated_person\",\n      \"object_id\": \"<string>\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"requirement_type\": \"policy_amendment_intent\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"object_type\": \"employee\",\n      \"object_id\": \"<string>\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"requirement_type\": \"policy_amendment_intent\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-15c5a30b-dc48-47b8-a628-c468a6a705d3"
+                    },
+                    {
+                      "id": "038b2474-6343-4842-9d4a-b887aab35881",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=associated_person&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "associated_person"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-038b2474-6343-4842-9d4a-b887aab35881"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:44.000Z",
+                  "updatedAt": "2026-07-28T02:01:44.000Z",
+                  "uid": "35240-59b28c0b-382c-4077-b8af-1d5bc58b325e"
+                }
+              ],
+              "id": "5375ee4b-cba5-4723-872b-ecb5da0df220",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-5375ee4b-cba5-4723-872b-ecb5da0df220"
+            },
+            {
+              "name": "quote",
+              "item": [
+                {
+                  "name": "Retrieve the quote for a group quote intent",
+                  "id": "cfa8b495-03d0-4c97-b879-3915b9cd1af4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "quote"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a0fedd6b-7f5a-4020-a55b-3ef5730a7af2",
+                          "key": "group_quote_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the quote details for a `group_quote_intent`. Returns pricing information and a fresh PDF URL. Only available when status is `quote_available`."
+                  },
+                  "response": [
+                    {
+                      "id": "908df0a2-857a-4ef9-8250-fb30b62a9500",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"employee_count\": \"<integer>\",\n  \"cost_sharing\": {\n    \"type\": \"member_count\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"single_with_children\"\n    }\n  },\n  \"total_monthly_premium\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"generated_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"pdf_url\": \"<string,null>\",\n  \"pdf_expires_at\": \"<string,null-date-time>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-908df0a2-857a-4ef9-8250-fb30b62a9500"
+                    },
+                    {
+                      "id": "fe3d7152-a22a-43ea-8203-d31a77e5d65c",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-fe3d7152-a22a-43ea-8203-d31a77e5d65c"
+                    },
+                    {
+                      "id": "1318c9b5-2c3f-42b8-920a-8ea147b5f361",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-1318c9b5-2c3f-42b8-920a-8ea147b5f361"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:44.000Z",
+                  "updatedAt": "2026-07-28T02:01:44.000Z",
+                  "uid": "35240-cfa8b495-03d0-4c97-b879-3915b9cd1af4"
+                }
+              ],
+              "id": "7d7fff71-cf9b-40aa-8c0b-c546f26ea0dc",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-7d7fff71-cf9b-40aa-8c0b-c546f26ea0dc"
+            },
+            {
+              "name": "reject",
+              "item": [
+                {
+                  "name": "Reject a group quote intent",
+                  "id": "c1d81d6c-0f3a-4426-87e6-9df7f699da69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "reject"
+                      ],
+                      "variable": [
+                        {
+                          "id": "37efb0be-136d-4073-bfcb-d03c923ca2cf",
+                          "key": "group_quote_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Rejects a `group_quote_intent` when the employer decides not to proceed with the quote. Can only reject intents in `quote_available` status."
+                  },
+                  "response": [
+                    {
+                      "id": "eb2e95f5-673b-4fb8-8356-30ff3e418e09",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-eb2e95f5-673b-4fb8-8356-30ff3e418e09"
+                    },
+                    {
+                      "id": "71434974-ebbe-4cff-8a1d-eefa04b8bd1c",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-71434974-ebbe-4cff-8a1d-eefa04b8bd1c"
+                    },
+                    {
+                      "id": "d431d234-bb00-49ed-96ba-9864616cc590",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:44.000Z",
+                      "updatedAt": "2026-07-28T02:01:44.000Z",
+                      "uid": "35240-d431d234-bb00-49ed-96ba-9864616cc590"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:44.000Z",
+                  "updatedAt": "2026-07-28T02:01:44.000Z",
+                  "uid": "35240-c1d81d6c-0f3a-4426-87e6-9df7f699da69"
+                }
+              ],
+              "id": "37fd7b1c-e886-4367-a747-a261bed930e3",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-37fd7b1c-e886-4367-a747-a261bed930e3"
+            },
+            {
+              "name": "Retrieve a group quote intent",
+              "id": "117521e6-fee1-4157-a6a0-f72ca72e6e6e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents",
+                    ":group_quote_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c1a58ac4-ffec-408e-b4a8-4f76bf87b08e",
+                      "key": "group_quote_intent_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `group_quote_intent` object."
+              },
+              "response": [
+                {
+                  "id": "17d42d6c-cbb5-4d4b-9a9d-56a9fbc55290",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_quote_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"action_required\",\n  \"consent_links\": [\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"intermediary_commission\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"cost_sharing\": {\n    \"type\": \"percentage\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"action_required\": {\n    \"code\": \"provide_missing_information\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  },\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:44.000Z",
+                  "updatedAt": "2026-07-28T02:01:44.000Z",
+                  "uid": "35240-17d42d6c-cbb5-4d4b-9a9d-56a9fbc55290"
+                },
+                {
+                  "id": "6a5f8517-b89f-4bc7-b8a1-816148e27c4f",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_quote_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:44.000Z",
+                  "updatedAt": "2026-07-28T02:01:44.000Z",
+                  "uid": "35240-6a5f8517-b89f-4bc7-b8a1-816148e27c4f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-117521e6-fee1-4157-a6a0-f72ca72e6e6e"
+            }
+          ],
+          "id": "c943545c-6a50-40da-809d-12c1448335e3",
+          "createdAt": "2026-07-28T02:01:44.000Z",
+          "updatedAt": "2026-07-28T02:01:44.000Z",
+          "uid": "35240-c943545c-6a50-40da-809d-12c1448335e3"
+        },
+        {
+          "name": "List group quote intents",
+          "id": "2d4b374d-7ac2-457c-9e97-998d3820573c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/group_quote_intents?group_id=<string>&plan_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_quote_intents"
+              ],
+              "query": [
+                {
+                  "description": "Filter by group ID",
+                  "key": "group_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by plan ID",
+                  "key": "plan_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `awaiting_quote`, `quote_available`, `rejected`, `rejected_by_insurer`, `quote_expired`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a paginated list of `group_quote_intent`'s. The results are returned sorted by creation date, with the most recent appearing first."
+          },
+          "response": [
+            {
+              "id": "53275c1a-8152-4b7e-8c66-cd5397ba18bb",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents?group_id=<string>&plan_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by group ID",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by plan ID",
+                      "key": "plan_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `awaiting_quote`, `quote_available`, `rejected`, `rejected_by_insurer`, `quote_expired`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"plan_id\": \"<string>\",\n      \"status\": \"action_required\",\n      \"consent_links\": [\n        {\n          \"type\": \"terms_of_business\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        {\n          \"type\": \"terms_of_business\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"provider\",\n          \"type\": \"statement_of_needs\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"cost_sharing\": {\n        \"type\": \"member_count\",\n        \"member_count\": {\n          \"adults\": \"<integer>\",\n          \"children\": \"<integer>\"\n        },\n        \"member_selection\": {\n          \"partner\": \"<boolean>\",\n          \"children\": \"<boolean>\"\n        },\n        \"percentage\": {\n          \"percentage\": \"<integer>\"\n        },\n        \"family_type\": {\n          \"type\": \"couple\"\n        }\n      },\n      \"expected_start_date\": \"<string,null-date>\",\n      \"action_required\": {\n        \"code\": \"provide_beneficiary_information\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"due_by\": \"<dateTime>\"\n      },\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"plan_id\": \"<string>\",\n      \"status\": \"rejected_by_insurer\",\n      \"consent_links\": [\n        {\n          \"type\": \"privacy_policy\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        {\n          \"type\": \"privacy_policy\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"product_information\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"cost_sharing\": {\n        \"type\": \"percentage\",\n        \"member_count\": {\n          \"adults\": \"<integer>\",\n          \"children\": \"<integer>\"\n        },\n        \"member_selection\": {\n          \"partner\": \"<boolean>\",\n          \"children\": \"<boolean>\"\n        },\n        \"percentage\": {\n          \"percentage\": \"<integer>\"\n        },\n        \"family_type\": {\n          \"type\": \"single_with_children\"\n        }\n      },\n      \"expected_start_date\": \"<string,null-date>\",\n      \"action_required\": {\n        \"code\": \"provide_dependant_information\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"due_by\": \"<dateTime>\"\n      },\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-53275c1a-8152-4b7e-8c66-cd5397ba18bb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:44.000Z",
+          "updatedAt": "2026-07-28T02:01:44.000Z",
+          "uid": "35240-2d4b374d-7ac2-457c-9e97-998d3820573c"
+        },
+        {
+          "name": "Create a group quote intent",
+          "id": "3f1736d4-3aae-4a96-b164-bc854101ef40",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"member_count\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/group_quote_intents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_quote_intents"
+              ]
+            },
+            "description": "Creates a `group_quote_intent` to request a quote for a `group` and `plan` combination. The intent coordinates the quote workflow including requirements collection and quote generation."
+          },
+          "response": [
+            {
+              "id": "9c35f9be-b947-4368-b875-c42d5072cdf3",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"member_count\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"status\": \"action_required\",\n  \"consent_links\": [\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"intermediary_commission\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"cost_sharing\": {\n    \"type\": \"percentage\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"action_required\": {\n    \"code\": \"provide_missing_information\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  },\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-9c35f9be-b947-4368-b875-c42d5072cdf3"
+            },
+            {
+              "id": "dd7841b6-988d-40c7-8ffc-eb6da0b10611",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"member_count\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-dd7841b6-988d-40c7-8ffc-eb6da0b10611"
+            },
+            {
+              "id": "ecaf1e27-1734-4606-ad02-978aa35c6043",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"member_count\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"couple\"\n    }\n  },\n  \"expected_start_date\": \"<string,null-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:44.000Z",
+              "updatedAt": "2026-07-28T02:01:44.000Z",
+              "uid": "35240-ecaf1e27-1734-4606-ad02-978aa35c6043"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:44.000Z",
+          "updatedAt": "2026-07-28T02:01:44.000Z",
+          "uid": "35240-3f1736d4-3aae-4a96-b164-bc854101ef40"
+        }
+      ],
+      "id": "ecbabe64-9ded-4425-8d76-f4b13244cbde",
+      "createdAt": "2026-07-28T02:01:44.000Z",
+      "updatedAt": "2026-07-28T02:01:44.000Z",
+      "uid": "35240-ecbabe64-9ded-4425-8d76-f4b13244cbde"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

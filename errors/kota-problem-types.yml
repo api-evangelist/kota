@@ -1,0 +1,125 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kota.io/api-reference/errors
+format: rfc9457
+media_type: application/problem+json
+envelope:
+  fields:
+  - name: type
+    type: string
+    description: A URI reference that identifies the problem type.
+  - name: title
+    type: string
+    description: A short, human-readable summary of the problem type.
+  - name: status
+    type: integer
+    description: The HTTP status code for this occurrence of the problem.
+  - name: error_code
+    type: string
+    description: A specific error code representing the error condition.
+  - name: trace_id
+    type: string
+    optional: true
+    description: Unique identifier for this occurrence, for troubleshooting.
+  - name: detail
+    type: string
+    optional: true
+    description: Human-readable explanation specific to this occurrence.
+  - name: errors
+    type: object
+    optional: true
+    description: Map of request property JSON paths / header names to error messages.
+status_summary:
+- status: 200
+  meaning: OK
+  description: Everything worked as expected.
+- status: 400
+  meaning: Bad Request
+  description: The request was unacceptable, often due to missing a required parameter.
+- status: 401
+  meaning: Unauthorized
+  description: No valid API key provided.
+- status: 403
+  meaning: Forbidden
+  description: The API key doesn't have permissions to perform the request.
+- status: 404
+  meaning: Not Found
+  description: The requested resource doesn't exist.
+- status: 429
+  meaning: Too Many Requests
+  description: Too many requests hit the API too quickly; use exponential backoff.
+- status: 500
+  meaning: Server Error
+  description: Something went wrong on Kota's end.
+retry_guidance: 4xx responses should not be retried except 429. 5xx responses are safe to retry.
+problems:
+- status: 401
+  error_code: unauthorized
+  title: Unauthorized
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.2
+  detail: The Authorization header is missing from the HTTP request, or has been sent with an invalid
+    value.
+  remediation: Check the authorisation requirements of the endpoint and send a valid pk_test_/pk_live_
+    bearer token.
+- status: 403
+  error_code: forbidden
+  title: Forbidden
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.4
+  detail: The provided token does not have permission to perform the requested operation.
+  remediation: API keys are scoped to a platform type (employer_of_record, payroll_provider); confirm
+    the endpoint is available to your platform type.
+- status: 400
+  error_code: invalid_request
+  title: Invalid request
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.1
+  detail: One or more fields in the request body or headers were invalid, or the body contains malformed
+    JSON.
+  remediation: Inspect the errors object, which maps the JSON path of each invalid field to its error
+    descriptions.
+- status: 400
+  error_code: invalid_state
+  title: Invalid state
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.1
+  detail: The requested operation is invalid given the current state of the resource.
+  remediation: Re-read the resource and confirm its status permits the transition.
+- status: 404
+  error_code: not_found
+  title: Resource not found
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.5
+  detail: The requested resource cannot be found. This can occur if an incorrect resource ID is used in
+    the request.
+  remediation: Verify the resource id; ids are opaque strings returned by the create/list operations.
+- status: 409
+  error_code: idempotency_error
+  title: Idempotency error
+  type: https://tools.ietf.org/html/rfc9110#section-15.5.10
+  detail: An Idempotency-Key was re-used on a request that does not match the first request's endpoint
+    and parameters.
+  remediation: Use a fresh V4 UUID per distinct request; replay the identical request to get the cached
+    response.
+- status: 429
+  error_code: rate_limit_exceeded
+  title: Too many requests
+  type: https://tools.ietf.org/html/rfc6585#section-4
+  detail: Too many requests have been sent in a given amount of time, leading to rate limiting.
+  remediation: Retry with exponential backoff. 429 is the only 4xx Kota documents as safe to retry.
+- status: 500
+  error_code: third_party_error
+  title: Third party error
+  type: https://tools.ietf.org/html/rfc9110#section-15.6.1
+  detail: There was an issue with a third-party service necessary for the operation, such as an insurer
+    API.
+  remediation: Retry later or contact support if the issue persists.
+- status: 500
+  error_code: internal_error
+  title: An error occurred while processing your request
+  type: https://tools.ietf.org/html/rfc9110#section-15.6.1
+  detail: An unexpected condition was encountered and the server could not complete the request.
+  remediation: Retry later or contact support with the trace_id.
+spec_coverage:
+- status: 400
+  operations: 44
+  media_type: application/problem+json
+- status: 404
+  operations: 65
+  media_type: application/problem+json

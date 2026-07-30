@@ -1,0 +1,187 @@
+{
+  "info": {
+    "_postman_id": "44fce1d2-9a36-4bbc-ae75-9b7520f6b92e",
+    "name": "API Reference Associated Persons Hosted Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:52.000Z",
+    "updatedAt": "2026-07-28T02:01:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44fce1d2-9a36-4bbc-ae75-9b7520f6b92e"
+  },
+  "item": [
+    {
+      "name": "hosted",
+      "item": [
+        {
+          "name": "sessions",
+          "item": [
+            {
+              "name": "Get One-off Hosted Session Link",
+              "id": "8c7df8e0-09c3-4498-949c-09111368439c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_LRf_\",\n  \"employer_id\": \"er_x&%*nYp\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/hosted/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hosted",
+                    "sessions"
+                  ]
+                },
+                "description": "Retrieve a hosted `link` to authenticate an `employee` with the Kota Hosted. This link is valid for a single use and expires after 60 minutes."
+              },
+              "response": [
+                {
+                  "id": "ba7fdbaf-6b03-413a-95b8-b13e17aa07ac",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employee_id\": \"ee_LRf_\",\n  \"employer_id\": \"er_x&%*nYp\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosted/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosted",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"expiry\": \"<dateTime>\",\n  \"link\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:53.000Z",
+                  "updatedAt": "2026-07-28T02:01:53.000Z",
+                  "uid": "35240-ba7fdbaf-6b03-413a-95b8-b13e17aa07ac"
+                },
+                {
+                  "id": "8c43fdad-3892-419f-9fc9-4cbf0cc5a078",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employee_id\": \"ee_LRf_\",\n  \"employer_id\": \"er_x&%*nYp\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/hosted/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hosted",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:53.000Z",
+                  "updatedAt": "2026-07-28T02:01:53.000Z",
+                  "uid": "35240-8c43fdad-3892-419f-9fc9-4cbf0cc5a078"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:53.000Z",
+              "updatedAt": "2026-07-28T02:01:53.000Z",
+              "uid": "35240-8c7df8e0-09c3-4498-949c-09111368439c"
+            }
+          ],
+          "id": "6728426b-6d41-4a53-a50e-263ac6b6d8ae",
+          "createdAt": "2026-07-28T02:01:53.000Z",
+          "updatedAt": "2026-07-28T02:01:53.000Z",
+          "uid": "35240-6728426b-6d41-4a53-a50e-263ac6b6d8ae"
+        }
+      ],
+      "id": "556f8ad0-d282-46ff-9d04-7e5db3849f99",
+      "createdAt": "2026-07-28T02:01:53.000Z",
+      "updatedAt": "2026-07-28T02:01:53.000Z",
+      "uid": "35240-556f8ad0-d282-46ff-9d04-7e5db3849f99"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

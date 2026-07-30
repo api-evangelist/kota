@@ -1,0 +1,509 @@
+{
+  "info": {
+    "_postman_id": "73ad3ed6-df4b-454a-8f15-beeddff9bf08",
+    "name": "API Reference Associated Persons plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:17.000Z",
+    "updatedAt": "2026-07-28T02:02:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-73ad3ed6-df4b-454a-8f15-beeddff9bf08"
+  },
+  "item": [
+    {
+      "name": "plans",
+      "item": [
+        {
+          "name": "{plan_id}",
+          "item": [
+            {
+              "name": "Retrieve a plan",
+              "id": "38521d21-36b3-48eb-8215-7f2cd4ded1e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plans/:plan_id?group_id=<string>&start_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans",
+                    ":plan_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included.",
+                      "key": "start_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "8d94bac4-4c8e-4a0a-bf63-42a010c8a09e",
+                      "key": "plan_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `plan` object by its ID."
+              },
+              "response": [
+                {
+                  "id": "c5dd22d2-d4c8-4a54-9f66-3c8dfe4b50d3",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plans/:plan_id?group_id=<string>&start_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plans",
+                        ":plan_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`.",
+                          "key": "group_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included.",
+                          "key": "start_date",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"health_insurance\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"country\": \"bo\",\n  \"provider\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"logo_url\": \"<string>\"\n  },\n  \"documents\": [\n    {\n      \"title\": \"<string>\",\n      \"link\": \"<string>\",\n      \"type\": \"ipid\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"link\": \"<string>\",\n      \"type\": \"waiting_periods\"\n    }\n  ],\n  \"employer_eligibility_criteria\": [\n    {\n      \"type\": \"industry_exclusions\",\n      \"description\": \"<string>\",\n      \"employees_count\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      },\n      \"members_count\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      },\n      \"industry_exclusions\": {\n        \"excluded_industries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"type\": \"industry_exclusions\",\n      \"description\": \"<string>\",\n      \"employees_count\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      },\n      \"members_count\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      },\n      \"industry_exclusions\": {\n        \"excluded_industries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ],\n  \"employee_eligibility_criteria\": [\n    {\n      \"type\": \"age_range\",\n      \"description\": \"<string>\",\n      \"age_range\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      }\n    },\n    {\n      \"type\": \"age_range\",\n      \"description\": \"<string>\",\n      \"age_range\": {\n        \"min\": \"<integer,null>\",\n        \"max\": \"<integer,null>\"\n      }\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"product_information\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"pre_existing_conditions\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"available_from\": \"<date>\",\n  \"object\": \"<string>\",\n  \"health_insurance\": {\n    \"health_insurance_type\": \"international\",\n    \"supported_cost_sharing_options\": [\n      \"family_type\",\n      \"full_coverage\"\n    ],\n    \"supported_member_types\": [\n      \"partner\",\n      \"partner\"\n    ],\n    \"pricing\": {\n      \"type\": \"per_member\",\n      \"per_member\": {\n        \"currency\": \"xsu\",\n        \"member_type_pricing\": [\n          {\n            \"code\": \"child\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          },\n          {\n            \"code\": \"young_adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"zmw\",\n        \"tiers\": [\n          {\n            \"code\": \"single_parent\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          },\n          {\n            \"code\": \"family\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"available_to\": \"<string,null-date>\",\n  \"coverage_options\": null,\n  \"eligible_count\": \"<integer,null>\",\n  \"ineligible_count\": \"<integer,null>\",\n  \"total_count\": \"<integer,null>\"\n}",
+                  "createdAt": "2026-07-28T02:02:18.000Z",
+                  "updatedAt": "2026-07-28T02:02:18.000Z",
+                  "uid": "35240-c5dd22d2-d4c8-4a54-9f66-3c8dfe4b50d3"
+                },
+                {
+                  "id": "f1d3be18-03e6-424e-aa3f-f570ad7ab981",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plans/:plan_id?group_id=<string>&start_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plans",
+                        ":plan_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`.",
+                          "key": "group_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included.",
+                          "key": "start_date",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "plan_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:02:18.000Z",
+                  "updatedAt": "2026-07-28T02:02:18.000Z",
+                  "uid": "35240-f1d3be18-03e6-424e-aa3f-f570ad7ab981"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:18.000Z",
+              "updatedAt": "2026-07-28T02:02:18.000Z",
+              "uid": "35240-38521d21-36b3-48eb-8215-7f2cd4ded1e4"
+            }
+          ],
+          "id": "dfa2d6d3-fa5a-4610-b43a-f30f243eef1e",
+          "createdAt": "2026-07-28T02:02:18.000Z",
+          "updatedAt": "2026-07-28T02:02:18.000Z",
+          "uid": "35240-dfa2d6d3-fa5a-4610-b43a-f30f243eef1e"
+        },
+        {
+          "name": "List all plans",
+          "id": "84f36a71-7926-47ff-b000-1eee68a43789",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/plans?type=<string>&provider_id=<string>&value=de&available_on=<date>&group_id=<string>&start_date=<date>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "plans"
+              ],
+              "query": [
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`.",
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`.",
+                  "key": "provider_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters plans by country.",
+                  "key": "value",
+                  "value": "de"
+                },
+                {
+                  "description": "Filters plans available on a specific date. Defaults to today.",
+                  "key": "available_on",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored.",
+                  "key": "group_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response.",
+                  "key": "start_date",
+                  "value": "<date>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `plans`."
+          },
+          "response": [
+            {
+              "id": "16277b3e-bf1b-4dea-a825-c5ae5b02c4f1",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plans?type=<string>&provider_id=<string>&value=de&available_on=<date>&group_id=<string>&start_date=<date>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`.",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`.",
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters plans by country.",
+                      "key": "value",
+                      "value": "de"
+                    },
+                    {
+                      "description": "Filters plans available on a specific date. Defaults to today.",
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response.",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"health_insurance\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"country\": \"so\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\"\n      },\n      \"documents\": [\n        {\n          \"title\": \"<string>\",\n          \"link\": \"<string>\",\n          \"type\": \"waiting_periods\"\n        },\n        {\n          \"title\": \"<string>\",\n          \"link\": \"<string>\",\n          \"type\": \"plan_summary\"\n        }\n      ],\n      \"employer_eligibility_criteria\": [\n        {\n          \"type\": \"industry_exclusions\",\n          \"description\": \"<string>\",\n          \"employees_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"members_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        {\n          \"type\": \"employees_count\",\n          \"description\": \"<string>\",\n          \"employees_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"members_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      ],\n      \"employee_eligibility_criteria\": [\n        {\n          \"type\": \"age_range\",\n          \"description\": \"<string>\",\n          \"age_range\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          }\n        },\n        {\n          \"type\": \"age_range\",\n          \"description\": \"<string>\",\n          \"age_range\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          }\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"statement_of_needs\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"available_from\": \"<date>\",\n      \"object\": \"<string>\",\n      \"health_insurance\": {\n        \"health_insurance_type\": \"international\",\n        \"supported_cost_sharing_options\": [\n          \"member_count\",\n          \"member_count\"\n        ],\n        \"supported_member_types\": [\n          \"partner\",\n          \"spouse\"\n        ],\n        \"pricing\": {\n          \"type\": \"tier_based\",\n          \"per_member\": {\n            \"currency\": \"xaf\",\n            \"member_type_pricing\": [\n              {\n                \"code\": \"child\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\"\n              },\n              {\n                \"code\": \"child\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\"\n              }\n            ]\n          },\n          \"tier_based\": {\n            \"currency\": \"nok\",\n            \"tiers\": [\n              {\n                \"code\": \"single\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\",\n                \"annual_premium\": \"<double>\",\n                \"display_dependent_requirements\": \"<string>\"\n              },\n              {\n                \"code\": \"couple\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\",\n                \"annual_premium\": \"<double>\",\n                \"display_dependent_requirements\": \"<string>\"\n              }\n            ]\n          }\n        }\n      },\n      \"available_to\": \"<string,null-date>\",\n      \"coverage_options\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"scope\": \"group_policy\",\n          \"input_type\": \"single_select\",\n          \"required\": \"<boolean>\",\n          \"options\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string,null>\",\n              \"learn_more_url\": \"<string,null>\",\n              \"from_price\": \"<number,null-double>\",\n              \"benefits\": [\n                {\n                  \"name\": \"<string>\",\n                  \"description\": \"<string,null>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"description\": \"<string,null>\"\n                }\n              ],\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                }\n              ],\n              \"eligibility_criteria\": null\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string,null>\",\n              \"learn_more_url\": \"<string,null>\",\n              \"from_price\": \"<number,null-double>\",\n              \"benefits\": null,\n              \"sub_options\": null,\n              \"eligibility_criteria\": [\n                {\n                  \"type\": \"industry_exclusions\",\n                  \"description\": \"<string>\",\n                  \"employees_count\": {\n                    \"min\": \"<integer,null>\",\n                    \"max\": \"<integer,null>\"\n                  },\n                  \"members_count\": {\n                    \"min\": \"<integer,null>\",\n                    \"max\": \"<integer,null>\"\n                  },\n                  \"industry_exclusions\": {\n                    \"excluded_industries\": [\n                      \"<string>\",\n                      \"<string>\"\n                    ]\n                  }\n                },\n                {\n                  \"type\": \"members_count\",\n                  \"description\": \"<string>\",\n                  \"employees_count\": {\n                    \"min\": \"<integer,null>\",\n                    \"max\": \"<integer,null>\"\n                  },\n                  \"members_count\": {\n                    \"min\": \"<integer,null>\",\n                    \"max\": \"<integer,null>\"\n                  },\n                  \"industry_exclusions\": {\n                    \"excluded_industries\": [\n                      \"<string>\",\n                      \"<string>\"\n                    ]\n                  }\n                }\n              ]\n            }\n          ],\n          \"description\": \"<string,null>\",\n          \"min_selections\": \"<integer,null>\",\n          \"max_selections\": \"<integer,null>\",\n          \"sort_order\": \"<integer,null>\",\n          \"group_label\": \"<string,null>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"scope\": \"group_policy\",\n          \"input_type\": \"single_select\",\n          \"required\": \"<boolean>\",\n          \"options\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string,null>\",\n              \"learn_more_url\": \"<string,null>\",\n              \"from_price\": \"<number,null-double>\",\n              \"benefits\": [\n                {\n                  \"name\": \"<string>\",\n                  \"description\": \"<string,null>\"\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"description\": \"<string,null>\"\n                }\n              ],\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                }\n              ],\n              \"eligibility_criteria\": null\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"description\": \"<string,null>\",\n              \"learn_more_url\": \"<string,null>\",\n              \"from_price\": \"<number,null-double>\",\n              \"benefits\": null,\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                }\n              ],\n              \"eligibility_criteria\": null\n            }\n          ],\n          \"description\": \"<string,null>\",\n          \"min_selections\": \"<integer,null>\",\n          \"max_selections\": \"<integer,null>\",\n          \"sort_order\": \"<integer,null>\",\n          \"group_label\": \"<string,null>\"\n        }\n      ],\n      \"eligible_count\": \"<integer,null>\",\n      \"ineligible_count\": \"<integer,null>\",\n      \"total_count\": \"<integer,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"health_insurance\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"country\": \"ie\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\"\n      },\n      \"documents\": [\n        {\n          \"title\": \"<string>\",\n          \"link\": \"<string>\",\n          \"type\": \"ipid\"\n        },\n        {\n          \"title\": \"<string>\",\n          \"link\": \"<string>\",\n          \"type\": \"hospital_list\"\n        }\n      ],\n      \"employer_eligibility_criteria\": [\n        {\n          \"type\": \"employees_count\",\n          \"description\": \"<string>\",\n          \"employees_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"members_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        {\n          \"type\": \"industry_exclusions\",\n          \"description\": \"<string>\",\n          \"employees_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"members_count\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      ],\n      \"employee_eligibility_criteria\": [\n        {\n          \"type\": \"age_range\",\n          \"description\": \"<string>\",\n          \"age_range\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          }\n        },\n        {\n          \"type\": \"age_range\",\n          \"description\": \"<string>\",\n          \"age_range\": {\n            \"min\": \"<integer,null>\",\n            \"max\": \"<integer,null>\"\n          }\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"underwriter_disclaimer\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"product_information\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"available_from\": \"<date>\",\n      \"object\": \"<string>\",\n      \"health_insurance\": {\n        \"health_insurance_type\": \"local\",\n        \"supported_cost_sharing_options\": [\n          \"policyholder_only\",\n          \"percentage\"\n        ],\n        \"supported_member_types\": [\n          \"child\",\n          \"child\"\n        ],\n        \"pricing\": {\n          \"type\": \"per_member\",\n          \"per_member\": {\n            \"currency\": \"kmf\",\n            \"member_type_pricing\": [\n              {\n                \"code\": \"child\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\"\n              },\n              {\n                \"code\": \"child\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\"\n              }\n            ]\n          },\n          \"tier_based\": {\n            \"currency\": \"nio\",\n            \"tiers\": [\n              {\n                \"code\": \"single\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\",\n                \"annual_premium\": \"<double>\",\n                \"display_dependent_requirements\": \"<string>\"\n              },\n              {\n                \"code\": \"couple\",\n                \"display_name\": \"<string>\",\n                \"monthly_premium\": \"<double>\",\n                \"annual_premium\": \"<double>\",\n                \"display_dependent_requirements\": \"<string>\"\n              }\n            ]\n          }\n        }\n      },\n      \"available_to\": \"<string,null-date>\",\n      \"coverage_options\": null,\n      \"eligible_count\": \"<integer,null>\",\n      \"ineligible_count\": \"<integer,null>\",\n      \"total_count\": \"<integer,null>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:02:18.000Z",
+              "updatedAt": "2026-07-28T02:02:18.000Z",
+              "uid": "35240-16277b3e-bf1b-4dea-a825-c5ae5b02c4f1"
+            },
+            {
+              "id": "d84c9186-5dc7-43e0-bc2c-47cbc1d1228a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plans?type=<string>&provider_id=<string>&value=de&available_on=<date>&group_id=<string>&start_date=<date>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`.",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`.",
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters plans by country.",
+                      "key": "value",
+                      "value": "de"
+                    },
+                    {
+                      "description": "Filters plans available on a specific date. Defaults to today.",
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response.",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"Duis_f\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tempor99\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:02:18.000Z",
+              "updatedAt": "2026-07-28T02:02:18.000Z",
+              "uid": "35240-d84c9186-5dc7-43e0-bc2c-47cbc1d1228a"
+            },
+            {
+              "id": "546c0c11-0916-45fc-810a-72610a648514",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plans?type=<string>&provider_id=<string>&value=de&available_on=<date>&group_id=<string>&start_date=<date>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans"
+                  ],
+                  "query": [
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`.",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`.",
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters plans by country.",
+                      "key": "value",
+                      "value": "de"
+                    },
+                    {
+                      "description": "Filters plans available on a specific date. Defaults to today.",
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response.",
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:02:18.000Z",
+              "updatedAt": "2026-07-28T02:02:18.000Z",
+              "uid": "35240-546c0c11-0916-45fc-810a-72610a648514"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:18.000Z",
+          "updatedAt": "2026-07-28T02:02:18.000Z",
+          "uid": "35240-84f36a71-7926-47ff-b000-1eee68a43789"
+        }
+      ],
+      "id": "3aae0bbf-5ce4-4f59-8f08-da826d8560ba",
+      "createdAt": "2026-07-28T02:02:18.000Z",
+      "updatedAt": "2026-07-28T02:02:18.000Z",
+      "uid": "35240-3aae0bbf-5ce4-4f59-8f08-da826d8560ba"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

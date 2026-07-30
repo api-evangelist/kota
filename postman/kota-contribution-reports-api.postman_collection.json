@@ -1,0 +1,814 @@
+{
+  "info": {
+    "_postman_id": "6169cf97-990a-4208-8ce4-c23ffc7a8846",
+    "name": "API Reference Associated Persons Contribution Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:16.000Z",
+    "updatedAt": "2026-07-28T02:01:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6169cf97-990a-4208-8ce4-c23ffc7a8846"
+  },
+  "item": [
+    {
+      "name": "contribution_reports",
+      "item": [
+        {
+          "name": "{contribution_report_id}",
+          "item": [
+            {
+              "name": "finalize",
+              "item": [
+                {
+                  "name": "Finalize a contribution report",
+                  "id": "2d9cefcb-d3f4-4898-bdef-57d066a2eb13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contribution_reports",
+                        ":contribution_report_id",
+                        "finalize"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fdfb475e-e7cc-47ed-bdae-23c5f1d96e13",
+                          "key": "contribution_report_id",
+                          "value": "ctr_qo rWr\\",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "This endpoint finalizes the `contribution report` object, making it immutable and preventing any further updates. Once finalized, its `status` changes to `finalized`, and it serves as a historical record for payroll reporting. Any changes or adjustments that occur after the finalization will roll into the next reporting period."
+                  },
+                  "response": [
+                    {
+                      "id": "d0ceeb4a-9820-4337-add2-2a79f89b9075",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contribution_report_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"employer_id\": \"er_eP#:6Z\",\n  \"id\": \"ctr_?iEX;\",\n  \"last_updated_at\": \"<dateTime>\",\n  \"period\": {\n    \"from_date\": \"<date>\",\n    \"to_date\": \"<date>\"\n  },\n  \"status\": \"finalized\",\n  \"object\": \"<string>\",\n  \"external_customer_id\": \"<null,string>\",\n  \"finalized_at\": \"<null,string-date-time>\"\n}",
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-d0ceeb4a-9820-4337-add2-2a79f89b9075"
+                    },
+                    {
+                      "id": "ec90b292-1f8a-4dbf-9a96-bc71ed35cbdb",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contribution_report_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-ec90b292-1f8a-4dbf-9a96-bc71ed35cbdb"
+                    },
+                    {
+                      "id": "0bc8dc41-fb78-4fae-b956-8aa626262a90",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contribution_report_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-0bc8dc41-fb78-4fae-b956-8aa626262a90"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:17.000Z",
+                  "updatedAt": "2026-07-28T02:01:17.000Z",
+                  "uid": "35240-2d9cefcb-d3f4-4898-bdef-57d066a2eb13"
+                }
+              ],
+              "id": "576571c1-b1ac-4f83-8712-15fee326f780",
+              "createdAt": "2026-07-28T02:01:17.000Z",
+              "updatedAt": "2026-07-28T02:01:17.000Z",
+              "uid": "35240-576571c1-b1ac-4f83-8712-15fee326f780"
+            },
+            {
+              "name": "employee_breakdowns",
+              "item": [
+                {
+                  "name": "{employee_id}",
+                  "item": [
+                    {
+                      "name": "Retrieve an employee breakdown",
+                      "id": "a98aabf8-3ab7-43e9-a046-d0ebeb354599",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns/:employee_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "employee_breakdowns",
+                            ":employee_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f559a153-9738-4f7b-b71b-59670c5d3442",
+                              "key": "contribution_report_id",
+                              "value": "ctr_qo rWr\\",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "18adc7a6-4fe8-4315-8d6c-9d37d25d5cf1",
+                              "key": "employee_id",
+                              "value": "ee_z`",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the `employee breakdown` for a `contribution report`."
+                      },
+                      "response": [
+                        {
+                          "id": "04444de0-4290-41cd-b485-2b5a54af957a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns/:employee_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contribution_reports",
+                                ":contribution_report_id",
+                                "employee_breakdowns",
+                                ":employee_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contribution_report_id"
+                                },
+                                {
+                                  "key": "employee_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"contribution_report_id\": \"ctr_M}?2= w+%x\",\n  \"created_at\": \"<dateTime>\",\n  \"currency\": \"nio\",\n  \"employee_id\": \"ee_Yq7-Yp:cF\",\n  \"employer_id\": \"er_@?qP\",\n  \"health_insurance\": {\n    \"employee_contributions\": [\n      {\n        \"adjustment\": \"<boolean>\",\n        \"amount\": \"<double>\",\n        \"category\": \"tax\",\n        \"cover_period\": {\n          \"from_date\": \"<date>\",\n          \"to_date\": \"<date>\"\n        },\n        \"employee_policy_id\": \"eehp_) ?!RQ\",\n        \"id\": \"ct_|no(:Tn7|O\",\n        \"member_type\": \"child_dependant\",\n        \"policy_id\": \"p_^\",\n        \"reporting_month\": \"<date>\",\n        \"type\": \"one_off\",\n        \"adjustment_for\": \"ct_aX\",\n        \"note\": \"<null,string>\"\n      },\n      {\n        \"adjustment\": \"<boolean>\",\n        \"amount\": \"<double>\",\n        \"category\": \"tax\",\n        \"cover_period\": {\n          \"from_date\": \"<date>\",\n          \"to_date\": \"<date>\"\n        },\n        \"employee_policy_id\": \"eehp_)&$V:\",\n        \"id\": \"ct_F>8,1vz\",\n        \"member_type\": \"partner_dependant\",\n        \"policy_id\": \"p_1/q\",\n        \"reporting_month\": \"<date>\",\n        \"type\": \"recurring\",\n        \"adjustment_for\": \"ct_p(~Z\",\n        \"note\": \"<null,string>\"\n      }\n    ],\n    \"employer_contributions\": [\n      {\n        \"adjustment\": \"<boolean>\",\n        \"amount\": \"<double>\",\n        \"category\": \"gross_premium\",\n        \"cover_period\": {\n          \"from_date\": \"<date>\",\n          \"to_date\": \"<date>\"\n        },\n        \"employee_policy_id\": \"eehp_H(qFJz\",\n        \"id\": \"ct_S\",\n        \"member_type\": \"policyholder\",\n        \"policy_id\": \"p_LeFr\",\n        \"reporting_month\": \"<date>\",\n        \"type\": \"recurring\",\n        \"adjustment_for\": \"ct_/0pHCpbZ\",\n        \"note\": \"<null,string>\"\n      },\n      {\n        \"adjustment\": \"<boolean>\",\n        \"amount\": \"<double>\",\n        \"category\": \"tax_relief\",\n        \"cover_period\": {\n          \"from_date\": \"<date>\",\n          \"to_date\": \"<date>\"\n        },\n        \"employee_policy_id\": \"eehp_N\",\n        \"id\": \"ct_TB@3}*\",\n        \"member_type\": \"policyholder\",\n        \"policy_id\": \"p_{\",\n        \"reporting_month\": \"<date>\",\n        \"type\": \"one_off\",\n        \"adjustment_for\": \"ct_+$|&E8>m\",\n        \"note\": \"<null,string>\"\n      }\n    ]\n  },\n  \"last_updated_at\": \"<dateTime>\",\n  \"period\": {\n    \"from_date\": \"<date>\",\n    \"to_date\": \"<date>\"\n  },\n  \"status\": \"finalized\",\n  \"object\": \"<string>\",\n  \"external_customer_id\": \"<null,string>\",\n  \"finalized_at\": \"<null,string-date-time>\"\n}",
+                          "createdAt": "2026-07-28T02:01:17.000Z",
+                          "updatedAt": "2026-07-28T02:01:17.000Z",
+                          "uid": "35240-04444de0-4290-41cd-b485-2b5a54af957a"
+                        },
+                        {
+                          "id": "ecbdd457-8168-432e-9b64-639f7479936f",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns/:employee_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contribution_reports",
+                                ":contribution_report_id",
+                                "employee_breakdowns",
+                                ":employee_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contribution_report_id"
+                                },
+                                {
+                                  "key": "employee_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                          "createdAt": "2026-07-28T02:01:17.000Z",
+                          "updatedAt": "2026-07-28T02:01:17.000Z",
+                          "uid": "35240-ecbdd457-8168-432e-9b64-639f7479936f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-a98aabf8-3ab7-43e9-a046-d0ebeb354599"
+                    }
+                  ],
+                  "id": "277a47e6-5fe2-4420-a162-a7e744c4e505",
+                  "createdAt": "2026-07-28T02:01:17.000Z",
+                  "updatedAt": "2026-07-28T02:01:17.000Z",
+                  "uid": "35240-277a47e6-5fe2-4420-a162-a7e744c4e505"
+                },
+                {
+                  "name": "List all employee breakdowns",
+                  "id": "2e35cf3a-b0d3-4b8a-9a7d-c70deb9f6e43",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns?page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contribution_reports",
+                        ":contribution_report_id",
+                        "employee_breakdowns"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "da81e6c5-10bf-4ad7-acd2-7177ce3b7575",
+                          "key": "contribution_report_id",
+                          "value": "ctr_qo rWr\\",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of `employee breakdowns` for a `contribution report`. The breakdowns are returned sorted by creation date, with the most recent breakdown appearing first."
+                  },
+                  "response": [
+                    {
+                      "id": "c1683c26-b61d-4de7-a8f9-e39289235f5d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "employee_breakdowns"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "contribution_report_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"contribution_report_id\": \"ctr_6c#)\\\\cH\",\n      \"created_at\": \"<dateTime>\",\n      \"currency\": \"lsl\",\n      \"employee_id\": \"ee_CiS\",\n      \"employer_id\": \"er_uOejc\",\n      \"health_insurance\": {\n        \"employee_contributions\": [\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_a<~DX'_6xP\",\n            \"id\": \"ct_3BM8#w=\",\n            \"member_type\": \"partner_dependant\",\n            \"policy_id\": \"p_Icb`N-\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"one_off\",\n            \"adjustment_for\": \"ct_)LS@Z\\\\4H\",\n            \"note\": \"<null,string>\"\n          },\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_!xJ$\",\n            \"id\": \"ct_^~\",\n            \"member_type\": \"partner_dependant\",\n            \"policy_id\": \"p_S\\\"q;\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"one_off\",\n            \"adjustment_for\": \"ct_e7 \",\n            \"note\": \"<null,string>\"\n          }\n        ],\n        \"employer_contributions\": [\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_\\\"glj\",\n            \"id\": \"ct_O\",\n            \"member_type\": \"policyholder\",\n            \"policy_id\": \"p_S-~jY!|iY\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"one_off\",\n            \"adjustment_for\": \"ct_DRf.;;=P4\",\n            \"note\": \"<null,string>\"\n          },\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"tax_relief\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_gk[\\\\'\",\n            \"id\": \"ct_)\\\\z+?\",\n            \"member_type\": \"partner_dependant\",\n            \"policy_id\": \"p_m#u]j\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"recurring\",\n            \"adjustment_for\": \"ct_qw_$\",\n            \"note\": \"<null,string>\"\n          }\n        ]\n      },\n      \"last_updated_at\": \"<dateTime>\",\n      \"period\": {\n        \"from_date\": \"<date>\",\n        \"to_date\": \"<date>\"\n      },\n      \"status\": \"finalized\",\n      \"object\": \"<string>\",\n      \"external_customer_id\": \"<null,string>\",\n      \"finalized_at\": \"<null,string-date-time>\"\n    },\n    {\n      \"contribution_report_id\": \"ctr_iL1@DjMhI{_\",\n      \"created_at\": \"<dateTime>\",\n      \"currency\": \"bov\",\n      \"employee_id\": \"ee_4[&6x\",\n      \"employer_id\": \"er_;By\",\n      \"health_insurance\": {\n        \"employee_contributions\": [\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"tax_relief\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_Ra\",\n            \"id\": \"ct_D0)ta?U\\\"\",\n            \"member_type\": \"policyholder\",\n            \"policy_id\": \"p_7G\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"one_off\",\n            \"adjustment_for\": \"ct_N&~b;y9p1P\",\n            \"note\": \"<null,string>\"\n          },\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_^|b&e#\\\\A4~9\",\n            \"id\": \"ct_T@wSKc+\",\n            \"member_type\": \"partner_dependant\",\n            \"policy_id\": \"p_brad\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"recurring\",\n            \"adjustment_for\": \"ct_2j{i[)\",\n            \"note\": \"<null,string>\"\n          }\n        ],\n        \"employer_contributions\": [\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_|&1PN\",\n            \"id\": \"ct_|tRr|,|Ay'F\",\n            \"member_type\": \"partner_dependant\",\n            \"policy_id\": \"p_0x&\\\"dcf'-i_\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"one_off\",\n            \"adjustment_for\": \"ct_WUV\",\n            \"note\": \"<null,string>\"\n          },\n          {\n            \"adjustment\": \"<boolean>\",\n            \"amount\": \"<double>\",\n            \"category\": \"gross_premium\",\n            \"cover_period\": {\n              \"from_date\": \"<date>\",\n              \"to_date\": \"<date>\"\n            },\n            \"employee_policy_id\": \"eehp_r(4'6W\",\n            \"id\": \"ct_uT*4w.T(\",\n            \"member_type\": \"policyholder\",\n            \"policy_id\": \"p_<h!|r+AjkaW\",\n            \"reporting_month\": \"<date>\",\n            \"type\": \"recurring\",\n            \"adjustment_for\": \"ct_en%\",\n            \"note\": \"<null,string>\"\n          }\n        ]\n      },\n      \"last_updated_at\": \"<dateTime>\",\n      \"period\": {\n        \"from_date\": \"<date>\",\n        \"to_date\": \"<date>\"\n      },\n      \"status\": \"open\",\n      \"object\": \"<string>\",\n      \"external_customer_id\": \"<null,string>\",\n      \"finalized_at\": \"<null,string-date-time>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-c1683c26-b61d-4de7-a8f9-e39289235f5d"
+                    },
+                    {
+                      "id": "e90f73bd-dbd2-4e20-bb89-870929ee4e38",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id/employee_breakdowns?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contribution_reports",
+                            ":contribution_report_id",
+                            "employee_breakdowns"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "contribution_report_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:17.000Z",
+                      "updatedAt": "2026-07-28T02:01:17.000Z",
+                      "uid": "35240-e90f73bd-dbd2-4e20-bb89-870929ee4e38"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:17.000Z",
+                  "updatedAt": "2026-07-28T02:01:17.000Z",
+                  "uid": "35240-2e35cf3a-b0d3-4b8a-9a7d-c70deb9f6e43"
+                }
+              ],
+              "id": "0ad9cac7-0876-4334-bc88-fba088f1f656",
+              "createdAt": "2026-07-28T02:01:17.000Z",
+              "updatedAt": "2026-07-28T02:01:17.000Z",
+              "uid": "35240-0ad9cac7-0876-4334-bc88-fba088f1f656"
+            },
+            {
+              "name": "Retrieve a contribution report",
+              "id": "59793888-dc19-4891-9729-f0f0d7b9f2e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fdeda328-59a8-43dd-83ae-e77a202d93d7",
+                      "key": "contribution_report_id",
+                      "value": "ctr_qo rWr\\",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns a `contribution report` object."
+              },
+              "response": [
+                {
+                  "id": "607d690b-a2fc-4276-9c59-1ed29cfb3e8c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contribution_reports",
+                        ":contribution_report_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contribution_report_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"employer_id\": \"er_eP#:6Z\",\n  \"id\": \"ctr_?iEX;\",\n  \"last_updated_at\": \"<dateTime>\",\n  \"period\": {\n    \"from_date\": \"<date>\",\n    \"to_date\": \"<date>\"\n  },\n  \"status\": \"finalized\",\n  \"object\": \"<string>\",\n  \"external_customer_id\": \"<null,string>\",\n  \"finalized_at\": \"<null,string-date-time>\"\n}",
+                  "createdAt": "2026-07-28T02:01:17.000Z",
+                  "updatedAt": "2026-07-28T02:01:17.000Z",
+                  "uid": "35240-607d690b-a2fc-4276-9c59-1ed29cfb3e8c"
+                },
+                {
+                  "id": "1047a9c8-6ecd-4b46-98e3-7bbe7c9ff677",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contribution_reports/:contribution_report_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contribution_reports",
+                        ":contribution_report_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contribution_report_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:17.000Z",
+                  "updatedAt": "2026-07-28T02:01:17.000Z",
+                  "uid": "35240-1047a9c8-6ecd-4b46-98e3-7bbe7c9ff677"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:17.000Z",
+              "updatedAt": "2026-07-28T02:01:17.000Z",
+              "uid": "35240-59793888-dc19-4891-9729-f0f0d7b9f2e8"
+            }
+          ],
+          "id": "26433d6f-176a-4b96-bf28-b24e4e4ec3d9",
+          "createdAt": "2026-07-28T02:01:17.000Z",
+          "updatedAt": "2026-07-28T02:01:17.000Z",
+          "uid": "35240-26433d6f-176a-4b96-bf28-b24e4e4ec3d9"
+        },
+        {
+          "name": "List all contribution reports",
+          "id": "d01dbbe4-2b7f-458e-9e88-6e344116e83c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contribution_reports?employer_id=er_kn/&status=<string>&month=<integer>&year=<integer>&external_customer_id=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contribution_reports"
+              ],
+              "query": [
+                {
+                  "description": "Unique identifier of the employer for filtering reports",
+                  "key": "employer_id",
+                  "value": "er_kn/"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `open`, `finalized`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Month for filtering reports, used together with `year` (MM format)",
+                  "key": "month",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Year for filtering reports, can be used standalone or with `month` (YYYY format)",
+                  "key": "year",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Unique identifier of the customer for EoR platforms, used to filter reports for a logical employer",
+                  "key": "external_customer_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `contribution reports`. The reports are returned sorted by creation date, with the most recent reports appearing first."
+          },
+          "response": [
+            {
+              "id": "b955eee9-1bfb-4d79-857c-7d4fa2ee743b",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contribution_reports?employer_id=er_kn/&status=<string>&month=<integer>&year=<integer>&external_customer_id=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contribution_reports"
+                  ],
+                  "query": [
+                    {
+                      "description": "Unique identifier of the employer for filtering reports",
+                      "key": "employer_id",
+                      "value": "er_kn/"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `open`, `finalized`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Month for filtering reports, used together with `year` (MM format)",
+                      "key": "month",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Year for filtering reports, can be used standalone or with `month` (YYYY format)",
+                      "key": "year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Unique identifier of the customer for EoR platforms, used to filter reports for a logical employer",
+                      "key": "external_customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"employer_id\": \"er_Fg;f=FKt\",\n      \"id\": \"ctr_;9]-:;W\",\n      \"last_updated_at\": \"<dateTime>\",\n      \"period\": {\n        \"from_date\": \"<date>\",\n        \"to_date\": \"<date>\"\n      },\n      \"status\": \"finalized\",\n      \"object\": \"<string>\",\n      \"external_customer_id\": \"<null,string>\",\n      \"finalized_at\": \"<null,string-date-time>\"\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"employer_id\": \"er_^wLIpK7Q\",\n      \"id\": \"ctr_^hZ\",\n      \"last_updated_at\": \"<dateTime>\",\n      \"period\": {\n        \"from_date\": \"<date>\",\n        \"to_date\": \"<date>\"\n      },\n      \"status\": \"open\",\n      \"object\": \"<string>\",\n      \"external_customer_id\": \"<null,string>\",\n      \"finalized_at\": \"<null,string-date-time>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:17.000Z",
+              "updatedAt": "2026-07-28T02:01:17.000Z",
+              "uid": "35240-b955eee9-1bfb-4d79-857c-7d4fa2ee743b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:17.000Z",
+          "updatedAt": "2026-07-28T02:01:17.000Z",
+          "uid": "35240-d01dbbe4-2b7f-458e-9e88-6e344116e83c"
+        }
+      ],
+      "id": "60984488-88a7-467e-99ed-7a1b30277b84",
+      "createdAt": "2026-07-28T02:01:17.000Z",
+      "updatedAt": "2026-07-28T02:01:17.000Z",
+      "uid": "35240-60984488-88a7-467e-99ed-7a1b30277b84"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

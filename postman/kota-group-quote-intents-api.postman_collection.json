@@ -1,0 +1,1041 @@
+{
+  "info": {
+    "_postman_id": "fac17d97-390b-42e5-b3dd-76b35d3b5b9e",
+    "name": "API Reference Associated Persons Group Quote Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:41.000Z",
+    "updatedAt": "2026-07-28T02:01:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fac17d97-390b-42e5-b3dd-76b35d3b5b9e"
+  },
+  "item": [
+    {
+      "name": "group_quote_intents",
+      "item": [
+        {
+          "name": "{group_quote_intent_id}",
+          "item": [
+            {
+              "name": "requirements",
+              "item": [
+                {
+                  "name": "List requirements for a group quote intent",
+                  "id": "bf37b886-0f55-46a1-90e2-8b9d7bed8862",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=employer&object_id=<string>&page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "requirements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by object type (employee or employer)",
+                          "key": "value",
+                          "value": "employer"
+                        },
+                        {
+                          "description": "Filter by object ID (employee ID or employer ID)",
+                          "key": "object_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "dfb1a42d-ba9e-4c56-8dad-10a00fdee33f",
+                          "key": "group_quote_intent_id",
+                          "value": "gqi_qk+YdUp^gf/",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of adaptive requirements for a `group_quote_intent`. Requirements must be fulfilled before a quote can be generated."
+                  },
+                  "response": [
+                    {
+                      "id": "4504d40a-7cf1-48c5-98d6-454b9a6fd240",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=employer&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "employer"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"ar_y\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"object_id\": \"<string>\",\n      \"object_type\": \"employer\",\n      \"requirement_type\": \"enrolment_intent\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"ar_u-%f\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"object_id\": \"<string>\",\n      \"object_type\": \"associated_person\",\n      \"requirement_type\": \"group_policy_intent\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-4504d40a-7cf1-48c5-98d6-454b9a6fd240"
+                    },
+                    {
+                      "id": "f0aa29fc-83c8-4dc3-9026-4d03b56c2efe",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/requirements?value=employer&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "employer"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-f0aa29fc-83c8-4dc3-9026-4d03b56c2efe"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:42.000Z",
+                  "updatedAt": "2026-07-28T02:01:42.000Z",
+                  "uid": "35240-bf37b886-0f55-46a1-90e2-8b9d7bed8862"
+                }
+              ],
+              "id": "1fb4eba8-a826-4377-9c3b-de025d0299c5",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-1fb4eba8-a826-4377-9c3b-de025d0299c5"
+            },
+            {
+              "name": "quote",
+              "item": [
+                {
+                  "name": "Retrieve the quote for a group quote intent",
+                  "id": "c0e1d889-1cf2-4678-b4c6-ee10bfc3fe10",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "quote"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9359aa73-e4b2-4f94-a0e9-e591d35646c4",
+                          "key": "group_quote_intent_id",
+                          "value": "gqi_qk+YdUp^gf/",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the quote details for a `group_quote_intent`. Returns pricing information and a fresh PDF URL. Only available when status is `quote_available`."
+                  },
+                  "response": [
+                    {
+                      "id": "9d4f2ae4-9b4c-45e0-8926-c7e0f2d63f97",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"member_selection\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"percentage\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    \"family_type\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"currency\": \"<string>\",\n  \"employee_count\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\",\n  \"generated_at\": \"<dateTime>\",\n  \"total_monthly_premium\": \"<double>\",\n  \"pdf_url\": \"<null,string>\",\n  \"pdf_expires_at\": \"<null,string-date-time>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-9d4f2ae4-9b4c-45e0-8926-c7e0f2d63f97"
+                    },
+                    {
+                      "id": "4b6e43c2-f3a8-4bfa-b0cd-ad7f621dbf60",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-4b6e43c2-f3a8-4bfa-b0cd-ad7f621dbf60"
+                    },
+                    {
+                      "id": "d093253c-7718-4f33-9ee6-5fe1450ca7ab",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/quote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "quote"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-d093253c-7718-4f33-9ee6-5fe1450ca7ab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:42.000Z",
+                  "updatedAt": "2026-07-28T02:01:42.000Z",
+                  "uid": "35240-c0e1d889-1cf2-4678-b4c6-ee10bfc3fe10"
+                }
+              ],
+              "id": "c6043223-326c-4909-b8e3-3aa7e5711be2",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-c6043223-326c-4909-b8e3-3aa7e5711be2"
+            },
+            {
+              "name": "reject",
+              "item": [
+                {
+                  "name": "Reject a group quote intent",
+                  "id": "dd7412c8-c6d5-4714-9358-74e94ca7bf95",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id",
+                        "reject"
+                      ],
+                      "variable": [
+                        {
+                          "id": "edaad8e7-8aaa-4c59-8c3c-b576e8d6d968",
+                          "key": "group_quote_intent_id",
+                          "value": "gqi_qk+YdUp^gf/",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Rejects a `group_quote_intent` when the employer decides not to proceed with the quote. Can only reject intents in `quote_available` status."
+                  },
+                  "response": [
+                    {
+                      "id": "eda9ddeb-38a7-40ab-95df-edbb024fd0c1",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-eda9ddeb-38a7-40ab-95df-edbb024fd0c1"
+                    },
+                    {
+                      "id": "cd99cecb-ef39-4362-b920-a2e62b082837",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-cd99cecb-ef39-4362-b920-a2e62b082837"
+                    },
+                    {
+                      "id": "b5dc48d6-8e85-4046-bdc8-c858736c5bbe",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "group_quote_intents",
+                            ":group_quote_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_quote_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:42.000Z",
+                      "updatedAt": "2026-07-28T02:01:42.000Z",
+                      "uid": "35240-b5dc48d6-8e85-4046-bdc8-c858736c5bbe"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:42.000Z",
+                  "updatedAt": "2026-07-28T02:01:42.000Z",
+                  "uid": "35240-dd7412c8-c6d5-4714-9358-74e94ca7bf95"
+                }
+              ],
+              "id": "a11b45a1-2116-4067-a142-506f489b9509",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-a11b45a1-2116-4067-a142-506f489b9509"
+            },
+            {
+              "name": "Retrieve a group quote intent",
+              "id": "ebb4676b-8d9a-4c74-a823-947b40a6d35f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents",
+                    ":group_quote_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "10386943-910c-465d-b4f9-18b48a79e697",
+                      "key": "group_quote_intent_id",
+                      "value": "gqi_qk+YdUp^gf/",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `group_quote_intent` object."
+              },
+              "response": [
+                {
+                  "id": "d12f60ca-b75b-4f8c-964e-962f0e4ca25c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_quote_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"consent_links\": [\n    {\n      \"type\": \"privacy_policy\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"<string>\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"<string>\",\n      \"type\": \"pre_existing_conditions\"\n    }\n  ],\n  \"group_id\": \"gr_$M$kd+_Crp\",\n  \"id\": \"gqi_^5by\",\n  \"plan_id\": \"pl_7TQv7Zo%aN)\",\n  \"status\": \"awaiting_quote\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:42.000Z",
+                  "updatedAt": "2026-07-28T02:01:42.000Z",
+                  "uid": "35240-d12f60ca-b75b-4f8c-964e-962f0e4ca25c"
+                },
+                {
+                  "id": "bff804d1-e043-4b0e-9c95-f1b551024ef0",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_quote_intents/:group_quote_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_quote_intents",
+                        ":group_quote_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_quote_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:42.000Z",
+                  "updatedAt": "2026-07-28T02:01:42.000Z",
+                  "uid": "35240-bff804d1-e043-4b0e-9c95-f1b551024ef0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-ebb4676b-8d9a-4c74-a823-947b40a6d35f"
+            }
+          ],
+          "id": "94d350be-0f2b-419a-a109-4e1da2240d79",
+          "createdAt": "2026-07-28T02:01:42.000Z",
+          "updatedAt": "2026-07-28T02:01:42.000Z",
+          "uid": "35240-94d350be-0f2b-419a-a109-4e1da2240d79"
+        },
+        {
+          "name": "Create a group quote intent",
+          "id": "d4556184-f3e7-4dd9-ba2e-aba711df619d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_id\": \"gr_xD;ebA90b\",\n  \"plan_id\": \"pl_]#5Io;gu\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_PV>]\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_o\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_w8 ,\\\\DlV~D\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_'8\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_l~`E\\\\n' P`1\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"pco_(]!5r9]?\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/group_quote_intents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_quote_intents"
+              ]
+            },
+            "description": "Creates a `group_quote_intent` to request a quote for a `group` and `plan` combination. The intent coordinates the quote workflow including requirements collection and quote generation."
+          },
+          "response": [
+            {
+              "id": "3ae7f54a-2417-4c2c-8990-4dfd70fc5656",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"gr_xD;ebA90b\",\n  \"plan_id\": \"pl_]#5Io;gu\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_PV>]\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_o\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_w8 ,\\\\DlV~D\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_'8\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_l~`E\\\\n' P`1\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"pco_(]!5r9]?\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"consent_links\": [\n    {\n      \"type\": \"privacy_policy\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"url\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"<string>\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"<string>\",\n      \"type\": \"pre_existing_conditions\"\n    }\n  ],\n  \"group_id\": \"gr_$M$kd+_Crp\",\n  \"id\": \"gqi_^5by\",\n  \"plan_id\": \"pl_7TQv7Zo%aN)\",\n  \"status\": \"awaiting_quote\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-3ae7f54a-2417-4c2c-8990-4dfd70fc5656"
+            },
+            {
+              "id": "0c6125ee-e29e-483c-b7e4-fbc20e7ff804",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"gr_xD;ebA90b\",\n  \"plan_id\": \"pl_]#5Io;gu\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_PV>]\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_o\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_w8 ,\\\\DlV~D\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_'8\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_l~`E\\\\n' P`1\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"pco_(]!5r9]?\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-0c6125ee-e29e-483c-b7e4-fbc20e7ff804"
+            },
+            {
+              "id": "04006e0d-19c1-4b7c-8f31-d78b6046f45a",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"group_id\": \"gr_xD;ebA90b\",\n  \"plan_id\": \"pl_]#5Io;gu\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"expected_start_date\": \"<null,string-date>\",\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_PV>]\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_o\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_w8 ,\\\\DlV~D\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_'8\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_l~`E\\\\n' P`1\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"pco_(]!5r9]?\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-04006e0d-19c1-4b7c-8f31-d78b6046f45a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:42.000Z",
+          "updatedAt": "2026-07-28T02:01:42.000Z",
+          "uid": "35240-d4556184-f3e7-4dd9-ba2e-aba711df619d"
+        },
+        {
+          "name": "List group quote intents",
+          "id": "688c3c4d-1642-42f0-b79f-75784b215567",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/group_quote_intents?group_id=gr_`mR%23DkZdv&plan_id=pl_n&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_quote_intents"
+              ],
+              "query": [
+                {
+                  "description": "Filter by group ID",
+                  "key": "group_id",
+                  "value": "gr_`mR#DkZdv"
+                },
+                {
+                  "description": "Filter by plan ID",
+                  "key": "plan_id",
+                  "value": "pl_n"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `awaiting_quote`, `quote_available`, `rejected`, `rejected_by_insurer`, `quote_expired`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a paginated list of `group_quote_intent`'s. The results are returned sorted by creation date, with the most recent appearing first."
+          },
+          "response": [
+            {
+              "id": "c11f2f17-1526-432e-83d7-d18ed9d5886e",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_quote_intents?group_id=gr_`mR%23DkZdv&plan_id=pl_n&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_quote_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by group ID",
+                      "key": "group_id",
+                      "value": "gr_`mR#DkZdv"
+                    },
+                    {
+                      "description": "Filter by plan ID",
+                      "key": "plan_id",
+                      "value": "pl_n"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `awaiting_quote`, `quote_available`, `rejected`, `rejected_by_insurer`, `quote_expired`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"consent_links\": [\n        {\n          \"type\": \"privacy_policy\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        {\n          \"type\": \"terms_of_business\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"<string>\",\n          \"type\": \"statement_of_needs\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"<string>\",\n          \"type\": \"statutory_warning\"\n        }\n      ],\n      \"group_id\": \"gr_v(uE\\\\nX\",\n      \"id\": \"gqi_L8Wg\",\n      \"plan_id\": \"pl_O@b%LPMC\",\n      \"status\": \"action_required\",\n      \"cost_sharing\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"expected_start_date\": \"<null,string-date>\",\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"<string>\"\n    },\n    {\n      \"consent_links\": [\n        {\n          \"type\": \"terms_of_business\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        },\n        {\n          \"type\": \"terms_of_business\",\n          \"url\": \"<string>\",\n          \"version\": \"<string>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"text\": \"<string>\",\n          \"type\": \"product_information\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"text\": \"<string>\",\n          \"type\": \"statement_of_needs\"\n        }\n      ],\n      \"group_id\": \"gr_3aE~Hh4r\",\n      \"id\": \"gqi_s{\\\\m?d\\\\a\",\n      \"plan_id\": \"pl_aB)aJ.\",\n      \"status\": \"action_required\",\n      \"cost_sharing\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"expected_start_date\": \"<null,string-date>\",\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-c11f2f17-1526-432e-83d7-d18ed9d5886e"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:42.000Z",
+          "updatedAt": "2026-07-28T02:01:42.000Z",
+          "uid": "35240-688c3c4d-1642-42f0-b79f-75784b215567"
+        }
+      ],
+      "id": "28415ccb-bed3-4b50-8b2b-9716f4f280c0",
+      "createdAt": "2026-07-28T02:01:42.000Z",
+      "updatedAt": "2026-07-28T02:01:42.000Z",
+      "uid": "35240-28415ccb-bed3-4b50-8b2b-9716f4f280c0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

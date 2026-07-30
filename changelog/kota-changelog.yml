@@ -1,0 +1,111 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.kota.io/changelog
+url: https://www.kota.io/changelog
+description: >-
+  Kota publishes a dated product changelog on its marketing site covering the benefits platform,
+  admin dashboard and mobile apps. It is a product changelog rather than an API changelog — API
+  contract changes are not versioned there; the API surfaces versioning through v1/v2 webhook event
+  families instead.
+scheme: semantic-style product release numbers (e.g. v4.3.5), with separate mobile app versions
+current_version: v4.3.5
+scope: product platform + mobile apps
+api_changelog: none published separately
+entries:
+- version: v4.3.5
+  date: '2026-07-10'
+  title: Total Reward, Automation Rules, Activity Log
+  highlights:
+  - Employees view a complete compensation breakdown showing employer benefit contributions
+  - Rules engine upgraded with country-scoping and group targeting
+  - New Activity Log provides an audit trail of benefit changes across the organisation
+  breaking: false
+- version: v4.3.4
+  date: '2026-07-08'
+  title: Total Reward
+  highlights:
+  - Complete itemised breakdown of an employee's total compensation package
+  - Displays salary plus employer-funded benefits with real monetary values
+  breaking: false
+- version: v4.3.3
+  date: '2026-07-02'
+  title: Billing page layout
+  highlights:
+  - Invoice and payroll reporting restructured into separate tabs with pagination
+  breaking: false
+- version: v4.3.2
+  date: '2026-05-29'
+  title: Auto-Enrolment, Spend Cards, Insurers, SSO
+  highlights:
+  - Digital wallet support for spend cards with contactless payment
+  - Admin dashboard consolidates all transactions and spend ledgers
+  - Seven new benefits across the UK, Ireland and Spain
+  breaking: false
+- version: v4.3.2
+  date: '2026-05-27'
+  title: Health insurance quotes
+  highlights:
+  - Irish Life Health quotes process more reliably during high-demand periods
+  breaking: false
+- version: v4.3.1
+  date: '2026-05-22'
+  title: Spend & pensions reporting
+  highlights:
+  - Receipt download functionality
+  - Pension dashboard accuracy improvements
+  breaking: false
+- version: v4.3.1
+  date: '2026-05-20'
+  title: Spend card notifications
+  highlights:
+  - Real-time transaction alerts for card spending activity
+  breaking: false
+- version: Mobile v2.14
+  date: '2026-05-19'
+  title: Mobile app features
+  highlights:
+  - Digital wallet integration
+  - Recommended tier pre-selection
+  breaking: false
+- version: v4.3.0
+  date: '2026-05-18'
+  title: Receipt management
+  highlights:
+  - Dedicated transaction dashboard for employers with filtering
+  breaking: false
+- version: v4.2.9
+  date: '2026-05-13'
+  title: Health & allowances compliance
+  highlights:
+  - Irish Life Health quotes include full CPC disclosure
+  breaking: false
+- version: Mobile v3.13
+  date: '2026-05-08'
+  title: Mobile receipt tracking
+  highlights:
+  - Photo upload with OCR pre-fills receipt details
+  breaking: false
+- version: Mobile v3.12
+  date: '2026-04-23'
+  title: Push notifications
+  highlights:
+  - Real-time notifications for benefits and spend activity
+  breaking: false
+- version: v4.2.8
+  date: '2026-04-17'
+  title: Pension contribution override
+  highlights:
+  - Admins adjust employee contribution rates directly from the panel
+  breaking: false
+- version: v4.2.7
+  date: '2026-04-13'
+  title: Supplemental pension billing
+  highlights:
+  - Mid-cycle joiners billed for pro-rated contributions immediately
+  breaking: false
+- version: v4.2.6
+  date: '2026-04-08'
+  title: Authenticator app support
+  highlights:
+  - RFC 6238-compatible authenticator apps enable two-factor authentication
+  breaking: false

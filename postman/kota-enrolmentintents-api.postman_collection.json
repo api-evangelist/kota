@@ -1,0 +1,1780 @@
+{
+  "info": {
+    "_postman_id": "8b1645dd-47ee-4295-8b0c-724e3c1dfac0",
+    "name": "API Reference Associated Persons enrolmentIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:34.000Z",
+    "updatedAt": "2026-07-28T02:01:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8b1645dd-47ee-4295-8b0c-724e3c1dfac0"
+  },
+  "item": [
+    {
+      "name": "enrolment_intents",
+      "item": [
+        {
+          "name": "{enrolment_intent_id}",
+          "item": [
+            {
+              "name": "requirements",
+              "item": [
+                {
+                  "name": "List requirements for an enrolment intent",
+                  "id": "c2f01229-79bc-4a79-b535-720d010bb198",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/requirements?value=employee&object_id=<string>&page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id",
+                        "requirements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by object type (employee or employer)",
+                          "key": "value",
+                          "value": "employee"
+                        },
+                        {
+                          "description": "Filter by object ID (employee ID or employer ID)",
+                          "key": "object_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "5957b1d2-20b0-4e42-b9d2-a9ee1e120bc9",
+                          "key": "enrolment_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a paginated list of adaptive requirements for an `enrolment_intent`. Requirements must be fulfilled before enrolment can proceed."
+                  },
+                  "response": [
+                    {
+                      "id": "2251866c-e1e4-47e0-9a85-a7768b835947",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/requirements?value=employee&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "employee"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"object_type\": \"associated_person\",\n      \"object_id\": \"<string>\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"requirement_type\": \"enrolment_intent\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"object_type\": \"associated_person\",\n      \"object_id\": \"<string>\",\n      \"is_fulfilled\": \"<boolean>\",\n      \"requirement_type\": \"dependent_management_intent\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-2251866c-e1e4-47e0-9a85-a7768b835947"
+                    },
+                    {
+                      "id": "f25ebbbe-1230-4230-af74-0070935056af",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/requirements?value=employee&object_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "requirements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by object type (employee or employer)",
+                              "key": "value",
+                              "value": "employee"
+                            },
+                            {
+                              "description": "Filter by object ID (employee ID or employer ID)",
+                              "key": "object_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-f25ebbbe-1230-4230-af74-0070935056af"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-c2f01229-79bc-4a79-b535-720d010bb198"
+                }
+              ],
+              "id": "b4f568a5-e2d2-469f-ac22-06be507bb658",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-b4f568a5-e2d2-469f-ac22-06be507bb658"
+            },
+            {
+              "name": "confirm",
+              "item": [
+                {
+                  "name": "Confirm an enrolment intent",
+                  "id": "8727592a-74bb-4ce3-88dd-c3b2b2f810fc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/confirm",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id",
+                        "confirm"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f8aec2d-82a0-4a10-85f8-17150d5159cd",
+                          "key": "enrolment_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Confirms an `enrolment_intent` that is in `PendingConfirmation` status. This transitions the enrolment intent to `Enrolling` status and initiates the enrolment process with the insurance provider."
+                  },
+                  "response": [
+                    {
+                      "id": "f4de436d-b5dc-432a-872f-8f6438a79342",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-f4de436d-b5dc-432a-872f-8f6438a79342"
+                    },
+                    {
+                      "id": "55d1cd31-c40a-415a-ac13-079cdf1fdcb3",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-55d1cd31-c40a-415a-ac13-079cdf1fdcb3"
+                    },
+                    {
+                      "id": "0e82f605-a918-44eb-b5ad-bfb0363b6da5",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-0e82f605-a918-44eb-b5ad-bfb0363b6da5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-8727592a-74bb-4ce3-88dd-c3b2b2f810fc"
+                }
+              ],
+              "id": "f1dceef9-ccec-4e87-a8b6-122bbeaa6d8e",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-f1dceef9-ccec-4e87-a8b6-122bbeaa6d8e"
+            },
+            {
+              "name": "reject",
+              "item": [
+                {
+                  "name": "Reject an enrolment intent",
+                  "id": "4847744a-a7c6-4f2c-b82d-da83a0dc1c69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/reject",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id",
+                        "reject"
+                      ],
+                      "variable": [
+                        {
+                          "id": "901716a4-b02b-479c-ba55-7e76c19a779d",
+                          "key": "enrolment_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Rejects an `enrolment_intent` that is in `PendingConfirmation`, `ActionRequired`, or `AddonSelectionRequired` status. This transitions the enrolment intent to `NotUndertaken` status."
+                  },
+                  "response": [
+                    {
+                      "id": "7dfc8986-9948-41f1-b9e0-ea6e59a0b008",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-7dfc8986-9948-41f1-b9e0-ea6e59a0b008"
+                    },
+                    {
+                      "id": "72cc1a25-3f3b-4559-a445-dcc471766301",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-72cc1a25-3f3b-4559-a445-dcc471766301"
+                    },
+                    {
+                      "id": "363a9577-e5a5-4dfe-9ee5-81467c1b6c2d",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-363a9577-e5a5-4dfe-9ee5-81467c1b6c2d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-4847744a-a7c6-4f2c-b82d-da83a0dc1c69"
+                }
+              ],
+              "id": "d4549901-71b5-40d4-a68b-88c675ce8c6d",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-d4549901-71b5-40d4-a68b-88c675ce8c6d"
+            },
+            {
+              "name": "coverage-selections",
+              "item": [
+                {
+                  "name": "Submit coverage selections for an enrolment intent",
+                  "id": "b17b372e-6a79-4846-84dc-cab294d042c1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/coverage-selections",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id",
+                        "coverage-selections"
+                      ],
+                      "variable": [
+                        {
+                          "id": "44974c38-b15f-41ec-a559-098c1ce90adb",
+                          "key": "enrolment_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Submits plan coverage option selections for an enrolment intent in the `addon_selection_required` status."
+                  },
+                  "response": [
+                    {
+                      "id": "9d9c1244-7185-4712-8058-30b923728e3d",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/coverage-selections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "coverage-selections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-9d9c1244-7185-4712-8058-30b923728e3d"
+                    },
+                    {
+                      "id": "ca636a49-edaf-42fb-86b1-c53d6d14a991",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/coverage-selections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "coverage-selections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-ca636a49-edaf-42fb-86b1-c53d6d14a991"
+                    },
+                    {
+                      "id": "e82cf412-052b-470d-987f-e1c8d035df85",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/coverage-selections",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "coverage-selections"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-e82cf412-052b-470d-987f-e1c8d035df85"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-b17b372e-6a79-4846-84dc-cab294d042c1"
+                }
+              ],
+              "id": "1e97c517-34e4-419c-b237-c163c82ba449",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-1e97c517-34e4-419c-b237-c163c82ba449"
+            },
+            {
+              "name": "create_dependents_management_intent",
+              "item": [
+                {
+                  "name": "Create a dependents management intent for an enrolment intent",
+                  "id": "de258790-1f86-4540-b9e1-850ab76e0368",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/create_dependents_management_intent",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id",
+                        "create_dependents_management_intent"
+                      ],
+                      "variable": [
+                        {
+                          "id": "aaa87c57-7b47-47fe-a121-b40d1558101d",
+                          "key": "enrolment_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Creates a dependents management intent as a sub-intent of an enrolment intent. The enrolment intent must be in `pending_confirmation` status."
+                  },
+                  "response": [
+                    {
+                      "id": "d6bc49af-cff7-4e4e-84f5-ce4e49706ec6",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/create_dependents_management_intent",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "create_dependents_management_intent"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"parent_intent_id\": \"<string>\",\n  \"parent_intent_type\": \"enrolment_intent\",\n  \"status\": \"completed\",\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"ready\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"restricted\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"pricing\": {\n      \"type\": \"tier_based\",\n      \"per_member\": {\n        \"currency\": \"tjs\",\n        \"member_type_pricing\": [\n          {\n            \"code\": \"adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          },\n          {\n            \"code\": \"child\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"mwk\",\n        \"tiers\": [\n          {\n            \"code\": \"family\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          },\n          {\n            \"code\": \"couple\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"coverage_options\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"scope\": \"member\",\n      \"input_type\": \"multi_select\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string,null>\",\n          \"learn_more_url\": \"<string,null>\",\n          \"from_price\": \"<number,null-double>\",\n          \"benefits\": null,\n          \"sub_options\": null,\n          \"eligibility_criteria\": [\n            {\n              \"type\": \"members_count\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            },\n            {\n              \"type\": \"employees_count\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string,null>\",\n          \"learn_more_url\": \"<string,null>\",\n          \"from_price\": \"<number,null-double>\",\n          \"benefits\": null,\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": \"industry_exclusions\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            },\n            {\n              \"type\": \"members_count\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"<string,null>\",\n      \"min_selections\": \"<integer,null>\",\n      \"max_selections\": \"<integer,null>\",\n      \"sort_order\": \"<integer,null>\",\n      \"group_label\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"scope\": \"policy\",\n      \"input_type\": \"multi_select\",\n      \"required\": \"<boolean>\",\n      \"options\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string,null>\",\n          \"learn_more_url\": \"<string,null>\",\n          \"from_price\": \"<number,null-double>\",\n          \"benefits\": null,\n          \"sub_options\": null,\n          \"eligibility_criteria\": [\n            {\n              \"type\": \"employees_count\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            },\n            {\n              \"type\": \"industry_exclusions\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string,null>\",\n          \"learn_more_url\": \"<string,null>\",\n          \"from_price\": \"<number,null-double>\",\n          \"benefits\": null,\n          \"sub_options\": null,\n          \"eligibility_criteria\": [\n            {\n              \"type\": \"industry_exclusions\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            },\n            {\n              \"type\": \"industry_exclusions\",\n              \"description\": \"<string>\",\n              \"employees_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"members_count\": {\n                \"min\": \"<integer,null>\",\n                \"max\": \"<integer,null>\"\n              },\n              \"industry_exclusions\": {\n                \"excluded_industries\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"<string,null>\",\n      \"min_selections\": \"<integer,null>\",\n      \"max_selections\": \"<integer,null>\",\n      \"sort_order\": \"<integer,null>\",\n      \"group_label\": \"<string,null>\"\n    }\n  ],\n  \"action_required\": {\n    \"code\": \"remove_restricted_or_ineligible_dependents\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-d6bc49af-cff7-4e4e-84f5-ce4e49706ec6"
+                    },
+                    {
+                      "id": "55f77047-3816-432b-83dc-162421a4daa0",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/create_dependents_management_intent",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "create_dependents_management_intent"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-55f77047-3816-432b-83dc-162421a4daa0"
+                    },
+                    {
+                      "id": "ea9fede2-6c40-41d9-9840-5a4185a4dca3",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id/create_dependents_management_intent",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "enrolment_intents",
+                            ":enrolment_intent_id",
+                            "create_dependents_management_intent"
+                          ],
+                          "variable": [
+                            {
+                              "key": "enrolment_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:34.000Z",
+                      "updatedAt": "2026-07-28T02:01:34.000Z",
+                      "uid": "35240-ea9fede2-6c40-41d9-9840-5a4185a4dca3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-de258790-1f86-4540-b9e1-850ab76e0368"
+                }
+              ],
+              "id": "14199690-369c-4a2c-895c-874a8d69440d",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-14199690-369c-4a2c-895c-874a8d69440d"
+            },
+            {
+              "name": "Retrieve an enrolment intent",
+              "id": "9ae9377a-03fb-4332-ba0e-d27b701d9373",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4ffc3e45-d1fa-4c81-9724-27580dbb6b01",
+                      "key": "enrolment_intent_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves an `enrolment_intent` object."
+              },
+              "response": [
+                {
+                  "id": "89c5a279-cab9-44e3-a8b5-97ead582e884",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "enrolment_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"status\": \"enrolled\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_enrolments\": [\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"cve\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"hospital_list\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"percentage\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"family\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"single_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    },\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"mad\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"other\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"member_count\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"single_with_children\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"group_policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"members_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"industry_exclusions\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"ineligibility_reason\": {\n    \"code\": \"employee_above_maximum_age\",\n    \"reason\": \"<string>\"\n  },\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"action_required\": {\n    \"code\": \"provide_beneficiary_information\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  },\n  \"pending_confirmation\": {\n    \"due_by\": \"<dateTime>\",\n    \"code\": \"confirm_enrolment\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"associated_persons\": {\n      \"optional\": \"<boolean>\",\n      \"type\": \"dependents\",\n      \"dependent\": {\n        \"intent_id\": \"<string>\",\n        \"status\": \"confirmed\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-89c5a279-cab9-44e3-a8b5-97ead582e884"
+                },
+                {
+                  "id": "9531b465-9121-4fac-99f4-952770062451",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "enrolment_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-9531b465-9121-4fac-99f4-952770062451"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-9ae9377a-03fb-4332-ba0e-d27b701d9373"
+            },
+            {
+              "name": "Update policy configuration enrolment intent",
+              "id": "be0989db-2f44-400d-b5de-43023f72b4ee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"desired_policy_start_date\": \"<string,null-date>\",\n  \"enrolment_date\": \"<string,null-date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cfbc0e18-6f59-4b1e-b205-839b72549042",
+                      "key": "enrolment_intent_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates the policy configuration for an existing `enrolment_intent`. This will reset the enrolment intent back to `processing` status and re-evaluate the enrolment intent based on the new configuration provided.Unavailable for enrolment intents that are already `enrolling` or `enrolled`."
+              },
+              "response": [
+                {
+                  "id": "b219ead2-ebff-4129-9eb5-1156db28be50",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"desired_policy_start_date\": \"<string,null-date>\",\n  \"enrolment_date\": \"<string,null-date>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "enrolment_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"status\": \"enrolled\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_enrolments\": [\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"cve\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"hospital_list\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"percentage\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"family\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"single_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    },\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"mad\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"other\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"member_count\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"single_with_children\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"group_policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"members_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"industry_exclusions\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"ineligibility_reason\": {\n    \"code\": \"employee_above_maximum_age\",\n    \"reason\": \"<string>\"\n  },\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"action_required\": {\n    \"code\": \"provide_beneficiary_information\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  },\n  \"pending_confirmation\": {\n    \"due_by\": \"<dateTime>\",\n    \"code\": \"confirm_enrolment\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"associated_persons\": {\n      \"optional\": \"<boolean>\",\n      \"type\": \"dependents\",\n      \"dependent\": {\n        \"intent_id\": \"<string>\",\n        \"status\": \"confirmed\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-b219ead2-ebff-4129-9eb5-1156db28be50"
+                },
+                {
+                  "id": "147b943f-93e5-49c0-b78e-7273aed51616",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"desired_policy_start_date\": \"<string,null-date>\",\n  \"enrolment_date\": \"<string,null-date>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "enrolment_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-147b943f-93e5-49c0-b78e-7273aed51616"
+                },
+                {
+                  "id": "87eaf7b3-3353-4ce0-8f62-08673265782e",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"desired_policy_start_date\": \"<string,null-date>\",\n  \"enrolment_date\": \"<string,null-date>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/enrolment_intents/:enrolment_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "enrolment_intents",
+                        ":enrolment_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "enrolment_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:34.000Z",
+                  "updatedAt": "2026-07-28T02:01:34.000Z",
+                  "uid": "35240-87eaf7b3-3353-4ce0-8f62-08673265782e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-be0989db-2f44-400d-b5de-43023f72b4ee"
+            }
+          ],
+          "id": "f042675a-4936-4885-80af-f082b62d49ed",
+          "createdAt": "2026-07-28T02:01:34.000Z",
+          "updatedAt": "2026-07-28T02:01:34.000Z",
+          "uid": "35240-f042675a-4936-4885-80af-f082b62d49ed"
+        },
+        {
+          "name": "List all enrolment intents",
+          "id": "53306bd2-ce24-4cf3-9fee-a96b69b8b63a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/enrolment_intents?employee_id=<string>&group_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "enrolment_intents"
+              ],
+              "query": [
+                {
+                  "description": "Filters enrolment intents by employee.",
+                  "key": "employee_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters enrolment intents  by group.",
+                  "key": "group_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `enrolment_intents`. The `enrolment_intents` are returned sorted by creation date, with the most recent `enrolment_intent` appearing first."
+          },
+          "response": [
+            {
+              "id": "c80f2ad1-97b6-49a5-bb29-c97dea718a44",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents?employee_id=<string>&group_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters enrolment intents by employee.",
+                      "key": "employee_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters enrolment intents  by group.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"employee_id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"status\": \"enrolled\",\n      \"force_confirmation\": \"<boolean>\",\n      \"policy_enrolments\": [\n        {\n          \"type\": \"health_insurance\",\n          \"estimated_effective_from\": \"<date>\",\n          \"provider\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"logo_url\": \"<string>\",\n            \"employer_portal_url\": \"<string,null>\",\n            \"employee_portal_url\": \"<string,null>\",\n            \"support_phone_number\": \"<string,null>\"\n          },\n          \"plan\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"currency\": \"aoa\",\n            \"documents\": [\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"plan_summary\"\n              },\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"table_of_cover\"\n              }\n            ]\n          },\n          \"health_insurance\": {\n            \"configuration\": {\n              \"cost_sharing\": {\n                \"type\": \"percentage\",\n                \"member_count\": {\n                  \"adults\": \"<integer>\",\n                  \"children\": \"<integer>\"\n                },\n                \"member_selection\": {\n                  \"partner\": \"<boolean>\",\n                  \"children\": \"<boolean>\"\n                },\n                \"percentage\": {\n                  \"percentage\": \"<integer>\"\n                },\n                \"family_type\": {\n                  \"type\": \"single_with_children\"\n                }\n              }\n            },\n            \"coverage_options\": null,\n            \"coverage_selections\": [\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  }\n                ]\n              },\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  }\n                ]\n              }\n            ]\n          },\n          \"id\": \"<string,null>\"\n        },\n        {\n          \"type\": \"life_assurance\",\n          \"estimated_effective_from\": \"<date>\",\n          \"provider\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"logo_url\": \"<string>\",\n            \"employer_portal_url\": \"<string,null>\",\n            \"employee_portal_url\": \"<string,null>\",\n            \"support_phone_number\": \"<string,null>\"\n          },\n          \"plan\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"currency\": \"ugx\",\n            \"documents\": [\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"other\"\n              },\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"waiting_periods\"\n              }\n            ]\n          },\n          \"health_insurance\": {\n            \"configuration\": {\n              \"cost_sharing\": {\n                \"type\": \"percentage\",\n                \"member_count\": {\n                  \"adults\": \"<integer>\",\n                  \"children\": \"<integer>\"\n                },\n                \"member_selection\": {\n                  \"partner\": \"<boolean>\",\n                  \"children\": \"<boolean>\"\n                },\n                \"percentage\": {\n                  \"percentage\": \"<integer>\"\n                },\n                \"family_type\": {\n                  \"type\": \"single_with_children\"\n                }\n              }\n            },\n            \"coverage_options\": null,\n            \"coverage_selections\": [\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": null\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": null\n                  }\n                ]\n              },\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": null\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  }\n                ]\n              }\n            ]\n          },\n          \"id\": \"<string,null>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"type\": \"anti_selection_notice\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"pre_existing_conditions\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"object\": \"<string>\",\n      \"ineligibility_reason\": {\n        \"code\": \"employee_above_maximum_age\",\n        \"reason\": \"<string>\"\n      },\n      \"policy_configuration\": {\n        \"desired_policy_start_date\": \"<string,null-date>\",\n        \"enrolment_date\": \"<string,null-date>\"\n      },\n      \"action_required\": {\n        \"code\": \"provide_missing_information\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"due_by\": \"<dateTime>\"\n      },\n      \"pending_confirmation\": {\n        \"due_by\": \"<dateTime>\",\n        \"code\": \"confirm_enrolment\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"associated_persons\": {\n          \"optional\": \"<boolean>\",\n          \"type\": \"dependents\",\n          \"dependent\": {\n            \"intent_id\": \"<string>\",\n            \"status\": \"confirmed\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"employee_id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"status\": \"enrolling\",\n      \"force_confirmation\": \"<boolean>\",\n      \"policy_enrolments\": [\n        {\n          \"type\": \"health_insurance\",\n          \"estimated_effective_from\": \"<date>\",\n          \"provider\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"logo_url\": \"<string>\",\n            \"employer_portal_url\": \"<string,null>\",\n            \"employee_portal_url\": \"<string,null>\",\n            \"support_phone_number\": \"<string,null>\"\n          },\n          \"plan\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"currency\": \"mga\",\n            \"documents\": [\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"waiting_periods\"\n              },\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"plan_summary\"\n              }\n            ]\n          },\n          \"health_insurance\": {\n            \"configuration\": {\n              \"cost_sharing\": {\n                \"type\": \"member_count\",\n                \"member_count\": {\n                  \"adults\": \"<integer>\",\n                  \"children\": \"<integer>\"\n                },\n                \"member_selection\": {\n                  \"partner\": \"<boolean>\",\n                  \"children\": \"<boolean>\"\n                },\n                \"percentage\": {\n                  \"percentage\": \"<integer>\"\n                },\n                \"family_type\": {\n                  \"type\": \"couple\"\n                }\n              }\n            },\n            \"coverage_options\": null,\n            \"coverage_selections\": null\n          },\n          \"id\": \"<string,null>\"\n        },\n        {\n          \"type\": \"health_insurance\",\n          \"estimated_effective_from\": \"<date>\",\n          \"provider\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"logo_url\": \"<string>\",\n            \"employer_portal_url\": \"<string,null>\",\n            \"employee_portal_url\": \"<string,null>\",\n            \"support_phone_number\": \"<string,null>\"\n          },\n          \"plan\": {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"description\": \"<string>\",\n            \"currency\": \"cup\",\n            \"documents\": [\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"table_of_cover\"\n              },\n              {\n                \"title\": \"<string>\",\n                \"link\": \"<string>\",\n                \"type\": \"plan_summary\"\n              }\n            ]\n          },\n          \"health_insurance\": {\n            \"configuration\": {\n              \"cost_sharing\": {\n                \"type\": \"percentage\",\n                \"member_count\": {\n                  \"adults\": \"<integer>\",\n                  \"children\": \"<integer>\"\n                },\n                \"member_selection\": {\n                  \"partner\": \"<boolean>\",\n                  \"children\": \"<boolean>\"\n                },\n                \"percentage\": {\n                  \"percentage\": \"<integer>\"\n                },\n                \"family_type\": {\n                  \"type\": \"single_with_children\"\n                }\n              }\n            },\n            \"coverage_options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"scope\": \"policy\",\n                \"input_type\": \"multi_select\",\n                \"required\": \"<boolean>\",\n                \"options\": [\n                  {\n                    \"id\": \"<string>\",\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\",\n                    \"learn_more_url\": \"<string,null>\",\n                    \"from_price\": \"<number,null-double>\",\n                    \"benefits\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      }\n                    ],\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                      }\n                    ],\n                    \"eligibility_criteria\": null\n                  },\n                  {\n                    \"id\": \"<string>\",\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\",\n                    \"learn_more_url\": \"<string,null>\",\n                    \"from_price\": \"<number,null-double>\",\n                    \"benefits\": null,\n                    \"sub_options\": null,\n                    \"eligibility_criteria\": [\n                      {\n                        \"type\": \"industry_exclusions\",\n                        \"description\": \"<string>\",\n                        \"employees_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"members_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"industry_exclusions\": {\n                          \"excluded_industries\": [\n                            \"<string>\",\n                            \"<string>\"\n                          ]\n                        }\n                      },\n                      {\n                        \"type\": \"employees_count\",\n                        \"description\": \"<string>\",\n                        \"employees_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"members_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"industry_exclusions\": {\n                          \"excluded_industries\": [\n                            \"<string>\",\n                            \"<string>\"\n                          ]\n                        }\n                      }\n                    ]\n                  }\n                ],\n                \"description\": \"<string,null>\",\n                \"min_selections\": \"<integer,null>\",\n                \"max_selections\": \"<integer,null>\",\n                \"sort_order\": \"<integer,null>\",\n                \"group_label\": \"<string,null>\"\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"scope\": \"member\",\n                \"input_type\": \"multi_select\",\n                \"required\": \"<boolean>\",\n                \"options\": [\n                  {\n                    \"id\": \"<string>\",\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\",\n                    \"learn_more_url\": \"<string,null>\",\n                    \"from_price\": \"<number,null-double>\",\n                    \"benefits\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      }\n                    ],\n                    \"sub_options\": null,\n                    \"eligibility_criteria\": [\n                      {\n                        \"type\": \"members_count\",\n                        \"description\": \"<string>\",\n                        \"employees_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"members_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"industry_exclusions\": {\n                          \"excluded_industries\": [\n                            \"<string>\",\n                            \"<string>\"\n                          ]\n                        }\n                      },\n                      {\n                        \"type\": \"industry_exclusions\",\n                        \"description\": \"<string>\",\n                        \"employees_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"members_count\": {\n                          \"min\": \"<integer,null>\",\n                          \"max\": \"<integer,null>\"\n                        },\n                        \"industry_exclusions\": {\n                          \"excluded_industries\": [\n                            \"<string>\",\n                            \"<string>\"\n                          ]\n                        }\n                      }\n                    ]\n                  },\n                  {\n                    \"id\": \"<string>\",\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\",\n                    \"learn_more_url\": \"<string,null>\",\n                    \"from_price\": \"<number,null-double>\",\n                    \"benefits\": [\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      },\n                      {\n                        \"name\": \"<string>\",\n                        \"description\": \"<string,null>\"\n                      }\n                    ],\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                      }\n                    ],\n                    \"eligibility_criteria\": null\n                  }\n                ],\n                \"description\": \"<string,null>\",\n                \"min_selections\": \"<integer,null>\",\n                \"max_selections\": \"<integer,null>\",\n                \"sort_order\": \"<integer,null>\",\n                \"group_label\": \"<string,null>\"\n              }\n            ],\n            \"coverage_selections\": [\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": null\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  }\n                ]\n              },\n              {\n                \"configuration_id\": \"<string>\",\n                \"options\": [\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  },\n                  {\n                    \"option_id\": \"<string>\",\n                    \"sub_options\": [\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      },\n                      {\n                        \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                      }\n                    ]\n                  }\n                ]\n              }\n            ]\n          },\n          \"id\": \"<string,null>\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"anti_selection_notice\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"intermediary_commission\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"object\": \"<string>\",\n      \"ineligibility_reason\": {\n        \"code\": \"employment_not_started\",\n        \"reason\": \"<string>\"\n      },\n      \"policy_configuration\": {\n        \"desired_policy_start_date\": \"<string,null-date>\",\n        \"enrolment_date\": \"<string,null-date>\"\n      },\n      \"action_required\": {\n        \"code\": \"provide_beneficiary_information\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"due_by\": \"<dateTime>\"\n      },\n      \"pending_confirmation\": {\n        \"due_by\": \"<dateTime>\",\n        \"code\": \"confirm_enrolment\",\n        \"reason\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"associated_persons\": {\n          \"optional\": \"<boolean>\",\n          \"type\": \"dependents\",\n          \"dependent\": {\n            \"intent_id\": \"<string>\",\n            \"status\": \"confirmed\"\n          }\n        }\n      }\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-c80f2ad1-97b6-49a5-bb29-c97dea718a44"
+            },
+            {
+              "id": "7e8241d7-5df3-4f6c-998f-c84bcd58fa44",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents?employee_id=<string>&group_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters enrolment intents by employee.",
+                      "key": "employee_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters enrolment intents  by group.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-7e8241d7-5df3-4f6c-998f-c84bcd58fa44"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:34.000Z",
+          "updatedAt": "2026-07-28T02:01:34.000Z",
+          "uid": "35240-53306bd2-ce24-4cf3-9fee-a96b69b8b63a"
+        },
+        {
+          "name": "Create a new enrolment intent",
+          "id": "5d1f1b8e-9ee6-4419-b080-13082b014908",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"coverage_selections\": null\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/enrolment_intents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "enrolment_intents"
+              ]
+            },
+            "description": "Creates a new `enrolment_intent` to manage the enrolment of an employee into a group. An enrolment intent represents the intention to enrol an employee into a specific group, and tracks the status and progress of that enrolment process."
+          },
+          "response": [
+            {
+              "id": "c275adb7-586c-46a2-9025-9ac9a1cdf642",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"status\": \"enrolled\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_enrolments\": [\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"cve\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"hospital_list\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"percentage\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"family\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"single_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"member\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    },\n    {\n      \"type\": \"health_insurance\",\n      \"estimated_effective_from\": \"<date>\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"mad\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"other\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          }\n        ]\n      },\n      \"health_insurance\": {\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"member_count\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"single_with_children\"\n            }\n          }\n        },\n        \"coverage_options\": [\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"group_policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"members_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"industry_exclusions\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": null,\n                \"sub_options\": null,\n                \"eligibility_criteria\": null\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"name\": \"<string>\",\n            \"scope\": \"policy\",\n            \"input_type\": \"multi_select\",\n            \"required\": \"<boolean>\",\n            \"options\": [\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n                  }\n                ],\n                \"eligibility_criteria\": null\n              },\n              {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\",\n                \"description\": \"<string,null>\",\n                \"learn_more_url\": \"<string,null>\",\n                \"from_price\": \"<number,null-double>\",\n                \"benefits\": [\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  },\n                  {\n                    \"name\": \"<string>\",\n                    \"description\": \"<string,null>\"\n                  }\n                ],\n                \"sub_options\": null,\n                \"eligibility_criteria\": [\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  },\n                  {\n                    \"type\": \"employees_count\",\n                    \"description\": \"<string>\",\n                    \"employees_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"members_count\": {\n                      \"min\": \"<integer,null>\",\n                      \"max\": \"<integer,null>\"\n                    },\n                    \"industry_exclusions\": {\n                      \"excluded_industries\": [\n                        \"<string>\",\n                        \"<string>\"\n                      ]\n                    }\n                  }\n                ]\n              }\n            ],\n            \"description\": \"<string,null>\",\n            \"min_selections\": \"<integer,null>\",\n            \"max_selections\": \"<integer,null>\",\n            \"sort_order\": \"<integer,null>\",\n            \"group_label\": \"<string,null>\"\n          }\n        ],\n        \"coverage_selections\": [\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": [\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  },\n                  {\n                    \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"configuration_id\": \"<string>\",\n            \"options\": [\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              },\n              {\n                \"option_id\": \"<string>\",\n                \"sub_options\": null\n              }\n            ]\n          }\n        ]\n      },\n      \"id\": \"<string,null>\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"ineligibility_reason\": {\n    \"code\": \"employee_above_maximum_age\",\n    \"reason\": \"<string>\"\n  },\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"action_required\": {\n    \"code\": \"provide_beneficiary_information\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  },\n  \"pending_confirmation\": {\n    \"due_by\": \"<dateTime>\",\n    \"code\": \"confirm_enrolment\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"associated_persons\": {\n      \"optional\": \"<boolean>\",\n      \"type\": \"dependents\",\n      \"dependent\": {\n        \"intent_id\": \"<string>\",\n        \"status\": \"confirmed\"\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-c275adb7-586c-46a2-9025-9ac9a1cdf642"
+            },
+            {
+              "id": "ac6622f9-4fc9-4cbf-baff-9c4e8cb19e88",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-ac6622f9-4fc9-4cbf-baff-9c4e8cb19e88"
+            },
+            {
+              "id": "35182626-20e5-459a-a2e1-452b848172bf",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"force_confirmation\": \"<boolean>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/enrolment_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "enrolment_intents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:34.000Z",
+              "updatedAt": "2026-07-28T02:01:34.000Z",
+              "uid": "35240-35182626-20e5-459a-a2e1-452b848172bf"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:34.000Z",
+          "updatedAt": "2026-07-28T02:01:34.000Z",
+          "uid": "35240-5d1f1b8e-9ee6-4419-b080-13082b014908"
+        }
+      ],
+      "id": "17d313b6-328f-47f6-b594-9cb5d19b2bbb",
+      "createdAt": "2026-07-28T02:01:34.000Z",
+      "updatedAt": "2026-07-28T02:01:34.000Z",
+      "uid": "35240-17d313b6-328f-47f6-b594-9cb5d19b2bbb"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

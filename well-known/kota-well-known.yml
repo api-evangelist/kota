@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Kota website, docs and API hosts
+description: >-
+  Probed the standard /.well-known/ discovery surface across every Kota host in apis.yml and the
+  OpenAPI servers[]. Kota publishes no /.well-known/ documents on any host. Recorded as valid
+  negative discovery data.
+hosts:
+- host: https://www.kota.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://api.kota.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://docs.kota.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes: >-
+  Kota's security contact (security@kota.io) and vulnerability-reporting expectations are published
+  as prose on https://www.kota.io/security rather than as an RFC 9116 security.txt. Its
+  agent-discovery surface is llms.txt plus a documentation MCP server rather than /.well-known/.
+related:
+  security_page: https://www.kota.io/security
+  vulnerability_disclosure: security/kota-vulnerability-disclosure.yml
+  llms_txt: https://docs.kota.io/llms.txt
+  mcp: mcp/kota-mcp.yml

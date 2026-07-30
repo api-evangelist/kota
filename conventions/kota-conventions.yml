@@ -1,0 +1,96 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kota.io/api-reference, https://docs.kota.io/core-components/authentication
+authentication:
+  style: bearer API key
+  header: 'Authorization: Bearer <API_SECRET_KEY>'
+  key_prefixes:
+    test: pk_test_
+    live: pk_live_
+  scoping: API keys are tied to an individual platform and restricted to that platform's type (e.g. employer_of_record,
+    payroll_provider); some endpoints are restricted to specific types.
+  transport: HTTPS required; plain HTTP calls fail.
+  artifact: authentication/kota-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  applies_to: All POST requests. GET, PUT and DELETE are idempotent by definition and ignore the header.
+  recommended_value: V4 UUID, or another random string with at least 30 characters of entropy
+  max_length: 200
+  retention: 1 hour
+  scope: Keys are linked to the authentication token
+  conflict_behaviour: Replaying with matching parameters returns the identical original response without
+    re-executing. Mismatched parameters return 409 idempotency_error.
+  failure_behaviour: Results are saved only after successful completion; requests that fail validation
+    or conflict with a concurrent request are discarded and may be retried.
+  docs: https://docs.kota.io/api-reference#idempotent-requests
+pagination:
+  style: page-number
+  request_params:
+  - name: page
+    in: query
+    description: The page of results to retrieve
+  - name: page_size
+    in: query
+    description: Number of results per page
+  response_fields:
+  - items
+  - page
+  - page_size
+  - total_count
+  envelope_schema_suffix: '*ResponsePagedList'
+filtering:
+  common_query_params:
+  - status
+  - employer_id
+  - employee_id
+  - group_id
+  - plan_id
+  - country
+  - object_type
+  - object_id
+  - external_customer_id
+  - filter
+  - start_date
+request_tracing:
+  field: trace_id
+  location: error response body (RFC 9457 problem document)
+  description: A unique identifier for a particular occurrence of a problem, for troubleshooting with
+    Kota support.
+errors:
+  format: rfc9457
+  media_type: application/problem+json
+  artifact: errors/kota-problem-types.yml
+  docs: https://docs.kota.io/api-reference/errors
+rate_limiting:
+  signalled_by: HTTP 429 with error_code rate_limit_exceeded
+  guidance: Kota recommends exponential backoff. Published numeric limits were not found in the public
+    docs.
+  documented_limits: null
+versioning:
+  api_version: 1.0 (OpenAPI info.version)
+  scheme: unversioned base path; event payloads are versioned as v1 and v2 webhook families
+  artifact: lifecycle/kota-lifecycle.yml
+events:
+  delivery: webhooks plus a pollable /events resource
+  retention: Event retrieval is guaranteed for 30 days
+  replay: POST /events/{event_id}/replay
+  artifact: asyncapi/kota-webhooks.yml
+environments:
+  test:
+    api: https://test.api.kota.io
+    sdk: https://test.js.kota.io/v1
+    key_prefix: pk_test_
+  live:
+    api: https://api.kota.io
+    sdk: https://js.kota.io/v1
+    key_prefix: pk_live_
+intent_pattern:
+  description: 'Every mutating workflow is modelled as an intent: create the intent, fulfil the dynamic
+    data requirements it returns, then confirm/complete it to produce the result object.'
+  stages:
+  - create
+  - fulfil data requirements
+  - complete
+  requirements_api: /requirements/{requirement_id}
+  docs: https://docs.kota.io/api

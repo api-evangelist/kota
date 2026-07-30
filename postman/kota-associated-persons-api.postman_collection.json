@@ -1,0 +1,985 @@
+{
+  "info": {
+    "_postman_id": "8184dd24-fdf7-476f-a472-76e49a90c923",
+    "name": "API Reference Associated Persons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:14.000Z",
+    "updatedAt": "2026-07-28T02:01:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8184dd24-fdf7-476f-a472-76e49a90c923"
+  },
+  "item": [
+    {
+      "name": "employees",
+      "item": [
+        {
+          "name": "{employee_id}",
+          "item": [
+            {
+              "name": "associated_persons",
+              "item": [
+                {
+                  "name": "{associated_person_id}",
+                  "item": [
+                    {
+                      "name": "Retrieve an associated person",
+                      "id": "11f8fedc-c289-40ca-8b48-c7726e1d6753",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons",
+                            ":associated_person_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "31353512-f880-48a6-8c0a-24aefba30667",
+                              "key": "employee_id",
+                              "value": "ee_nk",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "999e2c29-0d7b-49d1-9ab2-6e17d185df87",
+                              "key": "associated_person_id",
+                              "value": "ap_O",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves an associated person object."
+                      },
+                      "response": [
+                        {
+                          "id": "632f2b5d-0109-4bb2-ac59-336e486fa468",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"date_of_birth\": \"<date>\",\n  \"employee_id\": \"ee_*\",\n  \"first_name\": \"<string>\",\n  \"id\": \"ap_waU\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"spouse\",\n  \"sex_at_birth\": \"male\",\n  \"platform_id\": \"pt_m&.C,@k\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-632f2b5d-0109-4bb2-ac59-336e486fa468"
+                        },
+                        {
+                          "id": "d1119e2f-3243-4cea-ae8f-ae744e8d915c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"elit_ed\": {}\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-d1119e2f-3243-4cea-ae8f-ae744e8d915c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-11f8fedc-c289-40ca-8b48-c7726e1d6753"
+                    },
+                    {
+                      "name": "Update an associated person",
+                      "id": "ff43fb6f-d86f-4eeb-a40f-891d2a2ab758",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"first_name\": \"<null,string>\",\n  \"last_name\": \"<null,string>\",\n  \"date_of_birth\": \"<null,string-date>\",\n  \"sex_at_birth\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"relationship_type\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons",
+                            ":associated_person_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1d6972f7-b72f-4cdf-a7d0-12e06ded23fd",
+                              "key": "employee_id",
+                              "value": "ee_nk",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "dbd4b911-7a52-49e4-acfc-b61ce4eb727f",
+                              "key": "associated_person_id",
+                              "value": "ap_O",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates the specified associated person by setting the values of the parameters passed. Any parameters not provided will be left unchanged."
+                      },
+                      "response": [
+                        {
+                          "id": "d22a9b67-98df-4a6d-b399-17b57fab8388",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"first_name\": \"<null,string>\",\n  \"last_name\": \"<null,string>\",\n  \"date_of_birth\": \"<null,string-date>\",\n  \"sex_at_birth\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"relationship_type\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"date_of_birth\": \"<date>\",\n  \"employee_id\": \"ee_*\",\n  \"first_name\": \"<string>\",\n  \"id\": \"ap_waU\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"spouse\",\n  \"sex_at_birth\": \"male\",\n  \"platform_id\": \"pt_m&.C,@k\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-d22a9b67-98df-4a6d-b399-17b57fab8388"
+                        },
+                        {
+                          "id": "6e2b7046-d640-4f76-9a8a-15b11d1d150c",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"first_name\": \"<null,string>\",\n  \"last_name\": \"<null,string>\",\n  \"date_of_birth\": \"<null,string-date>\",\n  \"sex_at_birth\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"relationship_type\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"errors\": {\n    \"qui_87\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"laboris_28e\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-6e2b7046-d640-4f76-9a8a-15b11d1d150c"
+                        },
+                        {
+                          "id": "32f7a42e-d43f-4e70-a984-6ad4c0591f0c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"first_name\": \"<null,string>\",\n  \"last_name\": \"<null,string>\",\n  \"date_of_birth\": \"<null,string-date>\",\n  \"sex_at_birth\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"relationship_type\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"elit_ed\": {}\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-32f7a42e-d43f-4e70-a984-6ad4c0591f0c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-ff43fb6f-d86f-4eeb-a40f-891d2a2ab758"
+                    },
+                    {
+                      "name": "Delete an associated person",
+                      "id": "6080d32d-0672-4866-9a0b-77466a117213",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons",
+                            ":associated_person_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ff7c49e8-842c-4a26-a42e-ee533c1a430d",
+                              "key": "employee_id",
+                              "value": "ee_nk",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "2b68d0b9-92ca-464d-b10c-10c504157a60",
+                              "key": "associated_person_id",
+                              "value": "ap_O",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes an associated person. It cannot be undone."
+                      },
+                      "response": [
+                        {
+                          "id": "294ee060-c82a-4d75-bfc0-eb36f677a8bf",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"date_of_birth\": \"<date>\",\n  \"employee_id\": \"ee_*\",\n  \"first_name\": \"<string>\",\n  \"id\": \"ap_waU\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"spouse\",\n  \"sex_at_birth\": \"male\",\n  \"platform_id\": \"pt_m&.C,@k\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-294ee060-c82a-4d75-bfc0-eb36f677a8bf"
+                        },
+                        {
+                          "id": "3669067e-d8af-4dac-b256-c744e433ea45",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/employees/:employee_id/associated_persons/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "employees",
+                                ":employee_id",
+                                "associated_persons",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "employee_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"elit_ed\": {}\n}",
+                          "createdAt": "2026-07-28T02:01:15.000Z",
+                          "updatedAt": "2026-07-28T02:01:15.000Z",
+                          "uid": "35240-3669067e-d8af-4dac-b256-c744e433ea45"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-6080d32d-0672-4866-9a0b-77466a117213"
+                    }
+                  ],
+                  "id": "8f59466e-71ce-4117-8b58-c6c2ebec2676",
+                  "createdAt": "2026-07-28T02:01:15.000Z",
+                  "updatedAt": "2026-07-28T02:01:15.000Z",
+                  "uid": "35240-8f59466e-71ce-4117-8b58-c6c2ebec2676"
+                },
+                {
+                  "name": "Create an associated person",
+                  "id": "d33817f8-a692-4713-bde4-221c377eb13e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"date_of_birth\": \"<date>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"partner\",\n  \"sex_at_birth\": \"male\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id/associated_persons",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id",
+                        "associated_persons"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c49ed667-1098-4130-a6a8-f1bf90c99f25",
+                          "key": "employee_id",
+                          "value": "ee_nk",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Creates an associated person (dependent or beneficiary) linked to an employee."
+                  },
+                  "response": [
+                    {
+                      "id": "7ee2de55-f289-4dbc-8084-559a4b8a5099",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date_of_birth\": \"<date>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"partner\",\n  \"sex_at_birth\": \"male\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"date_of_birth\": \"<date>\",\n  \"employee_id\": \"ee_*\",\n  \"first_name\": \"<string>\",\n  \"id\": \"ap_waU\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"spouse\",\n  \"sex_at_birth\": \"male\",\n  \"platform_id\": \"pt_m&.C,@k\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-7ee2de55-f289-4dbc-8084-559a4b8a5099"
+                    },
+                    {
+                      "id": "9ca0c3ac-3822-4f28-8e89-8b31192113bc",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date_of_birth\": \"<date>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"partner\",\n  \"sex_at_birth\": \"male\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"errors\": {\n    \"qui_87\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"laboris_28e\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-9ca0c3ac-3822-4f28-8e89-8b31192113bc"
+                    },
+                    {
+                      "id": "798b6ff7-7441-4733-b6e9-774c924d6f34",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"date_of_birth\": \"<date>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"relationship_type\": \"partner\",\n  \"sex_at_birth\": \"male\",\n  \"email\": \"<null,string>\",\n  \"phone_number\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons"
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"elit_ed\": {}\n}",
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-798b6ff7-7441-4733-b6e9-774c924d6f34"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:15.000Z",
+                  "updatedAt": "2026-07-28T02:01:15.000Z",
+                  "uid": "35240-d33817f8-a692-4713-bde4-221c377eb13e"
+                },
+                {
+                  "name": "List associated persons",
+                  "id": "0a983b3c-1e27-4af3-b88a-073443dd9cc1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/employees/:employee_id/associated_persons?page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "employees",
+                        ":employee_id",
+                        "associated_persons"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "f49f22be-b133-4af8-a50a-169c7c843f6d",
+                          "key": "employee_id",
+                          "value": "ee_nk",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of all `associated person`'s for a specific `employee`. The `associated person`'s are returned sorted by creation date, with the most recent `associated person` appearing first."
+                  },
+                  "response": [
+                    {
+                      "id": "7dc116bf-8a33-496e-b1b0-242c9d0aa4d0",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"date_of_birth\": \"<date>\",\n      \"employee_id\": \"ee_[Iprdh\\\"|k*,\",\n      \"first_name\": \"<string>\",\n      \"id\": \"ap_E+feexgqi\",\n      \"last_name\": \"<string>\",\n      \"relationship_type\": \"other\",\n      \"sex_at_birth\": \"male\",\n      \"platform_id\": \"pt_E>(1yA-lZ\",\n      \"email\": \"<null,string>\",\n      \"phone_number\": \"<null,string>\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"date_of_birth\": \"<date>\",\n      \"employee_id\": \"ee_-!3+\",\n      \"first_name\": \"<string>\",\n      \"id\": \"ap_,]t66+cLdh\",\n      \"last_name\": \"<string>\",\n      \"relationship_type\": \"child\",\n      \"sex_at_birth\": \"male\",\n      \"platform_id\": \"pt_=/f\",\n      \"email\": \"<null,string>\",\n      \"phone_number\": \"<null,string>\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-7dc116bf-8a33-496e-b1b0-242c9d0aa4d0"
+                    },
+                    {
+                      "id": "e55f664a-9f3f-46bb-b743-de9b92a466b7",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/employees/:employee_id/associated_persons?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "employees",
+                            ":employee_id",
+                            "associated_persons"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "employee_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/problem+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"elit_ed\": {}\n}",
+                      "createdAt": "2026-07-28T02:01:15.000Z",
+                      "updatedAt": "2026-07-28T02:01:15.000Z",
+                      "uid": "35240-e55f664a-9f3f-46bb-b743-de9b92a466b7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:15.000Z",
+                  "updatedAt": "2026-07-28T02:01:15.000Z",
+                  "uid": "35240-0a983b3c-1e27-4af3-b88a-073443dd9cc1"
+                }
+              ],
+              "id": "abb05b61-34cb-49a9-a5b9-e1a18fd5795e",
+              "createdAt": "2026-07-28T02:01:15.000Z",
+              "updatedAt": "2026-07-28T02:01:15.000Z",
+              "uid": "35240-abb05b61-34cb-49a9-a5b9-e1a18fd5795e"
+            }
+          ],
+          "id": "2b3fa69b-f4f9-4b84-ad12-d08748006d57",
+          "createdAt": "2026-07-28T02:01:15.000Z",
+          "updatedAt": "2026-07-28T02:01:15.000Z",
+          "uid": "35240-2b3fa69b-f4f9-4b84-ad12-d08748006d57"
+        }
+      ],
+      "id": "4974787f-bbc6-4bb1-b5cd-753295a985a0",
+      "createdAt": "2026-07-28T02:01:15.000Z",
+      "updatedAt": "2026-07-28T02:01:15.000Z",
+      "uid": "35240-4974787f-bbc6-4bb1-b5cd-753295a985a0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

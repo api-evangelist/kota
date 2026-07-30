@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kota.io/api-reference, https://docs.kota.io/core-components/authentication,
+  https://docs.kota.io/embed/frontend-sdk
+description: >-
+  Kota runs a fully separate test environment on its own hostnames, selected by the API key prefix
+  rather than by a request parameter. Every developer product — REST API, Embed SDK and Hosted
+  sessions — has a test counterpart. Kota does not publish magic test identifiers, test cards or
+  fixture-trigger tooling in its public documentation; test data is provisioned per platform when
+  developer access is granted.
+modes:
+- mode: test
+  api_base_url: https://test.api.kota.io
+  sdk_url: https://test.js.kota.io/v1
+  key_prefix: pk_test_
+- mode: live
+  api_base_url: https://api.kota.io
+  sdk_url: https://js.kota.io/v1
+  key_prefix: pk_live_
+key_separation:
+  mechanism: API key prefix
+  description: >-
+    Test mode secret keys have the prefix pk_test_ and live mode secret keys have the prefix
+    pk_live_. The key determines the environment; there is no test-mode request flag.
+  guidance: >-
+    When going live, confirm the production environment is not loading the test Embed SDK from
+    test.js.kota.io.
+example_request: |
+  curl https://test.api.kota.io/employees/$employee_id \
+    -H "Authorization: Bearer <YOUR_API_SECRET_KEY>"
+access:
+  provisioning: >-
+    Developer/sandbox access is granted per platform. Request access via https://www.kota.io/embed
+    (Talk to us / demo flow) rather than self-serve signup.
+  self_serve: false
+not_published:
+  test_cards: No published test card numbers (card processing is delegated to Stripe).
+  magic_values: No published magic test identifiers or simulated decline values.
+  test_clocks: No published time-simulation or test-clock tooling.
+  fixtures: No published fixture or event-trigger CLI.
+event_testing:
+  replay: POST /events/{event_id}/replay re-delivers an existing event to webhook endpoints
+  retention: Events are retrievable via the API for 30 days

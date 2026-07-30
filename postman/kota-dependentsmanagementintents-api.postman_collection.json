@@ -1,0 +1,1140 @@
+{
+  "info": {
+    "_postman_id": "deaffa3c-7e3d-47b0-b8ac-7fb8f207e895",
+    "name": "API Reference Associated Persons dependentsManagementIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:25.000Z",
+    "updatedAt": "2026-07-28T02:01:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-deaffa3c-7e3d-47b0-b8ac-7fb8f207e895"
+  },
+  "item": [
+    {
+      "name": "dependents_management_intents",
+      "item": [
+        {
+          "name": "{dependents_management_intent_id}",
+          "item": [
+            {
+              "name": "associated_persons_eligibility",
+              "item": [
+                {
+                  "name": "Retrieve associated persons eligibility for a dependents management intent",
+                  "id": "0df81d38-addc-4b40-b793-f5db14314cce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/associated_persons_eligibility?page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id",
+                        "associated_persons_eligibility"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ac00c92-2256-46d7-b4dc-44ac02250c48",
+                          "key": "dependents_management_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all associated persons for the employee with their eligibility status for the specific policy/plan."
+                  },
+                  "response": [
+                    {
+                      "id": "451904eb-ce7e-4e3c-a7bc-90ddc19f0d1f",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/associated_persons_eligibility?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "associated_persons_eligibility"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"sex_at_birth\": \"male\",\n      \"relationship\": \"child\",\n      \"eligibility_status\": \"eligible\",\n      \"ineligibility_reason\": \"<string,null>\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"sex_at_birth\": \"female\",\n      \"relationship\": \"partner\",\n      \"eligibility_status\": \"ineligible\",\n      \"ineligibility_reason\": \"<string,null>\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-451904eb-ce7e-4e3c-a7bc-90ddc19f0d1f"
+                    },
+                    {
+                      "id": "92feff13-ee94-4f1b-b19e-03a9594ab249",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/associated_persons_eligibility?page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "associated_persons_eligibility"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-92feff13-ee94-4f1b-b19e-03a9594ab249"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-0df81d38-addc-4b40-b793-f5db14314cce"
+                }
+              ],
+              "id": "66288c57-ac99-4762-bbdc-18b48049c123",
+              "createdAt": "2026-07-28T02:01:26.000Z",
+              "updatedAt": "2026-07-28T02:01:26.000Z",
+              "uid": "35240-66288c57-ac99-4762-bbdc-18b48049c123"
+            },
+            {
+              "name": "dependents",
+              "item": [
+                {
+                  "name": "{associated_person_id}",
+                  "item": [
+                    {
+                      "name": "Remove a dependent from a Dependents Management Intent",
+                      "id": "65c15344-e3b0-4bfc-8f61-857359fb5ed9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents/:associated_person_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "dependents",
+                            ":associated_person_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7615beda-1e71-4f8c-a46c-f4fa87147837",
+                              "key": "dependents_management_intent_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "d138a20f-318a-4b25-a245-d597940c89a1",
+                              "key": "associated_person_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Removes a specific dependent from a Dependents Management Intent by their associated person ID. The operation returns the updated DMI state."
+                      },
+                      "response": [
+                        {
+                          "id": "a5d8ca50-f231-4801-84f7-f0f82857e56d",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "dependents_management_intents",
+                                ":dependents_management_intent_id",
+                                "dependents",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "dependents_management_intent_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"parent_intent_id\": \"<string>\",\n  \"parent_intent_type\": \"enrolment_intent\",\n  \"status\": \"action_required\",\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"pending_confirmation\",\n      \"coverage_selections\": null,\n      \"requirement_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"restricted\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"pricing\": {\n      \"type\": \"per_member\",\n      \"per_member\": {\n        \"currency\": \"awg\",\n        \"member_type_pricing\": [\n          {\n            \"code\": \"adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          },\n          {\n            \"code\": \"young_adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"ars\",\n        \"tiers\": [\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          },\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"product_information\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"coverage_options\": null,\n  \"action_required\": {\n    \"code\": \"remove_restricted_or_ineligible_dependents\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:01:26.000Z",
+                          "updatedAt": "2026-07-28T02:01:26.000Z",
+                          "uid": "35240-a5d8ca50-f231-4801-84f7-f0f82857e56d"
+                        },
+                        {
+                          "id": "badac1f1-ef08-4841-978f-4c6bee7789ed",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "dependents_management_intents",
+                                ":dependents_management_intent_id",
+                                "dependents",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "dependents_management_intent_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                          "createdAt": "2026-07-28T02:01:26.000Z",
+                          "updatedAt": "2026-07-28T02:01:26.000Z",
+                          "uid": "35240-badac1f1-ef08-4841-978f-4c6bee7789ed"
+                        },
+                        {
+                          "id": "dcb3b484-3319-4f54-958f-8291078ded27",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents/:associated_person_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "dependents_management_intents",
+                                ":dependents_management_intent_id",
+                                "dependents",
+                                ":associated_person_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "dependents_management_intent_id"
+                                },
+                                {
+                                  "key": "associated_person_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                          "createdAt": "2026-07-28T02:01:26.000Z",
+                          "updatedAt": "2026-07-28T02:01:26.000Z",
+                          "uid": "35240-dcb3b484-3319-4f54-958f-8291078ded27"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-65c15344-e3b0-4bfc-8f61-857359fb5ed9"
+                    }
+                  ],
+                  "id": "af62b82a-cc19-4859-9a59-1ff899606bb8",
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-af62b82a-cc19-4859-9a59-1ff899606bb8"
+                },
+                {
+                  "name": "Add dependents to a dependents management intent",
+                  "id": "8227ab3d-3caf-4a72-9c20-9805b6b6ff21",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"associated_person_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dependent_coverage_selections\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id",
+                        "dependents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8fb971f6-fc50-419d-8dee-9537f30dc224",
+                          "key": "dependents_management_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Adds one or more existing associated persons as dependents to a dependents management intent."
+                  },
+                  "response": [
+                    {
+                      "id": "b32d65ec-9edc-47cf-a5f5-bbdc18936c96",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"associated_person_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dependent_coverage_selections\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "dependents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"parent_intent_id\": \"<string>\",\n  \"parent_intent_type\": \"enrolment_intent\",\n  \"status\": \"action_required\",\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"pending_confirmation\",\n      \"coverage_selections\": null,\n      \"requirement_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"restricted\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"pricing\": {\n      \"type\": \"per_member\",\n      \"per_member\": {\n        \"currency\": \"awg\",\n        \"member_type_pricing\": [\n          {\n            \"code\": \"adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          },\n          {\n            \"code\": \"young_adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"ars\",\n        \"tiers\": [\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          },\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"product_information\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"coverage_options\": null,\n  \"action_required\": {\n    \"code\": \"remove_restricted_or_ineligible_dependents\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-b32d65ec-9edc-47cf-a5f5-bbdc18936c96"
+                    },
+                    {
+                      "id": "0755a001-38c8-4f09-8407-5d6353a42f91",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"associated_person_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dependent_coverage_selections\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "dependents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-0755a001-38c8-4f09-8407-5d6353a42f91"
+                    },
+                    {
+                      "id": "ef5b386e-bcd2-4a2d-99e7-064853ac9c2d",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"associated_person_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dependent_coverage_selections\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": null\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionRequest detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/dependents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "dependents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-ef5b386e-bcd2-4a2d-99e7-064853ac9c2d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-8227ab3d-3caf-4a72-9c20-9805b6b6ff21"
+                }
+              ],
+              "id": "369cd448-7b88-494d-8043-307b16b8958d",
+              "createdAt": "2026-07-28T02:01:26.000Z",
+              "updatedAt": "2026-07-28T02:01:26.000Z",
+              "uid": "35240-369cd448-7b88-494d-8043-307b16b8958d"
+            },
+            {
+              "name": "confirm",
+              "item": [
+                {
+                  "name": "Confirm dependent list",
+                  "id": "25e84b0a-4d83-4d02-badb-cbf29676aedc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/confirm",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id",
+                        "confirm"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bd94d9cd-6e04-4c58-a7d5-9c4d4740e1bd",
+                          "key": "dependents_management_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Submits the finalized dependent list for processing. Call this endpoint after adding all dependents to the intent. The system validates the list and transitions the intent to `processing` status. If any dependents are marked as `ineligible` or `restricted`, they must be removed before confirmation. The parent intent's action deadline must not have passed."
+                  },
+                  "response": [
+                    {
+                      "id": "cb2a408c-b20b-42b1-8bef-d38902cf4665",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-cb2a408c-b20b-42b1-8bef-d38902cf4665"
+                    },
+                    {
+                      "id": "53968646-0e8e-4d2d-9069-312e78f0f0de",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-53968646-0e8e-4d2d-9069-312e78f0f0de"
+                    },
+                    {
+                      "id": "08253114-c1c1-4b11-83a0-5de8bb51dbc1",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/confirm",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "confirm"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-08253114-c1c1-4b11-83a0-5de8bb51dbc1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-25e84b0a-4d83-4d02-badb-cbf29676aedc"
+                }
+              ],
+              "id": "8c7db1a6-4740-4312-b6c6-52711c1064fc",
+              "createdAt": "2026-07-28T02:01:26.000Z",
+              "updatedAt": "2026-07-28T02:01:26.000Z",
+              "uid": "35240-8c7db1a6-4740-4312-b6c6-52711c1064fc"
+            },
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel the dependents management intent",
+                  "id": "d4a563c1-4e00-4bfa-8447-2280d9d143c4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a5578069-e7e7-40b1-a48a-9431b77a644f",
+                          "key": "dependents_management_intent_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Cancels the `dependents_management_intent` in case an employee decides not to proceed with changes to their dependents. Canceling is only allowed from `action_required` status. If the intent is already `canceled`, the operation succeeds without changes. After canceling, a new dependents management intent can be created from the parent intent."
+                  },
+                  "response": [
+                    {
+                      "id": "bb2d5945-07cf-4c7c-ac46-623be85f21c6",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-bb2d5945-07cf-4c7c-ac46-623be85f21c6"
+                    },
+                    {
+                      "id": "da420b12-85e3-42ae-a6c6-a38dd097f73f",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-da420b12-85e3-42ae-a6c6-a38dd097f73f"
+                    },
+                    {
+                      "id": "59c04476-a896-4c9e-8d10-60ca00b22a24",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dependents_management_intents",
+                            ":dependents_management_intent_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dependents_management_intent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:26.000Z",
+                      "updatedAt": "2026-07-28T02:01:26.000Z",
+                      "uid": "35240-59c04476-a896-4c9e-8d10-60ca00b22a24"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-d4a563c1-4e00-4bfa-8447-2280d9d143c4"
+                }
+              ],
+              "id": "3827d3a8-2bcc-4387-b647-47365f7b5816",
+              "createdAt": "2026-07-28T02:01:26.000Z",
+              "updatedAt": "2026-07-28T02:01:26.000Z",
+              "uid": "35240-3827d3a8-2bcc-4387-b647-47365f7b5816"
+            },
+            {
+              "name": "Retrieve a dependents management intent",
+              "id": "46af51ff-7245-4620-8418-526e99ce16c9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dependents_management_intents",
+                    ":dependents_management_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1e778e58-10c9-4e6f-a7d6-8182379ecd0c",
+                      "key": "dependents_management_intent_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `dependents_management_intent` object by ID."
+              },
+              "response": [
+                {
+                  "id": "f1d48b21-8a7e-48c8-8cb0-b40d49f9f375",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dependents_management_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"parent_intent_id\": \"<string>\",\n  \"parent_intent_type\": \"enrolment_intent\",\n  \"status\": \"action_required\",\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"pending_confirmation\",\n      \"coverage_selections\": null,\n      \"requirement_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"status\": \"restricted\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"<string>\",\n          \"options\": [\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            },\n            {\n              \"option_id\": \"<string>\",\n              \"sub_options\": [\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                },\n                {\n                  \"value\": \"<Circular reference to #/components/schemas/SelectedOptionResponse detected>\"\n                }\n              ]\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"pricing\": {\n      \"type\": \"per_member\",\n      \"per_member\": {\n        \"currency\": \"awg\",\n        \"member_type_pricing\": [\n          {\n            \"code\": \"adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          },\n          {\n            \"code\": \"young_adult\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\"\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"ars\",\n        \"tiers\": [\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          },\n          {\n            \"code\": \"single\",\n            \"display_name\": \"<string>\",\n            \"monthly_premium\": \"<double>\",\n            \"annual_premium\": \"<double>\",\n            \"display_dependent_requirements\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"product_information\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"coverage_options\": null,\n  \"action_required\": {\n    \"code\": \"remove_restricted_or_ineligible_dependents\",\n    \"reason\": \"<string>\",\n    \"reason_description\": \"<string>\",\n    \"due_by\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-f1d48b21-8a7e-48c8-8cb0-b40d49f9f375"
+                },
+                {
+                  "id": "c8eee51d-2b8c-4075-885e-a923fb97ee73",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dependents_management_intents/:dependents_management_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dependents_management_intents",
+                        ":dependents_management_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dependents_management_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:26.000Z",
+                  "updatedAt": "2026-07-28T02:01:26.000Z",
+                  "uid": "35240-c8eee51d-2b8c-4075-885e-a923fb97ee73"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:26.000Z",
+              "updatedAt": "2026-07-28T02:01:26.000Z",
+              "uid": "35240-46af51ff-7245-4620-8418-526e99ce16c9"
+            }
+          ],
+          "id": "485674d6-fb0f-4cda-9739-a9efa13d7e7d",
+          "createdAt": "2026-07-28T02:01:26.000Z",
+          "updatedAt": "2026-07-28T02:01:26.000Z",
+          "uid": "35240-485674d6-fb0f-4cda-9739-a9efa13d7e7d"
+        }
+      ],
+      "id": "06697ea7-7e85-4a6b-bfd5-878b26522709",
+      "createdAt": "2026-07-28T02:01:26.000Z",
+      "updatedAt": "2026-07-28T02:01:26.000Z",
+      "uid": "35240-06697ea7-7e85-4a6b-bfd5-878b26522709"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

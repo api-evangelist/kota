@@ -1,0 +1,688 @@
+{
+  "info": {
+    "_postman_id": "93f004ef-0610-4f89-bd2c-b0d831339b66",
+    "name": "API Reference Associated Persons requirements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:25.000Z",
+    "updatedAt": "2026-07-28T02:02:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-93f004ef-0610-4f89-bd2c-b0d831339b66"
+  },
+  "item": [
+    {
+      "name": "requirements",
+      "item": [
+        {
+          "name": "{requirement_id}",
+          "item": [
+            {
+              "name": "Get a requirement",
+              "id": "7d551a97-5950-4041-aa73-53ddf0cd126f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requirements/:requirement_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requirements",
+                    ":requirement_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c42b74cd-1e64-470c-9d0c-3ad94509c1b1",
+                      "key": "requirement_id",
+                      "value": "<string>",
+                      "description": "(Required) A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789)."
+                    }
+                  ]
+                },
+                "description": "Retrieve a requirement's current state and the schema of the fields it needs. The response reports whether the requirement has already been fulfilled (and when), and includes the JSON Schema describing the fields to collect."
+              },
+              "response": [
+                {
+                  "id": "0062cf7f-da9d-431e-b7ff-a0788c4bc24c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"is_fulfilled\": \"<boolean>\",\n  \"fulfilled_at\": \"<dateTime>\",\n  \"schema\": {}\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-0062cf7f-da9d-431e-b7ff-a0788c4bc24c"
+                },
+                {
+                  "id": "8da0b8c2-4edf-4e10-a2a9-ed7e3cc17d8c",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-8da0b8c2-4edf-4e10-a2a9-ed7e3cc17d8c"
+                },
+                {
+                  "id": "76dda52d-aeba-46ea-92a1-bf2f6806be76",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-76dda52d-aeba-46ea-92a1-bf2f6806be76"
+                },
+                {
+                  "id": "477109e2-ecb6-453a-aaca-2e0bdf42cd72",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-477109e2-ecb6-453a-aaca-2e0bdf42cd72"
+                },
+                {
+                  "id": "2e7eefbf-e2a8-46bc-b467-19953314da0e",
+                  "name": "An error occurred while processing your request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-2e7eefbf-e2a8-46bc-b467-19953314da0e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:25.000Z",
+              "updatedAt": "2026-07-28T02:02:25.000Z",
+              "uid": "35240-7d551a97-5950-4041-aa73-53ddf0cd126f"
+            },
+            {
+              "name": "Submit answers",
+              "id": "a7ddf262-ad05-4bb8-ac8e-68447c9715b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"answers\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/requirements/:requirement_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requirements",
+                    ":requirement_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e24bff28-c9c8-43d8-831a-d4099bccd998",
+                      "key": "requirement_id",
+                      "value": "<string>",
+                      "description": "(Required) A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789)."
+                    }
+                  ]
+                },
+                "description": "Submit answers for a requirement. Answers are merged with any previously submitted and re-evaluated against the requirement's schema: it becomes `fulfilled` once all required fields are satisfied, otherwise it stays `in_progress` and the response lists the fields still outstanding."
+              },
+              "response": [
+                {
+                  "id": "2ec3d21b-0add-4cae-8eee-104755be63c6",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"in_progress\",\n  \"schema\": {},\n  \"outstanding_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-2ec3d21b-0add-4cae-8eee-104755be63c6"
+                },
+                {
+                  "id": "f70133dc-b649-4e42-942e-8b7201338893",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\",\n  \"errors\": [\n    {\n      \"field_id\": \"<string>\",\n      \"error_type\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"field_id\": \"<string>\",\n      \"error_type\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"unknown_fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-f70133dc-b649-4e42-942e-8b7201338893"
+                },
+                {
+                  "id": "278982b8-ff29-4584-8ecc-c4bb429f1b20",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-278982b8-ff29-4584-8ecc-c4bb429f1b20"
+                },
+                {
+                  "id": "242f7479-e8a1-4cc1-a752-2b4ad749375f",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-242f7479-e8a1-4cc1-a752-2b4ad749375f"
+                },
+                {
+                  "id": "c7c15d43-4bca-4f16-94a5-0a0aa3336f92",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-c7c15d43-4bca-4f16-94a5-0a0aa3336f92"
+                },
+                {
+                  "id": "31c83c1a-2528-4ca8-ab2a-4d5e6faeeca0",
+                  "name": "An error occurred while processing your request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"answers\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requirements/:requirement_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requirements",
+                        ":requirement_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requirement_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"error_code\": \"<string>\",\n  \"trace_id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:25.000Z",
+                  "updatedAt": "2026-07-28T02:02:25.000Z",
+                  "uid": "35240-31c83c1a-2528-4ca8-ab2a-4d5e6faeeca0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:25.000Z",
+              "updatedAt": "2026-07-28T02:02:25.000Z",
+              "uid": "35240-a7ddf262-ad05-4bb8-ac8e-68447c9715b6"
+            }
+          ],
+          "id": "e7a71af1-68da-4cbd-b88f-257f62bc43f1",
+          "createdAt": "2026-07-28T02:02:25.000Z",
+          "updatedAt": "2026-07-28T02:02:25.000Z",
+          "uid": "35240-e7a71af1-68da-4cbd-b88f-257f62bc43f1"
+        }
+      ],
+      "id": "fc929ca4-b2f3-4e2f-8ce4-e554ef4adca8",
+      "createdAt": "2026-07-28T02:02:25.000Z",
+      "updatedAt": "2026-07-28T02:02:25.000Z",
+      "uid": "35240-fc929ca4-b2f3-4e2f-8ce4-e554ef4adca8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kota.io/embed/frontend-sdk, npm registry search, PyPI
+description: >-
+  Kota ships one first-party client library: Kota.js, the Embed SDK. It is deliberately CDN-only —
+  the docs instruct integrators to load it directly from js.kota.io (or test.js.kota.io) rather than
+  bundling or self-hosting it, so that compliance updates ship automatically. No Kota packages were
+  found on npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist or crates.io; server-side
+  integration is direct REST against api.kota.io.
+packages:
+- language: javascript
+  registry: cdn
+  name: Kota.js (Embed SDK)
+  url: https://js.kota.io/v1
+  install: <script src="https://js.kota.io/v1"></script>
+  test_url: https://test.js.kota.io/v1
+  test_install: <script src="https://test.js.kota.io/v1"></script>
+  official: true
+  docs: https://docs.kota.io/embed/sdk-reference
+  entry_points:
+  - Kota.Health.employer()
+  - Kota.Health.employee()
+  distribution_note: >-
+    Must be loaded directly from js.kota.io / test.js.kota.io. The docs explicitly forbid bundling
+    or self-hosting so that compliance and regulatory updates apply automatically.
+registries_probed:
+- registry: npm
+  result: no first-party Kota package (@kota/*, kota-sdk, kota.js all 404; the unrelated `kota`
+    package is not Kota's)
+- registry: pypi
+  result: no first-party Kota package (the existing `kota` project is unrelated)
+- registry: maven-central
+  result: none found
+- registry: nuget
+  result: none found
+- registry: pkg.go.dev
+  result: none found
+- registry: rubygems
+  result: none found
+- registry: packagist
+  result: none found
+- registry: crates.io
+  result: none found

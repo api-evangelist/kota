@@ -1,0 +1,239 @@
+{
+  "info": {
+    "_postman_id": "e22996f8-565a-4e77-b4ec-33dae07ca34c",
+    "name": "API Reference Associated Persons Embed Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:26.000Z",
+    "updatedAt": "2026-07-28T02:01:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e22996f8-565a-4e77-b4ec-33dae07ca34c"
+  },
+  "item": [
+    {
+      "name": "embed",
+      "item": [
+        {
+          "name": "sessions",
+          "item": [
+            {
+              "name": "Get Embedded SDK token",
+              "id": "8c3766ce-7fac-42ae-a3e0-a77ea8a278eb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"er_b<N\",\n  \"employee_id\": \"ee_G\",\n  \"external_customer_id\": \"<null,string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/embed/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "embed",
+                    "sessions"
+                  ]
+                },
+                "description": "Retrieve a `token` to authenticate an `employer` or `employee` with the Kota Embedded SDK."
+              },
+              "response": [
+                {
+                  "id": "fd399caa-3a4b-4f2e-b938-3417383d44f0",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employer_id\": \"er_b<N\",\n  \"employee_id\": \"ee_G\",\n  \"external_customer_id\": \"<null,string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/embed/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "embed",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"expiry\": \"<dateTime>\",\n  \"token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-fd399caa-3a4b-4f2e-b938-3417383d44f0"
+                },
+                {
+                  "id": "ecde059a-4a44-42ce-97c9-73adf569b572",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employer_id\": \"er_b<N\",\n  \"employee_id\": \"ee_G\",\n  \"external_customer_id\": \"<null,string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/embed/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "embed",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\",\n  \"errors\": {\n    \"Lorem_024\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"culpab\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-ecde059a-4a44-42ce-97c9-73adf569b572"
+                },
+                {
+                  "id": "034b40d1-d58b-4964-ad6a-5a72a328797d",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employer_id\": \"er_b<N\",\n  \"employee_id\": \"ee_G\",\n  \"external_customer_id\": \"<null,string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/embed/sessions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "embed",
+                        "sessions"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:27.000Z",
+                  "updatedAt": "2026-07-28T02:01:27.000Z",
+                  "uid": "35240-034b40d1-d58b-4964-ad6a-5a72a328797d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:27.000Z",
+              "updatedAt": "2026-07-28T02:01:27.000Z",
+              "uid": "35240-8c3766ce-7fac-42ae-a3e0-a77ea8a278eb"
+            }
+          ],
+          "id": "1c7733c8-cfa4-4239-9292-f036b64e33c8",
+          "createdAt": "2026-07-28T02:01:27.000Z",
+          "updatedAt": "2026-07-28T02:01:27.000Z",
+          "uid": "35240-1c7733c8-cfa4-4239-9292-f036b64e33c8"
+        }
+      ],
+      "id": "1b4f4dde-972d-4408-b57c-b044dcce76dd",
+      "createdAt": "2026-07-28T02:01:27.000Z",
+      "updatedAt": "2026-07-28T02:01:27.000Z",
+      "uid": "35240-1b4f4dde-972d-4408-b57c-b044dcce76dd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

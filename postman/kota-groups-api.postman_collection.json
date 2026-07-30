@@ -1,0 +1,1313 @@
+{
+  "info": {
+    "_postman_id": "2e05bdfa-268c-4517-88aa-a9a9bb426ebe",
+    "name": "API Reference Associated Persons groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:45.000Z",
+    "updatedAt": "2026-07-28T02:01:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2e05bdfa-268c-4517-88aa-a9a9bb426ebe"
+  },
+  "item": [
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "{group_id}",
+          "item": [
+            {
+              "name": "employees",
+              "item": [
+                {
+                  "name": "List employees in a group",
+                  "id": "228449f6-43c3-4daa-b432-90619b1e6f48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id/employees?employee_id=<string>&page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id",
+                        "employees"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by employee ID.",
+                          "key": "employee_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "06a10d26-61d2-47fa-893b-42c774f7f3cc",
+                          "key": "group_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of `employees` in a `group` with their policies and enrolments. The `employees` are returned sorted by addition date, with the most recently added `employees` appearing first."
+                  },
+                  "response": [
+                    {
+                      "id": "80e94a78-ad44-4998-90fa-5c05c68917fa",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/employees?employee_id=<string>&page=<integer>&page_size=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "employees"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by employee ID.",
+                              "key": "employee_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The page of results to return. Defaults to 1 if not provided.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"policies\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ],\n      \"enrolments\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ],\n      \"eligibility_status\": \"ineligible\",\n      \"enrolment_status\": \"enrolment_available\",\n      \"scheduled_group_transitions\": [\n        {\n          \"new_group_id\": \"<string>\",\n          \"scheduled_date\": \"<date>\"\n        },\n        {\n          \"new_group_id\": \"<string>\",\n          \"scheduled_date\": \"<date>\"\n        }\n      ],\n      \"object\": \"<string>\",\n      \"desired_policy_start_date\": \"<string,null-date>\",\n      \"enrolment_date\": \"<string,null-date>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"policies\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ],\n      \"enrolments\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ],\n      \"eligibility_status\": \"pending\",\n      \"enrolment_status\": \"enrolling\",\n      \"scheduled_group_transitions\": [\n        {\n          \"new_group_id\": \"<string>\",\n          \"scheduled_date\": \"<date>\"\n        },\n        {\n          \"new_group_id\": \"<string>\",\n          \"scheduled_date\": \"<date>\"\n        }\n      ],\n      \"object\": \"<string>\",\n      \"desired_policy_start_date\": \"<string,null-date>\",\n      \"enrolment_date\": \"<string,null-date>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-80e94a78-ad44-4998-90fa-5c05c68917fa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-228449f6-43c3-4daa-b432-90619b1e6f48"
+                },
+                {
+                  "name": "Add an employee to a group",
+                  "id": "d7645175-d963-4255-b509-b778344f9746",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                        "key": "Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employee_id\": \"<string>\",\n  \"create_enrolment_intents\": \"<boolean,null>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id/employees",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id",
+                        "employees"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bf390494-6e03-47d1-b8e5-0507e4d977f0",
+                          "key": "group_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Adds an existing employee to a `group`. The employee must belong to the same employer as the `group`. If there is a `group_policy` associated with the `group`, a corresponding `enrolment_intent` will be created for the employee."
+                  },
+                  "response": [
+                    {
+                      "id": "cf7ae93e-e901-4451-9ac5-be9fef6ed894",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\",\n  \"create_enrolment_intents\": \"<boolean,null>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"policies\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"enrolments\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"eligibility_status\": \"pending\",\n  \"enrolment_status\": \"enrolling\",\n  \"scheduled_group_transitions\": [\n    {\n      \"new_group_id\": \"<string>\",\n      \"scheduled_date\": \"<date>\"\n    },\n    {\n      \"new_group_id\": \"<string>\",\n      \"scheduled_date\": \"<date>\"\n    }\n  ],\n  \"object\": \"<string>\",\n  \"desired_policy_start_date\": \"<string,null-date>\",\n  \"enrolment_date\": \"<string,null-date>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-cf7ae93e-e901-4451-9ac5-be9fef6ed894"
+                    },
+                    {
+                      "id": "c5c9f305-0e72-4d3a-b35c-f9243c31fa18",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\",\n  \"create_enrolment_intents\": \"<boolean,null>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-c5c9f305-0e72-4d3a-b35c-f9243c31fa18"
+                    },
+                    {
+                      "id": "3b7ea8d4-e8f0-44e0-9129-1a349b1df2fa",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                            "key": "Idempotency-Key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\",\n  \"create_enrolment_intents\": \"<boolean,null>\",\n  \"policy_configuration\": {\n    \"desired_policy_start_date\": \"<string,null-date>\",\n    \"enrolment_date\": \"<string,null-date>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/employees",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "employees"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-3b7ea8d4-e8f0-44e0-9129-1a349b1df2fa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-d7645175-d963-4255-b509-b778344f9746"
+                }
+              ],
+              "id": "46360171-65f5-4203-9457-1e39bb4d81c6",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-46360171-65f5-4203-9457-1e39bb4d81c6"
+            },
+            {
+              "name": "eligibility_check",
+              "item": [
+                {
+                  "name": "Check employee eligibility for a group",
+                  "id": "bad972c6-4e0f-4bd2-93b4-f12aa0be1678",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employee_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id/eligibility_check",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id",
+                        "eligibility_check"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7d25557f-9dee-46b1-90a3-432cd125d862",
+                          "key": "group_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Checks whether an `employee` qualifies for a `group` without adding them to it. This is a dry-run eligibility check \u2014 the employee is not enrolled or added. The response includes provider and plan information."
+                  },
+                  "response": [
+                    {
+                      "id": "14426d00-9d6a-448f-9c6b-a565ab8be7ae",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/eligibility_check",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "eligibility_check"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"eligibility_status\": \"eligible\",\n  \"reasons\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"provider\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"logo_url\": \"<string>\"\n  },\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-14426d00-9d6a-448f-9c6b-a565ab8be7ae"
+                    },
+                    {
+                      "id": "95df1fd3-01a2-41af-a4e4-0b421c8c2e2c",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/eligibility_check",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "eligibility_check"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-95df1fd3-01a2-41af-a4e4-0b421c8c2e2c"
+                    },
+                    {
+                      "id": "5237d06f-cd21-41c8-96e0-7e6b35821a51",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"employee_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/eligibility_check",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "eligibility_check"
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:01:46.000Z",
+                      "updatedAt": "2026-07-28T02:01:46.000Z",
+                      "uid": "35240-5237d06f-cd21-41c8-96e0-7e6b35821a51"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-bad972c6-4e0f-4bd2-93b4-f12aa0be1678"
+                }
+              ],
+              "id": "8c85af40-d8c2-4a68-a330-dc1e242a17a7",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-8c85af40-d8c2-4a68-a330-dc1e242a17a7"
+            },
+            {
+              "name": "Retrieve a group",
+              "id": "fa56d029-cc4d-451f-abca-9f0b74ad4662",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups/:group_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups",
+                    ":group_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "baec302d-dd65-4723-84c0-b1d1ce9a0776",
+                      "key": "group_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `group` object."
+              },
+              "response": [
+                {
+                  "id": "a0154902-bb17-4753-b2e0-c3605dad13bc",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"ready\",\n  \"group_type\": \"single\",\n  \"enrolment_type\": \"automatic\",\n  \"employer_id\": \"<string>\",\n  \"group_policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_quote_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_policy_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string,null>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-a0154902-bb17-4753-b2e0-c3605dad13bc"
+                },
+                {
+                  "id": "95bac7b1-51f3-4129-8bf2-e88c738fe764",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-95bac7b1-51f3-4129-8bf2-e88c738fe764"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-fa56d029-cc4d-451f-abca-9f0b74ad4662"
+            },
+            {
+              "name": "Update a group",
+              "id": "4193a274-7f73-485c-8f31-8bae71422b3d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups/:group_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups",
+                    ":group_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b0e3dedc-6655-4e3c-9827-731351a8b31e",
+                      "key": "group_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates the specified `group`. Only `name` and `description` can be updated. Any parameters not provided will be left unchanged."
+              },
+              "response": [
+                {
+                  "id": "f484e466-27f6-48ff-958a-55b2a7392a7d",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"ready\",\n  \"group_type\": \"single\",\n  \"enrolment_type\": \"automatic\",\n  \"employer_id\": \"<string>\",\n  \"group_policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_quote_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_policy_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string,null>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-f484e466-27f6-48ff-958a-55b2a7392a7d"
+                },
+                {
+                  "id": "d8c1bf0c-1a4c-46e7-9f6f-4e9b37dd8f2e",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"enim_98\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"deserunt1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-d8c1bf0c-1a4c-46e7-9f6f-4e9b37dd8f2e"
+                },
+                {
+                  "id": "15f845ad-a6f1-41a8-9711-06888bf1f0b9",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:46.000Z",
+                  "updatedAt": "2026-07-28T02:01:46.000Z",
+                  "uid": "35240-15f845ad-a6f1-41a8-9711-06888bf1f0b9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-4193a274-7f73-485c-8f31-8bae71422b3d"
+            }
+          ],
+          "id": "3eff9f26-8413-4b35-99b3-43984a6b97c0",
+          "createdAt": "2026-07-28T02:01:46.000Z",
+          "updatedAt": "2026-07-28T02:01:46.000Z",
+          "uid": "35240-3eff9f26-8413-4b35-99b3-43984a6b97c0"
+        },
+        {
+          "name": "List all groups",
+          "id": "c369f095-392e-4156-ac4e-b238039545d2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/groups?employer_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ],
+              "query": [
+                {
+                  "description": "Filter by employer ID.",
+                  "key": "employer_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `ready`, `archived`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of your `groups`. The `groups` are returned sorted by creation date, with the most recent `groups` appearing first."
+          },
+          "response": [
+            {
+              "id": "b3ffca76-8091-4e24-b1a8-e2eca940f558",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/groups?employer_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by employer ID.",
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `ready`, `archived`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"pending\",\n      \"group_type\": \"bundled\",\n      \"enrolment_type\": \"manual\",\n      \"employer_id\": \"<string>\",\n      \"group_policy_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"group_quote_intent_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"group_policy_intent_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string,null>\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"ready\",\n      \"group_type\": \"single\",\n      \"enrolment_type\": \"automatic\",\n      \"employer_id\": \"<string>\",\n      \"group_policy_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"group_quote_intent_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"group_policy_intent_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string,null>\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-b3ffca76-8091-4e24-b1a8-e2eca940f558"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:46.000Z",
+          "updatedAt": "2026-07-28T02:01:46.000Z",
+          "uid": "35240-c369f095-392e-4156-ac4e-b238039545d2"
+        },
+        {
+          "name": "Create a group",
+          "id": "d1f15a77-de33-4bf7-b7b5-92b940345749",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employer_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "groups"
+              ]
+            },
+            "description": "Creates a `group` for the specified `employer`."
+          },
+          "response": [
+            {
+              "id": "c82f3626-fb9a-4d14-aa4a-9196542c1e37",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"ready\",\n  \"group_type\": \"single\",\n  \"enrolment_type\": \"automatic\",\n  \"employer_id\": \"<string>\",\n  \"group_policy_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_quote_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_policy_intent_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string,null>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-c82f3626-fb9a-4d14-aa4a-9196542c1e37"
+            },
+            {
+              "id": "4a583fe0-b9e2-4eb0-813e-426fcd12e5b3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"enim_98\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"deserunt1\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-4a583fe0-b9e2-4eb0-813e-426fcd12e5b3"
+            },
+            {
+              "id": "9f5fc390-9655-4ae8-9314-474f74030231",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employer_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "groups"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+              "createdAt": "2026-07-28T02:01:46.000Z",
+              "updatedAt": "2026-07-28T02:01:46.000Z",
+              "uid": "35240-9f5fc390-9655-4ae8-9314-474f74030231"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:46.000Z",
+          "updatedAt": "2026-07-28T02:01:46.000Z",
+          "uid": "35240-d1f15a77-de33-4bf7-b7b5-92b940345749"
+        }
+      ],
+      "id": "7e0e1c28-e086-4dea-b9e0-d9dbee06e02b",
+      "createdAt": "2026-07-28T02:01:46.000Z",
+      "updatedAt": "2026-07-28T02:01:46.000Z",
+      "uid": "35240-7e0e1c28-e086-4dea-b9e0-d9dbee06e02b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/kota-openapi-original.json, https://docs.kota.io/
+description: >-
+  Packaged Agent Skills for the Kota API — one per marquee flow. Every operationId referenced in
+  these skills was verified verbatim against the published OpenAPI at
+  https://api.kota.io/openapi.json. Kota publishes no AGENTS.md or first-party agent skills; these
+  are generated from the spec plus the conventions, errors and webhook artifacts in this repo.
+api: openapi/kota-openapi-original.json
+conventions: conventions/kota-conventions.yml
+errors: errors/kota-problem-types.yml
+skills:
+- file: kota-sync-employers-and-employees.md
+  name: Sync employers and employees to Kota
+  api: openapi/kota-openapi-original.json
+  operations: [CreateEmployer, ListEmployers, RetrieveEmployer, UpdateEmployer, OffboardEmployer,
+    CreateEmployee, ListEmployees, RetrieveEmployee, UpdateEmployee, OffboardEmployee,
+    CancelOffboardingEmployee]
+- file: kota-quote-and-activate-group-policy.md
+  name: Quote and activate a group policy
+  api: openapi/kota-openapi-original.json
+  operations: [CreateGroup, ListGroups, RetrieveGroup, UpdateGroup, AddEmployeeToGroup,
+    ListGroupEmployees, CreateGroupQuoteIntent, ListGroupQuoteIntentRequirements,
+    RetrieveGroupQuoteIntent, GetGroupQuoteIntentQuote, RejectGroupQuoteIntent,
+    CreateGroupPolicyIntent, ListGroupPolicyIntentRequirements, RetrieveGroupPolicyIntent,
+    ListGroupPolicies, RetrieveGroupPolicy]
+- file: kota-enrol-employee-with-dependants.md
+  name: Enrol an employee and manage dependants
+  api: openapi/kota-openapi-original.json
+  operations: [CheckGroupEligibility, CreateEnrolmentIntent, RetrieveEnrolmentIntent,
+    ListEnrolmentIntentRequirements, UpdateEnrolmentIntentConfiguration,
+    SubmitEnrolmentIntentCoverageSelections, CreateDependentsManagementIntentForEnrolmentIntent,
+    CreateAssociatedPerson, ListAssociatedPersons, AddDependentsToDependentsManagementIntent,
+    RemoveDependentFromDependentsManagementIntent, GetAssociatedPersonsEligibility,
+    ConfirmDependentsManagementIntent, CancelDependentsManagementIntent, ConfirmEnrolmentIntent,
+    RejectEnrolmentIntent, RetrievePolicy, ListEmployeeHealthInsurancePolicies]
+- file: kota-embed-benefits-ui.md
+  name: Embed the Kota benefits UI
+  api: openapi/kota-openapi-original.json
+  operations: [CreateEmbedSession, CreateHostedSession, RetrieveEmployer, RetrieveEmployee]
+- file: kota-reconcile-contribution-reports.md
+  name: Reconcile and finalize contribution reports
+  api: openapi/kota-openapi-original.json
+  operations: [ListContributionReports, RetrieveContributionReport,
+    ListEmployeeBreakdownsForContributionReport, RetrieveEmployeeBreakdownForContributionReport,
+    FinalizeContributionReport, RetrieveEmployee]
+- file: kota-consume-events-and-webhooks.md
+  name: Consume Kota events and webhooks
+  api: openapi/kota-openapi-original.json
+  operations: [ListEvents, RetrieveEvent, ReplayEvent, ListWebhookEndpoints,
+    RetrieveWebhookEndpoint]

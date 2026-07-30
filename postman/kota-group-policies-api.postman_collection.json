@@ -1,0 +1,285 @@
+{
+  "info": {
+    "_postman_id": "b9298908-7898-4a71-8fe8-51c57789686c",
+    "name": "API Reference Associated Persons Group Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:36.000Z",
+    "updatedAt": "2026-07-28T02:01:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b9298908-7898-4a71-8fe8-51c57789686c"
+  },
+  "item": [
+    {
+      "name": "group_policies",
+      "item": [
+        {
+          "name": "{group_policy_id}",
+          "item": [
+            {
+              "name": "Retrieve a group policy",
+              "id": "7879fc97-9e8c-48f5-acd5-33b906b8bb84",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_policies",
+                    ":group_policy_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "46f9133f-d14f-4d4d-a306-12fbda09a81e",
+                      "key": "group_policy_id",
+                      "value": "gp_;J3s}H7ap",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `group_policy` object."
+              },
+              "response": [
+                {
+                  "id": "b0ba5a1d-0af2-4c04-ac8a-25570e959d39",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_policies",
+                        ":group_policy_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_policy_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"<string>\",\n      \"type\": \"product_information\"\n    },\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"<string>\",\n      \"type\": \"intermediary_commission\"\n    }\n  ],\n  \"id\": \"gp_Hkqy@07/W9\",\n  \"plan\": {\n    \"currency\": \"xpf\",\n    \"description\": \"<string>\",\n    \"documents\": [\n      {\n        \"link\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"ipid\"\n      },\n      {\n        \"link\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"terms_and_conditions\"\n      }\n    ],\n    \"id\": \"pl_.jc,\",\n    \"name\": \"<string>\"\n  },\n  \"provider\": {\n    \"description\": \"<string>\",\n    \"id\": \"pr_IaYz-@\",\n    \"logo_url\": \"<string>\",\n    \"name\": \"<string>\",\n    \"employer_portal_url\": \"<null,string>\",\n    \"employee_portal_url\": \"<null,string>\",\n    \"support_phone_number\": \"<null,string>\"\n  },\n  \"start_date\": \"<date>\",\n  \"status\": \"cancelled\",\n  \"type\": \"life_assurance\",\n  \"group_id\": \"gr_6Sz-bfPr#/[\",\n  \"employer_id\": \"er_*\",\n  \"end_date\": \"<null,string-date>\",\n  \"cancellation_date\": \"<null,string-date>\",\n  \"health_insurance\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-b0ba5a1d-0af2-4c04-ac8a-25570e959d39"
+                },
+                {
+                  "id": "4e1cd858-4302-4f96-9fc4-b006e626fc31",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_policies",
+                        ":group_policy_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_policy_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:36.000Z",
+                  "updatedAt": "2026-07-28T02:01:36.000Z",
+                  "uid": "35240-4e1cd858-4302-4f96-9fc4-b006e626fc31"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-7879fc97-9e8c-48f5-acd5-33b906b8bb84"
+            }
+          ],
+          "id": "a351a591-25be-49f5-91b2-b1a89e4f2b74",
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-a351a591-25be-49f5-91b2-b1a89e4f2b74"
+        },
+        {
+          "name": "List all group policies",
+          "id": "4e9843a8-00c9-4e4d-937e-784a27f06d6e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/group_policies?employer_id=er_>5Bt`VYA&group_id=gr_dmss6&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_policies"
+              ],
+              "query": [
+                {
+                  "description": "Filters group policies by employer.",
+                  "key": "employer_id",
+                  "value": "er_>5Bt`VYA"
+                },
+                {
+                  "description": "Filters group policies by group.",
+                  "key": "group_id",
+                  "value": "gr_dmss6"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `group_policies`. By default, only `active` and `scheduled` group policies are returned. Use the `status` query parameter to filter by other statuses. The `group_policies` are returned sorted by creation date, with the most recent `group_policy` appearing first."
+          },
+          "response": [
+            {
+              "id": "244e1085-5c5e-4af4-b29e-212729484d71",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_policies?employer_id=er_>5Bt`VYA&group_id=gr_dmss6&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_policies"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters group policies by employer.",
+                      "key": "employer_id",
+                      "value": "er_>5Bt`VYA"
+                    },
+                    {
+                      "description": "Filters group policies by group.",
+                      "key": "group_id",
+                      "value": "gr_dmss6"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"text\": \"<string>\",\n          \"type\": \"product_information\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"<string>\",\n          \"type\": \"anti_selection_notice\"\n        }\n      ],\n      \"id\": \"gp_+\",\n      \"plan\": {\n        \"currency\": \"inr\",\n        \"description\": \"<string>\",\n        \"documents\": [\n          {\n            \"link\": \"<string>\",\n            \"title\": \"<string>\",\n            \"type\": \"ipid\"\n          },\n          {\n            \"link\": \"<string>\",\n            \"title\": \"<string>\",\n            \"type\": \"other\"\n          }\n        ],\n        \"id\": \"pl_bt9<ok`6<d\",\n        \"name\": \"<string>\"\n      },\n      \"provider\": {\n        \"description\": \"<string>\",\n        \"id\": \"pr_,+\",\n        \"logo_url\": \"<string>\",\n        \"name\": \"<string>\",\n        \"employer_portal_url\": \"<null,string>\",\n        \"employee_portal_url\": \"<null,string>\",\n        \"support_phone_number\": \"<null,string>\"\n      },\n      \"start_date\": \"<date>\",\n      \"status\": \"active\",\n      \"type\": \"life_assurance\",\n      \"group_id\": \"gr_cLt]\",\n      \"employer_id\": \"er_py3@RL0d,{\",\n      \"end_date\": \"<null,string-date>\",\n      \"cancellation_date\": \"<null,string-date>\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"<string>\"\n    },\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"text\": \"<string>\",\n          \"type\": \"statutory_warning\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"text\": \"<string>\",\n          \"type\": \"product_information\"\n        }\n      ],\n      \"id\": \"gp_N6?\",\n      \"plan\": {\n        \"currency\": \"ern\",\n        \"description\": \"<string>\",\n        \"documents\": [\n          {\n            \"link\": \"<string>\",\n            \"title\": \"<string>\",\n            \"type\": \"plan_summary\"\n          },\n          {\n            \"link\": \"<string>\",\n            \"title\": \"<string>\",\n            \"type\": \"plan_summary\"\n          }\n        ],\n        \"id\": \"pl_e-z\",\n        \"name\": \"<string>\"\n      },\n      \"provider\": {\n        \"description\": \"<string>\",\n        \"id\": \"pr_i\",\n        \"logo_url\": \"<string>\",\n        \"name\": \"<string>\",\n        \"employer_portal_url\": \"<null,string>\",\n        \"employee_portal_url\": \"<null,string>\",\n        \"support_phone_number\": \"<null,string>\"\n      },\n      \"start_date\": \"<date>\",\n      \"status\": \"cancelled\",\n      \"type\": \"life_assurance\",\n      \"group_id\": \"gr_xPe49GH$&x\",\n      \"employer_id\": \"er_+?9\",\n      \"end_date\": \"<null,string-date>\",\n      \"cancellation_date\": \"<null,string-date>\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:36.000Z",
+              "updatedAt": "2026-07-28T02:01:36.000Z",
+              "uid": "35240-244e1085-5c5e-4af4-b29e-212729484d71"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:36.000Z",
+          "updatedAt": "2026-07-28T02:01:36.000Z",
+          "uid": "35240-4e9843a8-00c9-4e4d-937e-784a27f06d6e"
+        }
+      ],
+      "id": "f01d669b-6367-4da7-902f-1bd1efc12bf8",
+      "createdAt": "2026-07-28T02:01:36.000Z",
+      "updatedAt": "2026-07-28T02:01:36.000Z",
+      "uid": "35240-f01d669b-6367-4da7-902f-1bd1efc12bf8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

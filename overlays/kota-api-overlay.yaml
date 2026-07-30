@@ -1,0 +1,54 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Kota API
+  version: 1.0.0
+extends: openapi/kota-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: kota
+    x-apievangelist-artifacts:
+      authentication: authentication/kota-authentication.yml
+      conventions: conventions/kota-conventions.yml
+      errors: errors/kota-problem-types.yml
+      lifecycle: lifecycle/kota-lifecycle.yml
+      data-model: data-model/kota-data-model.yml
+      webhooks: asyncapi/kota-webhooks.yml
+      sandbox: sandbox/kota-sandbox.yml
+      skills: skills/_index.yml
+- target: $.info
+  update:
+    x-idempotency:
+      header: Idempotency-Key
+      applies-to: POST
+      retention: 1 hour
+      max-length: 200
+      conflict-status: 409
+- target: $.info
+  update:
+    x-pagination:
+      style: page-number
+      params:
+      - page
+      - page_size
+      response-fields:
+      - items
+      - page
+      - page_size
+      - total_count
+- target: $.info
+  update:
+    x-error-format:
+      format: rfc9457
+      media-type: application/problem+json
+      code-field: error_code
+      trace-field: trace_id
+- target: $.info
+  update:
+    x-environments:
+      test:
+        url: https://test.api.kota.io
+        key-prefix: pk_test_
+      live:
+        url: https://api.kota.io
+        key-prefix: pk_live_

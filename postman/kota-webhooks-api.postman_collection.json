@@ -1,0 +1,319 @@
+{
+  "info": {
+    "_postman_id": "0d790033-4212-4dcd-ba39-34851bb19558",
+    "name": "API Reference Associated Persons webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:26.000Z",
+    "updatedAt": "2026-07-28T02:02:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0d790033-4212-4dcd-ba39-34851bb19558"
+  },
+  "item": [
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "endpoints",
+          "item": [
+            {
+              "name": "{webhook_endpoint_id}",
+              "item": [
+                {
+                  "name": "Retrieve a webhook endpoint",
+                  "id": "b971f81b-ea94-4e57-b5ae-bdad96f190c1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/endpoints/:webhook_endpoint_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        "endpoints",
+                        ":webhook_endpoint_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ca10c898-5133-44f2-895e-37e4a11aa4d9",
+                          "key": "webhook_endpoint_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get a registered webhook endpoint by its Id."
+                  },
+                  "response": [
+                    {
+                      "id": "f988dd10-2d86-497c-aacd-6fa05f16acf2",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/endpoints/:webhook_endpoint_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            "endpoints",
+                            ":webhook_endpoint_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_endpoint_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"endpoint_url\": \"<string>\",\n  \"subscribed_events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:02:26.000Z",
+                      "updatedAt": "2026-07-28T02:02:26.000Z",
+                      "uid": "35240-f988dd10-2d86-497c-aacd-6fa05f16acf2"
+                    },
+                    {
+                      "id": "6e15b4b8-a282-419b-b0b8-e042b8b91821",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webhooks/endpoints/:webhook_endpoint_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webhooks",
+                            "endpoints",
+                            ":webhook_endpoint_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_endpoint_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T02:02:26.000Z",
+                      "updatedAt": "2026-07-28T02:02:26.000Z",
+                      "uid": "35240-6e15b4b8-a282-419b-b0b8-e042b8b91821"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:02:26.000Z",
+                  "updatedAt": "2026-07-28T02:02:26.000Z",
+                  "uid": "35240-b971f81b-ea94-4e57-b5ae-bdad96f190c1"
+                }
+              ],
+              "id": "4d37b651-c63a-4142-bdc1-007e20f9b9e4",
+              "createdAt": "2026-07-28T02:02:26.000Z",
+              "updatedAt": "2026-07-28T02:02:26.000Z",
+              "uid": "35240-4d37b651-c63a-4142-bdc1-007e20f9b9e4"
+            },
+            {
+              "name": "List all webhook endpoints",
+              "id": "72ebfcbf-cbee-432d-866d-0d6ff638b7e7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/endpoints?page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    "endpoints"
+                  ],
+                  "query": [
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Get all registered webhook endpoints for the platform."
+              },
+              "response": [
+                {
+                  "id": "e73a1a4a-a5e0-492e-9bb9-5954f6db1948",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/endpoints?page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        "endpoints"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"endpoint_url\": \"<string>\",\n      \"subscribed_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"endpoint_url\": \"<string>\",\n      \"subscribed_events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:02:26.000Z",
+                  "updatedAt": "2026-07-28T02:02:26.000Z",
+                  "uid": "35240-e73a1a4a-a5e0-492e-9bb9-5954f6db1948"
+                },
+                {
+                  "id": "943486d6-fae9-4ea6-86e0-7509078ae941",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/endpoints?page=<integer>&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        "endpoints"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page of results to return. Defaults to 1 if not provided.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\",\n  \"errors\": {\n    \"velitf\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"magna1a_\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:02:26.000Z",
+                  "updatedAt": "2026-07-28T02:02:26.000Z",
+                  "uid": "35240-943486d6-fae9-4ea6-86e0-7509078ae941"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:26.000Z",
+              "updatedAt": "2026-07-28T02:02:26.000Z",
+              "uid": "35240-72ebfcbf-cbee-432d-866d-0d6ff638b7e7"
+            }
+          ],
+          "id": "0c6016c0-6a6e-4fd5-bcbc-1572219558fe",
+          "createdAt": "2026-07-28T02:02:26.000Z",
+          "updatedAt": "2026-07-28T02:02:26.000Z",
+          "uid": "35240-0c6016c0-6a6e-4fd5-bcbc-1572219558fe"
+        }
+      ],
+      "id": "d52e1aba-56b4-4e15-b0e6-b1c37985f60b",
+      "createdAt": "2026-07-28T02:02:26.000Z",
+      "updatedAt": "2026-07-28T02:02:26.000Z",
+      "uid": "35240-d52e1aba-56b4-4e15-b0e6-b1c37985f60b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kota.io/embed/sdk-reference, https://docs.kota.io/embed/frontend-sdk,
+  https://docs.kota.io/embed/theming, https://docs.kota.io/hosted
+description: >-
+  Kota ships prebuilt, themeable benefit UIs that a partner platform drops into its own product.
+  Two delivery models: Embed (Kota.js mounts the UI into a container div in your page) and Hosted
+  (redirect the user to a Kota-hosted session link). Both are compliance surfaces — Kota owns the
+  regulated insurance-sales language inside them, which is why the loader must come from Kota's CDN
+  rather than a bundle.
+loader:
+  library: Kota.js
+  production: https://js.kota.io/v1
+  test: https://test.js.kota.io/v1
+  include: <script src="https://js.kota.io/v1"></script>
+  self_hosting: not permitted; must load directly from Kota's CDN so compliance updates apply
+families:
+- family: Kota Health Embedded UI
+  components:
+  - name: Employer
+    constructor: Kota.Health.employer(employerAccessToken, options?)
+    default_container_id: employer
+    description: Embedded UI for the employer benefits experience — health insurance setup,
+      quoting and ongoing management.
+    auth: employerAccessToken from POST /embed/sessions
+    options:
+    - name: container
+      type: string
+      description: id of the container div to mount into (default "employer")
+    - name: theme
+      type: object
+      description: Brand customisation of the embedded UI
+    - name: dependants_cover
+      type: enum
+      values: [full, binary, none]
+      default: full
+      description: Whether an employer can cover spouse and children separately (full), all-or-none
+        (binary), or not at all (none)
+  - name: Employee
+    constructor: Kota.Health.employee(employeeAccessToken, options?)
+    default_container_id: employee
+    description: Embedded UI for the employee benefits experience — enrolment, dependants and
+      policy management.
+    auth: employeeAccessToken from POST /embed/sessions
+    options:
+    - name: container
+      type: string
+      description: id of the container div to mount into (default "employee")
+    - name: theme
+      type: object
+      description: Brand customisation of the embedded UI
+- family: Kota Hosted
+  components:
+  - name: Hosted session
+    description: A one-off link to a fully Kota-hosted benefits experience; the lowest-effort
+      integration, with theming support but no in-page mounting.
+    auth: session link from POST /hosted/sessions
+    docs: https://docs.kota.io/hosted
+theming:
+  docs: https://docs.kota.io/embed/theming
+  options:
+  - primaryColor
+  - backgroundColor
+  - radius
+  - ringColor
+browser_events:
+  description: >-
+    The only way to communicate with an Embedded UI in the browser is by listening for events,
+    either on the initialised object (embed.on('eventName', handler)) or on window using the
+    namespaced name (employer.eventName / employee.eventName).
+  events:
+  - name: employer.pageLoaded
+    description: Fires when a new page loads. Event object contains pageTitle.
+  - name: employer.healthSetupLoaded
+    description: Fires when the employer health insurance setup flow loads.
+  - name: employer.healthManagementLoaded
+    description: Fires when the employer health insurance management view loads.
+  - name: employer.loadError
+    description: Fires when the employer embedded UI fails to load.
+  - name: employee.pageLoaded
+    description: Fires when a new page loads. Event object contains pageTitle.
+  - name: employee.healthSetupLoaded
+    description: Fires when the employee health insurance setup flow loads.
+  - name: employee.healthManagementLoaded
+    description: Fires when the employee health insurance management view loads.
+  - name: employee.loadError
+    description: Fires when the employee embedded UI fails to load.

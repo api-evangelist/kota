@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.kota.io/changelog, https://docs.kota.io/api-reference, openapi/kota-openapi-original.json
+versioning:
+  scheme: unversioned API base path; event payloads carry an explicit v1/v2 family
+  current: '1.0'
+  event_versions:
+  - v1 (legacy)
+  - v2 (current, broader resource coverage)
+  product_versioning: The product changelog uses semantic-style release numbers (e.g. v4.3.5) plus separate
+    mobile app versions.
+  docs: https://docs.kota.io/api-reference
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No published API deprecation or Sunset/Deprecation header policy was found. The v1 webhook event
+    family is superseded by v2 but no formal end-of-life date is published.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_notes: No Kota status page was found; kota.statuspage.io is not provisioned.
+support: https://help.kota.io/en/
+changelog: https://www.kota.io/changelog
+data_retention:
+  events: 30 days of Event retrieval guaranteed via the API
+deprecated_operations: []

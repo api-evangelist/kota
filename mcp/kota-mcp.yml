@@ -1,0 +1,98 @@
+generated: '2026-07-19'
+method: searched
+status: published
+source: https://docs.kota.io/llms.txt
+description: >-
+  Kota publishes a hosted, remote MCP server for its developer documentation, advertised at the top
+  of every docs page and in llms.txt for AI client integration (Claude Code, Cursor and other MCP
+  clients). It is a Fern-hosted documentation MCP server; it exposes documentation search, not the
+  Kota REST API itself. A tool surface for the REST API is captured separately below as candidate
+  tools derived from the OpenAPI.
+server:
+  name: kota-docs
+  transport: http
+  url: https://docs.kota.io/_mcp/server
+  server_info:
+    name: fern-docs-mcp-server
+    version: '1.0.0'
+  protocol_version: '2024-11-05'
+  verified: '2026-07-19'
+  verification: MCP initialize + tools/list handshake returned 200 over Streamable HTTP
+tools:
+- name: searchDocs
+  description: Search the documentation at https://docs.kota.io. Returns relevant doc passages with
+    source URLs.
+  published: true
+agent_surface:
+  llms_txt: https://docs.kota.io/llms.txt
+  markdown_pages: Append .md to any docs page URL for clean Markdown
+  section_indexes: Append /llms.txt to any docs section URL
+candidate_api_tools:
+  status: candidate
+  method: derived
+  source: openapi/kota-openapi-original.json
+  note: >-
+    Kota does not publish an MCP server for the REST API. These are candidate tools an integrator
+    could forge from the published OpenAPI; every source_operation is a verbatim operationId from
+    the spec.
+  tools:
+  - name: list_employers
+    description: List all employers
+    source_operation: openapi/kota-openapi-original.json#ListEmployers
+  - name: create_employer
+    description: Create an employer
+    source_operation: openapi/kota-openapi-original.json#CreateEmployer
+  - name: retrieve_employer
+    description: Retrieve an employer
+    source_operation: openapi/kota-openapi-original.json#RetrieveEmployer
+  - name: list_employees
+    description: List all employees
+    source_operation: openapi/kota-openapi-original.json#ListEmployees
+  - name: create_employee
+    description: Create an employee
+    source_operation: openapi/kota-openapi-original.json#CreateEmployee
+  - name: retrieve_employee
+    description: Retrieve an employee
+    source_operation: openapi/kota-openapi-original.json#RetrieveEmployee
+  - name: list_groups
+    description: List all groups
+    source_operation: openapi/kota-openapi-original.json#ListGroups
+  - name: create_group
+    description: Create a group
+    source_operation: openapi/kota-openapi-original.json#CreateGroup
+  - name: add_employee_to_group
+    description: Add an employee to a group
+    source_operation: openapi/kota-openapi-original.json#AddEmployeeToGroup
+  - name: check_group_eligibility
+    description: Check employee eligibility for a group
+    source_operation: openapi/kota-openapi-original.json#CheckGroupEligibility
+  - name: create_group_quote_intent
+    description: Create a group quote intent
+    source_operation: openapi/kota-openapi-original.json#CreateGroupQuoteIntent
+  - name: get_group_quote_intent_quote
+    description: Retrieve the quote for a group quote intent
+    source_operation: openapi/kota-openapi-original.json#GetGroupQuoteIntentQuote
+  - name: create_group_policy_intent
+    description: Create a group policy intent
+    source_operation: openapi/kota-openapi-original.json#CreateGroupPolicyIntent
+  - name: create_enrolment_intent
+    description: Create a new enrolment intent
+    source_operation: openapi/kota-openapi-original.json#CreateEnrolmentIntent
+  - name: confirm_enrolment_intent
+    description: Confirm an enrolment intent
+    source_operation: openapi/kota-openapi-original.json#ConfirmEnrolmentIntent
+  - name: list_policies
+    description: List all policies
+    source_operation: openapi/kota-openapi-original.json#ListPolicies
+  - name: retrieve_policy
+    description: Retrieve a policy
+    source_operation: openapi/kota-openapi-original.json#RetrievePolicy
+  - name: list_contribution_reports
+    description: List all contribution reports
+    source_operation: openapi/kota-openapi-original.json#ListContributionReports
+  - name: finalize_contribution_report
+    description: Finalize a contribution report
+    source_operation: openapi/kota-openapi-original.json#FinalizeContributionReport
+  - name: list_events
+    description: List all events
+    source_operation: openapi/kota-openapi-original.json#ListEvents

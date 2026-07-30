@@ -1,0 +1,547 @@
+{
+  "info": {
+    "_postman_id": "37896a0f-2808-40de-967c-e0a4c47c04c7",
+    "name": "API Reference Associated Persons Policy Import Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:02:20.000Z",
+    "updatedAt": "2026-07-28T02:02:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37896a0f-2808-40de-967c-e0a4c47c04c7"
+  },
+  "item": [
+    {
+      "name": "policy_import_intents",
+      "item": [
+        {
+          "name": "{policy_import_intent_id}",
+          "item": [
+            {
+              "name": "Retrieve a policy import intent",
+              "id": "2b2008ea-031d-4ced-bc38-cdcbfedfdc06",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents/:policy_import_intent_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents",
+                    ":policy_import_intent_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e281eb11-6aa3-42da-a2a1-be2209a63e07",
+                      "key": "policy_import_intent_id",
+                      "value": "pii_KU",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `policy_import_intent` object."
+              },
+              "response": [
+                {
+                  "id": "b727ce41-cb1b-4f9d-bd18-ff05a7abacb0",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy_import_intents/:policy_import_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy_import_intents",
+                        ":policy_import_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policy_import_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_YM5J:-xtCp\",\n      \"id\": \"<uuid>\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_bm\",\n      \"id\": \"<uuid>\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ],\n  \"employee_id\": \"ee_,dr9[bV#GP\",\n  \"group_id\": \"gr_s\",\n  \"id\": \"pii_wR3t\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"status\": \"processing\",\n  \"object\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\"\n}",
+                  "createdAt": "2026-07-28T02:02:21.000Z",
+                  "updatedAt": "2026-07-28T02:02:21.000Z",
+                  "uid": "35240-b727ce41-cb1b-4f9d-bd18-ff05a7abacb0"
+                },
+                {
+                  "id": "38d52d2d-ab51-4921-94c5-2efa6b1295ba",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/policy_import_intents/:policy_import_intent_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "policy_import_intents",
+                        ":policy_import_intent_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "policy_import_intent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+                  "createdAt": "2026-07-28T02:02:21.000Z",
+                  "updatedAt": "2026-07-28T02:02:21.000Z",
+                  "uid": "35240-38d52d2d-ab51-4921-94c5-2efa6b1295ba"
+                }
+              ],
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-2b2008ea-031d-4ced-bc38-cdcbfedfdc06"
+            }
+          ],
+          "id": "ad98142a-f47d-4b58-ad4f-0544aa170769",
+          "createdAt": "2026-07-28T02:02:21.000Z",
+          "updatedAt": "2026-07-28T02:02:21.000Z",
+          "uid": "35240-ad98142a-f47d-4b58-ad4f-0544aa170769"
+        },
+        {
+          "name": "Create a new policy import intent",
+          "id": "107658e9-a672-40cb-930e-5febbb1bc734",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_id\": \"ee_7-I\",\n  \"group_id\": \"gr_.\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_`Ds9i$YE>kS\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_X4s8oBbr^\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/policy_import_intents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policy_import_intents"
+              ]
+            },
+            "description": "Initiates a policy import process for an employee with an existing policy created outside of Kota's systems. This endpoint allows importing policy details for an employee who has an existing policy with one of our existing providers."
+          },
+          "response": [
+            {
+              "id": "9ca07960-5779-4b23-b0a7-4c9d22706815",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_7-I\",\n  \"group_id\": \"gr_.\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_`Ds9i$YE>kS\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_X4s8oBbr^\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_YM5J:-xtCp\",\n      \"id\": \"<uuid>\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_bm\",\n      \"id\": \"<uuid>\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ],\n  \"employee_id\": \"ee_,dr9[bV#GP\",\n  \"group_id\": \"gr_s\",\n  \"id\": \"pii_wR3t\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"status\": \"processing\",\n  \"object\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\"\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-9ca07960-5779-4b23-b0a7-4c9d22706815"
+            },
+            {
+              "id": "4853fe9a-89bd-4793-a83d-de63f7748a1a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_7-I\",\n  \"group_id\": \"gr_.\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_`Ds9i$YE>kS\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_X4s8oBbr^\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-4853fe9a-89bd-4793-a83d-de63f7748a1a"
+            },
+            {
+              "id": "d46405a9-df39-4636-b8a2-3324f548346c",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_7-I\",\n  \"group_id\": \"gr_.\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_`Ds9i$YE>kS\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_person_id\": \"ap_X4s8oBbr^\",\n      \"member_number\": \"<null,string>\",\n      \"start_date\": \"<null,string-date>\",\n      \"end_date\": \"<null,string-date>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-d46405a9-df39-4636-b8a2-3324f548346c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:21.000Z",
+          "updatedAt": "2026-07-28T02:02:21.000Z",
+          "uid": "35240-107658e9-a672-40cb-930e-5febbb1bc734"
+        },
+        {
+          "name": "List all policy import intents",
+          "id": "9fd1d418-5b68-4a96-a533-59f32a1362c3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/policy_import_intents?employee_id=ee_M8R&group_id=gr_Og/kL&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "policy_import_intents"
+              ],
+              "query": [
+                {
+                  "description": "Filters policy import intents by employee ID. Prefixed with `ee_`.",
+                  "key": "employee_id",
+                  "value": "ee_M8R"
+                },
+                {
+                  "description": "Filters policy import intents by group ID. Prefixed with `g_`.",
+                  "key": "group_id",
+                  "value": "gr_Og/kL"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a paginated list of policy import intents. The intents are returned sorted by creation date, with the most recent intent appearing first. Results can be filtered by employee ID, group ID, and status."
+          },
+          "response": [
+            {
+              "id": "5cb14c3d-ea6f-4008-bc08-601e00dd88f9",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents?employee_id=ee_M8R&group_id=gr_Og/kL&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters policy import intents by employee ID. Prefixed with `ee_`.",
+                      "key": "employee_id",
+                      "value": "ee_M8R"
+                    },
+                    {
+                      "description": "Filters policy import intents by group ID. Prefixed with `g_`.",
+                      "key": "group_id",
+                      "value": "gr_Og/kL"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"associated_persons\": [\n        {\n          \"associated_person_id\": \"ap_1;^~\",\n          \"id\": \"<uuid>\",\n          \"member_number\": \"<null,string>\",\n          \"start_date\": \"<null,string-date>\",\n          \"end_date\": \"<null,string-date>\"\n        },\n        {\n          \"associated_person_id\": \"ap_OO~wxJxv\",\n          \"id\": \"<uuid>\",\n          \"member_number\": \"<null,string>\",\n          \"start_date\": \"<null,string-date>\",\n          \"end_date\": \"<null,string-date>\"\n        }\n      ],\n      \"employee_id\": \"ee_@Hx!_4)\",\n      \"group_id\": \"gr_j]/P2]\",\n      \"id\": \"pii_ym@(/yh\",\n      \"member_number\": \"<string>\",\n      \"policy_start_date\": \"<date>\",\n      \"provider_policy_number\": \"<string>\",\n      \"status\": \"failed\",\n      \"object\": \"<string>\",\n      \"policy_end_date\": \"<null,string-date>\"\n    },\n    {\n      \"associated_persons\": [\n        {\n          \"associated_person_id\": \"ap_Crn\",\n          \"id\": \"<uuid>\",\n          \"member_number\": \"<null,string>\",\n          \"start_date\": \"<null,string-date>\",\n          \"end_date\": \"<null,string-date>\"\n        },\n        {\n          \"associated_person_id\": \"ap_3-\",\n          \"id\": \"<uuid>\",\n          \"member_number\": \"<null,string>\",\n          \"start_date\": \"<null,string-date>\",\n          \"end_date\": \"<null,string-date>\"\n        }\n      ],\n      \"employee_id\": \"ee_ 7$z-xuE\",\n      \"group_id\": \"gr_q<\",\n      \"id\": \"pii_<eizPjf\",\n      \"member_number\": \"<string>\",\n      \"policy_start_date\": \"<date>\",\n      \"provider_policy_number\": \"<string>\",\n      \"status\": \"success\",\n      \"object\": \"<string>\",\n      \"policy_end_date\": \"<null,string-date>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-5cb14c3d-ea6f-4008-bc08-601e00dd88f9"
+            },
+            {
+              "id": "0cd3a3d4-65d1-4496-ac69-ba902ab5cc7e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/policy_import_intents?employee_id=ee_M8R&group_id=gr_Og/kL&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters policy import intents by employee ID. Prefixed with `ee_`.",
+                      "key": "employee_id",
+                      "value": "ee_M8R"
+                    },
+                    {
+                      "description": "Filters policy import intents by group ID. Prefixed with `g_`.",
+                      "key": "group_id",
+                      "value": "gr_Og/kL"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<null,string>\",\n  \"title\": \"<null,string>\",\n  \"status\": \"<null,integer>\",\n  \"detail\": \"<null,string>\",\n  \"instance\": \"<null,string>\"\n}",
+              "createdAt": "2026-07-28T02:02:21.000Z",
+              "updatedAt": "2026-07-28T02:02:21.000Z",
+              "uid": "35240-0cd3a3d4-65d1-4496-ac69-ba902ab5cc7e"
+            }
+          ],
+          "createdAt": "2026-07-28T02:02:21.000Z",
+          "updatedAt": "2026-07-28T02:02:21.000Z",
+          "uid": "35240-9fd1d418-5b68-4a96-a533-59f32a1362c3"
+        }
+      ],
+      "id": "8edb7caf-5e6e-4923-babe-d064b072ca36",
+      "createdAt": "2026-07-28T02:02:21.000Z",
+      "updatedAt": "2026-07-28T02:02:21.000Z",
+      "uid": "35240-8edb7caf-5e6e-4923-babe-d064b072ca36"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}

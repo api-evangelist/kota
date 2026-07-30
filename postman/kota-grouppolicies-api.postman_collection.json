@@ -1,0 +1,285 @@
+{
+  "info": {
+    "_postman_id": "5ea35bb1-8db2-4127-aa2d-8b29df7d1e0e",
+    "name": "API Reference Associated Persons groupPolicies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:01:42.000Z",
+    "updatedAt": "2026-07-28T02:01:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ea35bb1-8db2-4127-aa2d-8b29df7d1e0e"
+  },
+  "item": [
+    {
+      "name": "group_policies",
+      "item": [
+        {
+          "name": "{group_policy_id}",
+          "item": [
+            {
+              "name": "Retrieve a group policy",
+              "id": "cb4c4843-f7cd-4644-bdcc-86bd3427078d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_policies",
+                    ":group_policy_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9d7855ed-fd22-44b6-95b1-64ce91da40da",
+                      "key": "group_policy_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a `group_policy` object."
+              },
+              "response": [
+                {
+                  "id": "67000d2b-aab8-412d-8663-41f3cf02bf85",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_policies",
+                        ":group_policy_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_policy_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"start_date\": \"<date>\",\n  \"status\": \"scheduled\",\n  \"type\": \"life_assurance\",\n  \"provider\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"logo_url\": \"<string>\",\n    \"employer_portal_url\": \"<string,null>\",\n    \"employee_portal_url\": \"<string,null>\",\n    \"support_phone_number\": \"<string,null>\"\n  },\n  \"plan\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"currency\": \"bwp\",\n    \"documents\": [\n      {\n        \"title\": \"<string>\",\n        \"link\": \"<string>\",\n        \"type\": \"terms_and_conditions\"\n      },\n      {\n        \"title\": \"<string>\",\n        \"link\": \"<string>\",\n        \"type\": \"waiting_periods\"\n      }\n    ]\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"product_information\",\n      \"text\": \"<string>\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"<string>\"\n    }\n  ],\n  \"group_id\": \"<string>\",\n  \"employer_id\": \"<string>\",\n  \"end_date\": \"<string,null-date>\",\n  \"cancellation_date\": \"<string,null-date>\",\n  \"health_insurance\": {\n    \"renewal\": {\n      \"renewal_date\": \"<date>\",\n      \"window_start_date\": \"<date>\",\n      \"window_end_date\": \"<date>\",\n      \"status\": \"open\",\n      \"renewed_policy_id\": \"<string,null>\"\n    },\n    \"configuration\": {\n      \"cost_sharing\": {\n        \"type\": \"member_count\",\n        \"member_count\": {\n          \"adults\": \"<integer>\",\n          \"children\": \"<integer>\"\n        },\n        \"member_selection\": {\n          \"partner\": \"<boolean>\",\n          \"children\": \"<boolean>\"\n        },\n        \"percentage\": {\n          \"percentage\": \"<integer>\"\n        },\n        \"family_type\": {\n          \"type\": \"family\"\n        }\n      }\n    },\n    \"group_policy_number\": \"<string,null>\"\n  },\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:01:43.000Z",
+                  "updatedAt": "2026-07-28T02:01:43.000Z",
+                  "uid": "35240-67000d2b-aab8-412d-8663-41f3cf02bf85"
+                },
+                {
+                  "id": "87923a0a-6ccb-4b46-a4b4-67d6fef2b858",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/group_policies/:group_policy_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "group_policies",
+                        ":group_policy_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "group_policy_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string,null>\",\n  \"title\": \"<string,null>\",\n  \"status\": \"<integer,null>\",\n  \"detail\": \"<string,null>\",\n  \"instance\": \"<string,null>\"\n}",
+                  "createdAt": "2026-07-28T02:01:43.000Z",
+                  "updatedAt": "2026-07-28T02:01:43.000Z",
+                  "uid": "35240-87923a0a-6ccb-4b46-a4b4-67d6fef2b858"
+                }
+              ],
+              "createdAt": "2026-07-28T02:01:42.000Z",
+              "updatedAt": "2026-07-28T02:01:42.000Z",
+              "uid": "35240-cb4c4843-f7cd-4644-bdcc-86bd3427078d"
+            }
+          ],
+          "id": "3249e28b-28d1-4d55-a70a-b0d605cf9f87",
+          "createdAt": "2026-07-28T02:01:42.000Z",
+          "updatedAt": "2026-07-28T02:01:42.000Z",
+          "uid": "35240-3249e28b-28d1-4d55-a70a-b0d605cf9f87"
+        },
+        {
+          "name": "List all group policies",
+          "id": "edc0eeae-19e7-4c22-a483-94ffac05552d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/group_policies?employer_id=<string>&group_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "group_policies"
+              ],
+              "query": [
+                {
+                  "description": "Filters group policies by employer.",
+                  "key": "employer_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters group policies by group.",
+                  "key": "group_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The page of results to return. Defaults to 1 if not provided.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                  "key": "page_size",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Returns a list of `group_policies`. By default, only `active` and `scheduled` group policies are returned. Use the `status` query parameter to filter by other statuses. The `group_policies` are returned sorted by creation date, with the most recent `group_policy` appearing first."
+          },
+          "response": [
+            {
+              "id": "3bbef148-f365-46d6-8804-3fa38d2360ea",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/group_policies?employer_id=<string>&group_id=<string>&status=<string>&page=<integer>&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "group_policies"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters group policies by employer.",
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters group policies by group.",
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The page of results to return. Defaults to 1 if not provided.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100.",
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"status\": \"cancelled\",\n      \"type\": \"life_assurance\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"mwk\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"terms_and_conditions\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"table_of_cover\"\n          }\n        ]\n      },\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"provider\",\n          \"type\": \"underwriter_disclaimer\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"group_id\": \"<string>\",\n      \"employer_id\": \"<string>\",\n      \"end_date\": \"<string,null-date>\",\n      \"cancellation_date\": \"<string,null-date>\",\n      \"health_insurance\": {\n        \"renewal\": {\n          \"renewal_date\": \"<date>\",\n          \"window_start_date\": \"<date>\",\n          \"window_end_date\": \"<date>\",\n          \"status\": \"renewed\",\n          \"renewed_policy_id\": \"<string,null>\"\n        },\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"policyholder_only\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"single_with_children\"\n            }\n          }\n        },\n        \"group_policy_number\": \"<string,null>\"\n      },\n      \"object\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"start_date\": \"<date>\",\n      \"status\": \"active\",\n      \"type\": \"health_insurance\",\n      \"provider\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"logo_url\": \"<string>\",\n        \"employer_portal_url\": \"<string,null>\",\n        \"employee_portal_url\": \"<string,null>\",\n        \"support_phone_number\": \"<string,null>\"\n      },\n      \"plan\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"currency\": \"nzd\",\n        \"documents\": [\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"other\"\n          },\n          {\n            \"title\": \"<string>\",\n            \"link\": \"<string>\",\n            \"type\": \"waiting_periods\"\n          }\n        ]\n      },\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"group_id\": \"<string>\",\n      \"employer_id\": \"<string>\",\n      \"end_date\": \"<string,null-date>\",\n      \"cancellation_date\": \"<string,null-date>\",\n      \"health_insurance\": {\n        \"renewal\": {\n          \"renewal_date\": \"<date>\",\n          \"window_start_date\": \"<date>\",\n          \"window_end_date\": \"<date>\",\n          \"status\": \"upcoming\",\n          \"renewed_policy_id\": \"<string,null>\"\n        },\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": \"member_count\",\n            \"member_count\": {\n              \"adults\": \"<integer>\",\n              \"children\": \"<integer>\"\n            },\n            \"member_selection\": {\n              \"partner\": \"<boolean>\",\n              \"children\": \"<boolean>\"\n            },\n            \"percentage\": {\n              \"percentage\": \"<integer>\"\n            },\n            \"family_type\": {\n              \"type\": \"couple\"\n            }\n          }\n        },\n        \"group_policy_number\": \"<string,null>\"\n      },\n      \"object\": \"<string>\"\n    }\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"total_count\": \"<integer>\",\n  \"has_next_page\": \"<boolean>\",\n  \"has_previous_page\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:01:43.000Z",
+              "updatedAt": "2026-07-28T02:01:43.000Z",
+              "uid": "35240-3bbef148-f365-46d6-8804-3fa38d2360ea"
+            }
+          ],
+          "createdAt": "2026-07-28T02:01:42.000Z",
+          "updatedAt": "2026-07-28T02:01:42.000Z",
+          "uid": "35240-edc0eeae-19e7-4c22-a483-94ffac05552d"
+        }
+      ],
+      "id": "6681989d-50cd-4b11-9dec-804743c41c16",
+      "createdAt": "2026-07-28T02:01:42.000Z",
+      "updatedAt": "2026-07-28T02:01:42.000Z",
+      "uid": "35240-6681989d-50cd-4b11-9dec-804743c41c16"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://test.api.kota.io"
+    }
+  ]
+}
