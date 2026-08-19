@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons enrolmentIntents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "enrolmentIntents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all enrolment intents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/enrolment_intents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters enrolment intents by employee."
+              },
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters enrolment intents  by group."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of `enrolment_intents`. The `enrolment_intents` are returned sorted by creation date, with the most recent `enrolment_intent` appearing first."
+        },
+        {
+          "info": {
+            "name": "Create a new enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/enrolment_intents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new `enrolment_intent` to manage the enrolment of an employee into a group. An enrolment intent represents the intention to enrol an employee into a specific group, and tracks the status and progress of that enrolment process."
+        },
+        {
+          "info": {
+            "name": "Retrieve an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves an `enrolment_intent` object."
+        },
+        {
+          "info": {
+            "name": "Update policy configuration enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the policy configuration for an existing `enrolment_intent`. This will reset the enrolment intent back to `processing` status and re-evaluate the enrolment intent based on the new configuration provided.Unavailable for enrolment intents that are already `enrolling` or `enrolled`."
+        },
+        {
+          "info": {
+            "name": "List requirements for an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id/requirements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by object type (employee or employer)"
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by object ID (employee ID or employer ID)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of adaptive requirements for an `enrolment_intent`. Requirements must be fulfilled before enrolment can proceed."
+        },
+        {
+          "info": {
+            "name": "Confirm an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id/confirm",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Confirms an `enrolment_intent` that is in `PendingConfirmation` status. This transitions the enrolment intent to `Enrolling` status and initiates the enrolment process with the insurance provider."
+        },
+        {
+          "info": {
+            "name": "Reject an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id/reject",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rejects an `enrolment_intent` that is in `PendingConfirmation`, `ActionRequired`, or `AddonSelectionRequired` status. This transitions the enrolment intent to `NotUndertaken` status."
+        },
+        {
+          "info": {
+            "name": "Submit coverage selections for an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id/coverage-selections",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits plan coverage option selections for an enrolment intent in the `addon_selection_required` status."
+        },
+        {
+          "info": {
+            "name": "Create a dependents management intent for an enrolment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/enrolment_intents/:enrolment_intent_id/create_dependents_management_intent",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "enrolment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a dependents management intent as a sub-intent of an enrolment intent. The enrolment intent must be in `pending_confirmation` status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons requirements API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "requirements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a requirement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/requirements/:requirement_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requirement_id",
+                "value": "",
+                "type": "path",
+                "description": "A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789)."
+              }
+            ]
+          },
+          "docs": "Retrieve a requirement's current state and the schema of the fields it needs. The response reports whether the requirement has already been fulfilled (and when), and includes the JSON Schema describing the fields to collect."
+        },
+        {
+          "info": {
+            "name": "Submit answers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/requirements/:requirement_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requirement_id",
+                "value": "",
+                "type": "path",
+                "description": "A requirement identifier in the format ar_ followed by 32 lowercase hex characters (e.g. ar_0a1b2c3d4e5f67890a1b2c3d4e5f6789)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit answers for a requirement. Answers are merged with any previously submitted and re-evaluated against the requirement's schema: it becomes `fulfilled` once all required fields are satisfied, otherwise it stays `in_progress` and the response lists the fields still outstanding."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

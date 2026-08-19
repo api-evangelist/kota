@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "ee068b85-3cea-4719-81b7-467fd0d422b2",
+      "name": "groupPolicyIntents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa86e991-d20e-40e8-b06d-d8086317744a",
+          "name": "List group policy intents",
+          "request": {
+            "name": "List group policy intents",
+            "description": {
+              "content": "Returns a paginated list of `group_policy_intent`'s. The results are returned sorted by creation date, with the most recent appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filter by group ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<string>",
+                  "description": "Filter by plan ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `pending_provider_approval`, `policy_created`, `expired`, `provider_rejected`, `manual_renewal_gathering_required`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c26e7fe-58f1-4fd2-b937-528e9f024c5f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "plan_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"group_id\": \"string\",\n      \"plan_id\": \"string\",\n      \"quote_intent_id\": \"string\",\n      \"status\": \"policy_created\",\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"provider\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"string\"\n        }\n      ],\n      \"due_date\": \"1993-10-22T16:36:09.740Z\",\n      \"cost_sharing\": {\n        \"type\": \"policyholder_only\",\n        \"member_count\": {\n          \"adults\": 9490,\n          \"children\": 6313\n        },\n        \"member_selection\": {\n          \"partner\": false,\n          \"children\": true\n        },\n        \"percentage\": {\n          \"percentage\": 9382\n        },\n        \"family_type\": {\n          \"type\": \"couple\"\n        }\n      },\n      \"action_required\": {\n        \"code\": \"provide_beneficiary_information\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"2013-06-25T00:07:05.663Z\"\n      },\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"group_id\": \"string\",\n      \"plan_id\": \"string\",\n      \"quote_intent_id\": \"string\",\n      \"status\": \"provider_rejected\",\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"type\": \"product_information\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"string\"\n        }\n      ],\n      \"due_date\": \"1969-06-21T19:45:57.376Z\",\n      \"cost_sharing\": {\n        \"type\": \"family_type\",\n        \"member_count\": {\n          \"adults\": 7218,\n          \"children\": 6013\n        },\n        \"member_selection\": {\n          \"partner\": true,\n          \"children\": true\n        },\n        \"percentage\": {\n          \"percentage\": 7394\n        },\n        \"family_type\": {\n          \"type\": \"single\"\n        }\n      },\n      \"action_required\": {\n        \"code\": \"provide_dependant_information\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"1974-09-17T03:19:46.820Z\"\n      },\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 3166,\n  \"page_size\": 4919,\n  \"total_count\": 3284,\n  \"has_next_page\": false,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "266ae78e-66b5-4eaa-8655-6fa6ea87c744",
+          "name": "Create a group policy intent",
+          "request": {
+            "name": "Create a group policy intent",
+            "description": {
+              "content": "Creates a `group_policy_intent` from a `group_quote_intent` that has a quote available. The intent coordinates the policy setup workflow including requirements collection and policy creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_intent_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"<string>\",\n    \"member_count\": {\n      \"adults\": \"<integer>\",\n      \"children\": \"<integer>\"\n    },\n    \"member_selection\": {\n      \"partner\": \"<boolean>\",\n      \"children\": \"<boolean>\"\n    },\n    \"percentage\": {\n      \"percentage\": \"<integer>\"\n    },\n    \"family_type\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"consent_approvals\": [\n    {\n      \"type\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"version\": \"<string>\",\n      \"user_id\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"ip\": \"<string>\",\n      \"version\": \"<string>\",\n      \"user_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44fab63e-568d-4ec7-a9d0-fb167059d82a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"adults\": 387,\n      \"children\": 2812\n    },\n    \"member_selection\": {\n      \"partner\": true,\n      \"children\": true\n    },\n    \"percentage\": {\n      \"percentage\": 8447\n    },\n    \"family_type\": {\n      \"type\": \"single\"\n    }\n  },\n  \"consent_approvals\": [\n    {\n      \"type\": \"privacy_policy\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"group_id\": \"string\",\n  \"plan_id\": \"string\",\n  \"quote_intent_id\": \"string\",\n  \"status\": \"action_required\",\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"pre_existing_conditions\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"pre_existing_conditions\",\n      \"text\": \"string\"\n    }\n  ],\n  \"due_date\": \"1956-02-21T14:09:04.142Z\",\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"adults\": 3224,\n      \"children\": 7061\n    },\n    \"member_selection\": {\n      \"partner\": false,\n      \"children\": false\n    },\n    \"percentage\": {\n      \"percentage\": 7569\n    },\n    \"family_type\": {\n      \"type\": \"single_with_children\"\n    }\n  },\n  \"action_required\": {\n    \"code\": \"provide_dependant_information\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1966-08-05T08:26:07.742Z\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3f45ca2-9df2-42e3-a537-d67a46c9011b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"adults\": 387,\n      \"children\": 2812\n    },\n    \"member_selection\": {\n      \"partner\": true,\n      \"children\": true\n    },\n    \"percentage\": {\n      \"percentage\": 8447\n    },\n    \"family_type\": {\n      \"type\": \"single\"\n    }\n  },\n  \"consent_approvals\": [\n    {\n      \"type\": \"privacy_policy\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9383,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df3e27b-b430-42af-9b0a-ebb2b066b15b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"adults\": 387,\n      \"children\": 2812\n    },\n    \"member_selection\": {\n      \"partner\": true,\n      \"children\": true\n    },\n    \"percentage\": {\n      \"percentage\": 8447\n    },\n    \"family_type\": {\n      \"type\": \"single\"\n    }\n  },\n  \"consent_approvals\": [\n    {\n      \"type\": \"privacy_policy\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    },\n    {\n      \"type\": \"terms_of_business\",\n      \"ip\": \"string\",\n      \"version\": \"string\",\n      \"user_id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9383,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e23672c4-df89-4153-b0ee-54e2d2b4054c",
+          "name": "Retrieve a group policy intent",
+          "request": {
+            "name": "Retrieve a group policy intent",
+            "description": {
+              "content": "Retrieves a `group_policy_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents",
+                ":group_policy_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_policy_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae4a1b3d-ef3c-4b8f-b01c-fb01c0b9347a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"group_id\": \"string\",\n  \"plan_id\": \"string\",\n  \"quote_intent_id\": \"string\",\n  \"status\": \"action_required\",\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"pre_existing_conditions\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"pre_existing_conditions\",\n      \"text\": \"string\"\n    }\n  ],\n  \"due_date\": \"1956-02-21T14:09:04.142Z\",\n  \"cost_sharing\": {\n    \"type\": \"family_type\",\n    \"member_count\": {\n      \"adults\": 3224,\n      \"children\": 7061\n    },\n    \"member_selection\": {\n      \"partner\": false,\n      \"children\": false\n    },\n    \"percentage\": {\n      \"percentage\": 7569\n    },\n    \"family_type\": {\n      \"type\": \"single_with_children\"\n    }\n  },\n  \"action_required\": {\n    \"code\": \"provide_dependant_information\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1966-08-05T08:26:07.742Z\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e7da23c-47ad-435b-a138-994ab92faa93",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9383,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94986920-e050-49f9-9e2d-e5bcffc867cc",
+          "name": "List requirements for a group policy intent",
+          "request": {
+            "name": "List requirements for a group policy intent",
+            "description": {
+              "content": "Returns a paginated list of adaptive requirements for a `group_policy_intent`. Requirements must be fulfilled before policy setup can proceed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents",
+                ":group_policy_intent_id",
+                "requirements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "Filter by object type (employee or employer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>",
+                  "description": "Filter by object ID (employee ID or employer ID)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_policy_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de20ecc4-917c-43c8-9b8f-870c3bf10be0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "employer"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"object_type\": \"employee\",\n      \"object_id\": \"string\",\n      \"is_fulfilled\": true,\n      \"requirement_type\": \"group_policy_intent\",\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"object_type\": \"employer\",\n      \"object_id\": \"string\",\n      \"is_fulfilled\": false,\n      \"requirement_type\": \"group_quote_intent\",\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 2114,\n  \"page_size\": 8699,\n  \"total_count\": 938,\n  \"has_next_page\": false,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7bb12a0-a9aa-4e07-a336-4ee4bb3f3504",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "employer"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9383,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e5f82394-b323-46a8-8f7b-e9ba9415bbb8",
+    "name": "API Reference Associated Persons groupPolicyIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

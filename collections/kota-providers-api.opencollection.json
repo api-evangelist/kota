@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons providers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/providers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country; only providers that support this country are returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of `providers`."
+        },
+        {
+          "info": {
+            "name": "Retrieve a provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/providers/:provider_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "provider_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a `provider` object by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

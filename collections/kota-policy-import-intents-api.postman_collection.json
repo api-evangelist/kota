@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "ee7a604b-ec06-4957-8fd0-bc75d39aba8e",
+      "name": "Policy Import Intents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca221c64-4a1a-4c38-ad4e-f2746adef7c9",
+          "name": "Create a new policy import intent",
+          "request": {
+            "name": "Create a new policy import intent",
+            "description": {
+              "content": "Initiates a policy import process for an employee with an existing policy created outside of Kota's systems. This endpoint allows importing policy details for an employee who has an existing policy with one of our existing providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"provider_policy_number\": \"<string>\",\n  \"policy_end_date\": \"<null,string-date>\",\n  \"associated_persons\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11321501-848f-4baa-8819-fc64d3f7fa16",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"2024-12-01\",\n  \"provider_policy_number\": \"string\",\n  \"policy_end_date\": null,\n  \"associated_persons\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"b60880da-724a-4577-5f73-a509263be900\",\n      \"member_number\": null,\n      \"start_date\": null,\n      \"end_date\": null\n    },\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"b208ad9b-168f-8595-0b53-d10a6322fd2b\",\n      \"member_number\": null,\n      \"start_date\": null,\n      \"end_date\": null\n    }\n  ],\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"pii_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"2024-12-01\",\n  \"provider_policy_number\": \"string\",\n  \"status\": \"failed\",\n  \"object\": \"string\",\n  \"policy_end_date\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2c79388-db30-4932-a759-0fe105d1c990",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"2024-12-01\",\n  \"provider_policy_number\": \"string\",\n  \"policy_end_date\": null,\n  \"associated_persons\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68b87d83-684b-4334-8805-1440462ea1db",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"2024-12-01\",\n  \"provider_policy_number\": \"string\",\n  \"policy_end_date\": null,\n  \"associated_persons\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5559d8b4-b647-4b7a-9670-4e05c1501d06",
+          "name": "List all policy import intents",
+          "request": {
+            "name": "List all policy import intents",
+            "description": {
+              "content": "Returns a paginated list of policy import intents. The intents are returned sorted by creation date, with the most recent intent appearing first. Results can be filtered by employee ID, group ID, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employee_id",
+                  "value": "<string>",
+                  "description": "Filters policy import intents by employee ID. Prefixed with `ee_`."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters policy import intents by group ID. Prefixed with `g_`."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8c58e34-adaf-4f2c-8554-43b8f745d9c8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "ee_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"associated_persons\": [\n        {\n          \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"id\": \"0b6614b6-35a3-267e-03d5-92c1928607dc\",\n          \"member_number\": null,\n          \"start_date\": null,\n          \"end_date\": null\n        },\n        {\n          \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"id\": \"8dad327b-69db-d49c-9754-655aec60a174\",\n          \"member_number\": null,\n          \"start_date\": null,\n          \"end_date\": null\n        }\n      ],\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"pii_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"member_number\": \"string\",\n      \"policy_start_date\": \"2024-12-01\",\n      \"provider_policy_number\": \"string\",\n      \"status\": \"success\",\n      \"object\": \"string\",\n      \"policy_end_date\": null\n    },\n    {\n      \"associated_persons\": [\n        {\n          \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"id\": \"ccb632f8-dd34-5cbd-219b-f543e821fa57\",\n          \"member_number\": null,\n          \"start_date\": null,\n          \"end_date\": null\n        },\n        {\n          \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"id\": \"6cf1a460-a3c4-ee07-a4e9-be26df9f1d62\",\n          \"member_number\": null,\n          \"start_date\": null,\n          \"end_date\": null\n        }\n      ],\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"pii_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"member_number\": \"string\",\n      \"policy_start_date\": \"2024-12-01\",\n      \"provider_policy_number\": \"string\",\n      \"status\": \"success\",\n      \"object\": \"string\",\n      \"policy_end_date\": null\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea9fe48b-90c1-4ace-b8b9-d1100fe56bc9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "ee_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d36f713-51a7-4dc9-a611-0aae8a75b15b",
+          "name": "Retrieve a policy import intent",
+          "request": {
+            "name": "Retrieve a policy import intent",
+            "description": {
+              "content": "Retrieves a `policy_import_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents",
+                ":policy_import_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_import_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "487d5855-3f6c-4c7c-8d16-66f8f5a7ec30",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents",
+                    ":policy_import_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_import_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"b60880da-724a-4577-5f73-a509263be900\",\n      \"member_number\": null,\n      \"start_date\": null,\n      \"end_date\": null\n    },\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"b208ad9b-168f-8595-0b53-d10a6322fd2b\",\n      \"member_number\": null,\n      \"start_date\": null,\n      \"end_date\": null\n    }\n  ],\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"pii_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"2024-12-01\",\n  \"provider_policy_number\": \"string\",\n  \"status\": \"failed\",\n  \"object\": \"string\",\n  \"policy_end_date\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c27403-b802-41ca-8ced-a8308a861808",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents",
+                    ":policy_import_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_import_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3b5fd6e8-aa0b-4008-92aa-3b93f5d0b875",
+    "name": "API Reference Associated Persons Policy Import Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

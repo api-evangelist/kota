@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons Embed Sessions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Embed Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Embedded SDK token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/embed/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a `token` to authenticate an `employer` or `employee` with the Kota Embedded SDK."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

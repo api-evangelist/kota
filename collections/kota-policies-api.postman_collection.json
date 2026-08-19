@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "a26c66d4-3c34-4337-9924-a47d443826c6",
+      "name": "policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d597e881-2efd-48b2-a9c5-7d5c0384648e",
+          "name": "List all policies",
+          "request": {
+            "name": "List all policies",
+            "description": {
+              "content": "Returns a list of `policies`. By default, only `active` and `scheduled` policies are returned. Use the `status` query parameter to filter by other statuses. The `policies` are returned sorted by creation date, with the most recent `policy` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employee_id",
+                  "value": "<string>",
+                  "description": "Filters policies by employee."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters policies by group."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_policy_id",
+                  "value": "<string>",
+                  "description": "Filters policies by group policy."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "237c8b65-545b-4a61-b359-bc3d15e39570",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group_policy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"employee_id\": \"string\",\n      \"group_policy_id\": \"string\",\n      \"bundling_type\": \"bundled_primary\",\n      \"status\": \"expired\",\n      \"group_id\": \"string\",\n      \"provider\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"logo_url\": \"string\",\n        \"employer_portal_url\": \"string\",\n        \"employee_portal_url\": \"string\",\n        \"support_phone_number\": \"string\"\n      },\n      \"plan\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"try\",\n        \"documents\": [\n          {\n            \"title\": \"string\",\n            \"link\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"title\": \"string\",\n            \"link\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"start_date\": \"2025-04-29\",\n      \"type\": \"health_insurance\",\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"anti_selection_notice\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"product_information\",\n          \"text\": \"string\"\n        }\n      ],\n      \"end_date\": \"1986-09-09\",\n      \"cancellation_date\": \"1993-11-17\",\n      \"health_insurance\": {\n        \"opt_out_deadline\": \"1999-02-14\",\n        \"initial_dependents_update_deadline\": \"1988-05-25\",\n        \"renewal\": {\n          \"renewal_date\": \"1974-10-21\",\n          \"window_start_date\": \"1989-09-06\",\n          \"window_end_date\": \"2000-11-27\",\n          \"status\": \"cancelled\",\n          \"renewed_policy_id\": \"string\"\n        },\n        \"dependents_supported\": true,\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_selection\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percentage\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"family_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"members\": [\n          {\n            \"id\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"date_of_birth\": \"2025-10-14\",\n            \"sex_at_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_number\": \"string\",\n            \"associated_person_id\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"date_of_birth\": \"1979-01-16\",\n            \"sex_at_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_number\": \"string\",\n            \"associated_person_id\": \"string\"\n          }\n        ],\n        \"estimated_gross_premium\": {\n          \"currency\": \"djf\",\n          \"monthly\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"term\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"policy_number\": \"string\"\n      },\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"employee_id\": \"string\",\n      \"group_policy_id\": \"string\",\n      \"bundling_type\": \"bundled_secondary\",\n      \"status\": \"active\",\n      \"group_id\": \"string\",\n      \"provider\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"logo_url\": \"string\",\n        \"employer_portal_url\": \"string\",\n        \"employee_portal_url\": \"string\",\n        \"support_phone_number\": \"string\"\n      },\n      \"plan\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"currency\": \"chw\",\n        \"documents\": [\n          {\n            \"title\": \"string\",\n            \"link\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"title\": \"string\",\n            \"link\": \"string\",\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"start_date\": \"2017-10-16\",\n      \"type\": \"health_insurance\",\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"statutory_warning\",\n          \"text\": \"string\"\n        }\n      ],\n      \"end_date\": \"1964-09-08\",\n      \"cancellation_date\": \"1955-10-03\",\n      \"health_insurance\": {\n        \"opt_out_deadline\": \"1991-08-07\",\n        \"initial_dependents_update_deadline\": \"1997-08-29\",\n        \"renewal\": {\n          \"renewal_date\": \"1977-11-10\",\n          \"window_start_date\": \"1971-11-23\",\n          \"window_end_date\": \"1977-06-03\",\n          \"status\": \"open\",\n          \"renewed_policy_id\": \"string\"\n        },\n        \"dependents_supported\": true,\n        \"configuration\": {\n          \"cost_sharing\": {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_count\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_selection\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percentage\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"family_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"members\": [\n          {\n            \"id\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"date_of_birth\": \"1966-05-25\",\n            \"sex_at_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_number\": \"string\",\n            \"associated_person_id\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"first_name\": \"string\",\n            \"last_name\": \"string\",\n            \"date_of_birth\": \"1974-08-26\",\n            \"sex_at_birth\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_number\": \"string\",\n            \"associated_person_id\": \"string\"\n          }\n        ],\n        \"estimated_gross_premium\": {\n          \"currency\": \"mga\",\n          \"monthly\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"term\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"policy_number\": \"string\"\n      },\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 992,\n  \"page_size\": 2466,\n  \"total_count\": 1128,\n  \"has_next_page\": false,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bd3cdc5-32ce-468c-bec3-f56ebefc65c0",
+          "name": "Retrieve a policy",
+          "request": {
+            "name": "Retrieve a policy",
+            "description": {
+              "content": "Retrieves a `policy` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2a28868-4610-4158-ab87-a9ea4a182765",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"employee_id\": \"string\",\n  \"group_policy_id\": \"string\",\n  \"bundling_type\": \"not_bundled\",\n  \"status\": \"cancelled\",\n  \"group_id\": \"string\",\n  \"provider\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"logo_url\": \"string\",\n    \"employer_portal_url\": \"string\",\n    \"employee_portal_url\": \"string\",\n    \"support_phone_number\": \"string\"\n  },\n  \"plan\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"currency\": \"kzt\",\n    \"documents\": [\n      {\n        \"title\": \"string\",\n        \"link\": \"string\",\n        \"type\": \"table_of_cover\"\n      },\n      {\n        \"title\": \"string\",\n        \"link\": \"string\",\n        \"type\": \"plan_summary\"\n      }\n    ]\n  },\n  \"start_date\": \"1994-05-07\",\n  \"type\": \"health_insurance\",\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"product_information\",\n      \"text\": \"string\"\n    }\n  ],\n  \"end_date\": \"1954-05-02\",\n  \"cancellation_date\": \"1978-11-04\",\n  \"health_insurance\": {\n    \"opt_out_deadline\": \"2023-06-19\",\n    \"initial_dependents_update_deadline\": \"1969-12-05\",\n    \"renewal\": {\n      \"renewal_date\": \"1988-12-09\",\n      \"window_start_date\": \"1948-09-10\",\n      \"window_end_date\": \"2008-07-12\",\n      \"status\": \"upcoming\",\n      \"renewed_policy_id\": \"string\"\n    },\n    \"dependents_supported\": false,\n    \"configuration\": {\n      \"cost_sharing\": {\n        \"type\": \"policyholder_only\",\n        \"member_count\": {\n          \"adults\": 5423,\n          \"children\": 8961\n        },\n        \"member_selection\": {\n          \"partner\": true,\n          \"children\": false\n        },\n        \"percentage\": {\n          \"percentage\": 8828\n        },\n        \"family_type\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"members\": [\n      {\n        \"id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"date_of_birth\": \"1963-07-11\",\n        \"sex_at_birth\": \"male\",\n        \"member_type\": \"policyholder\",\n        \"member_number\": \"string\",\n        \"associated_person_id\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"date_of_birth\": \"2017-07-21\",\n        \"sex_at_birth\": \"male\",\n        \"member_type\": \"partner\",\n        \"member_number\": \"string\",\n        \"associated_person_id\": \"string\"\n      }\n    ],\n    \"estimated_gross_premium\": {\n      \"currency\": \"syp\",\n      \"monthly\": {\n        \"employee_contribution\": 9010.42194903795,\n        \"employer_contribution\": 3202.1940581890494,\n        \"total\": 2263.9165941398132\n      },\n      \"term\": {\n        \"employee_contribution\": 8500.771803957063,\n        \"employer_contribution\": 6920.527123509794,\n        \"total\": 1487.3034827153454\n      }\n    },\n    \"policy_number\": \"string\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaaafa53-0a4e-4763-b2e0-ce6a7c9c3725",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2708,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d101665-0c94-429a-837a-4a9c80a1f32b",
+    "name": "API Reference Associated Persons policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

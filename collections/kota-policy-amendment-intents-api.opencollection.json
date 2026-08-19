@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons Policy Amendment Intents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policy Amendment Intents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all policy amendment intents for a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `action_required`, `awaiting_quote`, `pending_confirmation`, `processing`, `amended`, `processing_error`, `not_undertaken`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of policy amendment intents for the specified policy. The intents are returned sorted by creation date, with the oldest intent appearing first."
+        },
+        {
+          "info": {
+            "name": "Create a new policy amendment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a policy amendment (e.g. adding/removing dependents). The intent coordinates the amendment workflow including dependents sub-intent management, quote generation, employee confirmation, and provider processing."
+        },
+        {
+          "info": {
+            "name": "Retrieve a policy amendment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents/:policy_amendment_intent_id",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policy_amendment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a `policy_amendment_intent` object."
+        },
+        {
+          "info": {
+            "name": "Confirm policy amendment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents/:policy_amendment_intent_id/confirm",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "policy_amendment_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Confirms a policy amendment intent after the employee has reviewed and accepted the quote. The intent must be in `pending_confirmation` status with a valid quote. The confirmation deadline must not have passed."
+        },
+        {
+          "info": {
+            "name": "Cancel a policy amendment intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents/:id/cancel",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a policy amendment intent when the employee decides not to proceed. Can only cancel intents in `action_required` or `pending_confirmation` status."
+        },
+        {
+          "info": {
+            "name": "Create a dependents management intent for a policy amendment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/policies/:policy_id/policy_amendment_intents/:id/create_dependents_management_intent",
+            "params": [
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a dependents management intent as a sub-intent of a policy amendment intent. The sub-intent allows the platform to add or remove dependents from the policy. The policy amendment intent must be in `action_required` status with a `dependents` requested change."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

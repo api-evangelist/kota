@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons employers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "employers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all employers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/employers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of your `employers`. The `employers` are returned sorted by creation date, with the most recent `employers` appearing first."
+        },
+        {
+          "info": {
+            "name": "Create an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/employers",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an `employer`."
+        },
+        {
+          "info": {
+            "name": "Retrieve an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/employers/:employer_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves an `employer` object."
+        },
+        {
+          "info": {
+            "name": "Update an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://test.api.kota.io/employers/:employer_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified `employer` by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `legal_address` parameter only the `legal_address` value will be changed.\n\nNote that the `legal_address` and `contact` fields are treated as single objects that are updated entirely. If you provide either of these fields, the entire object will be replaced with the new data, not just the individual sub-fields you include in the request."
+        },
+        {
+          "info": {
+            "name": "Offboard an employer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/employers/:employer_id/offboard",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Immediately offboard an `employer`. The `employer`’s scheme will be terminated and all `employees` associated with the `employer` will be offboarded and have their insurance terminated. `Employee` offboarding cannot be cancelled if triggered via this call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

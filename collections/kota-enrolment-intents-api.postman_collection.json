@@ -1,0 +1,1689 @@
+{
+  "item": [
+    {
+      "id": "441897e0-72fd-4ac7-909c-c8e949ce4946",
+      "name": "Enrolment Intents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "154c6275-2189-41e9-8b33-bf0e5d26d27e",
+          "name": "Create a new enrolment intent",
+          "request": {
+            "name": "Create a new enrolment intent",
+            "description": {
+              "content": "Creates a new `enrolment_intent` to manage the enrolment of an employee into a group. An enrolment intent represents the intention to enrol an employee into a specific group, and tracks the status and progress of that enrolment process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_id\": \"<string>\",\n  \"force_confirmation\": \"<boolean>\",\n  \"group_id\": \"<string>\",\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"coverage_selections\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0b6c837-3d7b-4d9c-819b-b67614dcdee4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    }\n  ],\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"ei_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_enrolments\": [\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"zmw\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_-*;4`vBd-\\\\{\"\n    },\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"lkr\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_O7M]r*S]F\"\n    }\n  ],\n  \"status\": \"not_undertaken\",\n  \"object\": \"string\",\n  \"ineligibility_reason\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"pending_confirmation\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcabb6de-7d0a-4016-a7ea-f37b7172dcaf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc863fc7-e6c8-4680-9f13-34e59dbeafb4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"coverage_selections\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6efe326a-fa46-4163-87a5-41037f3457c2",
+          "name": "List all enrolment intents",
+          "request": {
+            "name": "List all enrolment intents",
+            "description": {
+              "content": "Returns a list of `enrolment_intents`. The `enrolment_intents` are returned sorted by creation date, with the most recent `enrolment_intent` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employee_id",
+                  "value": "<string>",
+                  "description": "Filters enrolment intents by employee."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters enrolment intents  by group."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `scheduled`, `action_required`, `addon_selection_required`, `pending_confirmation`, `enrolling`, `enrolled`, `not_undertaken`, `ineligible`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab09bbff-3eb2-4a36-9916-9ec70cdeab20",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "ee_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"text\": \"string\",\n          \"type\": \"statutory_warning\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"anti_selection_notice\"\n        }\n      ],\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"force_confirmation\": true,\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"ei_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"policy_enrolments\": [\n        {\n          \"estimated_effective_from\": \"2024-12-01\",\n          \"plan\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provider\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"support_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"health_insurance\",\n          \"health_insurance\": {\n            \"value\": \"<Error: Could not resolve allOf schema\"\n          },\n          \"id\": \"p_A^8FSVA\"\n        },\n        {\n          \"estimated_effective_from\": \"2024-12-01\",\n          \"plan\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provider\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"support_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"health_insurance\",\n          \"health_insurance\": {\n            \"value\": \"<Error: Could not resolve allOf schema\"\n          },\n          \"id\": \"p_.t`\"\n        }\n      ],\n      \"status\": \"ineligible\",\n      \"object\": \"string\",\n      \"ineligibility_reason\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"policy_configuration\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"pending_confirmation\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    },\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"intermediary_commission\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"intermediary_role\"\n        }\n      ],\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"force_confirmation\": true,\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"ei_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"policy_enrolments\": [\n        {\n          \"estimated_effective_from\": \"2024-12-01\",\n          \"plan\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provider\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"support_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"health_insurance\",\n          \"health_insurance\": {\n            \"value\": \"<Error: Could not resolve allOf schema\"\n          },\n          \"id\": \"p_<:\"\n        },\n        {\n          \"estimated_effective_from\": \"2024-12-01\",\n          \"plan\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provider\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_portal_url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"support_phone_number\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type\": \"life_assurance\",\n          \"health_insurance\": {\n            \"value\": \"<Error: Could not resolve allOf schema\"\n          },\n          \"id\": \"p_B`z0k\"\n        }\n      ],\n      \"status\": \"ineligible\",\n      \"object\": \"string\",\n      \"ineligibility_reason\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"policy_configuration\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"pending_confirmation\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e3354cd-c52e-43a1-96e4-26d5613469bc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "ee_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0ae8733-98cf-4241-9a91-e106b4f6e78d",
+          "name": "Update policy configuration enrolment intent",
+          "request": {
+            "name": "Update policy configuration enrolment intent",
+            "description": {
+              "content": "Updates the policy configuration for an existing `enrolment_intent`. This will reset the enrolment intent back to `processing` status and re-evaluate the enrolment intent based on the new configuration provided.Unavailable for enrolment intents that are already `enrolling` or `enrolled`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"desired_policy_start_date\": \"<null,string-date>\",\n  \"enrolment_date\": \"<null,string-date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c06181ca-b5a9-4a00-891d-49a377d6c3f7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"desired_policy_start_date\": null,\n  \"enrolment_date\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    }\n  ],\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"ei_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_enrolments\": [\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"zmw\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_-*;4`vBd-\\\\{\"\n    },\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"lkr\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_O7M]r*S]F\"\n    }\n  ],\n  \"status\": \"not_undertaken\",\n  \"object\": \"string\",\n  \"ineligibility_reason\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"pending_confirmation\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39370a46-ad8f-4cb4-920c-e654651b991f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"desired_policy_start_date\": null,\n  \"enrolment_date\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "294214fe-92c3-458c-b3e7-fa0737331802",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"desired_policy_start_date\": null,\n  \"enrolment_date\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96f7ad84-02fc-4c98-99f9-5800806f3ef1",
+          "name": "Retrieve an enrolment intent",
+          "request": {
+            "name": "Retrieve an enrolment intent",
+            "description": {
+              "content": "Retrieves an `enrolment_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0123b32-6620-434e-a6ab-16dc83842169",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    }\n  ],\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"force_confirmation\": true,\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"ei_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_enrolments\": [\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"zmw\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_-*;4`vBd-\\\\{\"\n    },\n    {\n      \"estimated_effective_from\": \"2024-12-01\",\n      \"plan\": {\n        \"currency\": \"lkr\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"type\": \"life_assurance\",\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"id\": \"p_O7M]r*S]F\"\n    }\n  ],\n  \"status\": \"not_undertaken\",\n  \"object\": \"string\",\n  \"ineligibility_reason\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"policy_configuration\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"pending_confirmation\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f1ce84f-5845-4853-8849-0a672733b00c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da56c116-49f6-4245-9fa7-c477d2387ae2",
+          "name": "List requirements for an enrolment intent",
+          "request": {
+            "name": "List requirements for an enrolment intent",
+            "description": {
+              "content": "Returns a paginated list of adaptive requirements for an `enrolment_intent`. Requirements must be fulfilled before enrolment can proceed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id",
+                "requirements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "Filter by object type (employee or employer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>",
+                  "description": "Filter by object ID (employee ID or employer ID)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "832da819-340a-4ad7-bc71-257b4af560cd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "associated_person"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"ar_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"is_fulfilled\": true,\n      \"object_id\": \"string\",\n      \"object_type\": \"employee\",\n      \"requirement_type\": \"enrolment_intent\",\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"ar_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"is_fulfilled\": true,\n      \"object_id\": \"string\",\n      \"object_type\": \"employee\",\n      \"requirement_type\": \"policy_amendment_intent\",\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6ba27da-172b-480a-9081-7cb9211457e2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "associated_person"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b702e89d-e6c3-4eee-87ed-82e05827c091",
+          "name": "Confirm an enrolment intent",
+          "request": {
+            "name": "Confirm an enrolment intent",
+            "description": {
+              "content": "Confirms an `enrolment_intent` that is in `PendingConfirmation` status. This transitions the enrolment intent to `Enrolling` status and initiates the enrolment process with the insurance provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f9ae592-b7ae-4757-ad27-0ae4d7618750",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d7415bf-b939-4893-b310-8cd17827ee0a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30bd7116-391c-4683-ae6d-6acff4d9ac24",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f35b9b3e-18f8-4394-9c03-3cf8cddf7ae7",
+          "name": "Reject an enrolment intent",
+          "request": {
+            "name": "Reject an enrolment intent",
+            "description": {
+              "content": "Rejects an `enrolment_intent` that is in `PendingConfirmation`, `ActionRequired`, or `AddonSelectionRequired` status. This transitions the enrolment intent to `NotUndertaken` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id",
+                "reject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f40b64f-2846-4574-8b2c-15c7785c3108",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "578def2d-9236-4eca-be70-26c236d6e625",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "398c0c9d-0f0a-43c8-b20c-5d9494b1a179",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "831eba53-4253-4ca5-946c-96f96cc319bd",
+          "name": "Submit coverage selections for an enrolment intent",
+          "request": {
+            "name": "Submit coverage selections for an enrolment intent",
+            "description": {
+              "content": "Submits plan coverage option selections for an enrolment intent in the `addon_selection_required` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id",
+                "coverage-selections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"<string>\",\n      \"options\": [\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"<string>\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2252d60c-2baa-487c-a0fe-05ab0504f07d",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "coverage-selections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f54fdd1-6d3d-4416-aa10-042a15f17dcb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "coverage-selections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ee61502-5d7c-4b7d-bb78-9893507d2e84",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "coverage-selections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coverage_selections\": [\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    },\n    {\n      \"configuration_id\": \"pc_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"options\": [\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        },\n        {\n          \"option_id\": \"pco_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"sub_options\": null\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68d88e02-d14e-4c28-8c2b-d608addd712e",
+          "name": "Create a dependents management intent for an enrolment intent",
+          "request": {
+            "name": "Create a dependents management intent for an enrolment intent",
+            "description": {
+              "content": "Creates a dependents management intent as a sub-intent of an enrolment intent. The enrolment intent must be in `pending_confirmation` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrolment_intents",
+                ":enrolment_intent_id",
+                "create_dependents_management_intent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "enrolment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7a5bcc6-ec2f-4d22-a5b2-77c6357b33cf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"pending_confirmation\",\n      \"coverage_selections\": null,\n      \"requirement_id\": null\n    },\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"ready\",\n      \"coverage_selections\": null,\n      \"requirement_id\": null\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_commission\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"string\",\n      \"type\": \"underwriter_disclaimer\"\n    }\n  ],\n  \"id\": \"dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"parent_intent_id\": \"string\",\n  \"parent_intent_type\": \"policy_amendment_intent\",\n  \"plan\": {\n    \"description\": \"string\",\n    \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"name\": \"string\",\n    \"pricing\": {\n      \"type\": \"tier_based\",\n      \"per_member\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"tier_based\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  },\n  \"status\": \"action_required\",\n  \"object\": \"string\",\n  \"coverage_options\": null,\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f07c1883-6627-40d4-a9c7-111479047a31",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8833ef55-3d84-4d7a-af58-313e59d9c6c4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrolment_intents",
+                    ":enrolment_intent_id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "enrolment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ed3b4c6-db7d-40be-bed2-61fcbe5d8a9b",
+    "name": "API Reference Associated Persons Enrolment Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

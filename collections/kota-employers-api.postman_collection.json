@@ -1,0 +1,952 @@
+{
+  "item": [
+    {
+      "id": "e6506dbe-1ca1-496b-9626-cc5f2bb4d242",
+      "name": "employers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d0fb734-0b53-42e2-80ee-6fb4b569c76a",
+          "name": "List all employers",
+          "request": {
+            "name": "List all employers",
+            "description": {
+              "content": "Returns a list of your `employers`. The `employers` are returned sorted by creation date, with the most recent `employers` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1a91d69-109e-45b1-a838-9bc303849b7f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"legal_name\": \"string\",\n      \"legal_address\": {\n        \"line1\": \"string\",\n        \"city\": \"string\",\n        \"postal_code\": \"string\",\n        \"country_code\": \"th\",\n        \"line2\": \"string\",\n        \"line3\": \"string\",\n        \"state\": \"string\"\n      },\n      \"contact\": {\n        \"name\": \"string\",\n        \"email\": \"string\"\n      },\n      \"platform_id\": \"string\",\n      \"status\": \"offboarding\",\n      \"registration_number\": \"string\",\n      \"offboard_on\": \"1975-01-29T11:01:21.946Z\",\n      \"earliest_benefits_start_date\": \"1964-11-18\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"legal_name\": \"string\",\n      \"legal_address\": {\n        \"line1\": \"string\",\n        \"city\": \"string\",\n        \"postal_code\": \"string\",\n        \"country_code\": \"ml\",\n        \"line2\": \"string\",\n        \"line3\": \"string\",\n        \"state\": \"string\"\n      },\n      \"contact\": {\n        \"name\": \"string\",\n        \"email\": \"string\"\n      },\n      \"platform_id\": \"string\",\n      \"status\": \"inactive\",\n      \"registration_number\": \"string\",\n      \"offboard_on\": \"2017-05-27T07:58:01.177Z\",\n      \"earliest_benefits_start_date\": \"1964-04-14\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 541,\n  \"page_size\": 2949,\n  \"total_count\": 645,\n  \"has_next_page\": false,\n  \"has_previous_page\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aed5a44b-41bf-442a-b4ec-cc2425953c00",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1018,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2660a6b6-9ae8-4d9a-b6f1-b4d05b274182",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5306,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18631801-cb20-40ef-bb71-8f43874bc2be",
+          "name": "Create an employer",
+          "request": {
+            "name": "Create an employer",
+            "description": {
+              "content": "Creates an `employer`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_name\": \"<string>\",\n  \"legal_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"registration_number\": \"<string,null>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c0c69cc-e277-43a8-8c61-4f8e9e74274e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_name\": \"<string>\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"gp\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"registration_number\": \"<string,null>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"legal_name\": \"string\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"lk\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"platform_id\": \"string\",\n  \"status\": \"active\",\n  \"registration_number\": \"string\",\n  \"offboard_on\": \"1948-10-31T06:47:43.404Z\",\n  \"earliest_benefits_start_date\": \"1988-02-24\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f62c8d3-eb05-4c1f-bb57-a62c1a0d924c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_name\": \"<string>\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"gp\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"registration_number\": \"<string,null>\",\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1018,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13f3c3ac-b7e0-4976-9af0-b5ea4e7d8e24",
+          "name": "Retrieve an employer",
+          "request": {
+            "name": "Retrieve an employer",
+            "description": {
+              "content": "Retrieves an `employer` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea7a5a7c-4e07-44cf-acde-792f6c2b64f9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"legal_name\": \"string\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"lk\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"platform_id\": \"string\",\n  \"status\": \"active\",\n  \"registration_number\": \"string\",\n  \"offboard_on\": \"1948-10-31T06:47:43.404Z\",\n  \"earliest_benefits_start_date\": \"1988-02-24\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fba9a562-9cf2-431b-a3aa-028e65e330af",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5306,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c55c94b-e588-400f-bf5a-5392040f50fa",
+          "name": "Update an employer",
+          "request": {
+            "name": "Update an employer",
+            "description": {
+              "content": "Updates the specified `employer` by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `legal_address` parameter only the `legal_address` value will be changed.\n\nNote that the `legal_address` and `contact` fields are treated as single objects that are updated entirely. If you provide either of these fields, the entire object will be replaced with the new data, not just the individual sub-fields you include in the request.For instance, if you provide a partial `legal_address` object, it will overwrite the entire existing `legal_address`, potentially removing any sub-fields you didn't include in the request.\n\nThis request accepts mostly the same arguments as the `employer` creation call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_name\": \"<string,null>\",\n  \"registration_number\": \"<string,null>\",\n  \"legal_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string,null>\",\n    \"line3\": \"<string,null>\",\n    \"state\": \"<string,null>\"\n  },\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74ee88d5-b6d6-4bd4-9ace-7a6a7e218a0e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_name\": \"<string,null>\",\n  \"registration_number\": \"<string,null>\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"legal_name\": \"string\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"lk\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"platform_id\": \"string\",\n  \"status\": \"active\",\n  \"registration_number\": \"string\",\n  \"offboard_on\": \"1948-10-31T06:47:43.404Z\",\n  \"earliest_benefits_start_date\": \"1988-02-24\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c44f2d-5637-4a4c-a7b2-45101814e643",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_name\": \"<string,null>\",\n  \"registration_number\": \"<string,null>\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1018,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "010ba632-857b-4896-8fa5-cf47f90d2baf",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_name\": \"<string,null>\",\n  \"registration_number\": \"<string,null>\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"earliest_benefits_start_date\": \"<string,null-date>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5306,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c05a5af3-b6c8-447e-9f07-b55a76592d15",
+          "name": "Offboard an employer",
+          "request": {
+            "name": "Offboard an employer",
+            "description": {
+              "content": "Immediately offboard an `employer`. The `employer`’s scheme will be terminated and all `employees` associated with the `employer` will be offboarded and have their insurance terminated. `Employee` offboarding cannot be cancelled if triggered via this call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "offboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85651385-62b0-47f0-a5ff-2dc35b9df604",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "offboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"legal_name\": \"string\",\n  \"legal_address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"lk\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"state\": \"string\"\n  },\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"platform_id\": \"string\",\n  \"status\": \"active\",\n  \"registration_number\": \"string\",\n  \"offboard_on\": \"1948-10-31T06:47:43.404Z\",\n  \"earliest_benefits_start_date\": \"1988-02-24\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3036c419-fefc-419b-9053-f9086b12a478",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "offboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to ensure idempotent requests. If the same key is used for multiple _identical & successful_ requests, the same response will be returned. [Read more here](/api#idempotent-requests)",
+                    "key": "Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1018,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "66298de3-afbf-4347-8fd4-176ba2b0a20e",
+    "name": "API Reference Associated Persons employers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

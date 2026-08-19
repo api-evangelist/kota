@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons plans API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/plans",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`."
+              },
+              {
+                "name": "provider_id",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filters plans by country."
+              },
+              {
+                "name": "available_on",
+                "value": "",
+                "type": "query",
+                "description": "Filters plans available on a specific date. Defaults to today."
+              },
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of `plans`."
+        },
+        {
+          "info": {
+            "name": "Retrieve a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/plans/:plan_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "query",
+                "description": "When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included."
+              }
+            ]
+          },
+          "docs": "Retrieves a `plan` object by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

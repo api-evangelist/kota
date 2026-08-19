@@ -1,0 +1,513 @@
+{
+  "item": [
+    {
+      "id": "bcf8c646-adb5-461e-ad4b-1046786328ee",
+      "name": "plans",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c7f6e9f-c48e-443b-8555-4d98ef08942d",
+          "name": "List all plans",
+          "request": {
+            "name": "List all plans",
+            "description": {
+              "content": "Returns a list of `plans`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `health_insurance`."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_id",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `allianz`, `irish_life_health`, `vitality`, `onvz`, `freedom`, `sanitas`, `canada_life`, `hallesche`, `bupa`, `dansk_sundhedssikring`, `allianz_kpt`, `freedom_uk`."
+                },
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "Filters plans by country."
+                },
+                {
+                  "disabled": false,
+                  "key": "available_on",
+                  "value": "<date>",
+                  "description": "Filters plans available on a specific date. Defaults to today."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters plans by group eligibility. Only plans whose eligibility criteria match the group are returned. Criteria that cannot be evaluated are ignored."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Reference date used to compute employee age when evaluating per-plan eligibility counts. Required together with `group_id` for counts to be included in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd15a284-92be-40ba-9566-1b07ebf59413",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "bf"
+                    },
+                    {
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"health_insurance\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"country\": \"gp\",\n      \"provider\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"logo_url\": \"string\"\n      },\n      \"documents\": [\n        {\n          \"title\": \"string\",\n          \"link\": \"string\",\n          \"type\": \"hospital_list\"\n        },\n        {\n          \"title\": \"string\",\n          \"link\": \"string\",\n          \"type\": \"other\"\n        }\n      ],\n      \"employer_eligibility_criteria\": [\n        {\n          \"type\": \"employees_count\",\n          \"description\": \"string\",\n          \"employees_count\": {\n            \"min\": 6253,\n            \"max\": 7740\n          },\n          \"members_count\": {\n            \"min\": 853,\n            \"max\": 8303\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"type\": \"employees_count\",\n          \"description\": \"string\",\n          \"employees_count\": {\n            \"min\": 3707,\n            \"max\": 3043\n          },\n          \"members_count\": {\n            \"min\": 2135,\n            \"max\": 9600\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"employee_eligibility_criteria\": [\n        {\n          \"type\": \"age_range\",\n          \"description\": \"string\",\n          \"age_range\": {\n            \"min\": 3084,\n            \"max\": 1002\n          }\n        },\n        {\n          \"type\": \"age_range\",\n          \"description\": \"string\",\n          \"age_range\": {\n            \"min\": 3282,\n            \"max\": 3960\n          }\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"type\": \"product_information\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"intermediary_commission\",\n          \"text\": \"string\"\n        }\n      ],\n      \"available_from\": \"1975-01-02\",\n      \"object\": \"string\",\n      \"health_insurance\": {\n        \"health_insurance_type\": \"local\",\n        \"supported_cost_sharing_options\": [\n          \"policyholder_only\",\n          \"fixed_amount\"\n        ],\n        \"supported_member_types\": [\n          \"adult_dependant\",\n          \"partner\"\n        ],\n        \"pricing\": {\n          \"type\": \"per_member\",\n          \"per_member\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type_pricing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"tier_based\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tiers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"available_to\": \"2019-11-21\",\n      \"coverage_options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"scope\": \"policy\",\n          \"input_type\": \"single_select\",\n          \"required\": false,\n          \"options\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"description\": \"string\",\n          \"min_selections\": 7106,\n          \"max_selections\": 3734,\n          \"sort_order\": 3638,\n          \"group_label\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"scope\": \"member\",\n          \"input_type\": \"multi_select\",\n          \"required\": false,\n          \"options\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"description\": \"string\",\n          \"min_selections\": 9919,\n          \"max_selections\": 5998,\n          \"sort_order\": 6562,\n          \"group_label\": \"string\"\n        }\n      ],\n      \"eligible_count\": 4370,\n      \"ineligible_count\": 843,\n      \"total_count\": 5340\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"health_insurance\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"country\": \"fm\",\n      \"provider\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"logo_url\": \"string\"\n      },\n      \"documents\": [\n        {\n          \"title\": \"string\",\n          \"link\": \"string\",\n          \"type\": \"hospital_list\"\n        },\n        {\n          \"title\": \"string\",\n          \"link\": \"string\",\n          \"type\": \"terms_and_conditions\"\n        }\n      ],\n      \"employer_eligibility_criteria\": [\n        {\n          \"type\": \"members_count\",\n          \"description\": \"string\",\n          \"employees_count\": {\n            \"min\": 46,\n            \"max\": 3746\n          },\n          \"members_count\": {\n            \"min\": 5587,\n            \"max\": 6212\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"type\": \"employees_count\",\n          \"description\": \"string\",\n          \"employees_count\": {\n            \"min\": 2793,\n            \"max\": 135\n          },\n          \"members_count\": {\n            \"min\": 9564,\n            \"max\": 8442\n          },\n          \"industry_exclusions\": {\n            \"excluded_industries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"employee_eligibility_criteria\": [\n        {\n          \"type\": \"age_range\",\n          \"description\": \"string\",\n          \"age_range\": {\n            \"min\": 7852,\n            \"max\": 5978\n          }\n        },\n        {\n          \"type\": \"age_range\",\n          \"description\": \"string\",\n          \"age_range\": {\n            \"min\": 7517,\n            \"max\": 7009\n          }\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"regulatory\",\n          \"type\": \"anti_selection_notice\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"provider\",\n          \"type\": \"intermediary_commission\",\n          \"text\": \"string\"\n        }\n      ],\n      \"available_from\": \"2021-07-21\",\n      \"object\": \"string\",\n      \"health_insurance\": {\n        \"health_insurance_type\": \"local\",\n        \"supported_cost_sharing_options\": [\n          \"fixed_amount\",\n          \"policyholder_only\"\n        ],\n        \"supported_member_types\": [\n          \"child\",\n          \"partner\"\n        ],\n        \"pricing\": {\n          \"type\": \"tier_based\",\n          \"per_member\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type_pricing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"tier_based\": {\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tiers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"available_to\": \"1967-04-17\",\n      \"coverage_options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"scope\": \"policy\",\n          \"input_type\": \"single_select\",\n          \"required\": false,\n          \"options\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"description\": \"string\",\n          \"min_selections\": 9351,\n          \"max_selections\": 1072,\n          \"sort_order\": 9447,\n          \"group_label\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"scope\": \"policy\",\n          \"input_type\": \"single_select\",\n          \"required\": true,\n          \"options\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"learn_more_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"from_price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"benefits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"eligibility_criteria\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"description\": \"string\",\n          \"min_selections\": 8672,\n          \"max_selections\": 7119,\n          \"sort_order\": 832,\n          \"group_label\": \"string\"\n        }\n      ],\n      \"eligible_count\": 5322,\n      \"ineligible_count\": 4404,\n      \"total_count\": 7499\n    }\n  ],\n  \"page\": 3445,\n  \"page_size\": 6832,\n  \"total_count\": 3157,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "466536c1-9555-4827-8cf1-eb1b3d716784",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "bf"
+                    },
+                    {
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3609,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40ede008-6ce5-41f3-acc3-d831e491e975",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "value",
+                      "value": "bf"
+                    },
+                    {
+                      "key": "available_on",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3858,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b428f056-8f42-4c1d-a6fa-507c2ef17d62",
+          "name": "Retrieve a plan",
+          "request": {
+            "name": "Retrieve a plan",
+            "description": {
+              "content": "Retrieves a `plan` object by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":plan_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "When provided together with `start_date`, per-plan eligibility counts are included in the response. Silently ignored if not paired with `start_date`."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Reference date used to compute employee age when evaluating eligibility. Required together with `group_id` for counts to be included."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "plan_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0833c8b-8c87-45b1-ba6e-c12870ff8af7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":plan_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "plan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"health_insurance\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"country\": \"il\",\n  \"provider\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"logo_url\": \"string\"\n  },\n  \"documents\": [\n    {\n      \"title\": \"string\",\n      \"link\": \"string\",\n      \"type\": \"plan_summary\"\n    },\n    {\n      \"title\": \"string\",\n      \"link\": \"string\",\n      \"type\": \"table_of_cover\"\n    }\n  ],\n  \"employer_eligibility_criteria\": [\n    {\n      \"type\": \"employees_count\",\n      \"description\": \"string\",\n      \"employees_count\": {\n        \"min\": 2771,\n        \"max\": 3246\n      },\n      \"members_count\": {\n        \"min\": 2801,\n        \"max\": 4571\n      },\n      \"industry_exclusions\": {\n        \"excluded_industries\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"type\": \"members_count\",\n      \"description\": \"string\",\n      \"employees_count\": {\n        \"min\": 8389,\n        \"max\": 1421\n      },\n      \"members_count\": {\n        \"min\": 7320,\n        \"max\": 7880\n      },\n      \"industry_exclusions\": {\n        \"excluded_industries\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"employee_eligibility_criteria\": [\n    {\n      \"type\": \"age_range\",\n      \"description\": \"string\",\n      \"age_range\": {\n        \"min\": 5989,\n        \"max\": 3779\n      }\n    },\n    {\n      \"type\": \"age_range\",\n      \"description\": \"string\",\n      \"age_range\": {\n        \"min\": 238,\n        \"max\": 2288\n      }\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"anti_selection_notice\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"string\"\n    }\n  ],\n  \"available_from\": \"1975-12-12\",\n  \"object\": \"string\",\n  \"health_insurance\": {\n    \"health_insurance_type\": \"local\",\n    \"supported_cost_sharing_options\": [\n      \"full_coverage\",\n      \"policyholder_only\"\n    ],\n    \"supported_member_types\": [\n      \"partner\",\n      \"policyholder\"\n    ],\n    \"pricing\": {\n      \"type\": \"tier_based\",\n      \"per_member\": {\n        \"currency\": \"crc\",\n        \"member_type_pricing\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"btn\",\n        \"tiers\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"annual_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_dependent_requirements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"annual_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_dependent_requirements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"available_to\": \"1987-04-05\",\n  \"coverage_options\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"scope\": \"member\",\n      \"input_type\": \"single_select\",\n      \"required\": true,\n      \"options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 7572.6239321774765,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 213.8594628381263,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"string\",\n      \"min_selections\": 4783,\n      \"max_selections\": 8892,\n      \"sort_order\": 4670,\n      \"group_label\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"scope\": \"policy\",\n      \"input_type\": \"multi_select\",\n      \"required\": false,\n      \"options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 9743.076849016334,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 4885.858204848668,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"string\",\n      \"min_selections\": 9484,\n      \"max_selections\": 1446,\n      \"sort_order\": 3638,\n      \"group_label\": \"string\"\n    }\n  ],\n  \"eligible_count\": 5347,\n  \"ineligible_count\": 3,\n  \"total_count\": 7626\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68730f54-06b8-4383-9fb9-dd57de3f7691",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":plan_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "plan_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3858,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "decab048-5071-4e08-bf58-845ad4bde523",
+    "name": "API Reference Associated Persons plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

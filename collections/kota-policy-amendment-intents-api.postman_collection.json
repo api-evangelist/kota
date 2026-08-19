@@ -1,0 +1,1282 @@
+{
+  "item": [
+    {
+      "id": "94e4d92d-8da4-4b6d-9a60-cf9583ccb47a",
+      "name": "Policy Amendment Intents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f7dad49d-4d88-428c-9c3b-5a2bde737c2f",
+          "name": "List all policy amendment intents for a policy",
+          "request": {
+            "name": "List all policy amendment intents for a policy",
+            "description": {
+              "content": "Returns a paginated list of policy amendment intents for the specified policy. The intents are returned sorted by creation date, with the oldest intent appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `action_required`, `awaiting_quote`, `pending_confirmation`, `processing`, `amended`, `processing_error`, `not_undertaken`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8899af2-85f5-4960-9c58-ed092346f501",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"amendment_reason\": {\n        \"type\": \"qualifying_life_event\",\n        \"qualifying_life_event\": {\n          \"value\": \"<Error: Could not resolve allOf schema\"\n        }\n      },\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"statutory_warning\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"product_information\"\n        }\n      ],\n      \"id\": \"pai_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"requested_changes\": [\n        {\n          \"change_type\": \"dependents\"\n        },\n        {\n          \"change_type\": \"dependents\"\n        }\n      ],\n      \"status\": \"pending_confirmation\",\n      \"object\": \"string\",\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"pending_confirmation\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"processing_error\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    },\n    {\n      \"amendment_reason\": {\n        \"type\": \"qualifying_life_event\",\n        \"qualifying_life_event\": {\n          \"value\": \"<Error: Could not resolve allOf schema\"\n        }\n      },\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"anti_selection_notice\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"statutory_warning\"\n        }\n      ],\n      \"id\": \"pai_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"requested_changes\": [\n        {\n          \"change_type\": \"cancellation\"\n        },\n        {\n          \"change_type\": \"cancellation\"\n        }\n      ],\n      \"status\": \"not_undertaken\",\n      \"object\": \"string\",\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"pending_confirmation\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"processing_error\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cebe5f54-94ae-471d-9329-bbbde012c8be",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d701055-6a35-4dc6-b61e-06912facf615",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7ff977b-9252-4528-a5dd-a159060b7526",
+          "name": "Create a new policy amendment intent",
+          "request": {
+            "name": "Create a new policy amendment intent",
+            "description": {
+              "content": "Initiates a policy amendment (e.g. adding/removing dependents). The intent coordinates the amendment workflow including dependents sub-intent management, quote generation, employee confirmation, and provider processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"<string>\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"<string>\"\n    },\n    {\n      \"change_type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aeda05ab-fc30-43df-8967-e6bd19af6b48",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_role\"\n    },\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statutory_warning\"\n    }\n  ],\n  \"id\": \"pai_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ],\n  \"status\": \"pending_confirmation\",\n  \"object\": \"string\",\n  \"required_action\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"pending_confirmation\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"processing_error\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c40e8a41-7374-465e-9f42-1401bc7573c1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f8285f0-497c-42c0-b988-22c4fe3d207c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0df48ab3-a448-46a4-941b-990c3710ebe6",
+          "name": "Retrieve a policy amendment intent",
+          "request": {
+            "name": "Retrieve a policy amendment intent",
+            "description": {
+              "content": "Retrieves a `policy_amendment_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":policy_amendment_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_amendment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f947e38a-e1d6-4c74-974a-d9f8afb7d50c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_role\"\n    },\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statutory_warning\"\n    }\n  ],\n  \"id\": \"pai_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ],\n  \"status\": \"pending_confirmation\",\n  \"object\": \"string\",\n  \"required_action\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"pending_confirmation\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"processing_error\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cec59ab-eb72-4297-900b-a8f0424d4495",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c12d516a-347a-4af2-89fe-f47a66da2d08",
+          "name": "Confirm policy amendment intent",
+          "request": {
+            "name": "Confirm policy amendment intent",
+            "description": {
+              "content": "Confirms a policy amendment intent after the employee has reviewed and accepted the quote. The intent must be in `pending_confirmation` status with a valid quote. The confirmation deadline must not have passed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":policy_amendment_intent_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_amendment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4bca684-64d4-4177-8e97-d3afb020dd4f",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1990ad61-dd4c-4173-b762-630c4de46ee2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1513b2a0-94ca-4e64-a2c9-7b42d9b06096",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25ee5f67-a28d-4a58-b16d-2f6a0ffae321",
+          "name": "Cancel a policy amendment intent",
+          "request": {
+            "name": "Cancel a policy amendment intent",
+            "description": {
+              "content": "Cancels a policy amendment intent when the employee decides not to proceed. Can only cancel intents in `action_required` or `pending_confirmation` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab100d95-004c-4800-a141-a16bfe4f1bf4",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47f6469e-fb0c-4b14-b4ca-1f886f9cb355",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53548afe-974e-415e-896e-0ce61f321346",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d6741dc-d0bf-4283-9600-23a85abbd486",
+          "name": "Create a dependents management intent for a policy amendment",
+          "request": {
+            "name": "Create a dependents management intent for a policy amendment",
+            "description": {
+              "content": "Creates a dependents management intent as a sub-intent of a policy amendment intent. The sub-intent allows the platform to add or remove dependents from the policy. The policy amendment intent must be in `action_required` status with a `dependents` requested change.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":id",
+                "create_dependents_management_intent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c71b7e5-b0f1-48f5-9da3-ccf50963cae3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"processing\",\n      \"coverage_selections\": null,\n      \"requirement_id\": null\n    },\n    {\n      \"associated_person_id\": \"ap_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"processing\",\n      \"coverage_selections\": null,\n      \"requirement_id\": null\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"statement_of_needs\"\n    },\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"pre_existing_conditions\"\n    }\n  ],\n  \"id\": \"dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"parent_intent_id\": \"string\",\n  \"parent_intent_type\": \"policy_amendment_intent\",\n  \"plan\": {\n    \"description\": \"string\",\n    \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"name\": \"string\",\n    \"pricing\": {\n      \"type\": \"tier_based\",\n      \"per_member\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"tier_based\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  },\n  \"status\": \"completed\",\n  \"object\": \"string\",\n  \"coverage_options\": null,\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eef94b65-dd47-430f-9654-6dd6bbac0d31",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "510c3384-c48a-43f5-8959-77d143ed1428",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cadcab90-d23c-4aeb-8c37-36651ad35c04",
+    "name": "API Reference Associated Persons Policy Amendment Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

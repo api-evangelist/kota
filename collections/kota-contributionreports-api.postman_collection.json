@@ -1,0 +1,871 @@
+{
+  "item": [
+    {
+      "id": "a04c9675-193e-42c1-b491-5dc88fde4c0d",
+      "name": "contributionReports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "940dbc67-3ef1-4725-bc43-da84fc160d33",
+          "name": "Retrieve a contribution report",
+          "request": {
+            "name": "Retrieve a contribution report",
+            "description": {
+              "content": "Returns a `contribution report` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4c1748a-14c8-48ed-8c2a-24e21e4acb92",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"employer_id\": \"string\",\n  \"period\": {\n    \"from_date\": \"1995-03-31\",\n    \"to_date\": \"1973-12-23\"\n  },\n  \"status\": \"open\",\n  \"created_at\": \"1963-08-25T00:09:45.991Z\",\n  \"last_updated_at\": \"2002-12-21T05:38:08.732Z\",\n  \"object\": \"string\",\n  \"external_customer_id\": \"string\",\n  \"finalized_at\": \"1967-12-03T09:22:26.709Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fe44024-1f53-44b4-b157-f2904d3fa059",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5754,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6567fd0b-3653-44e4-8937-5a8fe7ccd5df",
+          "name": "List all contribution reports",
+          "request": {
+            "name": "List all contribution reports",
+            "description": {
+              "content": "Returns a list of `contribution reports`. The reports are returned sorted by creation date, with the most recent reports appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "Unique identifier of the employer for filtering reports"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `open`, `finalized`."
+                },
+                {
+                  "disabled": false,
+                  "key": "month",
+                  "value": "<integer>",
+                  "description": "Month for filtering reports, used together with `year` (MM format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Year for filtering reports, can be used standalone or with `month` (YYYY format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_customer_id",
+                  "value": "<string>",
+                  "description": "Unique identifier of the customer for EoR platforms, used to filter reports for a logical employer"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4b42ac1-c99c-4db9-8e55-387cb50a4dfa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "external_customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"employer_id\": \"string\",\n      \"period\": {\n        \"from_date\": \"2018-03-22\",\n        \"to_date\": \"1973-04-04\"\n      },\n      \"status\": \"finalized\",\n      \"created_at\": \"1960-12-18T21:27:12.282Z\",\n      \"last_updated_at\": \"1967-07-21T16:25:26.855Z\",\n      \"object\": \"string\",\n      \"external_customer_id\": \"string\",\n      \"finalized_at\": \"2018-01-24T12:18:29.259Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"employer_id\": \"string\",\n      \"period\": {\n        \"from_date\": \"1988-10-25\",\n        \"to_date\": \"1977-05-01\"\n      },\n      \"status\": \"finalized\",\n      \"created_at\": \"2003-03-06T22:35:55.565Z\",\n      \"last_updated_at\": \"1990-10-21T20:05:45.199Z\",\n      \"object\": \"string\",\n      \"external_customer_id\": \"string\",\n      \"finalized_at\": \"2001-08-02T16:10:43.931Z\"\n    }\n  ],\n  \"page\": 1372,\n  \"page_size\": 2819,\n  \"total_count\": 1469,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39e9a5e4-50d3-4574-8719-8d12091c4611",
+          "name": "Finalize a contribution report",
+          "request": {
+            "name": "Finalize a contribution report",
+            "description": {
+              "content": "This endpoint finalizes the `contribution report` object, making it immutable and preventing any further updates. Once finalized, its `status` changes to `finalized`, and it serves as a historical record for payroll reporting. Any changes or adjustments that occur after the finalization will roll into the next reporting period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "431dbceb-89a3-465a-9cb1-6b123a7717d9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"employer_id\": \"string\",\n  \"period\": {\n    \"from_date\": \"1995-03-31\",\n    \"to_date\": \"1973-12-23\"\n  },\n  \"status\": \"open\",\n  \"created_at\": \"1963-08-25T00:09:45.991Z\",\n  \"last_updated_at\": \"2002-12-21T05:38:08.732Z\",\n  \"object\": \"string\",\n  \"external_customer_id\": \"string\",\n  \"finalized_at\": \"1967-12-03T09:22:26.709Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51569b3a-2604-45d5-937f-9a0a3be90dba",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5754,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4335158-e3e5-48a7-a40c-69d6cf5d0173",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5754,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "225d3f96-6a15-4be7-95a4-2d1b010eebf0",
+          "name": "Retrieve an employee breakdown",
+          "request": {
+            "name": "Retrieve an employee breakdown",
+            "description": {
+              "content": "Returns the `employee breakdown` for a `contribution report`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "employee_breakdowns",
+                ":employee_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "681584d9-6877-4456-9b0a-ee3d6252b95e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns",
+                    ":employee_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employee_id\": \"string\",\n  \"contribution_report_id\": \"string\",\n  \"employer_id\": \"string\",\n  \"period\": {\n    \"from_date\": \"2000-02-27\",\n    \"to_date\": \"2010-06-08\"\n  },\n  \"currency\": \"dzd\",\n  \"status\": \"open\",\n  \"created_at\": \"1952-04-04T06:56:04.976Z\",\n  \"last_updated_at\": \"1991-06-14T04:15:25.372Z\",\n  \"health_insurance\": {\n    \"employer_contributions\": [\n      {\n        \"id\": \"string\",\n        \"category\": \"tax\",\n        \"member_type\": \"child_dependant\",\n        \"adjustment\": true,\n        \"amount\": 9378.346487369625,\n        \"type\": \"recurring\",\n        \"cover_period\": {\n          \"from_date\": \"1979-07-10\",\n          \"to_date\": \"2021-03-02\"\n        },\n        \"policy_id\": \"string\",\n        \"employee_policy_id\": \"string\",\n        \"reporting_month\": \"1957-12-28\",\n        \"adjustment_for\": \"string\",\n        \"note\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"category\": \"gross_premium\",\n        \"member_type\": \"partner_dependant\",\n        \"adjustment\": true,\n        \"amount\": 5033.648302783328,\n        \"type\": \"recurring\",\n        \"cover_period\": {\n          \"from_date\": \"1980-08-25\",\n          \"to_date\": \"1981-03-01\"\n        },\n        \"policy_id\": \"string\",\n        \"employee_policy_id\": \"string\",\n        \"reporting_month\": \"1995-04-25\",\n        \"adjustment_for\": \"string\",\n        \"note\": \"string\"\n      }\n    ],\n    \"employee_contributions\": [\n      {\n        \"id\": \"string\",\n        \"category\": \"gross_premium\",\n        \"member_type\": \"child_dependant\",\n        \"adjustment\": true,\n        \"amount\": 3983.5060850436075,\n        \"type\": \"one_off\",\n        \"cover_period\": {\n          \"from_date\": \"1965-03-18\",\n          \"to_date\": \"1990-02-27\"\n        },\n        \"policy_id\": \"string\",\n        \"employee_policy_id\": \"string\",\n        \"reporting_month\": \"2017-02-22\",\n        \"adjustment_for\": \"string\",\n        \"note\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"category\": \"tax\",\n        \"member_type\": \"policyholder\",\n        \"adjustment\": false,\n        \"amount\": 4687.724927508107,\n        \"type\": \"one_off\",\n        \"cover_period\": {\n          \"from_date\": \"1994-09-24\",\n          \"to_date\": \"1960-09-05\"\n        },\n        \"policy_id\": \"string\",\n        \"employee_policy_id\": \"string\",\n        \"reporting_month\": \"1969-10-18\",\n        \"adjustment_for\": \"string\",\n        \"note\": \"string\"\n      }\n    ]\n  },\n  \"object\": \"string\",\n  \"external_customer_id\": \"string\",\n  \"finalized_at\": \"1955-10-07T12:02:18.170Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8e18bad-851d-409f-b36c-0df3034a8a51",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns",
+                    ":employee_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5754,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "385f0b53-1a49-4104-8ec8-8cfef9dcac46",
+          "name": "List all employee breakdowns",
+          "request": {
+            "name": "List all employee breakdowns",
+            "description": {
+              "content": "Returns a list of `employee breakdowns` for a `contribution report`. The breakdowns are returned sorted by creation date, with the most recent breakdown appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "employee_breakdowns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "584902f4-786c-4824-9ca2-6490abad9762",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"employee_id\": \"string\",\n      \"contribution_report_id\": \"string\",\n      \"employer_id\": \"string\",\n      \"period\": {\n        \"from_date\": \"1984-01-16\",\n        \"to_date\": \"2022-06-13\"\n      },\n      \"currency\": \"hrk\",\n      \"status\": \"finalized\",\n      \"created_at\": \"1977-11-16T07:44:11.364Z\",\n      \"last_updated_at\": \"2005-01-24T08:08:22.761Z\",\n      \"health_insurance\": {\n        \"employer_contributions\": [\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": false,\n            \"amount\": 6120.901152383518,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1998-04-30\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": true,\n            \"amount\": 5010.195697179033,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1986-11-22\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          }\n        ],\n        \"employee_contributions\": [\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": true,\n            \"amount\": 1733.1276850528309,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1991-01-07\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": false,\n            \"amount\": 4921.312033919299,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1998-11-05\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          }\n        ]\n      },\n      \"object\": \"string\",\n      \"external_customer_id\": \"string\",\n      \"finalized_at\": \"1951-06-22T02:18:48.276Z\"\n    },\n    {\n      \"employee_id\": \"string\",\n      \"contribution_report_id\": \"string\",\n      \"employer_id\": \"string\",\n      \"period\": {\n        \"from_date\": \"2000-12-23\",\n        \"to_date\": \"1970-02-03\"\n      },\n      \"currency\": \"jod\",\n      \"status\": \"open\",\n      \"created_at\": \"2004-01-11T22:28:49.301Z\",\n      \"last_updated_at\": \"1979-05-12T10:22:26.684Z\",\n      \"health_insurance\": {\n        \"employer_contributions\": [\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": true,\n            \"amount\": 3846.067015868687,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1956-08-02\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": false,\n            \"amount\": 4790.751525628229,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1998-06-01\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          }\n        ],\n        \"employee_contributions\": [\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": true,\n            \"amount\": 4109.343162341398,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1971-10-10\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment\": true,\n            \"amount\": 1862.3293304862343,\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": \"string\",\n            \"employee_policy_id\": \"string\",\n            \"reporting_month\": \"1959-02-28\",\n            \"adjustment_for\": \"string\",\n            \"note\": \"string\"\n          }\n        ]\n      },\n      \"object\": \"string\",\n      \"external_customer_id\": \"string\",\n      \"finalized_at\": \"1996-06-28T18:11:50.310Z\"\n    }\n  ],\n  \"page\": 7414,\n  \"page_size\": 7976,\n  \"total_count\": 6903,\n  \"has_next_page\": true,\n  \"has_previous_page\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "150c7ff4-0c99-4b82-80a6-457d6ea4c31e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5754,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "19a9929a-4c8f-40a5-9c88-2e95311ea299",
+    "name": "API Reference Associated Persons contributionReports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

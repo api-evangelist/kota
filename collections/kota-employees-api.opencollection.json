@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons employees API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/employees",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending`, `active`, `offboarding`, `inactive`, `restricted`."
+              },
+              {
+                "name": "employer_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by employer ID."
+              },
+              {
+                "name": "external_customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the employee's metadata \"id\" value (case-insensitive, accent-insensitive, partial match)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of your `employees`. The `employees` are returned sorted by creation date, with the most recent `employees` appearing first."
+        },
+        {
+          "info": {
+            "name": "Create an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/employees",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an `employee` with the linked `employer`. If the `employer` has an active health insurance scheme that automatically provides insurance to employees the `employee` will be enrolled."
+        },
+        {
+          "info": {
+            "name": "Retrieve an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/employees/:employee_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves an `employee` object."
+        },
+        {
+          "info": {
+            "name": "Update an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://test.api.kota.io/employees/:employee_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified `employee` by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `email` parameter only the `email` value will be changed.\n\nNote that the `home_address` field is treated as single object that is updated entirely. If you provide this field, the entire address object will be replaced with the new data, not just the individual sub-fields you include in the request, potentially removing any sub-fields yo"
+        },
+        {
+          "info": {
+            "name": "Offboard an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/employees/:employee_id/offboard",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedules an `employee` to be offboarded. Changes affecting payroll will be reflected in the next available payroll cycle data run. Offboarding an `employee` can be cancelled up to, and including, the day before they are scheduled for offboarding. A `webhook` is available to inform you when this completes."
+        },
+        {
+          "info": {
+            "name": "Cancel offboarding an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/employees/:employee_id/offboard/cancel",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels the scheduled offboarding of an `employee`. Adjusts the next payroll cycle data to compensate for this change and if payroll ran while the offboarding was scheduled the next payroll cycle data will be adjusted to bring the scheme back to balance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

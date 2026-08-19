@@ -1,0 +1,1221 @@
+{
+  "item": [
+    {
+      "id": "b46dff94-e89e-4f13-bc8c-8a0832afd0ee",
+      "name": "Health Insurance",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d466f4e3-9e1f-467a-99e3-40af64cb3178",
+          "name": "Retrieve employer quote",
+          "request": {
+            "name": "Retrieve employer quote",
+            "description": {
+              "content": "Returns group's health insurance `quote` for an `employer` by `employer_quote_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "health_insurance",
+                "quotes",
+                ":employer_quote_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_quote_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85786540-7ac6-42f3-8bf6-8befd20389b5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "quotes",
+                    ":employer_quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_quote_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coverage_levels\": [\n    {\n      \"documents\": [\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"plan_currency\": \"hrk\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_name\": \"string\",\n      \"provider_logo_url\": \"string\",\n      \"provider_name\": \"string\",\n      \"provider_employer_platform_url\": null,\n      \"provider_support_phone\": null\n    },\n    {\n      \"documents\": [\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"plan_currency\": \"afn\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_name\": \"string\",\n      \"provider_logo_url\": \"string\",\n      \"provider_name\": \"string\",\n      \"provider_employer_platform_url\": null,\n      \"provider_support_phone\": null\n    }\n  ],\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"quoted_at\": \"2024-12-01T00:00:00Z\",\n  \"status\": \"not_undertaken\",\n  \"object\": \"string\",\n  \"required_action\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aaad4ec-8f0c-49bd-b82f-c8f51170ba4e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "quotes",
+                    ":employer_quote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_quote_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ffcd2d0-d434-4bc0-b089-f27007c6ef27",
+          "name": "List all employer quotes",
+          "request": {
+            "name": "List all employer quotes",
+            "description": {
+              "content": "Returns a list of health insurance `quotes` for an `employer`. The `quotes` are returned sorted by creation date, with the most recent `quote` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "health_insurance",
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `pending_quote`, `action_required`, `not_undertaken`, `accepted`, `pending_insurer_acceptance`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a008c606-2a5b-4ac9-97a3-df857e1972b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"coverage_levels\": [\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"uyu\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        },\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"khr\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        }\n      ],\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"quoted_at\": \"2024-12-01T00:00:00Z\",\n      \"status\": \"pending_insurer_acceptance\",\n      \"object\": \"string\",\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    },\n    {\n      \"coverage_levels\": [\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"nad\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        },\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"cou\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        }\n      ],\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"quoted_at\": \"2024-12-01T00:00:00Z\",\n      \"status\": \"accepted\",\n      \"object\": \"string\",\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82a1f1eb-5d33-4b53-9f27-9d4ade79709d",
+          "name": "Retrieve an employer policy",
+          "request": {
+            "name": "Retrieve an employer policy",
+            "description": {
+              "content": "Retrieve group's health insurance `policy` for an `employer` by `employer_policy_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "health_insurance",
+                "policies",
+                ":employer_policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8037329-2f0d-4767-9781-bdcd1cbaaa8f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "policies",
+                    ":employer_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coverage_levels\": [\n    {\n      \"documents\": [\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"plan_currency\": \"bif\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_name\": \"string\",\n      \"provider_logo_url\": \"string\",\n      \"provider_name\": \"string\",\n      \"provider_employer_platform_url\": null,\n      \"provider_support_phone\": null\n    },\n    {\n      \"documents\": [\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"link\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"plan_currency\": \"idr\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_name\": \"string\",\n      \"provider_logo_url\": \"string\",\n      \"provider_name\": \"string\",\n      \"provider_employer_platform_url\": null,\n      \"provider_support_phone\": null\n    }\n  ],\n  \"employer_cancellation_period_length\": 123,\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"end_date\": \"2024-12-01\",\n  \"enrolment_type\": \"opt_out\",\n  \"id\": \"erhp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"renewal\": {\n    \"decision_confirmed\": true,\n    \"renewal_date\": \"2024-12-01\",\n    \"status\": \"renewed\",\n    \"window_end_date\": \"2024-12-01\",\n    \"window_start_date\": \"2024-12-01\",\n    \"renewed_health_insurance_id\": \"erhp_S\"\n  },\n  \"start_date\": \"2024-12-01\",\n  \"status\": \"active\",\n  \"object\": \"string\",\n  \"cancellation_date\": null,\n  \"group_policy_number\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f080b0ed-23fa-40ee-ae7c-0b9bc378265e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "policies",
+                    ":employer_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be7647e9-fdc0-4ee2-97d4-fba8e719305d",
+          "name": "List all employer policies",
+          "request": {
+            "name": "List all employer policies",
+            "description": {
+              "content": "Returns a list of group health insurance `policies` for an `employer`. The `policies` are returned sorted by creation date, with the most recent `policy` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employers",
+                ":employer_id",
+                "health_insurance",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b29d0814-a71b-4196-ac86-70db3b19c091",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employers",
+                    ":employer_id",
+                    "health_insurance",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"coverage_levels\": [\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"afn\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        },\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"bmd\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        }\n      ],\n      \"employer_cancellation_period_length\": 123,\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": \"2024-12-01\",\n      \"enrolment_type\": \"opt_in\",\n      \"id\": \"erhp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"renewal\": {\n        \"decision_confirmed\": true,\n        \"renewal_date\": \"2024-12-01\",\n        \"status\": \"cancelled\",\n        \"window_end_date\": \"2024-12-01\",\n        \"window_start_date\": \"2024-12-01\",\n        \"renewed_health_insurance_id\": \"erhp_=3|\"\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"scheduled\",\n      \"object\": \"string\",\n      \"cancellation_date\": null,\n      \"group_policy_number\": null\n    },\n    {\n      \"coverage_levels\": [\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"kwd\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        },\n        {\n          \"documents\": [\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"link\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"plan_currency\": \"ugx\",\n          \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n          \"plan_name\": \"string\",\n          \"provider_logo_url\": \"string\",\n          \"provider_name\": \"string\",\n          \"provider_employer_platform_url\": null,\n          \"provider_support_phone\": null\n        }\n      ],\n      \"employer_cancellation_period_length\": 123,\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": \"2024-12-01\",\n      \"enrolment_type\": \"opt_in\",\n      \"id\": \"erhp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"renewal\": {\n        \"decision_confirmed\": true,\n        \"renewal_date\": \"2024-12-01\",\n        \"status\": \"open\",\n        \"window_end_date\": \"2024-12-01\",\n        \"window_start_date\": \"2024-12-01\",\n        \"renewed_health_insurance_id\": \"erhp_Q9NC&_\"\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"active\",\n      \"object\": \"string\",\n      \"cancellation_date\": null,\n      \"group_policy_number\": null\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa8096c3-f9d2-41f2-9c1e-d04e13e882d8",
+          "name": "Retrieve an employee offer",
+          "request": {
+            "name": "Retrieve an employee offer",
+            "description": {
+              "content": "Retrieve group's health insurance `offer` for an `employee` by `employee_offer_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employee_id",
+                "health_insurance",
+                "offers",
+                ":employee_offer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_offer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29a32ea7-0936-40e5-8b5b-001eb2aa612e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "offers",
+                    ":employee_offer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_offer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coverage_level\": {\n    \"documents\": [\n      {\n        \"link\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"link\": \"string\",\n        \"title\": \"string\"\n      }\n    ],\n    \"plan_currency\": \"rub\",\n    \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"plan_name\": \"string\",\n    \"provider_logo_url\": \"string\",\n    \"provider_name\": \"string\",\n    \"provider_employer_platform_url\": null,\n    \"provider_support_phone\": null\n  },\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"status\": \"action_required\",\n  \"object\": \"string\",\n  \"external_customer_id\": null,\n  \"required_action\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ac80d0a-21a0-4d9e-8872-242bb9e10968",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "offers",
+                    ":employee_offer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_offer_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b946c4b4-7e01-4c6e-bea5-2a0ce1d8d5be",
+          "name": "List all employee offers",
+          "request": {
+            "name": "List all employee offers",
+            "description": {
+              "content": "Returns a list of group health insurance `offers` for an `employee`. The `offers` are returned sorted by creation date, with the most recent `offer` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employee_id",
+                "health_insurance",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0851e06f-1045-4ffe-a8ba-0d69af432350",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"coverage_level\": {\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"plan_currency\": \"wst\",\n        \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"plan_name\": \"string\",\n        \"provider_logo_url\": \"string\",\n        \"provider_name\": \"string\",\n        \"provider_employer_platform_url\": null,\n        \"provider_support_phone\": null\n      },\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"action_required\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    },\n    {\n      \"coverage_level\": {\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"plan_currency\": \"chw\",\n        \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"plan_name\": \"string\",\n        \"provider_logo_url\": \"string\",\n        \"provider_name\": \"string\",\n        \"provider_employer_platform_url\": null,\n        \"provider_support_phone\": null\n      },\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"action_required\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"required_action\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      }\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af07bbcb-3384-4f13-802d-79f982ff83a7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f92db90-85d3-4349-a857-a5ecdf3e92e9",
+          "name": "List all employee policies",
+          "request": {
+            "name": "List all employee policies",
+            "description": {
+              "content": "Returns a list of group health insurance `policies` for an `employee`. The `policies` are returned sorted by creation date, with the most recent `policy` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employee_id",
+                "health_insurance",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "054149ed-6da4-4317-8dd0-0eb279cbe08c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"coverage_level\": {\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"plan_currency\": \"hnl\",\n        \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"plan_name\": \"string\",\n        \"provider_logo_url\": \"string\",\n        \"provider_name\": \"string\",\n        \"provider_employer_platform_url\": null,\n        \"provider_support_phone\": null\n      },\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": \"2024-12-01\",\n      \"enrolled_dependants_count\": 123,\n      \"enrolment_type\": \"opt_out\",\n      \"estimated_gross_premium\": {\n        \"currency\": \"srd\",\n        \"monthly\": {\n          \"employee_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"employer_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"term\": {\n          \"employee_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"employer_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"opt_out_deadline_date\": \"2024-12-01\",\n      \"renewal\": {\n        \"decision_confirmed\": true,\n        \"renewal_date\": \"2024-12-01\",\n        \"status\": \"renewed\",\n        \"window_end_date\": \"2024-12-01\",\n        \"window_start_date\": \"2024-12-01\",\n        \"renewed_health_insurance_id\": \"eehp_av%YS\"\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"expired\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"cancellation_date\": null,\n      \"policy_number\": null\n    },\n    {\n      \"coverage_level\": {\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"plan_currency\": \"isk\",\n        \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"plan_name\": \"string\",\n        \"provider_logo_url\": \"string\",\n        \"provider_name\": \"string\",\n        \"provider_employer_platform_url\": null,\n        \"provider_support_phone\": null\n      },\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": \"2024-12-01\",\n      \"enrolled_dependants_count\": 123,\n      \"enrolment_type\": \"opt_in\",\n      \"estimated_gross_premium\": {\n        \"currency\": \"bdt\",\n        \"monthly\": {\n          \"employee_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"employer_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"term\": {\n          \"employee_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"employer_contribution\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"total\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"opt_out_deadline_date\": \"2024-12-01\",\n      \"renewal\": {\n        \"decision_confirmed\": true,\n        \"renewal_date\": \"2024-12-01\",\n        \"status\": \"renewed\",\n        \"window_end_date\": \"2024-12-01\",\n        \"window_start_date\": \"2024-12-01\",\n        \"renewed_health_insurance_id\": \"eehp_yZxoLwoPzbc\"\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"cancelled\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"cancellation_date\": null,\n      \"policy_number\": null\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "638165cd-eada-4f28-b590-4d440afa2145",
+          "name": "Retrieve an employee policy",
+          "request": {
+            "name": "Retrieve an employee policy",
+            "description": {
+              "content": "Retrieve group's health insurance `policy` for an `employee` by `employee_policy_id`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employee_id",
+                "health_insurance",
+                "policies",
+                ":employee_policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4c319b9-282a-412d-a58b-51768df3f783",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "policies",
+                    ":employee_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coverage_level\": {\n    \"documents\": [\n      {\n        \"link\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"link\": \"string\",\n        \"title\": \"string\"\n      }\n    ],\n    \"plan_currency\": \"sgd\",\n    \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"plan_name\": \"string\",\n    \"provider_logo_url\": \"string\",\n    \"provider_name\": \"string\",\n    \"provider_employer_platform_url\": null,\n    \"provider_support_phone\": null\n  },\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"end_date\": \"2024-12-01\",\n  \"enrolled_dependants_count\": 123,\n  \"enrolment_type\": \"opt_in\",\n  \"estimated_gross_premium\": {\n    \"currency\": \"zmw\",\n    \"monthly\": {\n      \"employee_contribution\": 123.45,\n      \"employer_contribution\": 123.45,\n      \"total\": 123.45\n    },\n    \"term\": {\n      \"employee_contribution\": 123.45,\n      \"employer_contribution\": 123.45,\n      \"total\": 123.45\n    }\n  },\n  \"id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"opt_out_deadline_date\": \"2024-12-01\",\n  \"renewal\": {\n    \"decision_confirmed\": true,\n    \"renewal_date\": \"2024-12-01\",\n    \"status\": \"cancelled\",\n    \"window_end_date\": \"2024-12-01\",\n    \"window_start_date\": \"2024-12-01\",\n    \"renewed_health_insurance_id\": \"eehp_CNpI4F=T^\"\n  },\n  \"start_date\": \"2024-12-01\",\n  \"status\": \"active\",\n  \"object\": \"string\",\n  \"external_customer_id\": null,\n  \"cancellation_date\": null,\n  \"policy_number\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "538571a6-7e43-4eca-8360-796c1a887e3f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employee_id",
+                    "health_insurance",
+                    "policies",
+                    ":employee_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "de84a625-b833-4279-a479-0c414b548b4d",
+    "name": "API Reference Associated Persons Health Insurance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

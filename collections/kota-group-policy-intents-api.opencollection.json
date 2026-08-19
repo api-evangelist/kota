@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons Group Policy Intents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Group Policy Intents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List group policy intents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/group_policy_intents",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group ID"
+              },
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by plan ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `pending_provider_approval`, `policy_created`, `expired`, `provider_rejected`, `manual_renewal_gathering_required`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of `group_policy_intent`'s. The results are returned sorted by creation date, with the most recent appearing first."
+        },
+        {
+          "info": {
+            "name": "Create a group policy intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/group_policy_intents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a `group_policy_intent` from a `group_quote_intent` that has a quote available. The intent coordinates the policy setup workflow including requirements collection and policy creation."
+        },
+        {
+          "info": {
+            "name": "Retrieve a group policy intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/group_policy_intents/:group_policy_intent_id",
+            "params": [
+              {
+                "name": "group_policy_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a `group_policy_intent` object."
+        },
+        {
+          "info": {
+            "name": "List requirements for a group policy intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/group_policy_intents/:group_policy_intent_id/requirements",
+            "params": [
+              {
+                "name": "group_policy_intent_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by object type (employee or employer)"
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by object ID (employee ID or employer ID)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of adaptive requirements for a `group_policy_intent`. Requirements must be fulfilled before policy setup can proceed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

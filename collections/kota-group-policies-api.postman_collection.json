@@ -1,0 +1,286 @@
+{
+  "item": [
+    {
+      "id": "2d91e52d-ebfb-45e3-bb8e-b37089871695",
+      "name": "Group Policies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7851285-a616-4536-bd3e-7549b5f2d63b",
+          "name": "List all group policies",
+          "request": {
+            "name": "List all group policies",
+            "description": {
+              "content": "Returns a list of `group_policies`. By default, only `active` and `scheduled` group policies are returned. Use the `status` query parameter to filter by other statuses. The `group_policies` are returned sorted by creation date, with the most recent `group_policy` appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "Filters group policies by employer."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters group policies by group."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `scheduled`, `active`, `expired`, `cancelled`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19277d21-5650-4e95-9eb2-0be778bd581e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "er_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"statutory_warning\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"product_information\"\n        }\n      ],\n      \"id\": \"gp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan\": {\n        \"currency\": \"ghs\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"expired\",\n      \"type\": \"life_assurance\",\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": null,\n      \"cancellation_date\": null,\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"string\"\n    },\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"text\": \"string\",\n          \"type\": \"statement_of_needs\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"pre_existing_conditions\"\n        }\n      ],\n      \"id\": \"gp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan\": {\n        \"currency\": \"mmk\",\n        \"description\": \"string\",\n        \"documents\": [\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"link\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"name\": \"string\"\n      },\n      \"provider\": {\n        \"description\": \"string\",\n        \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"logo_url\": \"string\",\n        \"name\": \"string\",\n        \"employer_portal_url\": null,\n        \"employee_portal_url\": null,\n        \"support_phone_number\": null\n      },\n      \"start_date\": \"2024-12-01\",\n      \"status\": \"active\",\n      \"type\": \"health_insurance\",\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"end_date\": null,\n      \"cancellation_date\": null,\n      \"health_insurance\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "145a84db-8b70-4358-b6ef-e92499d25f06",
+          "name": "Retrieve a group policy",
+          "request": {
+            "name": "Retrieve a group policy",
+            "description": {
+              "content": "Retrieves a `group_policy` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policies",
+                ":group_policy_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d2f610e-ce38-4d5b-b496-41063f69b5f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policies",
+                    ":group_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"text\": \"string\",\n      \"type\": \"statutory_warning\"\n    },\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_commission\"\n    }\n  ],\n  \"id\": \"gp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"plan\": {\n    \"currency\": \"try\",\n    \"description\": \"string\",\n    \"documents\": [\n      {\n        \"link\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"plan_summary\"\n      },\n      {\n        \"link\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"hospital_list\"\n      }\n    ],\n    \"id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"name\": \"string\"\n  },\n  \"provider\": {\n    \"description\": \"string\",\n    \"id\": \"pr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n    \"logo_url\": \"string\",\n    \"name\": \"string\",\n    \"employer_portal_url\": null,\n    \"employee_portal_url\": null,\n    \"support_phone_number\": null\n  },\n  \"start_date\": \"2024-12-01\",\n  \"status\": \"cancelled\",\n  \"type\": \"health_insurance\",\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"end_date\": null,\n  \"cancellation_date\": null,\n  \"health_insurance\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f41a2ee-6b3b-4831-8c45-2be4230514e2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policies",
+                    ":group_policy_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e744f013-870b-49c5-9da8-fc20f0f22422",
+    "name": "API Reference Associated Persons Group Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

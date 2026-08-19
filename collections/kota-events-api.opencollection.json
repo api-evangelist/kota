@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons events API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/events",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter events created after this date (limited to the last 30 days)"
+              },
+              {
+                "name": "order_direction",
+                "value": "",
+                "type": "query",
+                "description": "Order direction of the events list `asc` or `desc` (default: `desc`)"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version of the events to return `v1` or `v2` (default: based on registered webhook endpoint versions)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Returns a list of `events` sorted by creation date, with the most recently created event appearing first. The event list includes data from up to the last 30 days.\n\nEach `event`’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version."
+        },
+        {
+          "info": {
+            "name": "Retrieve an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/events/:event_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an `event` object. Events are available for up to 30 days.\n\nThe event’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version"
+        },
+        {
+          "info": {
+            "name": "Replay an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/events/:event_id/replay",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Replays an event by creating new deliveries to all currently matching subscription endpoints. Each delivery performs a single attempt and does not trigger automatic retries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

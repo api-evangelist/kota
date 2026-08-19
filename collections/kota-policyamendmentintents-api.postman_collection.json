@@ -1,0 +1,1396 @@
+{
+  "item": [
+    {
+      "id": "fb6cc906-b7c0-4d9a-8651-b54bd87f9c15",
+      "name": "policyAmendmentIntents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0860b935-2859-4a0d-a8a2-c8bcc954a81e",
+          "name": "List all policy amendment intents for a policy",
+          "request": {
+            "name": "List all policy amendment intents for a policy",
+            "description": {
+              "content": "Returns a paginated list of policy amendment intents for the specified policy. The intents are returned sorted by creation date, with the oldest intent appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `action_required`, `awaiting_quote`, `pending_confirmation`, `processing`, `amended`, `processing_error`, `not_undertaken`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77807fdf-b063-435e-b622-0035796b8f22",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"policy_id\": \"string\",\n      \"status\": \"awaiting_quote\",\n      \"amendment_reason\": {\n        \"type\": \"initial_adjustment_period\",\n        \"qualifying_life_event\": {\n          \"event\": \"death_of_spouse_or_dependent\",\n          \"event_date\": \"1978-03-30\",\n          \"reason\": \"string\"\n        }\n      },\n      \"requested_changes\": [\n        {\n          \"change_type\": \"cancellation\"\n        },\n        {\n          \"change_type\": \"dependents\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"type\": \"product_information\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"intermediary_role\",\n          \"text\": \"string\"\n        }\n      ],\n      \"object\": \"string\",\n      \"required_action\": {\n        \"code\": \"provide_dependents_information\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"1989-03-05\",\n        \"associated_persons\": {\n          \"type\": \"dependents\",\n          \"dependents\": {\n            \"dependents_management_intent_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"pending_confirmation\": {\n        \"code\": \"confirm_qle\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"2020-02-12\",\n        \"quote\": {\n          \"currency\": \"string\",\n          \"monthly\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"term\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"associated_persons\": {\n          \"type\": \"dependents\",\n          \"dependents\": {\n            \"dependents_management_intent_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"processing_error\": {\n        \"code\": \"provider_rejected\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"policy_id\": \"string\",\n      \"status\": \"awaiting_quote\",\n      \"amendment_reason\": {\n        \"type\": \"qualifying_life_event\",\n        \"qualifying_life_event\": {\n          \"event\": \"birth_of_child\",\n          \"event_date\": \"2021-10-19\",\n          \"reason\": \"string\"\n        }\n      },\n      \"requested_changes\": [\n        {\n          \"change_type\": \"dependents\"\n        },\n        {\n          \"change_type\": \"cancellation\"\n        }\n      ],\n      \"disclosures\": [\n        {\n          \"category\": \"intermediary\",\n          \"type\": \"statement_of_needs\",\n          \"text\": \"string\"\n        },\n        {\n          \"category\": \"provider\",\n          \"type\": \"intermediary_commission\",\n          \"text\": \"string\"\n        }\n      ],\n      \"object\": \"string\",\n      \"required_action\": {\n        \"code\": \"provide_dependents_information\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"2025-07-10\",\n        \"associated_persons\": {\n          \"type\": \"dependents\",\n          \"dependents\": {\n            \"dependents_management_intent_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"pending_confirmation\": {\n        \"code\": \"confirm_qle\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\",\n        \"due_by\": \"2023-02-01\",\n        \"quote\": {\n          \"currency\": \"string\",\n          \"monthly\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"term\": {\n            \"employee_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employer_contribution\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"associated_persons\": {\n          \"type\": \"dependents\",\n          \"dependents\": {\n            \"dependents_management_intent_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"processing_error\": {\n        \"code\": \"provider_rejected\",\n        \"reason\": \"string\",\n        \"reason_description\": \"string\"\n      }\n    }\n  ],\n  \"page\": 40,\n  \"page_size\": 527,\n  \"total_count\": 1943,\n  \"has_next_page\": false,\n  \"has_previous_page\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a6ffe9b-88c4-47c6-a7ad-52cdf3909729",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b7fbc8e-b3cd-471d-8990-7d0626c5a5e0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddc1dca6-8a0b-4607-bd37-1567b54fc94f",
+          "name": "Create a new policy amendment intent",
+          "request": {
+            "name": "Create a new policy amendment intent",
+            "description": {
+              "content": "Initiates a policy amendment (e.g. adding/removing dependents). The intent coordinates the amendment workflow including dependents sub-intent management, quote generation, employee confirmation, and provider processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"<string>\",\n    \"qualifying_life_event\": {\n      \"event\": \"<string>\",\n      \"event_date\": \"<date>\",\n      \"reason\": \"<string,null>\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"<string>\"\n    },\n    {\n      \"change_type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e554992-8bc8-4f2e-b46f-775ffa66179d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"event\": \"dependent_lost_other_coverage\",\n      \"event_date\": \"2000-08-24\",\n      \"reason\": \"string\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"dependents\"\n    },\n    {\n      \"change_type\": \"dependents\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"policy_id\": \"string\",\n  \"status\": \"processing_error\",\n  \"amendment_reason\": {\n    \"type\": \"initial_adjustment_period\",\n    \"qualifying_life_event\": {\n      \"event\": \"death_of_spouse_or_dependent\",\n      \"event_date\": \"1965-06-20\",\n      \"reason\": \"string\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"string\"\n    }\n  ],\n  \"object\": \"string\",\n  \"required_action\": {\n    \"code\": \"provide_dependents_information\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1985-11-18\",\n    \"associated_persons\": {\n      \"type\": \"dependents\",\n      \"dependents\": {\n        \"dependents_management_intent_id\": \"string\",\n        \"status\": \"action_required\"\n      }\n    }\n  },\n  \"pending_confirmation\": {\n    \"code\": \"confirm_opt_out\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1999-08-17\",\n    \"quote\": {\n      \"currency\": \"string\",\n      \"monthly\": {\n        \"employee_contribution\": {\n          \"net\": 391.62674771189734,\n          \"tax\": 1458.1895434664839,\n          \"gross\": 4431.294751020744\n        },\n        \"employer_contribution\": {\n          \"net\": 9417.428868749505,\n          \"tax\": 4160.380360510458,\n          \"gross\": 8203.232197614467\n        },\n        \"total\": {\n          \"net\": 2292.5493973594566,\n          \"tax\": 5162.041304153517,\n          \"gross\": 9484.804756499454\n        }\n      },\n      \"term\": {\n        \"employee_contribution\": {\n          \"net\": 8565.52973048441,\n          \"tax\": 6508.2174953419535,\n          \"gross\": 2832.8069729910953\n        },\n        \"employer_contribution\": {\n          \"net\": 6993.162740652992,\n          \"tax\": 7974.923744846646,\n          \"gross\": 1046.1295319095632\n        },\n        \"total\": {\n          \"net\": 1823.4693817838254,\n          \"tax\": 4325.56713016354,\n          \"gross\": 9282.587521999953\n        }\n      }\n    },\n    \"associated_persons\": {\n      \"type\": \"dependents\",\n      \"dependents\": {\n        \"dependents_management_intent_id\": \"string\",\n        \"status\": \"processing\"\n      }\n    }\n  },\n  \"processing_error\": {\n    \"code\": \"provider_rejected\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5278890d-16cf-4f86-8985-53450bdc4100",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"event\": \"dependent_lost_other_coverage\",\n      \"event_date\": \"2000-08-24\",\n      \"reason\": \"string\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"dependents\"\n    },\n    {\n      \"change_type\": \"dependents\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a06f7fb-7195-4c24-bdc9-2da58d728d3f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amendment_reason\": {\n    \"type\": \"qualifying_life_event\",\n    \"qualifying_life_event\": {\n      \"event\": \"dependent_lost_other_coverage\",\n      \"event_date\": \"2000-08-24\",\n      \"reason\": \"string\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"dependents\"\n    },\n    {\n      \"change_type\": \"dependents\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbe92ffc-cdd5-4a3c-b643-edae731d8c46",
+          "name": "Retrieve a policy amendment intent",
+          "request": {
+            "name": "Retrieve a policy amendment intent",
+            "description": {
+              "content": "Retrieves a `policy_amendment_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":policy_amendment_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_amendment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6660da2-a72b-4655-9ada-9bfbced522d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"policy_id\": \"string\",\n  \"status\": \"processing_error\",\n  \"amendment_reason\": {\n    \"type\": \"initial_adjustment_period\",\n    \"qualifying_life_event\": {\n      \"event\": \"death_of_spouse_or_dependent\",\n      \"event_date\": \"1965-06-20\",\n      \"reason\": \"string\"\n    }\n  },\n  \"requested_changes\": [\n    {\n      \"change_type\": \"cancellation\"\n    },\n    {\n      \"change_type\": \"cancellation\"\n    }\n  ],\n  \"disclosures\": [\n    {\n      \"category\": \"regulatory\",\n      \"type\": \"statement_of_needs\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"underwriter_disclaimer\",\n      \"text\": \"string\"\n    }\n  ],\n  \"object\": \"string\",\n  \"required_action\": {\n    \"code\": \"provide_dependents_information\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1985-11-18\",\n    \"associated_persons\": {\n      \"type\": \"dependents\",\n      \"dependents\": {\n        \"dependents_management_intent_id\": \"string\",\n        \"status\": \"action_required\"\n      }\n    }\n  },\n  \"pending_confirmation\": {\n    \"code\": \"confirm_opt_out\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1999-08-17\",\n    \"quote\": {\n      \"currency\": \"string\",\n      \"monthly\": {\n        \"employee_contribution\": {\n          \"net\": 391.62674771189734,\n          \"tax\": 1458.1895434664839,\n          \"gross\": 4431.294751020744\n        },\n        \"employer_contribution\": {\n          \"net\": 9417.428868749505,\n          \"tax\": 4160.380360510458,\n          \"gross\": 8203.232197614467\n        },\n        \"total\": {\n          \"net\": 2292.5493973594566,\n          \"tax\": 5162.041304153517,\n          \"gross\": 9484.804756499454\n        }\n      },\n      \"term\": {\n        \"employee_contribution\": {\n          \"net\": 8565.52973048441,\n          \"tax\": 6508.2174953419535,\n          \"gross\": 2832.8069729910953\n        },\n        \"employer_contribution\": {\n          \"net\": 6993.162740652992,\n          \"tax\": 7974.923744846646,\n          \"gross\": 1046.1295319095632\n        },\n        \"total\": {\n          \"net\": 1823.4693817838254,\n          \"tax\": 4325.56713016354,\n          \"gross\": 9282.587521999953\n        }\n      }\n    },\n    \"associated_persons\": {\n      \"type\": \"dependents\",\n      \"dependents\": {\n        \"dependents_management_intent_id\": \"string\",\n        \"status\": \"processing\"\n      }\n    }\n  },\n  \"processing_error\": {\n    \"code\": \"provider_rejected\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cfb6f78-cf4f-4070-80b4-85b087a610da",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01b21540-d574-48bf-9255-643b3298daca",
+          "name": "Confirm policy amendment intent",
+          "request": {
+            "name": "Confirm policy amendment intent",
+            "description": {
+              "content": "Confirms a policy amendment intent after the employee has reviewed and accepted the quote. The intent must be in `pending_confirmation` status with a valid quote. The confirmation deadline must not have passed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":policy_amendment_intent_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_amendment_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14abc53d-137e-4987-a04b-afd0eb56e849",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4840906e-c1d6-4050-a58a-5b27d2843b8e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b0d392b-0f3e-42f9-a7ca-6f5ed993fe61",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":policy_amendment_intent_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_amendment_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7c3f81a-64db-462a-b11c-8bd1e8e03dff",
+          "name": "Cancel a policy amendment intent",
+          "request": {
+            "name": "Cancel a policy amendment intent",
+            "description": {
+              "content": "Cancels a policy amendment intent when the employee decides not to proceed. Can only cancel intents in `action_required` or `pending_confirmation` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "626b0370-4c2b-4264-b667-3a54c58019ab",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25abf0b0-ee2b-483f-8d85-f1be67134dcc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "772dfed9-f7aa-43b0-8d69-913f1e0d3bce",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89931559-93ac-41e4-b3dc-8981cba5e514",
+          "name": "Create a dependents management intent for a policy amendment",
+          "request": {
+            "name": "Create a dependents management intent for a policy amendment",
+            "description": {
+              "content": "Creates a dependents management intent as a sub-intent of a policy amendment intent. The sub-intent allows the platform to add or remove dependents from the policy. The policy amendment intent must be in `action_required` status with a `dependents` requested change.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policies",
+                ":policy_id",
+                "policy_amendment_intents",
+                ":id",
+                "create_dependents_management_intent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44b12c9f-22dc-42e1-90c8-2c3c373b998f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"parent_intent_id\": \"string\",\n  \"parent_intent_type\": \"enrolment_intent\",\n  \"status\": \"completed\",\n  \"dependents\": [\n    {\n      \"associated_person_id\": \"string\",\n      \"status\": \"ineligible\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"string\",\n          \"options\": [\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"string\",\n          \"options\": [\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"643816fc-f341-c98c-fa61-e8c708bd44c5\"\n    },\n    {\n      \"associated_person_id\": \"string\",\n      \"status\": \"restricted\",\n      \"coverage_selections\": [\n        {\n          \"configuration_id\": \"string\",\n          \"options\": [\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"configuration_id\": \"string\",\n          \"options\": [\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"option_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sub_options\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"requirement_id\": \"d60f7985-1d14-4ed2-0d08-dbdce165495c\"\n    }\n  ],\n  \"plan\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"pricing\": {\n      \"type\": \"per_member\",\n      \"per_member\": {\n        \"currency\": \"ves\",\n        \"member_type_pricing\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"tier_based\": {\n        \"currency\": \"ang\",\n        \"tiers\": [\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"annual_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_dependent_requirements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"monthly_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"annual_premium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"display_dependent_requirements\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  },\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"string\"\n    },\n    {\n      \"category\": \"provider\",\n      \"type\": \"intermediary_role\",\n      \"text\": \"string\"\n    }\n  ],\n  \"object\": \"string\",\n  \"coverage_options\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"scope\": \"member\",\n      \"input_type\": \"single_select\",\n      \"required\": true,\n      \"options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 2402.908516853064,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 6379.162608037833,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"string\",\n      \"min_selections\": 617,\n      \"max_selections\": 6270,\n      \"sort_order\": 8724,\n      \"group_label\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"scope\": \"policy\",\n      \"input_type\": \"multi_select\",\n      \"required\": true,\n      \"options\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 1265.2183519090588,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"learn_more_url\": \"string\",\n          \"from_price\": 7945.077530341446,\n          \"benefits\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"sub_options\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/PlanCoverageOptionResponse detected>\"\n            }\n          ],\n          \"eligibility_criteria\": [\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"employees_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"members_count\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"industry_exclusions\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"description\": \"string\",\n      \"min_selections\": 8176,\n      \"max_selections\": 31,\n      \"sort_order\": 5338,\n      \"group_label\": \"string\"\n    }\n  ],\n  \"action_required\": {\n    \"code\": \"remove_restricted_or_ineligible_dependents\",\n    \"reason\": \"string\",\n    \"reason_description\": \"string\",\n    \"due_by\": \"1981-08-17T13:41:01.844Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f401b9d2-8262-49ab-a714-ec3e36d257e5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7063ea9d-f130-4052-8539-0e18f9d836be",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policies",
+                    ":policy_id",
+                    "policy_amendment_intents",
+                    ":id",
+                    "create_dependents_management_intent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5733,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "52a4327b-931e-4d0c-aab5-f353ba40072f",
+    "name": "API Reference Associated Persons policyAmendmentIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

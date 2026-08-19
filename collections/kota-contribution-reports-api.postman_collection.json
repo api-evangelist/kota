@@ -1,0 +1,811 @@
+{
+  "item": [
+    {
+      "id": "4308af58-5bc3-412f-9b42-d439c200defa",
+      "name": "Contribution Reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ff6398a-2c4e-4790-8850-b4e51baa9a25",
+          "name": "Retrieve a contribution report",
+          "request": {
+            "name": "Retrieve a contribution report",
+            "description": {
+              "content": "Returns a `contribution report` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5293cd19-0dd8-4a63-9589-873344692e7c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-12-01T00:00:00Z\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n  \"period\": {\n    \"from_date\": \"2024-12-01\",\n    \"to_date\": \"2024-12-01\"\n  },\n  \"status\": \"open\",\n  \"object\": \"string\",\n  \"external_customer_id\": null,\n  \"finalized_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b43484b7-b6ce-4d8a-ad8c-289578bf0e4e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "437b36b7-07eb-4cfc-a1fa-5ae56a08d990",
+          "name": "List all contribution reports",
+          "request": {
+            "name": "List all contribution reports",
+            "description": {
+              "content": "Returns a list of `contribution reports`. The reports are returned sorted by creation date, with the most recent reports appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employer_id",
+                  "value": "<string>",
+                  "description": "Unique identifier of the employer for filtering reports"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `open`, `finalized`."
+                },
+                {
+                  "disabled": false,
+                  "key": "month",
+                  "value": "<integer>",
+                  "description": "Month for filtering reports, used together with `year` (MM format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<integer>",
+                  "description": "Year for filtering reports, can be used standalone or with `month` (YYYY format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_customer_id",
+                  "value": "<string>",
+                  "description": "Unique identifier of the customer for EoR platforms, used to filter reports for a logical employer"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "045d1ef0-e07a-4a74-926b-a4d386343f2a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employer_id",
+                      "value": "er_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "external_customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"created_at\": \"2024-12-01T00:00:00Z\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n      \"period\": {\n        \"from_date\": \"2024-12-01\",\n        \"to_date\": \"2024-12-01\"\n      },\n      \"status\": \"finalized\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"finalized_at\": null\n    },\n    {\n      \"created_at\": \"2024-12-01T00:00:00Z\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n      \"period\": {\n        \"from_date\": \"2024-12-01\",\n        \"to_date\": \"2024-12-01\"\n      },\n      \"status\": \"open\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"finalized_at\": null\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8aac717c-4d72-4bed-980a-0cfeff419b93",
+          "name": "Finalize a contribution report",
+          "request": {
+            "name": "Finalize a contribution report",
+            "description": {
+              "content": "This endpoint finalizes the `contribution report` object, making it immutable and preventing any further updates. Once finalized, its `status` changes to `finalized`, and it serves as a historical record for payroll reporting. Any changes or adjustments that occur after the finalization will roll into the next reporting period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6efb917-d476-4ef6-b988-5060e79413a7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-12-01T00:00:00Z\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n  \"period\": {\n    \"from_date\": \"2024-12-01\",\n    \"to_date\": \"2024-12-01\"\n  },\n  \"status\": \"open\",\n  \"object\": \"string\",\n  \"external_customer_id\": null,\n  \"finalized_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f03aad71-b800-4b0d-9bf2-39f20d783f69",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a700aaf2-de5a-45ff-a245-7020e72acb89",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa7a5c7b-3a35-4f8a-893d-810373a64b7b",
+          "name": "Retrieve an employee breakdown",
+          "request": {
+            "name": "Retrieve an employee breakdown",
+            "description": {
+              "content": "Returns the `employee breakdown` for a `contribution report`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "employee_breakdowns",
+                ":employee_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8d605d0-f035-4e57-a430-43a6decc7094",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns",
+                    ":employee_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contribution_report_id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"created_at\": \"2024-12-01T00:00:00Z\",\n  \"currency\": \"yer\",\n  \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"health_insurance\": {\n    \"employee_contributions\": [\n      {\n        \"adjustment\": true,\n        \"amount\": 123.45,\n        \"category\": \"gross_premium\",\n        \"cover_period\": {\n          \"from_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"employee_policy_id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"id\": \"ct_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"member_type\": \"policyholder\",\n        \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"reporting_month\": \"2024-12-01\",\n        \"type\": \"one_off\",\n        \"adjustment_for\": \"ct_Yg3il<\",\n        \"note\": null\n      },\n      {\n        \"adjustment\": true,\n        \"amount\": 123.45,\n        \"category\": \"tax_relief\",\n        \"cover_period\": {\n          \"from_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"employee_policy_id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"id\": \"ct_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"member_type\": \"child_dependant\",\n        \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"reporting_month\": \"2024-12-01\",\n        \"type\": \"recurring\",\n        \"adjustment_for\": \"ct_?QDI\",\n        \"note\": null\n      }\n    ],\n    \"employer_contributions\": [\n      {\n        \"adjustment\": true,\n        \"amount\": 123.45,\n        \"category\": \"tax_relief\",\n        \"cover_period\": {\n          \"from_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"employee_policy_id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"id\": \"ct_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"member_type\": \"child_dependant\",\n        \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"reporting_month\": \"2024-12-01\",\n        \"type\": \"recurring\",\n        \"adjustment_for\": \"ct_!2J~/\",\n        \"note\": null\n      },\n      {\n        \"adjustment\": true,\n        \"amount\": 123.45,\n        \"category\": \"tax_relief\",\n        \"cover_period\": {\n          \"from_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"to_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"employee_policy_id\": \"eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"id\": \"ct_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"member_type\": \"partner_dependant\",\n        \"policy_id\": \"p_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n        \"reporting_month\": \"2024-12-01\",\n        \"type\": \"one_off\",\n        \"adjustment_for\": \"ct_hH1l$e.j^S\",\n        \"note\": null\n      }\n    ]\n  },\n  \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n  \"period\": {\n    \"from_date\": \"2024-12-01\",\n    \"to_date\": \"2024-12-01\"\n  },\n  \"status\": \"finalized\",\n  \"object\": \"string\",\n  \"external_customer_id\": null,\n  \"finalized_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbc7b4ae-a456-4961-9320-4997da881bf0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns",
+                    ":employee_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70aa3d9d-7477-41d3-9890-d5c8edd4c19f",
+          "name": "List all employee breakdowns",
+          "request": {
+            "name": "List all employee breakdowns",
+            "description": {
+              "content": "Returns a list of `employee breakdowns` for a `contribution report`. The breakdowns are returned sorted by creation date, with the most recent breakdown appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contribution_reports",
+                ":contribution_report_id",
+                "employee_breakdowns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contribution_report_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d43aba70-402d-4b26-a3a0-836f9d260362",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"contribution_report_id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"created_at\": \"2024-12-01T00:00:00Z\",\n      \"currency\": \"tnd\",\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"health_insurance\": {\n        \"employee_contributions\": [\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"employer_contributions\": [\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n      \"period\": {\n        \"from_date\": \"2024-12-01\",\n        \"to_date\": \"2024-12-01\"\n      },\n      \"status\": \"finalized\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"finalized_at\": null\n    },\n    {\n      \"contribution_report_id\": \"ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"created_at\": \"2024-12-01T00:00:00Z\",\n      \"currency\": \"isk\",\n      \"employee_id\": \"ee_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"employer_id\": \"er_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"health_insurance\": {\n        \"employee_contributions\": [\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"employer_contributions\": [\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"adjustment\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cover_period\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"employee_policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"member_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policy_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reporting_month\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"adjustment_for\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"last_updated_at\": \"2024-12-01T00:00:00Z\",\n      \"period\": {\n        \"from_date\": \"2024-12-01\",\n        \"to_date\": \"2024-12-01\"\n      },\n      \"status\": \"open\",\n      \"object\": \"string\",\n      \"external_customer_id\": null,\n      \"finalized_at\": null\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f2cb6cc-f5fc-415c-a84d-686c065a0b18",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contribution_reports",
+                    ":contribution_report_id",
+                    "employee_breakdowns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contribution_report_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f9603e64-1b3e-40cf-96f4-a085f5bd1ad7",
+    "name": "API Reference Associated Persons Contribution Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

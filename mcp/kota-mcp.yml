@@ -2,26 +2,25 @@ generated: '2026-07-19'
 method: searched
 status: published
 source: https://docs.kota.io/llms.txt
-description: >-
-  Kota publishes a hosted, remote MCP server for its developer documentation, advertised at the top
-  of every docs page and in llms.txt for AI client integration (Claude Code, Cursor and other MCP
-  clients). It is a Fern-hosted documentation MCP server; it exposes documentation search, not the
-  Kota REST API itself. A tool surface for the REST API is captured separately below as candidate
-  tools derived from the OpenAPI.
+description: Kota publishes a hosted, remote MCP server for its developer documentation, advertised at
+  the top of every docs page and in llms.txt for AI client integration (Claude Code, Cursor and other
+  MCP clients). It is a Fern-hosted documentation MCP server; it exposes documentation search, not the
+  Kota REST API itself. A tool surface for the REST API is captured separately below as candidate tools
+  derived from the OpenAPI.
 server:
   name: kota-docs
   transport: http
   url: https://docs.kota.io/_mcp/server
   server_info:
     name: fern-docs-mcp-server
-    version: '1.0.0'
+    version: 1.0.0
   protocol_version: '2024-11-05'
   verified: '2026-07-19'
   verification: MCP initialize + tools/list handshake returned 200 over Streamable HTTP
 tools:
 - name: searchDocs
-  description: Search the documentation at https://docs.kota.io. Returns relevant doc passages with
-    source URLs.
+  description: Search the documentation at https://docs.kota.io. Returns relevant doc passages with source
+    URLs.
   published: true
 agent_surface:
   llms_txt: https://docs.kota.io/llms.txt
@@ -31,10 +30,9 @@ candidate_api_tools:
   status: candidate
   method: derived
   source: openapi/kota-openapi-original.json
-  note: >-
-    Kota does not publish an MCP server for the REST API. These are candidate tools an integrator
-    could forge from the published OpenAPI; every source_operation is a verbatim operationId from
-    the spec.
+  note: Kota does not publish an MCP server for the REST API. These are candidate tools an integrator
+    could forge from the published OpenAPI; every source_operation is a verbatim operationId from the
+    spec.
   tools:
   - name: list_employers
     description: List all employers
@@ -96,3 +94,9 @@ candidate_api_tools:
   - name: list_events
     description: List all events
     source_operation: openapi/kota-openapi-original.json#ListEvents
+deployment:
+  mode: remote
+  verified: searched
+  tools: 1
+  checked: '2026-08-12'
+  source: catalog MCP census

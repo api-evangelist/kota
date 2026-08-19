@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Associated Persons dependentsManagementIntents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dependentsManagementIntents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a dependents management intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a `dependents_management_intent` object by ID."
+        },
+        {
+          "info": {
+            "name": "Retrieve associated persons eligibility for a dependents management intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id/associated_persons_eligibility",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page of results to return. Defaults to 1 if not provided."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Retrieves all associated persons for the employee with their eligibility status for the specific policy/plan."
+        },
+        {
+          "info": {
+            "name": "Add dependents to a dependents management intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id/dependents",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more existing associated persons as dependents to a dependents management intent."
+        },
+        {
+          "info": {
+            "name": "Remove a dependent from a Dependents Management Intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id/dependents/:associated_person_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "associated_person_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a specific dependent from a Dependents Management Intent by their associated person ID. The operation returns the updated DMI state."
+        },
+        {
+          "info": {
+            "name": "Confirm dependent list",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id/confirm",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submits the finalized dependent list for processing. Call this endpoint after adding all dependents to the intent. The system validates the list and transitions the intent to `processing` status. If any dependents are marked as `ineligible` or `restricted`, they must be removed before confirmation. The parent intent's action deadline must not have passed."
+        },
+        {
+          "info": {
+            "name": "Cancel the dependents management intent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://test.api.kota.io/dependents_management_intents/:dependents_management_intent_id/cancel",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dependents_management_intent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels the `dependents_management_intent` in case an employee decides not to proceed with changes to their dependents. Canceling is only allowed from `action_required` status. If the intent is already `canceled`, the operation succeeds without changes. After canceling, a new dependents management intent can be created from the parent intent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

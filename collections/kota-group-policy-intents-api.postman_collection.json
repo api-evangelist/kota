@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "fa2c9eac-d31e-4b29-8829-37632c080899",
+      "name": "Group Policy Intents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f94e023d-dd97-498d-9302-f8790bcdeaad",
+          "name": "Create a group policy intent",
+          "request": {
+            "name": "Create a group policy intent",
+            "description": {
+              "content": "Creates a `group_policy_intent` from a `group_quote_intent` that has a quote available. The intent coordinates the policy setup workflow including requirements collection and policy creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_intent_id\": \"<string>\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"consent_approvals\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a598cb3-33d5-46ed-a8d5-ecbae82711f6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"consent_approvals\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"underwriter_disclaimer\"\n    },\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_commission\"\n    }\n  ],\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"status\": \"pending_provider_approval\",\n  \"due_date\": null,\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06a5b8a0-897f-4e7f-9de3-d497cf09515e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"consent_approvals\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d42ade7e-1162-4ec2-908d-332708bfe376",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"consent_approvals\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7542e39e-0542-4c79-bd80-9720f8982d80",
+          "name": "List group policy intents",
+          "request": {
+            "name": "List group policy intents",
+            "description": {
+              "content": "Returns a paginated list of `group_policy_intent`'s. The results are returned sorted by creation date, with the most recent appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filter by group ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<string>",
+                  "description": "Filter by plan ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `action_required`, `pending_provider_approval`, `policy_created`, `expired`, `provider_rejected`, `manual_renewal_gathering_required`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "963824b5-a034-40fd-8fba-0bafe940529a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group_id",
+                      "value": "gr_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "plan_id",
+                      "value": "pl_3b1333d87d9d4fd6ad83ba7f6b0e951a"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"intermediary_role\"\n        },\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"statement_of_needs\"\n        }\n      ],\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"processing\",\n      \"due_date\": null,\n      \"cost_sharing\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"string\"\n    },\n    {\n      \"disclosures\": [\n        {\n          \"category\": \"provider\",\n          \"text\": \"string\",\n          \"type\": \"intermediary_commission\"\n        },\n        {\n          \"category\": \"intermediary\",\n          \"text\": \"string\",\n          \"type\": \"intermediary_commission\"\n        }\n      ],\n      \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"id\": \"gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"status\": \"pending_provider_approval\",\n      \"due_date\": null,\n      \"cost_sharing\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"action_required\": {\n        \"value\": \"<Error: Could not resolve allOf schema\"\n      },\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc45e89d-9753-4eb8-af32-0a29c492fb50",
+          "name": "Retrieve a group policy intent",
+          "request": {
+            "name": "Retrieve a group policy intent",
+            "description": {
+              "content": "Retrieves a `group_policy_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents",
+                ":group_policy_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_policy_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0ec5b11-26d4-4e0c-a357-14c4e9aea04b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"disclosures\": [\n    {\n      \"category\": \"intermediary\",\n      \"text\": \"string\",\n      \"type\": \"underwriter_disclaimer\"\n    },\n    {\n      \"category\": \"provider\",\n      \"text\": \"string\",\n      \"type\": \"intermediary_commission\"\n    }\n  ],\n  \"group_id\": \"gr_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"id\": \"gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"plan_id\": \"pl_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"quote_intent_id\": \"gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n  \"status\": \"pending_provider_approval\",\n  \"due_date\": null,\n  \"cost_sharing\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"action_required\": {\n    \"value\": \"<Error: Could not resolve allOf schema\"\n  },\n  \"object\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2d59832-760c-40e6-a16e-b7e2149b133a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "452d28a7-2c21-4985-818f-7169e8b9fb9d",
+          "name": "List requirements for a group policy intent",
+          "request": {
+            "name": "List requirements for a group policy intent",
+            "description": {
+              "content": "Returns a paginated list of adaptive requirements for a `group_policy_intent`. Requirements must be fulfilled before policy setup can proceed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "group_policy_intents",
+                ":group_policy_intent_id",
+                "requirements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "value",
+                  "value": "<string>",
+                  "description": "Filter by object type (employee or employer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<string>",
+                  "description": "Filter by object ID (employee ID or employer ID)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_policy_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa2dd09c-d9df-4a8d-85a7-0b80de23bb13",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "employer"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"ar_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"is_fulfilled\": true,\n      \"object_id\": \"string\",\n      \"object_type\": \"employer\",\n      \"requirement_type\": \"dependent_management_intent\",\n      \"object\": \"string\"\n    },\n    {\n      \"id\": \"ar_3b1333d87d9d4fd6ad83ba7f6b0e951a\",\n      \"is_fulfilled\": true,\n      \"object_id\": \"string\",\n      \"object_type\": \"employer\",\n      \"requirement_type\": \"dependent_management_intent\",\n      \"object\": \"string\"\n    }\n  ],\n  \"page\": 123,\n  \"page_size\": 123,\n  \"total_count\": 123,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4123c89-7f76-4b15-b091-01c13b883dd0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "group_policy_intents",
+                    ":group_policy_intent_id",
+                    "requirements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "value",
+                      "value": "employer"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_policy_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"type\": null,\n  \"title\": null,\n  \"status\": null,\n  \"detail\": null,\n  \"instance\": null,\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ccb87d9-51d7-4434-8c8d-95d568730676",
+    "name": "API Reference Associated Persons Group Policy Intents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

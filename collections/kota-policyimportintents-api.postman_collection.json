@@ -1,0 +1,561 @@
+{
+  "item": [
+    {
+      "id": "037f37e9-42f7-429d-ac27-eee16d72aaac",
+      "name": "policyImportIntents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ca523b0-e085-4b6e-a66f-9c2bd48d2c13",
+          "name": "List all policy import intents",
+          "request": {
+            "name": "List all policy import intents",
+            "description": {
+              "content": "Returns a paginated list of policy import intents. The intents are returned sorted by creation date, with the most recent intent appearing first. Results can be filtered by employee ID, group ID, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "employee_id",
+                  "value": "<string>",
+                  "description": "Filters policy import intents by employee ID. Prefixed with `ee_`."
+                },
+                {
+                  "disabled": false,
+                  "key": "group_id",
+                  "value": "<string>",
+                  "description": "Filters policy import intents by group ID. Prefixed with `g_`."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Multiple values can be provided by separating them with a comma. Allowed values are: `processing`, `failed`, `success`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page of results to return. Defaults to 1 if not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of results to return per page. Defaults to 10 if not provided. Maximum value is 100."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d7df5e6-fbaf-4d14-b720-aa2f1fa69c35",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"processing\",\n      \"employee_id\": \"string\",\n      \"group_id\": \"string\",\n      \"provider_policy_number\": \"string\",\n      \"member_number\": \"string\",\n      \"policy_start_date\": \"1951-01-26\",\n      \"associated_persons\": [\n        {\n          \"id\": \"e18fd731-ecee-87ea-889b-9789c7f19607\",\n          \"associated_person_id\": \"string\",\n          \"member_number\": \"string\",\n          \"start_date\": \"1958-06-12\",\n          \"end_date\": \"1958-07-04\"\n        },\n        {\n          \"id\": \"94081b9b-88f0-90b5-67e5-47aed3412315\",\n          \"associated_person_id\": \"string\",\n          \"member_number\": \"string\",\n          \"start_date\": \"1951-01-01\",\n          \"end_date\": \"1997-04-27\"\n        }\n      ],\n      \"object\": \"string\",\n      \"policy_end_date\": \"1975-03-01\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"processing\",\n      \"employee_id\": \"string\",\n      \"group_id\": \"string\",\n      \"provider_policy_number\": \"string\",\n      \"member_number\": \"string\",\n      \"policy_start_date\": \"1955-08-21\",\n      \"associated_persons\": [\n        {\n          \"id\": \"d2604c61-b879-4c4f-af88-ab3aec3e161c\",\n          \"associated_person_id\": \"string\",\n          \"member_number\": \"string\",\n          \"start_date\": \"1989-04-15\",\n          \"end_date\": \"2019-10-10\"\n        },\n        {\n          \"id\": \"60114fc4-4146-f77f-58d3-e5c5423ff7b1\",\n          \"associated_person_id\": \"string\",\n          \"member_number\": \"string\",\n          \"start_date\": \"1988-07-22\",\n          \"end_date\": \"2024-01-22\"\n        }\n      ],\n      \"object\": \"string\",\n      \"policy_end_date\": \"2009-09-21\"\n    }\n  ],\n  \"page\": 5935,\n  \"page_size\": 7124,\n  \"total_count\": 3198,\n  \"has_next_page\": true,\n  \"has_previous_page\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f953102-754c-464a-a2d6-56cbcae417d0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "employee_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "group_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 672,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7a39793-bc89-447e-9ba9-17d814948fd1",
+          "name": "Create a new policy import intent",
+          "request": {
+            "name": "Create a new policy import intent",
+            "description": {
+              "content": "Initiates a policy import process for an employee with an existing policy created outside of Kota's systems. This endpoint allows importing policy details for an employee who has an existing policy with one of our existing providers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"provider_policy_number\": \"<string>\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"policy_end_date\": \"<string,null-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"<string>\",\n      \"member_number\": \"<string,null>\",\n      \"start_date\": \"<string,null-date>\",\n      \"end_date\": \"<string,null-date>\"\n    },\n    {\n      \"associated_person_id\": \"<string>\",\n      \"member_number\": \"<string,null>\",\n      \"start_date\": \"<string,null-date>\",\n      \"end_date\": \"<string,null-date>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3bc0f25-cd8a-4bdc-8835-3bf49485e2c5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"provider_policy_number\": \"<string>\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"policy_end_date\": \"<string,null-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1980-03-19\",\n      \"end_date\": \"2014-11-28\"\n    },\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1984-12-13\",\n      \"end_date\": \"1957-04-04\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"success\",\n  \"employee_id\": \"string\",\n  \"group_id\": \"string\",\n  \"provider_policy_number\": \"string\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"1991-11-12\",\n  \"associated_persons\": [\n    {\n      \"id\": \"37719da9-b1a5-5b23-c39d-e47cfce9089d\",\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1982-08-01\",\n      \"end_date\": \"1963-03-19\"\n    },\n    {\n      \"id\": \"abeb0ec1-0979-277a-c5db-daccf2f23db4\",\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1996-08-19\",\n      \"end_date\": \"1990-04-22\"\n    }\n  ],\n  \"object\": \"string\",\n  \"policy_end_date\": \"2013-06-04\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0a9b3b0-74f7-4c68-bcdd-c9ffedc2bc84",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"provider_policy_number\": \"<string>\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"policy_end_date\": \"<string,null-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1980-03-19\",\n      \"end_date\": \"2014-11-28\"\n    },\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1984-12-13\",\n      \"end_date\": \"1957-04-04\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 672,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90cf536a-2f8c-4430-9371-a01023395a7f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employee_id\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"provider_policy_number\": \"<string>\",\n  \"member_number\": \"<string>\",\n  \"policy_start_date\": \"<date>\",\n  \"policy_end_date\": \"<string,null-date>\",\n  \"associated_persons\": [\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1980-03-19\",\n      \"end_date\": \"2014-11-28\"\n    },\n    {\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1984-12-13\",\n      \"end_date\": \"1957-04-04\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 672,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f05f8af4-0d33-4077-94ca-fb2424796c43",
+          "name": "Retrieve a policy import intent",
+          "request": {
+            "name": "Retrieve a policy import intent",
+            "description": {
+              "content": "Retrieves a `policy_import_intent` object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "policy_import_intents",
+                ":policy_import_intent_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policy_import_intent_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1784470b-c09e-4599-8b34-9368a27b09d7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents",
+                    ":policy_import_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_import_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"success\",\n  \"employee_id\": \"string\",\n  \"group_id\": \"string\",\n  \"provider_policy_number\": \"string\",\n  \"member_number\": \"string\",\n  \"policy_start_date\": \"1991-11-12\",\n  \"associated_persons\": [\n    {\n      \"id\": \"37719da9-b1a5-5b23-c39d-e47cfce9089d\",\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1982-08-01\",\n      \"end_date\": \"1963-03-19\"\n    },\n    {\n      \"id\": \"abeb0ec1-0979-277a-c5db-daccf2f23db4\",\n      \"associated_person_id\": \"string\",\n      \"member_number\": \"string\",\n      \"start_date\": \"1996-08-19\",\n      \"end_date\": \"1990-04-22\"\n    }\n  ],\n  \"object\": \"string\",\n  \"policy_end_date\": \"2013-06-04\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41205974-93aa-45fd-a36f-3d0a834e89d8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy_import_intents",
+                    ":policy_import_intent_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policy_import_intent_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Authorization header using the Bearer scheme",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 672,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://test.api.kota.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "55ad4fcb-18b4-470e-98bf-9782a7ce68b3",
+    "name": "API Reference Associated Persons policyImportIntents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
