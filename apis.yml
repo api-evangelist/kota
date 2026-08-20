@@ -69,6 +69,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Associated Persons
+  tags_raw:
   - associatedPersons
   properties:
   - type: OpenAPI
@@ -97,6 +99,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Contribution Reports
+  tags_raw:
   - contributionReports
   properties:
   - type: OpenAPI
@@ -127,6 +131,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Dependents Management Intents
+  tags_raw:
   - dependentsManagementIntents
   properties:
   - type: OpenAPI
@@ -155,6 +161,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Embed Sessions
+  tags_raw:
   - embedSessions
   properties:
   - type: OpenAPI
@@ -169,6 +177,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Employees
+  tags_raw:
   - employees
   properties:
   - type: OpenAPI
@@ -183,6 +193,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Employers
+  tags_raw:
   - employers
   properties:
   - type: OpenAPI
@@ -211,6 +223,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Enrolment Intents
+  tags_raw:
   - enrolmentIntents
   properties:
   - type: OpenAPI
@@ -225,6 +239,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -281,6 +297,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Group Policies
+  tags_raw:
   - groupPolicies
   properties:
   - type: OpenAPI
@@ -295,6 +313,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Group Policy Intents
+  tags_raw:
   - groupPolicyIntents
   properties:
   - type: OpenAPI
@@ -309,6 +329,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Group Quote Intents
+  tags_raw:
   - groupQuoteIntents
   properties:
   - type: OpenAPI
@@ -323,6 +345,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Group
+  tags_raw:
   - groups
   properties:
   - type: OpenAPI
@@ -351,6 +375,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Health Insurance
+  tags_raw:
   - healthInsurance
   properties:
   - type: OpenAPI
@@ -379,6 +405,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Hosted Sessions
+  tags_raw:
   - hostedSessions
   properties:
   - type: OpenAPI
@@ -393,6 +421,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Plans
+  tags_raw:
   - plans
   properties:
   - type: OpenAPI
@@ -407,6 +437,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Policies
+  tags_raw:
   - policies
   properties:
   - type: OpenAPI
@@ -450,6 +482,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Policy Amendment Intents
+  tags_raw:
   - policyAmendmentIntents
   properties:
   - type: OpenAPI
@@ -464,6 +498,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Policy Import Intents
+  tags_raw:
   - policyImportIntents
   properties:
   - type: OpenAPI
@@ -478,6 +514,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Providers
+  tags_raw:
   - providers
   properties:
   - type: OpenAPI
@@ -492,6 +530,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Requirements
+  tags_raw:
   - requirements
   properties:
   - type: OpenAPI
@@ -506,6 +546,8 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
+  - Webhook
+  tags_raw:
   - webhooks
   properties:
   - type: OpenAPI
