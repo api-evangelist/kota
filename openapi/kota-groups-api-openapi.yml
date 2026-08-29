@@ -1,7 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons groups API
-  version: 1.0.0
+  title: Kota Groups API
+  version: '1.0'
+  description: 'Operations tagged groups across 2 of this provider''s published API definitions: kota-api-reference-openapi.json, kota-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://test.api.kota.io
   description: test
@@ -92,6 +93,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateGroupRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /groups/{group_id}:
     get:
       operationId: retrieve-group
@@ -166,6 +172,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateGroupRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /groups/{group_id}/employees:
     get:
       operationId: list-group-employees
@@ -258,6 +269,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AddEmployeeToGroupRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /groups/{group_id}/eligibility_check:
     post:
       operationId: check-group-eligibility
@@ -301,42 +317,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CheckGroupEligibilityRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
 components:
   schemas:
-    AddEmployeeToGroupRequest:
+    EligibilityCheckReasonResponse:
       type: object
       properties:
-        employee_id:
+        code:
           type: string
-          description: Employee Id
-        create_enrolment_intents:
-          type:
-          - boolean
-          - 'null'
-          description: Controls whether enrolment intents are automatically created for the employee. Defaults to `true` for hosted platforms. When `true` on a hosted platform, the response includes an `enrolment_intent_id`. For non-hosted platforms, the `enrolment_intent_id` is not included in the response, subscribe to the `enrolment_intent.processing` webhook to be notified when the enrolment intent is created.
-        policy_configuration:
-          $ref: '#/components/schemas/PolicyConfigurationRequest'
-          description: Policy configuration for the employee in this group. Leave null to use `group` defaults.
+          description: Machine-readable ineligibility reason code in snake_case.
+        message:
+          type: string
+          description: Human-readable description of the ineligibility reason.
       required:
-      - employee_id
-      title: AddEmployeeToGroupRequest
-    EnrolmentStatus:
-      type: string
-      enum:
-      - enrolled
-      - enrolling
-      - opted_out
-      - cancelled
-      - enrolment_available
-      - not_available
-      title: EnrolmentStatus
-    GroupType:
-      type: string
-      enum:
-      - undefined
-      - single
-      - bundled
-      title: GroupType
+      - code
+      - message
+      title: EligibilityCheckReasonResponse
     PlanProviderResponse:
       type: object
       properties:
@@ -367,6 +367,23 @@ components:
       required:
       - id
       title: EnrolmentReference
+    EligibilityCheckPlanResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+      required:
+      - id
+      - name
+      - description
+      title: EligibilityCheckPlanResponse
     PolicyReference:
       type: object
       properties:
@@ -376,27 +393,13 @@ components:
       required:
       - id
       title: PolicyReference
-    UpdateGroupRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Human-readable name of the `group`.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Short description of the purpose or scope of the `group`.
-      title: UpdateGroupRequest
-    GroupStatus:
+    EligibilityStatus:
       type: string
       enum:
       - pending
-      - ready
-      - archived
-      title: GroupStatus
+      - eligible
+      - ineligible
+      title: EligibilityStatus
     GroupResponse:
       type: object
       properties:
@@ -470,46 +473,6 @@ components:
       - employer_id
       - name
       title: CreateGroupRequest
-    ScheduledGroupTransitionResponse:
-      type: object
-      properties:
-        new_group_id:
-          type: string
-          description: Unique identifier for the group the employee will be moved to
-        scheduled_date:
-          type: string
-          format: date
-          description: The date when the employee will be moved to the new group
-      required:
-      - new_group_id
-      - scheduled_date
-      title: ScheduledGroupTransitionResponse
-    EligibilityCheckResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          description: The object type.
-        eligibility_status:
-          $ref: '#/components/schemas/EligibilityStatus'
-          description: 'Eligibility status: `eligible` or `ineligible`.'
-        reasons:
-          type: array
-          items:
-            $ref: '#/components/schemas/EligibilityCheckReasonResponse'
-          description: List of reasons why the employee is ineligible. Empty if eligible.
-        provider:
-          $ref: '#/components/schemas/PlanProviderResponse'
-          description: The insurance provider associated with the group.
-        plan:
-          $ref: '#/components/schemas/EligibilityCheckPlanResponse'
-          description: The insurance plan associated with the group.
-      required:
-      - eligibility_status
-      - reasons
-      - provider
-      - plan
-      title: EligibilityCheckResponse
     GroupEmployeeResponse:
       type: object
       properties:
@@ -564,6 +527,43 @@ components:
       - enrolment_status
       - scheduled_group_transitions
       title: GroupEmployeeResponse
+    CheckGroupEligibilityRequest:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          description: The employee to check eligibility for.
+      required:
+      - employee_id
+      title: CheckGroupEligibilityRequest
+    ScheduledGroupTransitionResponse:
+      type: object
+      properties:
+        new_group_id:
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+        scheduled_date:
+          type: string
+          format: date
+          description: The date when the employee will be moved to the new group
+      required:
+      - new_group_id
+      - scheduled_date
+      title: ScheduledGroupTransitionResponse
+    GroupType:
+      type: string
+      enum:
+      - undefined
+      - single
+      - bundled
+      title: GroupType
+    GroupStatus:
+      type: string
+      enum:
+      - pending
+      - ready
+      - archived
+      title: GroupStatus
     GroupEmployeeResponsePagedList:
       type: object
       properties:
@@ -622,75 +622,39 @@ components:
       - page_size
       - total_count
       title: GroupResponsePagedList
-    ProblemDetails:
+    PolicyConfigurationRequest:
       type: object
       properties:
-        type:
+        desired_policy_start_date:
           type:
           - string
           - 'null'
-        title:
+          format: date
+          description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements. If unspecified, the policy start date will be determined by the insurance provider.
+        enrolment_date:
           type:
           - string
           - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    EligibilityCheckReasonResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Machine-readable ineligibility reason code in snake_case.
-        message:
-          type: string
-          description: Human-readable description of the ineligibility reason.
-      required:
-      - code
-      - message
-      title: EligibilityCheckReasonResponse
-    EligibilityCheckPlanResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the plan. Prefixed with `pl_`.
-        name:
-          type: string
-          description: The name of the plan.
-        description:
-          type: string
-          description: Description of the plan.
-      required:
-      - id
-      - name
-      - description
-      title: EligibilityCheckPlanResponse
-    GroupEnrolmentType:
-      type: string
-      enum:
-      - manual
-      - automatic
-      title: GroupEnrolmentType
-    CheckGroupEligibilityRequest:
+          format: date
+          description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date. If unspecified, the enrolment date will default to the date the enrolment intent is processed.
+      title: PolicyConfigurationRequest
+    AddEmployeeToGroupRequest:
       type: object
       properties:
         employee_id:
           type: string
-          description: The employee to check eligibility for.
+          description: Employee Id
+        create_enrolment_intents:
+          type:
+          - boolean
+          - 'null'
+          description: Controls whether enrolment intents are automatically created for the employee. Defaults to `true` for hosted platforms. When `true` on a hosted platform, the response includes an `enrolment_intent_id`. For non-hosted platforms, the `enrolment_intent_id` is not included in the response, subscribe to the `enrolment_intent.processing` webhook to be notified when the enrolment intent is created.
+        policy_configuration:
+          $ref: '#/components/schemas/PolicyConfigurationRequest'
+          description: Policy configuration for the employee in this group. Leave null to use `group` defaults.
       required:
       - employee_id
-      title: CheckGroupEligibilityRequest
+      title: AddEmployeeToGroupRequest
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -721,31 +685,597 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
-    EligibilityStatus:
+    EnrolmentStatus:
       type: string
+      enum:
+      - enrolled
+      - enrolling
+      - opted_out
+      - cancelled
+      - enrolment_available
+      - not_available
+      title: EnrolmentStatus
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    UpdateGroupRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Short description of the purpose or scope of the `group`.
+      title: UpdateGroupRequest
+    EligibilityCheckResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type.
+        eligibility_status:
+          $ref: '#/components/schemas/EligibilityStatus'
+          description: 'Eligibility status: `eligible` or `ineligible`.'
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/EligibilityCheckReasonResponse'
+          description: List of reasons why the employee is ineligible. Empty if eligible.
+        provider:
+          $ref: '#/components/schemas/PlanProviderResponse'
+          description: The insurance provider associated with the group.
+        plan:
+          $ref: '#/components/schemas/EligibilityCheckPlanResponse'
+          description: The insurance plan associated with the group.
+      required:
+      - eligibility_status
+      - reasons
+      - provider
+      - plan
+      title: EligibilityCheckResponse
+    GroupEnrolmentType:
+      type: string
+      enum:
+      - manual
+      - automatic
+      title: GroupEnrolmentType
+    EligibilityCheckReasonResponse_2:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: string
+          description: Machine-readable ineligibility reason code in snake_case.
+        message:
+          type: string
+          description: Human-readable description of the ineligibility reason.
+      additionalProperties: false
+    PlanProviderResponse_2:
+      required:
+      - description
+      - id
+      - logo_url
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pr_.+
+          type: string
+          description: Unique identifier for the provider. Prefixed with `pr_`.
+          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: The name of the provider.
+        description:
+          type: string
+          description: Description of the provider.
+        logo_url:
+          type: string
+          description: URL to the provider's logo.
+      additionalProperties: false
+    EnrolmentReference_2:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ei_.+
+          type: string
+          description: Unique identifier for the enrolment.
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    EligibilityCheckPlanResponse_2:
+      required:
+      - description
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+      additionalProperties: false
+    PolicyReference_2:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          pattern: p_.+
+          type: string
+          description: Unique identifier for the policy.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    EligibilityStatus_2:
       enum:
       - pending
       - eligible
       - ineligible
-      title: EligibilityStatus
-    PolicyConfigurationRequest:
+      type: string
+    GroupResponse_2:
+      required:
+      - employer_id
+      - enrolment_type
+      - group_policy_ids
+      - group_policy_intent_ids
+      - group_quote_intent_ids
+      - group_type
+      - id
+      - name
+      - status
+      type: object
+      properties:
+        id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the `group`. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Short description of the purpose or scope of the `group`.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/GroupStatus_2'
+          description: "Current lifecycle state of the `group`, indicating its current progress. Possible values are:\n - `pending`: Group is being configured, may require a `quote_intent` or a `setup_intent` to be ready.\n - `ready`: Setup is complete, regardless of policy start dates employees could start enrolling into policies.\n - `archived`: Archived as the group is no longer active or in use for any reason. Employees can no longer be added to the group."
+        group_type:
+          allOf:
+          - $ref: '#/components/schemas/GroupType_2'
+          description: "Indicates how policies are organized for this group.\n - `single`: exactly one policy is associated to the group.\n - `bundled`: multiple policies are bundled under the group.\n - `undefined`: type not yet determined or not applicable."
+        enrolment_type:
+          allOf:
+          - $ref: '#/components/schemas/GroupEnrolmentType_2'
+          description: "Indicates how employees are enrolled into the group.\n - `manual`: employees must be enrolled through an API.\n - `automatic`: employees are enrolled automatically upon being created with the Employer."
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier for the `employer` that owns this `group`. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        group_policy_ids:
+          type: array
+          items:
+            pattern: gp_.+
+            type: string
+            example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          description: Group policy unique identifiers associated with this group.
+        group_quote_intent_ids:
+          type: array
+          items:
+            pattern: gqi_.+
+            type: string
+            example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          description: Group quote intent unique identifiers associated with this group.
+        group_policy_intent_ids:
+          type: array
+          items:
+            pattern: gpi_.+
+            type: string
+            example: gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          description: Group policy intent unique identifiers associated with this group.
+      additionalProperties: false
+    CreateGroupRequest_2:
+      required:
+      - employer_id
+      - name
+      type: object
+      properties:
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier of the `employer` to create the group for. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Short description of the purpose or scope of the `group`.
+      additionalProperties: false
+    GroupEmployeeResponse_2:
+      required:
+      - eligibility_status
+      - enrolment_status
+      - enrolments
+      - group_id
+      - id
+      - policies
+      - scheduled_group_transitions
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyReference_2'
+          description: List of policies associated with the employee in this group.
+        enrolments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrolmentReference_2'
+          description: List of enrolments associated with the employee in this group.
+        desired_policy_start_date:
+          type:
+          - 'null'
+          - string
+          description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements.
+          format: date
+          example: '2024-12-01'
+        enrolment_date:
+          type:
+          - 'null'
+          - string
+          description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date.
+          format: date
+          example: '2024-12-01'
+        eligibility_status:
+          allOf:
+          - $ref: '#/components/schemas/EligibilityStatus_2'
+          description: Eligibility status for the employee in this group. `Pending` = no eligibility check performed (no group policy), `Eligible` = employee meets provider's eligibility criteria, `Ineligible` = employee does not meet eligibility criteria (e.g., age restrictions).
+        enrolment_status:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentStatus_2'
+          description: Enrolment status for the employee in this group. Derived from policy and enrolment intent statuses.
+        scheduled_group_transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledGroupTransitionResponse_2'
+          description: List of scheduled group transitions for the employee. Only includes pending transitions.
+      additionalProperties: false
+    CheckGroupEligibilityRequest_2:
+      required:
+      - employee_id
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The employee to check eligibility for.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    ScheduledGroupTransitionResponse_2:
+      required:
+      - new_group_id
+      - scheduled_date
+      type: object
+      properties:
+        new_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        scheduled_date:
+          type: string
+          description: The date when the employee will be moved to the new group
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    GroupType_2:
+      enum:
+      - undefined
+      - single
+      - bundled
+      type: string
+    GroupStatus_2:
+      enum:
+      - pending
+      - ready
+      - archived
+      type: string
+    GroupEmployeeResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupEmployeeResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    GroupResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    PolicyConfigurationRequest_2:
       type: object
       properties:
         desired_policy_start_date:
           type:
-          - string
           - 'null'
-          format: date
+          - string
           description: The desired date for the employee's policy to start. This date is not guaranteed to be honored by the insurance provider and may be adjusted based on provider-specific rules and requirements. If unspecified, the policy start date will be determined by the insurance provider.
+          format: date
+          example: '2024-12-01'
         enrolment_date:
           type:
-          - string
           - 'null'
-          format: date
+          - string
           description: The date on which the employee agreed to enrol into the group's policies. This date may be used by some insurance providers to determine the policy start date. If unspecified, the enrolment date will default to the date the enrolment intent is processed.
-      title: PolicyConfigurationRequest
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    AddEmployeeToGroupRequest_2:
+      required:
+      - employee_id
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Employee Id
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        create_enrolment_intents:
+          type:
+          - 'null'
+          - boolean
+          description: Controls whether enrolment intents are automatically created for the employee. Defaults to `true` for hosted platforms. When `true` on a hosted platform, the response includes an `enrolment_intent_id`. For non-hosted platforms, the `enrolment_intent_id` is not included in the response, subscribe to the `enrolment_intent.processing` webhook to be notified when the enrolment intent is created.
+        policy_configuration:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/PolicyConfigurationRequest_2'
+          description: Policy configuration for the employee in this group. Leave null to use `group` defaults.
+      additionalProperties: false
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    EnrolmentStatus_2:
+      enum:
+      - enrolled
+      - enrolling
+      - opted_out
+      - cancelled
+      - enrolment_available
+      - not_available
+      type: string
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    UpdateGroupRequest_2:
+      type: object
+      properties:
+        name:
+          type:
+          - 'null'
+          - string
+          description: Human-readable name of the `group`.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Short description of the purpose or scope of the `group`.
+      additionalProperties: false
+    EligibilityCheckResponse_2:
+      required:
+      - eligibility_status
+      - plan
+      - provider
+      - reasons
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type.
+          readOnly: true
+        eligibility_status:
+          allOf:
+          - $ref: '#/components/schemas/EligibilityStatus_2'
+          description: 'Eligibility status: `eligible` or `ineligible`.'
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/EligibilityCheckReasonResponse_2'
+          description: List of reasons why the employee is ineligible. Empty if eligible.
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/PlanProviderResponse_2'
+          description: The insurance provider associated with the group.
+        plan:
+          allOf:
+          - $ref: '#/components/schemas/EligibilityCheckPlanResponse_2'
+          description: The insurance plan associated with the group.
+      additionalProperties: false
+    GroupEnrolmentType_2:
+      enum:
+      - manual
+      - automatic
+      type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Authorization header using the Bearer scheme
+x-refined-from:
+- kota-api-reference-openapi.json
+- kota-openapi-original.json

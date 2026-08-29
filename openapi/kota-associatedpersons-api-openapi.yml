@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons associatedPersons API
+  title: Reference Associated Persons API
   version: 1.0.0
 servers:
 - url: https://test.api.kota.io
@@ -218,6 +218,12 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
     RelationshipType:
       type: string
       enum:
@@ -262,48 +268,59 @@ components:
           - 'null'
           description: 'Phone number in E.164 international format (e.g. +447700900999). If null is provided, the phone number will be cleared. NOTE: This field will be normalized according to our internal formatting rules.'
       title: UpdateAssociatedPersonRequest
-    SexAtBirth:
-      type: string
-      enum:
-      - male
-      - female
-      title: SexAtBirth
-    CreateAssociatedPersonRequest:
+    AssociatedPersonResponsePagedList:
       type: object
       properties:
-        first_name:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        last_name:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        date_of_birth:
-          type: string
-          format: date
-          description: Must be in the past, but after 1900-01-01
-        sex_at_birth:
-          $ref: '#/components/schemas/SexAtBirth'
-          description: The sex assigned to the associated person at birth
-        relationship_type:
-          $ref: '#/components/schemas/RelationshipType'
-          description: The relationship type between the employee and the associated person
-        email:
-          type:
-          - string
-          - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        phone_number:
-          type:
-          - string
-          - 'null'
-          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociatedPersonResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
       required:
-      - first_name
-      - last_name
-      - date_of_birth
-      - sex_at_birth
-      - relationship_type
-      title: CreateAssociatedPersonRequest
+      - items
+      - page
+      - page_size
+      - total_count
+      title: AssociatedPersonResponsePagedList
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
     AssociatedPersonResponse:
       type: object
       properties:
@@ -354,35 +371,42 @@ components:
       - sex_at_birth
       - relationship_type
       title: AssociatedPersonResponse
-    AssociatedPersonResponsePagedList:
+    CreateAssociatedPersonRequest:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociatedPersonResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
+        first_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        last_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        date_of_birth:
+          type: string
+          format: date
+          description: Must be in the past, but after 1900-01-01
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the associated person at birth
+        relationship_type:
+          $ref: '#/components/schemas/RelationshipType'
+          description: The relationship type between the employee and the associated person
+        email:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
       required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: AssociatedPersonResponsePagedList
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - relationship_type
+      title: CreateAssociatedPersonRequest
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -413,30 +437,6 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
   securitySchemes:
     bearerAuth:
       type: http

@@ -568,6 +568,36 @@ apis:
     url: https://docs.kota.io/getting-started
   - type: APIReference
     url: https://docs.kota.io/api-reference
+- aid: kota:kota-api-reference-api
+  name: Kota API Reference API
+  description: The API Reference API from Kota — 0 operation(s) for api reference.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - API Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-api-reference-api-openapi.yml
+- aid: kota:kota-types-of-events-api
+  name: Kota Types of events API
+  description: The Types of events API from Kota — 0 operation(s) for types of events.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Types of events
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-types-of-events-api-openapi.yml
+- aid: kota:kota-types-of-events-v2-api
+  name: Kota Types of events V2 API
+  description: The Types of events V2 API from Kota — 0 operation(s) for types of events v2.
+  humanURL: https://docs.kota.io/api-reference
+  baseURL: https://api.kota.io
+  tags:
+  - Types of events V2
+  properties:
+  - type: OpenAPI
+    url: openapi/kota-types-of-events-v2-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons policyAmendmentIntents API
+  title: Reference Policy Amendment Intents API
   version: 1.0.0
 servers:
 - url: https://test.api.kota.io
@@ -175,7 +175,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Policy Amendment Intents_ConfirmPolicyAmendmentIntent_Response_204'
+                $ref: '#/components/schemas/Policy_Amendment_Intents_ConfirmPolicyAmendmentIntent_Response_204'
         '400':
           description: Bad Request
           content:
@@ -218,7 +218,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Policy Amendment Intents_CancelPolicyAmendmentIntent_Response_204'
+                $ref: '#/components/schemas/Policy_Amendment_Intents_CancelPolicyAmendmentIntent_Response_204'
         '400':
           description: Bad Request
           content:
@@ -276,291 +276,64 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    PlanWithPricingResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the plan. Prefixed with `pl_`.
-        name:
-          type: string
-          description: The name of the plan.
-        description:
-          type: string
-          description: Description of the plan.
-        pricing:
-          $ref: '#/components/schemas/PlanPricingResponse'
-          description: Pricing information for the plan.
-      required:
-      - id
-      - name
-      - description
-      - pricing
-      title: PlanWithPricingResponse
-    PlanCoverageOptionInputType:
+    DependentsManagementIntentParentType:
       type: string
       enum:
-      - single_select
-      - multi_select
-      title: PlanCoverageOptionInputType
-    PolicyAmendmentDependentsResponse:
-      type: object
-      properties:
-        dependents_management_intent_id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier for the dependents management intent. Prefixed with `dmi_`. Null if not yet created.
-        status:
-          $ref: '#/components/schemas/DependentsManagementIntentStatus'
-          description: The status of the dependents management process. Null if not yet started.
-      title: PolicyAmendmentDependentsResponse
-    PlanCoverageOptionScope:
-      type: string
-      enum:
-      - group_policy
-      - policy
-      - member
-      title: PlanCoverageOptionScope
-    CreatePolicyAmendmentIntentRequest:
-      type: object
-      properties:
-        amendment_reason:
-          $ref: '#/components/schemas/PolicyAmendmentReasonRequest'
-          description: The reason for the policy amendment.
-        requested_changes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicyAmendmentRequestedChangeRequest'
-          description: List of requested changes to the policy.
-      required:
-      - amendment_reason
-      - requested_changes
-      title: CreatePolicyAmendmentIntentRequest
-    PlanCoverageResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
-        name:
-          type: string
-          description: Title for this coverage selection. Typically used as the display heading.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Full description of this coverage selection.
-        scope:
-          $ref: '#/components/schemas/PlanCoverageOptionScope'
-          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
-        input_type:
-          $ref: '#/components/schemas/PlanCoverageOptionInputType'
-          description: Describes whether this input allows selecting a single option or multiple options.
-        required:
-          type: boolean
-          description: Whether a selection is mandatory.
-        min_selections:
-          type:
-          - integer
-          - 'null'
-          description: Minimum required selections (multi-select only).
-        max_selections:
-          type:
-          - integer
-          - 'null'
-          description: Maximum allowed selections (multi-select only).
-        sort_order:
-          type:
-          - integer
-          - 'null'
-          description: Display ordering hint.
-        group_label:
-          type:
-          - string
-          - 'null'
-          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionResponse'
-          description: Available options within this coverage selection.
-      required:
-      - id
-      - name
-      - scope
-      - input_type
-      - required
-      - options
-      title: PlanCoverageResponse
-    DependentsManagementIntentStatus:
-      type: string
-      enum:
-      - action_required
-      - processing
-      - completed
-      - not_undertaken
-      title: DependentsManagementIntentStatus
-    TierBasedPricingResponse:
+      - policy_amendment_intent
+      - enrolment_intent
+      title: DependentsManagementIntentParentType
+    PerMemberPricingResponse:
       type: object
       properties:
         currency:
           $ref: '#/components/schemas/CurrencyCode'
           description: Currency code (e.g., 'eur', 'usd').
-        tiers:
+        member_type_pricing:
           type: array
           items:
-            $ref: '#/components/schemas/PricingTierResponse'
-          description: Pricing tiers for different family compositions.
+            $ref: '#/components/schemas/MemberTypePricingResponse'
+          description: Pricing for each member type.
       required:
       - currency
-      - tiers
-      title: TierBasedPricingResponse
-    PolicyAmendmentRequestedChangeRequest:
+      - member_type_pricing
+      title: PerMemberPricingResponse
+    DependentsManagementIntentActionRequiredResponse:
       type: object
       properties:
-        change_type:
-          $ref: '#/components/schemas/RequestedChangeType'
-          description: The type of change requested.
-      required:
-      - change_type
-      title: PolicyAmendmentRequestedChangeRequest
-    QualifyingLifeEventSupplementalInfo:
-      type: object
-      properties:
-        event:
-          $ref: '#/components/schemas/QualifyingLifeEventType'
-          description: The type of qualifying life event requested.
-        event_date:
-          type: string
-          format: date
-          description: 'The date at which the event occured. Note: This date must be within provider guidelines, where the date is outside of those guidelines the amendment may be rejected or the effective date of the change could be amended by the provider.'
+        code:
+          $ref: '#/components/schemas/DependentsManagementIntentActionCode'
+          description: The action code indicating what action is required.
         reason:
-          type:
-          - string
-          - 'null'
-          description: 'A free text reason of the qualifying life event. Note: This will be shared with the insurance provider in lieu of `event` when its set to `other_change`.'
-      required:
-      - event
-      - event_date
-      title: QualifyingLifeEventSupplementalInfo
-    PlanPricingResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/PlanPricingType'
-          description: Type of pricing structure
-        per_member:
-          $ref: '#/components/schemas/PerMemberPricingResponse'
-          description: Per-member pricing details (populated when type is 'per_member').
-        tier_based:
-          $ref: '#/components/schemas/TierBasedPricingResponse'
-          description: Tier-based pricing details (populated when type is 'tier_based').
-      required:
-      - type
-      title: PlanPricingResponse
-    PlanCoverageOptionResponse:
-      type: object
-      properties:
-        id:
           type: string
-          description: Unique identifier for this coverage option. Prefixed with `pco_`.
-        name:
+          description: Brief reason for the required action.
+        reason_description:
           type: string
-          description: Display name for this coverage option.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Longer explanation of this coverage option.
-        learn_more_url:
-          type:
-          - string
-          - 'null'
-          description: Link to learn more about this coverage option.
-        from_price:
-          type:
-          - number
-          - 'null'
-          format: double
-          description: Lowest applicable monthly price for this coverage option.
-        benefits:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
-          description: Benefit items included with this coverage option.
-        sub_options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionResponse'
-          description: Nested sub-options available when this option is selected.
-        eligibility_criteria:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
-          description: Eligibility criteria that must be met to select this coverage option.
+          description: Detailed description of the required action. This is intended to be understandable by the end user.
+        due_by:
+          type: string
+          format: date-time
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
       required:
-      - id
-      - name
-      title: PlanCoverageOptionResponse
-    PlanPricingType:
+      - code
+      - reason
+      - reason_description
+      - due_by
+      title: DependentsManagementIntentActionRequiredResponse
+    FamilyTierCode:
       type: string
       enum:
-      - per_member
-      - tier_based
-      title: PlanPricingType
-    PolicyAmendmentQuoteResponse:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this quote.
-        monthly:
-          $ref: '#/components/schemas/PolicyAmendmentQuoteContributionsResponse'
-          description: Monthly contribution breakdown for the policy amendment.
-        term:
-          $ref: '#/components/schemas/PolicyAmendmentQuoteContributionsResponse'
-          description: Total term contribution breakdown for the policy amendment.
-      required:
-      - currency
-      - monthly
-      - term
-      title: PolicyAmendmentQuoteResponse
-    PolicyAmendmentQuoteAmountResponse:
-      type: object
-      properties:
-        net:
-          type: number
-          format: double
-          description: Net amount before tax.
-        tax:
-          type: number
-          format: double
-          description: Tax amount.
-        gross:
-          type: number
-          format: double
-          description: Gross amount (net + tax).
-      required:
-      - net
-      - tax
-      - gross
-      title: PolicyAmendmentQuoteAmountResponse
-    PolicyAmendmentRequestedChangeResponse:
-      type: object
-      properties:
-        change_type:
-          $ref: '#/components/schemas/RequestedChangeType'
-          description: The type of change requested.
-      required:
-      - change_type
-      title: PolicyAmendmentRequestedChangeResponse
+      - single
+      - couple
+      - single_parent
+      - family
+      title: FamilyTierCode
+    MemberTypeCode:
+      type: string
+      enum:
+      - adult
+      - young_adult
+      - child
+      title: MemberTypeCode
     PolicyAmendmentProcessingErrorResponse:
       type: object
       properties:
@@ -578,6 +351,57 @@ components:
       - reason
       - reason_description
       title: PolicyAmendmentProcessingErrorResponse
+    PlanCoverageOptionBenefitResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Benefit name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Benefit description.
+      required:
+      - name
+      title: PlanCoverageOptionBenefitResponse
+    PolicyAmendmentQuoteContributionsResponse:
+      type: object
+      properties:
+        employee_contribution:
+          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
+          description: Employee contribution amounts.
+        employer_contribution:
+          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
+          description: Employer contribution amounts.
+        total:
+          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
+          description: Total contribution amounts (sum of employee and employer).
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      title: PolicyAmendmentQuoteContributionsResponse
+    AssociatedPersonType:
+      type: string
+      enum:
+      - dependents
+      title: AssociatedPersonType
+    TierBasedPricingResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingTierResponse'
+          description: Pricing tiers for different family compositions.
+      required:
+      - currency
+      - tiers
+      title: TierBasedPricingResponse
     PolicyAmendmentReasonResponse:
       type: object
       properties:
@@ -590,49 +414,70 @@ components:
       required:
       - type
       title: PolicyAmendmentReasonResponse
-    DependentsManagementIntentDependentStatus:
+    PolicyAmendmentActionCode:
       type: string
       enum:
-      - pending_confirmation
-      - action_required
-      - ineligible
-      - processing
-      - restricted
-      - ready
-      title: DependentsManagementIntentDependentStatus
-    MemberTypeCode:
+      - provide_dependents_information
+      title: PolicyAmendmentActionCode
+    PolicyAmendmentQualifyingLifeEventResponse:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/QualifyingLifeEventType'
+          description: The type of qualifying life event.
+        event_date:
+          type: string
+          format: date
+          description: The date when the qualifying life event occurred.
+        reason:
+          type:
+          - string
+          - 'null'
+          description: Additional reason or description for the qualifying life event.
+      required:
+      - event
+      - event_date
+      title: PolicyAmendmentQualifyingLifeEventResponse
+    EmployerEligibilityCriterionType:
       type: string
       enum:
-      - adult
-      - young_adult
-      - child
-      title: MemberTypeCode
-    PolicyAmendmentRequiredActionResponse:
+      - employees_count
+      - members_count
+      - industry_exclusions
+      title: EmployerEligibilityCriterionType
+    RequestedChangeType:
+      type: string
+      enum:
+      - dependents
+      - cancellation
+      title: RequestedChangeType
+    PricingTierResponse:
       type: object
       properties:
         code:
-          $ref: '#/components/schemas/PolicyAmendmentActionCode'
-          description: The action code indicating what action is required.
-        reason:
+          $ref: '#/components/schemas/FamilyTierCode'
+          description: Tier code.
+        display_name:
           type: string
-          description: Brief reason for the required action.
-        reason_description:
+          description: Display name for the tier.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount for this tier.
+        annual_premium:
+          type: number
+          format: double
+          description: Annual premium amount for this tier.
+        display_dependent_requirements:
           type: string
-          description: Detailed description of the required action.
-        due_by:
-          type: string
-          format: date
-          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
-        associated_persons:
-          $ref: '#/components/schemas/PolicyAmendmentAssociatedPersonsResponse'
-          description: Information about associated persons related to this action.
+          description: Description of dependent requirements for this tier.
       required:
       - code
-      - reason
-      - reason_description
-      - due_by
-      - associated_persons
-      title: PolicyAmendmentRequiredActionResponse
+      - display_name
+      - monthly_premium
+      - annual_premium
+      - display_dependent_requirements
+      title: PricingTierResponse
     PolicyAmendmentIntentResponsePagedList:
       type: object
       properties:
@@ -662,44 +507,6 @@ components:
       - page_size
       - total_count
       title: PolicyAmendmentIntentResponsePagedList
-    DisclosureType:
-      type: string
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      title: DisclosureType
-    Policy Amendment Intents_CancelPolicyAmendmentIntent_Response_204:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Policy Amendment Intents_CancelPolicyAmendmentIntent_Response_204
-    EmployerEligibilityCriterionType:
-      type: string
-      enum:
-      - employees_count
-      - members_count
-      - industry_exclusions
-      title: EmployerEligibilityCriterionType
-    MembersCountDetails:
-      type: object
-      properties:
-        min:
-          type:
-          - integer
-          - 'null'
-          description: Minimum number of members required.
-        max:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of members allowed.
-      title: MembersCountDetails
     CurrencyCode:
       type: string
       enum:
@@ -873,186 +680,19 @@ components:
       - zmw
       - zwl
       title: CurrencyCode
-    PricingTierResponse:
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/FamilyTierCode'
-          description: Tier code.
-        display_name:
-          type: string
-          description: Display name for the tier.
-        monthly_premium:
-          type: number
-          format: double
-          description: Monthly premium amount for this tier.
-        annual_premium:
-          type: number
-          format: double
-          description: Annual premium amount for this tier.
-        display_dependent_requirements:
-          type: string
-          description: Description of dependent requirements for this tier.
-      required:
-      - code
-      - display_name
-      - monthly_premium
-      - annual_premium
-      - display_dependent_requirements
-      title: PricingTierResponse
-    AmendmentReasonType:
+    DisclosureCategory:
       type: string
       enum:
-      - initial_adjustment_period
-      - qualifying_life_event
-      title: AmendmentReasonType
-    MemberTypePricingResponse:
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/MemberTypeCode'
-          description: Member type code.
-        display_name:
-          type: string
-          description: Display name for the member type.
-        monthly_premium:
-          type: number
-          format: double
-          description: Monthly premium amount.
-      required:
-      - code
-      - display_name
-      - monthly_premium
-      title: MemberTypePricingResponse
-    IndustryExclusionsDetails:
-      type: object
-      properties:
-        excluded_industries:
-          type: array
-          items:
-            type: string
-          description: List of excluded industries.
-      required:
-      - excluded_industries
-      title: IndustryExclusionsDetails
-    FamilyTierCode:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    PolicyAmendmentIntentFailureCode:
       type: string
       enum:
-      - single
-      - couple
-      - single_parent
-      - family
-      title: FamilyTierCode
-    DependentsManagementIntentActionRequiredResponse:
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/DependentsManagementIntentActionCode'
-          description: The action code indicating what action is required.
-        reason:
-          type: string
-          description: Brief reason for the required action.
-        reason_description:
-          type: string
-          description: Detailed description of the required action. This is intended to be understandable by the end user.
-        due_by:
-          type: string
-          format: date-time
-          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
-      required:
-      - code
-      - reason
-      - reason_description
-      - due_by
-      title: DependentsManagementIntentActionRequiredResponse
-    PolicyAmendmentIntentStatus:
-      type: string
-      enum:
-      - action_required
-      - awaiting_quote
-      - pending_confirmation
-      - processing
-      - amended
-      - processing_error
-      - not_undertaken
-      title: PolicyAmendmentIntentStatus
-    Policy Amendment Intents_ConfirmPolicyAmendmentIntent_Response_204:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Policy Amendment Intents_ConfirmPolicyAmendmentIntent_Response_204
-    DependentsManagementIntentActionCode:
-      type: string
-      enum:
-      - remove_restricted_or_ineligible_dependents
-      title: DependentsManagementIntentActionCode
-    QualifyingLifeEventType:
-      type: string
-      enum:
-      - gained_other_insurance_coverage
-      - divorce_or_legal_separation
-      - death_of_spouse_or_dependent
-      - moved_out_of_coverage_area
-      - employment_status_change_affecting_eligibility
-      - eligible_for_government_program
-      - marriage_or_civil_partnership
-      - birth_of_child
-      - adoption_of_child
-      - gained_legal_guardianship
-      - dependent_lost_other_coverage
-      - lost_legal_guardianship
-      - dependent_gained_other_coverage
-      - dependent_eligible_for_government_program
-      - dependent_aged_out
-      - dependent_student_status_change_affecting_eligibility
-      - dependent_moved_in_or_out_of_coverage_area
-      - other_change
-      title: QualifyingLifeEventType
-    PolicyAmendmentIntentResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the policy amendment intent. Prefixed with `pai_`.
-        object:
-          type: string
-          description: Object type identifier.
-        policy_id:
-          type: string
-          description: The policy ID for which the amendment is requested. Prefixed with `p_`.
-        status:
-          $ref: '#/components/schemas/PolicyAmendmentIntentStatus'
-          description: Current status of the policy amendment intent.
-        amendment_reason:
-          $ref: '#/components/schemas/PolicyAmendmentReasonResponse'
-          description: The reason for the policy amendment.
-        requested_changes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicyAmendmentRequestedChangeResponse'
-          description: List of requested changes to the policy.
-        required_action:
-          $ref: '#/components/schemas/PolicyAmendmentRequiredActionResponse'
-          description: Information about the required action if the intent status is `action_required`.
-        pending_confirmation:
-          $ref: '#/components/schemas/PolicyAmendmentPendingConfirmationResponse'
-          description: Information about the pending confirmation if the intent status is `pending_confirmation`.
-        processing_error:
-          $ref: '#/components/schemas/PolicyAmendmentProcessingErrorResponse'
-          description: Information about the processing error if the intent status is `processing_error`.
-        disclosures:
-          type: array
-          items:
-            $ref: '#/components/schemas/DisclosureResponse'
-          description: Disclosures associated with this intent.
-      required:
-      - id
-      - policy_id
-      - status
-      - amendment_reason
-      - requested_changes
-      - disclosures
-      title: PolicyAmendmentIntentResponse
+      - provider_rejected
+      - unable_to_quote
+      title: PolicyAmendmentIntentFailureCode
     PolicyAmendmentReasonRequest:
       type: object
       properties:
@@ -1065,6 +705,31 @@ components:
       required:
       - type
       title: PolicyAmendmentReasonRequest
+    PolicyAmendmentQuoteAmountResponse:
+      type: object
+      properties:
+        net:
+          type: number
+          format: double
+          description: Net amount before tax.
+        tax:
+          type: number
+          format: double
+          description: Tax amount.
+        gross:
+          type: number
+          format: double
+          description: Gross amount (net + tax).
+      required:
+      - net
+      - tax
+      - gross
+      title: PolicyAmendmentQuoteAmountResponse
+    Policy_Amendment_Intents_CancelPolicyAmendmentIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Policy Amendment Intents_CancelPolicyAmendmentIntent_Response_204
     DependentInfoResponse:
       type: object
       properties:
@@ -1091,53 +756,46 @@ components:
       - associated_person_id
       - status
       title: DependentInfoResponse
-    PolicyAmendmentQuoteContributionsResponse:
-      type: object
-      properties:
-        employee_contribution:
-          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
-          description: Employee contribution amounts.
-        employer_contribution:
-          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
-          description: Employer contribution amounts.
-        total:
-          $ref: '#/components/schemas/PolicyAmendmentQuoteAmountResponse'
-          description: Total contribution amounts (sum of employee and employer).
-      required:
-      - employee_contribution
-      - employer_contribution
-      - total
-      title: PolicyAmendmentQuoteContributionsResponse
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    PolicyAmendmentIntentFailureCode:
+    DependentsManagementIntentStatus:
       type: string
       enum:
-      - provider_rejected
-      - unable_to_quote
-      title: PolicyAmendmentIntentFailureCode
+      - action_required
+      - processing
+      - completed
+      - not_undertaken
+      title: DependentsManagementIntentStatus
+    PolicyAmendmentRequiredActionResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/PolicyAmendmentActionCode'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action.
+        due_by:
+          type: string
+          format: date
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+        associated_persons:
+          $ref: '#/components/schemas/PolicyAmendmentAssociatedPersonsResponse'
+          description: Information about associated persons related to this action.
+      required:
+      - code
+      - reason
+      - reason_description
+      - due_by
+      - associated_persons
+      title: PolicyAmendmentRequiredActionResponse
+    AmendmentReasonType:
+      type: string
+      enum:
+      - initial_adjustment_period
+      - qualifying_life_event
+      title: AmendmentReasonType
     DependentsManagementIntentResponse:
       type: object
       properties:
@@ -1188,26 +846,26 @@ components:
       - plan
       - disclosures
       title: DependentsManagementIntentResponse
-    RequestedChangeType:
-      type: string
-      enum:
-      - dependents
-      - cancellation
-      title: RequestedChangeType
-    PlanCoverageOptionBenefitResponse:
+    Policy_Amendment_Intents_ConfirmPolicyAmendmentIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Policy Amendment Intents_ConfirmPolicyAmendmentIntent_Response_204
+    CreatePolicyAmendmentIntentRequest:
       type: object
       properties:
-        name:
-          type: string
-          description: Benefit name.
-        description:
-          type:
-          - string
-          - 'null'
-          description: Benefit description.
+        amendment_reason:
+          $ref: '#/components/schemas/PolicyAmendmentReasonRequest'
+          description: The reason for the policy amendment.
+        requested_changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyAmendmentRequestedChangeRequest'
+          description: List of requested changes to the policy.
       required:
-      - name
-      title: PlanCoverageOptionBenefitResponse
+      - amendment_reason
+      - requested_changes
+      title: CreatePolicyAmendmentIntentRequest
     DisclosureResponse:
       type: object
       properties:
@@ -1225,6 +883,430 @@ components:
       - type
       - text
       title: DisclosureResponse
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    PlanCoverageOptionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this coverage option. Prefixed with `pco_`.
+        name:
+          type: string
+          description: Display name for this coverage option.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Longer explanation of this coverage option.
+        learn_more_url:
+          type:
+          - string
+          - 'null'
+          description: Link to learn more about this coverage option.
+        from_price:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Lowest applicable monthly price for this coverage option.
+        benefits:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
+          description: Benefit items included with this coverage option.
+        sub_options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Nested sub-options available when this option is selected.
+        eligibility_criteria:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that must be met to select this coverage option.
+      required:
+      - id
+      - name
+      title: PlanCoverageOptionResponse
+    MembersCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of members required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of members allowed.
+      title: MembersCountDetails
+    PolicyAmendmentIntentStatus:
+      type: string
+      enum:
+      - action_required
+      - awaiting_quote
+      - pending_confirmation
+      - processing
+      - amended
+      - processing_error
+      - not_undertaken
+      title: PolicyAmendmentIntentStatus
+    QualifyingLifeEventType:
+      type: string
+      enum:
+      - gained_other_insurance_coverage
+      - divorce_or_legal_separation
+      - death_of_spouse_or_dependent
+      - moved_out_of_coverage_area
+      - employment_status_change_affecting_eligibility
+      - eligible_for_government_program
+      - marriage_or_civil_partnership
+      - birth_of_child
+      - adoption_of_child
+      - gained_legal_guardianship
+      - dependent_lost_other_coverage
+      - lost_legal_guardianship
+      - dependent_gained_other_coverage
+      - dependent_eligible_for_government_program
+      - dependent_aged_out
+      - dependent_student_status_change_affecting_eligibility
+      - dependent_moved_in_or_out_of_coverage_area
+      - other_change
+      title: QualifyingLifeEventType
+    DependentsManagementIntentDependentStatus:
+      type: string
+      enum:
+      - pending_confirmation
+      - action_required
+      - ineligible
+      - processing
+      - restricted
+      - ready
+      title: DependentsManagementIntentDependentStatus
+    PolicyAmendmentQuoteResponse:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this quote.
+        monthly:
+          $ref: '#/components/schemas/PolicyAmendmentQuoteContributionsResponse'
+          description: Monthly contribution breakdown for the policy amendment.
+        term:
+          $ref: '#/components/schemas/PolicyAmendmentQuoteContributionsResponse'
+          description: Total term contribution breakdown for the policy amendment.
+      required:
+      - currency
+      - monthly
+      - term
+      title: PolicyAmendmentQuoteResponse
+    PlanCoverageOptionInputType:
+      type: string
+      enum:
+      - single_select
+      - multi_select
+      title: PlanCoverageOptionInputType
+    EmployeesCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of employees required.
+        max:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of employees allowed.
+      title: EmployeesCountDetails
+    PolicyAmendmentIntentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the policy amendment intent. Prefixed with `pai_`.
+        object:
+          type: string
+          description: Object type identifier.
+        policy_id:
+          type: string
+          description: The policy ID for which the amendment is requested. Prefixed with `p_`.
+        status:
+          $ref: '#/components/schemas/PolicyAmendmentIntentStatus'
+          description: Current status of the policy amendment intent.
+        amendment_reason:
+          $ref: '#/components/schemas/PolicyAmendmentReasonResponse'
+          description: The reason for the policy amendment.
+        requested_changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyAmendmentRequestedChangeResponse'
+          description: List of requested changes to the policy.
+        required_action:
+          $ref: '#/components/schemas/PolicyAmendmentRequiredActionResponse'
+          description: Information about the required action if the intent status is `action_required`.
+        pending_confirmation:
+          $ref: '#/components/schemas/PolicyAmendmentPendingConfirmationResponse'
+          description: Information about the pending confirmation if the intent status is `pending_confirmation`.
+        processing_error:
+          $ref: '#/components/schemas/PolicyAmendmentProcessingErrorResponse'
+          description: Information about the processing error if the intent status is `processing_error`.
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this intent.
+      required:
+      - id
+      - policy_id
+      - status
+      - amendment_reason
+      - requested_changes
+      - disclosures
+      title: PolicyAmendmentIntentResponse
+    MemberTypePricingResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/MemberTypeCode'
+          description: Member type code.
+        display_name:
+          type: string
+          description: Display name for the member type.
+        monthly_premium:
+          type: number
+          format: double
+          description: Monthly premium amount.
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      title: MemberTypePricingResponse
+    PlanPricingType:
+      type: string
+      enum:
+      - per_member
+      - tier_based
+      title: PlanPricingType
+    PlanCoverageOptionSelectionResponse:
+      type: object
+      properties:
+        configuration_id:
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected options.
+      required:
+      - configuration_id
+      - options
+      title: PlanCoverageOptionSelectionResponse
+    DependentsManagementIntentActionCode:
+      type: string
+      enum:
+      - remove_restricted_or_ineligible_dependents
+      title: DependentsManagementIntentActionCode
+    PolicyAmendmentDependentsResponse:
+      type: object
+      properties:
+        dependents_management_intent_id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier for the dependents management intent. Prefixed with `dmi_`. Null if not yet created.
+        status:
+          $ref: '#/components/schemas/DependentsManagementIntentStatus'
+          description: The status of the dependents management process. Null if not yet started.
+      title: PolicyAmendmentDependentsResponse
+    PlanPricingResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PlanPricingType'
+          description: Type of pricing structure
+        per_member:
+          $ref: '#/components/schemas/PerMemberPricingResponse'
+          description: Per-member pricing details (populated when type is 'per_member').
+        tier_based:
+          $ref: '#/components/schemas/TierBasedPricingResponse'
+          description: Tier-based pricing details (populated when type is 'tier_based').
+      required:
+      - type
+      title: PlanPricingResponse
+    IndustryExclusionsDetails:
+      type: object
+      properties:
+        excluded_industries:
+          type: array
+          items:
+            type: string
+          description: List of excluded industries.
+      required:
+      - excluded_industries
+      title: IndustryExclusionsDetails
+    PolicyAmendmentAssociatedPersonsResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/AssociatedPersonType'
+          description: The type of associated person.
+        dependents:
+          $ref: '#/components/schemas/PolicyAmendmentDependentsResponse'
+          description: Dependents-specific information if type is 'dependents'.
+      required:
+      - type
+      title: PolicyAmendmentAssociatedPersonsResponse
+    QualifyingLifeEventSupplementalInfo:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/QualifyingLifeEventType'
+          description: The type of qualifying life event requested.
+        event_date:
+          type: string
+          format: date
+          description: 'The date at which the event occured. Note: This date must be within provider guidelines, where the date is outside of those guidelines the amendment may be rejected or the effective date of the change could be amended by the provider.'
+        reason:
+          type:
+          - string
+          - 'null'
+          description: 'A free text reason of the qualifying life event. Note: This will be shared with the insurance provider in lieu of `event` when its set to `other_change`.'
+      required:
+      - event
+      - event_date
+      title: QualifyingLifeEventSupplementalInfo
+    PlanWithPricingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+        pricing:
+          $ref: '#/components/schemas/PlanPricingResponse'
+          description: Pricing information for the plan.
+      required:
+      - id
+      - name
+      - description
+      - pricing
+      title: PlanWithPricingResponse
+    PlanCoverageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
+        name:
+          type: string
+          description: Title for this coverage selection. Typically used as the display heading.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Full description of this coverage selection.
+        scope:
+          $ref: '#/components/schemas/PlanCoverageOptionScope'
+          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
+        input_type:
+          $ref: '#/components/schemas/PlanCoverageOptionInputType'
+          description: Describes whether this input allows selecting a single option or multiple options.
+        required:
+          type: boolean
+          description: Whether a selection is mandatory.
+        min_selections:
+          type:
+          - integer
+          - 'null'
+          description: Minimum required selections (multi-select only).
+        max_selections:
+          type:
+          - integer
+          - 'null'
+          description: Maximum allowed selections (multi-select only).
+        sort_order:
+          type:
+          - integer
+          - 'null'
+          description: Display ordering hint.
+        group_label:
+          type:
+          - string
+          - 'null'
+          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Available options within this coverage selection.
+      required:
+      - id
+      - name
+      - scope
+      - input_type
+      - required
+      - options
+      title: PlanCoverageResponse
+    PolicyAmendmentRequestedChangeResponse:
+      type: object
+      properties:
+        change_type:
+          $ref: '#/components/schemas/RequestedChangeType'
+          description: The type of change requested.
+      required:
+      - change_type
+      title: PolicyAmendmentRequestedChangeResponse
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
     SelectedOptionResponse:
       type: object
       properties:
@@ -1241,50 +1323,22 @@ components:
       required:
       - option_id
       title: SelectedOptionResponse
-    PlanCoverageOptionSelectionResponse:
-      type: object
-      properties:
-        configuration_id:
-          type: string
-          description: Configuration ID (prefixed with `pc_`).
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedOptionResponse'
-          description: Selected options.
-      required:
-      - configuration_id
-      - options
-      title: PlanCoverageOptionSelectionResponse
-    AssociatedPersonType:
+    PlanCoverageOptionScope:
       type: string
       enum:
-      - dependents
-      title: AssociatedPersonType
-    PolicyAmendmentActionCode:
-      type: string
-      enum:
-      - provide_dependents_information
-      title: PolicyAmendmentActionCode
-    PolicyAmendmentQualifyingLifeEventResponse:
+      - group_policy
+      - policy
+      - member
+      title: PlanCoverageOptionScope
+    PolicyAmendmentRequestedChangeRequest:
       type: object
       properties:
-        event:
-          $ref: '#/components/schemas/QualifyingLifeEventType'
-          description: The type of qualifying life event.
-        event_date:
-          type: string
-          format: date
-          description: The date when the qualifying life event occurred.
-        reason:
-          type:
-          - string
-          - 'null'
-          description: Additional reason or description for the qualifying life event.
+        change_type:
+          $ref: '#/components/schemas/RequestedChangeType'
+          description: The type of change requested.
       required:
-      - event
-      - event_date
-      title: PolicyAmendmentQualifyingLifeEventResponse
+      - change_type
+      title: PolicyAmendmentRequestedChangeRequest
     PolicyAmendmentIntentConfirmationCode:
       type: string
       enum:
@@ -1292,40 +1346,6 @@ components:
       - confirm_opt_out
       - confirm_qle
       title: PolicyAmendmentIntentConfirmationCode
-    DisclosureCategory:
-      type: string
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      title: DisclosureCategory
-    PolicyAmendmentAssociatedPersonsResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/AssociatedPersonType'
-          description: The type of associated person.
-        dependents:
-          $ref: '#/components/schemas/PolicyAmendmentDependentsResponse'
-          description: Dependents-specific information if type is 'dependents'.
-      required:
-      - type
-      title: PolicyAmendmentAssociatedPersonsResponse
-    PerMemberPricingResponse:
-      type: object
-      properties:
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-          description: Currency code (e.g., 'eur', 'usd').
-        member_type_pricing:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberTypePricingResponse'
-          description: Pricing for each member type.
-      required:
-      - currency
-      - member_type_pricing
-      title: PerMemberPricingResponse
     EmployerEligibilityCriterionResponse:
       type: object
       properties:
@@ -1348,12 +1368,6 @@ components:
       - type
       - description
       title: EmployerEligibilityCriterionResponse
-    DependentsManagementIntentParentType:
-      type: string
-      enum:
-      - policy_amendment_intent
-      - enrolment_intent
-      title: DependentsManagementIntentParentType
     PolicyAmendmentPendingConfirmationResponse:
       type: object
       properties:
@@ -1382,20 +1396,6 @@ components:
       - reason_description
       - due_by
       title: PolicyAmendmentPendingConfirmationResponse
-    EmployeesCountDetails:
-      type: object
-      properties:
-        min:
-          type:
-          - integer
-          - 'null'
-          description: Minimum number of employees required.
-        max:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of employees allowed.
-      title: EmployeesCountDetails
   securitySchemes:
     bearerAuth:
       type: http

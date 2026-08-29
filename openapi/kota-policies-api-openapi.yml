@@ -1,7 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons policies API
-  version: 1.0.0
+  title: Kota Policies API
+  version: '1.0'
+  description: 'Operations tagged policies across 2 of this provider''s published API definitions: kota-api-reference-openapi.json, kota-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://test.api.kota.io
   description: test
@@ -67,6 +68,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PolicyResponsePagedList'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /policies/{policy_id}:
     get:
       operationId: retrieve-policy
@@ -99,34 +105,73 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
 components:
   schemas:
-    HealthInsurancePolicyGrossEstimationAmountResponse:
+    HealthInsurancePolicyResponse:
       type: object
       properties:
-        employee_contribution:
-          type: number
-          format: double
-          description: Estimated gross premium amount deducted from employee payroll
-        employer_contribution:
-          type: number
-          format: double
-          description: Estimated gross premium amount paid by the employer
-        total:
-          type: number
-          format: double
-          description: Total gross premium amount (sum of employee and employer contributions).
+        policy_number:
+          type:
+          - string
+          - 'null'
+          description: Provider-issued policy number for health insurance
+        opt_out_deadline:
+          type: string
+          format: date
+          description: Deadline for opting out of the policy. Members cannot opt out after this date.
+        initial_dependents_update_deadline:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Represents the last date to add or remove dependents during the initial adjustment period. The deadline date is inclusive (changes are allowed on that date). This value should be evaluated using the local time zone where the policy is active. Returns null when the provider doesn't support dependent modifications during the initial adjustment period.
+        renewal:
+          $ref: '#/components/schemas/HealthInsurancePolicyRenewalResponse'
+          description: Renewal information for the policy
+        dependents_supported:
+          type: boolean
+          description: Whether this policy supports adding or removing dependents.
+        configuration:
+          $ref: '#/components/schemas/HealthInsurancePolicyConfigurationResponse'
+          description: How benefit costs are shared between employer and employee
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyMemberResponse'
+          description: List of members on the health insurance policy
+        estimated_gross_premium:
+          $ref: '#/components/schemas/HealthInsurancePolicyEstimatedGrossPremiumResponse'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
       required:
-      - employee_contribution
-      - employer_contribution
-      - total
-      title: HealthInsurancePolicyGrossEstimationAmountResponse
-    PolicyType:
+      - opt_out_deadline
+      - initial_dependents_update_deadline
+      - renewal
+      - dependents_supported
+      - configuration
+      - members
+      - estimated_gross_premium
+      title: HealthInsurancePolicyResponse
+    PolicyStatus:
       type: string
       enum:
-      - health_insurance
-      - life_assurance
-      title: PolicyType
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      title: PolicyStatus
+    HealthInsuranceFamilyCostSharingType:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      title: HealthInsuranceFamilyCostSharingType
     HealthInsurancePolicyRenewalResponse:
       type: object
       properties:
@@ -156,117 +201,12 @@ components:
       - window_end_date
       - status
       title: HealthInsurancePolicyRenewalResponse
-    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
-          description: Employer coverage family type
-      required:
-      - type
-      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
-    HealthInsurancePolicyEstimatedGrossPremiumResponse:
-      type: object
-      properties:
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
-        monthly:
-          $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse'
-          description: Estimated monthly gross premium amounts representing regular monthly charges.
-        term:
-          $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse'
-          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
-      required:
-      - currency
-      - monthly
-      - term
-      title: HealthInsurancePolicyEstimatedGrossPremiumResponse
-    HealthInsurancePolicyConfigurationResponse:
-      type: object
-      properties:
-        cost_sharing:
-          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Defines how the policy total cost is shared between employer and employee.
-      required:
-      - cost_sharing
-      title: HealthInsurancePolicyConfigurationResponse
-    PolicyPlanResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the plan. Prefixed with pl_.
-        name:
-          type: string
-          description: Plan display name.
-        description:
-          type: string
-          description: Short description of the plan.
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-          description: ISO 4217 currency code for pricing under this plan.
-        documents:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanDocumentResponse'
-          description: List of plan documents (e.g., IPIDs, T&Cs).
-      required:
-      - id
-      - name
-      - description
-      - currency
-      - documents
-      title: PolicyPlanResponse
-    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
-      type: object
-      properties:
-        partner:
-          type: boolean
-          description: If a spouse/partner is covered.
-        children:
-          type: boolean
-          description: If children are covered.
-      required:
-      - partner
-      - children
-      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
-    SexAtBirth:
+    PolicyType:
       type: string
       enum:
-      - male
-      - female
-      title: SexAtBirth
-    HealthInsuranceCostSharingType:
-      type: string
-      enum:
-      - member_count
-      - member_selection
-      - percentage
-      - policyholder_only
-      - family_type
-      title: HealthInsuranceCostSharingType
-    MemberType:
-      type: string
-      enum:
-      - policyholder
-      - spouse
-      - partner
-      - adult_dependant
-      - child
-      title: MemberType
-    DisclosureType:
-      type: string
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      title: DisclosureType
+      - health_insurance
+      - life_assurance
+      title: PolicyType
     CurrencyCode:
       type: string
       enum:
@@ -449,6 +389,61 @@ components:
       required:
       - percentage
       title: HealthInsurancePercentageCostSharingConfigurationResponse
+    PlanDocumentResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PlanDocumentType'
+          description: Machine-readable document kind used for display and i18n. Possible values are listed below; as this enum can expand with new benefits, unknown values MUST be handled gracefully by clients (fallback to a generic `document` label).
+        title:
+          type: string
+          description: Title of the document.
+        link:
+          type: string
+          description: Public URL to the document. This could be any format (PDF, HTML, etc.).
+      required:
+      - title
+      - link
+      title: PlanDocumentResponse
+    PlanDocumentType:
+      type: string
+      enum:
+      - ipid
+      - table_of_cover
+      - waiting_periods
+      - hospital_list
+      - plan_summary
+      - terms_and_conditions
+      - other
+      title: PlanDocumentType
+    HealthInsuranceCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingType'
+          description: Cost sharing type. Determines which sub-object is populated.
+        member_count:
+          $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
+          description: Numbers of additional members covered by the employer.
+        member_selection:
+          $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
+          description: Whether specific member types are covered by the employer.
+        percentage:
+          $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
+          description: Percentage of the premium the employer covers.
+        family_type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
+          description: Type of the family covered by the employer.
+      required:
+      - type
+      title: HealthInsuranceCostSharingConfigurationResponse
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
     HealthInsuranceMemberCountCostSharingConfigurationResponse:
       type: object
       properties:
@@ -462,50 +457,6 @@ components:
       - adults
       - children
       title: HealthInsuranceMemberCountCostSharingConfigurationResponse
-    HealthInsurancePolicyResponse:
-      type: object
-      properties:
-        policy_number:
-          type:
-          - string
-          - 'null'
-          description: Provider-issued policy number for health insurance
-        opt_out_deadline:
-          type: string
-          format: date
-          description: Deadline for opting out of the policy. Members cannot opt out after this date.
-        initial_dependents_update_deadline:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: Represents the last date to add or remove dependents during the initial adjustment period. The deadline date is inclusive (changes are allowed on that date). This value should be evaluated using the local time zone where the policy is active. Returns null when the provider doesn't support dependent modifications during the initial adjustment period.
-        renewal:
-          $ref: '#/components/schemas/HealthInsurancePolicyRenewalResponse'
-          description: Renewal information for the policy
-        dependents_supported:
-          type: boolean
-          description: Whether this policy supports adding or removing dependents.
-        configuration:
-          $ref: '#/components/schemas/HealthInsurancePolicyConfigurationResponse'
-          description: How benefit costs are shared between employer and employee
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolicyMemberResponse'
-          description: List of members on the health insurance policy
-        estimated_gross_premium:
-          $ref: '#/components/schemas/HealthInsurancePolicyEstimatedGrossPremiumResponse'
-          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
-      required:
-      - opt_out_deadline
-      - initial_dependents_update_deadline
-      - renewal
-      - dependents_supported
-      - configuration
-      - members
-      - estimated_gross_premium
-      title: HealthInsurancePolicyResponse
     PolicyResponse:
       type: object
       properties:
@@ -576,35 +527,147 @@ components:
       - type
       - disclosures
       title: PolicyResponse
-    PolicyResponsePagedList:
+    PolicyPlanResponse:
       type: object
       properties:
-        items:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with pl_.
+        name:
+          type: string
+          description: Plan display name.
+        description:
+          type: string
+          description: Short description of the plan.
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: ISO 4217 currency code for pricing under this plan.
+        documents:
           type: array
           items:
-            $ref: '#/components/schemas/PolicyResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
+            $ref: '#/components/schemas/PlanDocumentResponse'
+          description: List of plan documents (e.g., IPIDs, T&Cs).
       required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: PolicyResponsePagedList
+      - id
+      - name
+      - description
+      - currency
+      - documents
+      title: PolicyPlanResponse
+    HealthInsurancePolicyEstimatedGrossPremiumResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      required:
+      - currency
+      - monthly
+      - term
+      title: HealthInsurancePolicyEstimatedGrossPremiumResponse
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    MemberType:
+      type: string
+      enum:
+      - policyholder
+      - spouse
+      - partner
+      - adult_dependant
+      - child
+      title: MemberType
+    PolicyProviderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the provider. Prefixed with pr_.
+        name:
+          type: string
+          description: Provider display name.
+        description:
+          type: string
+          description: Short description of the provider.
+        logo_url:
+          type: string
+        employer_portal_url:
+          type:
+          - string
+          - 'null'
+          description: URL for the employer portal.
+        employee_portal_url:
+          type:
+          - string
+          - 'null'
+          description: URL for the employee portal (may include claims management).
+        support_phone_number:
+          type:
+          - string
+          - 'null'
+          description: Provider support phone number in E.164 format.
+      required:
+      - id
+      - name
+      - description
+      - logo_url
+      title: PolicyProviderResponse
+    HealthInsuranceCostSharingType:
+      type: string
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      title: HealthInsuranceCostSharingType
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      required:
+      - type
+      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
     PolicyMemberResponse:
       type: object
       properties:
@@ -645,6 +708,83 @@ components:
       - sex_at_birth
       - member_type
       title: PolicyMemberResponse
+    BundlingType:
+      type: string
+      enum:
+      - not_bundled
+      - bundled_primary
+      - bundled_secondary
+      title: BundlingType
+    PolicyResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: PolicyResponsePagedList
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+        children:
+          type: boolean
+          description: If children are covered.
+      required:
+      - partner
+      - children
+      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
+    HealthInsurancePolicyGrossEstimationAmountResponse:
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount deducted from employee payroll
+        employer_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount paid by the employer
+        total:
+          type: number
+          format: double
+          description: Total gross premium amount (sum of employee and employer contributions).
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      title: HealthInsurancePolicyGrossEstimationAmountResponse
+    HealthInsurancePolicyRenewalStatus:
+      type: string
+      enum:
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      title: HealthInsurancePolicyRenewalStatus
     ProblemDetails:
       type: object
       properties:
@@ -669,72 +809,311 @@ components:
           - string
           - 'null'
       title: ProblemDetails
-    HealthInsuranceCostSharingConfigurationResponse:
+    HealthInsurancePolicyConfigurationResponse:
       type: object
       properties:
-        type:
-          $ref: '#/components/schemas/HealthInsuranceCostSharingType'
-          description: Cost sharing type. Determines which sub-object is populated.
-        member_count:
-          $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
-          description: Numbers of additional members covered by the employer.
-        member_selection:
-          $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
-          description: Whether specific member types are covered by the employer.
-        percentage:
-          $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
-          description: Percentage of the premium the employer covers.
-        family_type:
-          $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
-          description: Type of the family covered by the employer.
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Defines how the policy total cost is shared between employer and employee.
       required:
-      - type
-      title: HealthInsuranceCostSharingConfigurationResponse
-    DisclosureResponse:
+      - cost_sharing
+      title: HealthInsurancePolicyConfigurationResponse
+    HealthInsurancePolicyResponse_2:
+      required:
+      - configuration
+      - dependents_supported
+      - estimated_gross_premium
+      - initial_dependents_update_deadline
+      - members
+      - opt_out_deadline
+      - renewal
       type: object
       properties:
-        category:
-          $ref: '#/components/schemas/DisclosureCategory'
-          description: The category of the disclosure.
-        type:
-          $ref: '#/components/schemas/DisclosureType'
-          description: The specific type of disclosure within its category.
-        text:
+        policy_number:
+          type:
+          - 'null'
+          - string
+          description: Provider-issued policy number for health insurance
+        opt_out_deadline:
           type: string
-          description: The disclosure statement text.
-      required:
-      - category
-      - type
-      - text
-      title: DisclosureResponse
-    PolicyStatus:
-      type: string
+          description: Deadline for opting out of the policy. Members cannot opt out after this date.
+          format: date
+          example: '2024-12-01'
+        initial_dependents_update_deadline:
+          type:
+          - 'null'
+          - string
+          description: Represents the last date to add or remove dependents during the initial adjustment period. The deadline date is inclusive (changes are allowed on that date). This value should be evaluated using the local time zone where the policy is active. Returns null when the provider doesn't support dependent modifications during the initial adjustment period.
+          format: date
+          example: '2024-12-01'
+        renewal:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyRenewalResponse_2'
+          description: Renewal information for the policy
+        dependents_supported:
+          type: boolean
+          description: Whether this policy supports adding or removing dependents.
+          example: true
+        configuration:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyConfigurationResponse_2'
+          description: How benefit costs are shared between employer and employee
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyMemberResponse_2'
+          description: List of members on the health insurance policy
+        estimated_gross_premium:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyEstimatedGrossPremiumResponse_2'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
+      additionalProperties: false
+    PolicyStatus_2:
       enum:
       - scheduled
       - active
       - expired
       - cancelled
-      title: PolicyStatus
-    BundlingType:
       type: string
+    HealthInsuranceFamilyCostSharingType_2:
       enum:
-      - not_bundled
-      - bundled_primary
-      - bundled_secondary
-      title: BundlingType
-    HealthInsurancePolicyRenewalStatus:
+      - single
+      - couple
+      - single_with_children
+      - family
       type: string
+    HealthInsurancePolicyRenewalResponse_2:
+      required:
+      - renewal_date
+      - status
+      - window_end_date
+      - window_start_date
+      type: object
+      properties:
+        renewal_date:
+          type: string
+          description: Renewal date.
+          format: date
+          example: '2024-12-01'
+        window_start_date:
+          type: string
+          description: Renewal window start (inclusive).
+          format: date
+          example: '2024-12-01'
+        window_end_date:
+          type: string
+          description: Renewal window end (inclusive).
+          format: date
+          example: '2024-12-01'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyRenewalStatus_2'
+          description: Current renewal status.
+        renewed_policy_id:
+          pattern: p_.+
+          type:
+          - 'null'
+          - string
+          description: Identifier of the renewed policy. This means existing policy will be replaced by the renewed policy on the renewal date.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    PolicyType_2:
       enum:
-      - upcoming
-      - open
-      - renewed
-      - cancelled
-      title: HealthInsurancePolicyRenewalStatus
-    PlanDocumentResponse:
+      - health_insurance
+      - life_assurance
+      type: string
+    CurrencyCode_2:
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      type: string
+    HealthInsurancePercentageCostSharingConfigurationResponse_2:
+      required:
+      - percentage
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+          format: int32
+          example: 123
+      additionalProperties: false
+    PlanDocumentResponse_2:
+      required:
+      - link
+      - title
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/PlanDocumentType'
+          allOf:
+          - $ref: '#/components/schemas/PlanDocumentType_2'
           description: Machine-readable document kind used for display and i18n. Possible values are listed below; as this enum can expand with new benefits, unknown values MUST be handled gracefully by clients (fallback to a generic `document` label).
         title:
           type: string
@@ -742,19 +1121,8 @@ components:
         link:
           type: string
           description: Public URL to the document. This could be any format (PDF, HTML, etc.).
-      required:
-      - title
-      - link
-      title: PlanDocumentResponse
-    DisclosureCategory:
-      type: string
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      title: DisclosureCategory
-    PlanDocumentType:
-      type: string
+      additionalProperties: false
+    PlanDocumentType_2:
       enum:
       - ipid
       - table_of_cover
@@ -763,13 +1131,255 @@ components:
       - plan_summary
       - terms_and_conditions
       - other
-      title: PlanDocumentType
-    PolicyProviderResponse:
+      type: string
+    HealthInsuranceCostSharingConfigurationResponse_2:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingType_2'
+          description: Cost sharing type. Determines which sub-object is populated.
+        member_count:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse_2'
+          description: Numbers of additional members covered by the employer.
+        member_selection:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse_2'
+          description: Whether specific member types are covered by the employer.
+        percentage:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse_2'
+          description: Percentage of the premium the employer covers.
+        family_type:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse_2'
+          description: Type of the family covered by the employer.
+      additionalProperties: false
+    DisclosureCategory_2:
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      type: string
+    HealthInsuranceMemberCountCostSharingConfigurationResponse_2:
+      required:
+      - adults
+      - children
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+          format: int32
+          example: 123
+        children:
+          type: integer
+          description: Number of additional children covered.
+          format: int32
+          example: 123
+      additionalProperties: false
+    PolicyResponse_2:
+      required:
+      - bundling_type
+      - disclosures
+      - employee_id
+      - group_id
+      - group_policy_id
+      - id
+      - plan
+      - provider
+      - start_date
+      - status
+      - type
       type: object
       properties:
         id:
+          pattern: p_.+
+          type: string
+          description: Unique identifier for the policy. Prefixed with `p_`.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_policy_id:
+          pattern: gp_.+
+          type: string
+          description: Identifier of the group policy id associated with this policy. Prefixed with `gp_`.
+          example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        bundling_type:
+          allOf:
+          - $ref: '#/components/schemas/BundlingType_2'
+          description: Indicates how this policy is bundled within a group
+        status:
+          allOf:
+          - $ref: '#/components/schemas/PolicyStatus_2'
+          description: Current lifecycle state of the policy
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this policy. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/PolicyProviderResponse_2'
+          description: Provider information for this policy
+        plan:
+          allOf:
+          - $ref: '#/components/schemas/PolicyPlanResponse_2'
+          description: Plan information for this policy
+        start_date:
+          type: string
+          description: Policy start (effective) date in ISO 8601 (YYYY-MM-DD)
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type:
+          - 'null'
+          - string
+          description: Policy end date (inclusive) in ISO 8601, or null if open-ended
+          format: date
+          example: '2024-12-01'
+        cancellation_date:
+          type:
+          - 'null'
+          - string
+          description: Date the policy was cancelled (if applicable)
+          format: date
+          example: '2024-12-01'
+        type:
+          allOf:
+          - $ref: '#/components/schemas/PolicyType_2'
+          description: Policy type. Determines which sub-object is populated.
+        health_insurance:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyResponse_2'
+          description: Health insurance–specific fields (present when `type=health_insurance`)
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse_2'
+          description: Disclosures associated with this policy.
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    PolicyPlanResponse_2:
+      required:
+      - currency
+      - description
+      - documents
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan. Prefixed with pl_.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Plan display name.
+        description:
+          type: string
+          description: Short description of the plan.
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode_2'
+          description: ISO 4217 currency code for pricing under this plan.
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanDocumentResponse_2'
+          description: List of plan documents (e.g., IPIDs, T&Cs).
+      additionalProperties: false
+    HealthInsurancePolicyEstimatedGrossPremiumResponse_2:
+      required:
+      - currency
+      - monthly
+      - term
+      type: object
+      properties:
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode_2'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse_2'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsurancePolicyGrossEstimationAmountResponse_2'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      additionalProperties: false
+    DisclosureResponse_2:
+      required:
+      - category
+      - text
+      - type
+      type: object
+      properties:
+        category:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureCategory_2'
+          description: The category of the disclosure.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureType_2'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      additionalProperties: false
+    SexAtBirth_2:
+      enum:
+      - male
+      - female
+      type: string
+    DisclosureType_2:
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      type: string
+    MemberType_2:
+      enum:
+      - policyholder
+      - spouse
+      - partner
+      - adult_dependant
+      - child
+      type: string
+    PolicyProviderResponse_2:
+      required:
+      - description
+      - id
+      - logo_url
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pr_.+
           type: string
           description: Unique identifier for the provider. Prefixed with pr_.
+          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
         name:
           type: string
           description: Provider display name.
@@ -778,37 +1388,229 @@ components:
           description: Short description of the provider.
         logo_url:
           type: string
+          description: ''
         employer_portal_url:
           type:
-          - string
           - 'null'
+          - string
           description: URL for the employer portal.
         employee_portal_url:
           type:
-          - string
           - 'null'
+          - string
           description: URL for the employee portal (may include claims management).
         support_phone_number:
           type:
-          - string
           - 'null'
+          - string
           description: Provider support phone number in E.164 format.
-      required:
-      - id
-      - name
-      - description
-      - logo_url
-      title: PolicyProviderResponse
-    HealthInsuranceFamilyCostSharingType:
-      type: string
+      additionalProperties: false
+    HealthInsuranceCostSharingType_2:
       enum:
-      - single
-      - couple
-      - single_with_children
-      - family
-      title: HealthInsuranceFamilyCostSharingType
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      type: string
+      x-fern-enum:
+        member_count:
+          description: The number of additional adults and children to cover is specified.
+        member_selection:
+          description: Dependent categories to cover are selected (partner and/or children).
+        percentage:
+          description: A percentage of the total premium is covered.
+        policyholder_only:
+          description: Only the policyholder is covered.
+        family_type:
+          description: Coverage is based on a predefined family tier (e.g. Single, Couple, Family).
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse_2:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType_2'
+          description: Employer coverage family type
+      additionalProperties: false
+    PolicyMemberResponse_2:
+      required:
+      - date_of_birth
+      - first_name
+      - id
+      - last_name
+      - member_type
+      - sex_at_birth
+      type: object
+      properties:
+        id:
+          pattern: pm_.+
+          type: string
+          description: Unique identifier for the policy member. Prefixed with `pm_`.
+          example: pm_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        member_number:
+          type:
+          - 'null'
+          - string
+          description: Provider-issued member number, null if not issues yet
+        first_name:
+          type: string
+          description: First name of the member
+        last_name:
+          type: string
+          description: Last name of the member
+        date_of_birth:
+          type: string
+          description: Date of birth of the member
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth_2'
+          description: Sex at birth of the member
+        member_type:
+          allOf:
+          - $ref: '#/components/schemas/MemberType_2'
+          description: Type of the policy member
+        associated_person_id:
+          pattern: ap_.+
+          type:
+          - 'null'
+          - string
+          description: Identifier of the associated person. Not present for policyholders. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    BundlingType_2:
+      enum:
+      - not_bundled
+      - bundled_primary
+      - bundled_secondary
+      type: string
+    PolicyResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse_2:
+      required:
+      - children
+      - partner
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+          example: true
+        children:
+          type: boolean
+          description: If children are covered.
+          example: true
+      additionalProperties: false
+    HealthInsurancePolicyGrossEstimationAmountResponse_2:
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          description: Estimated gross premium amount deducted from employee payroll
+          format: double
+          example: 123.45
+        employer_contribution:
+          type: number
+          description: Estimated gross premium amount paid by the employer
+          format: double
+          example: 123.45
+        total:
+          type: number
+          description: Total gross premium amount (sum of employee and employer contributions).
+          format: double
+          example: 123.45
+      additionalProperties: false
+    HealthInsurancePolicyRenewalStatus_2:
+      enum:
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      type: string
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    HealthInsurancePolicyConfigurationResponse_2:
+      required:
+      - cost_sharing
+      type: object
+      properties:
+        cost_sharing:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse_2'
+          description: Defines how the policy total cost is shared between employer and employee.
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Authorization header using the Bearer scheme
+x-refined-from:
+- kota-api-reference-openapi.json
+- kota-openapi-original.json

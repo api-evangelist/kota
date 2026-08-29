@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons embedSessions API
+  title: Reference Embed Sessions API
   version: 1.0.0
 servers:
 - url: https://test.api.kota.io
@@ -50,18 +50,23 @@ paths:
               $ref: '#/components/schemas/CreateSessionTokenRequest'
 components:
   schemas:
-    CreateSessionTokenResponse:
+    CreateSessionTokenRequest:
       type: object
       properties:
-        token:
+        employer_id:
           type: string
-        expiry:
-          type: string
-          format: date-time
+        employee_id:
+          type:
+          - string
+          - 'null'
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is required for Employer Session tokens for EoR platforms.
       required:
-      - token
-      - expiry
-      title: CreateSessionTokenResponse
+      - employer_id
+      title: CreateSessionTokenRequest
     ProblemDetails:
       type: object
       properties:
@@ -86,23 +91,18 @@ components:
           - string
           - 'null'
       title: ProblemDetails
-    CreateSessionTokenRequest:
+    CreateSessionTokenResponse:
       type: object
       properties:
-        employer_id:
+        token:
           type: string
-        employee_id:
-          type:
-          - string
-          - 'null'
-        external_customer_id:
-          type:
-          - string
-          - 'null'
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is required for Employer Session tokens for EoR platforms.
+        expiry:
+          type: string
+          format: date-time
       required:
-      - employer_id
-      title: CreateSessionTokenRequest
+      - token
+      - expiry
+      title: CreateSessionTokenResponse
     HttpValidationProblemDetails:
       type: object
       properties:

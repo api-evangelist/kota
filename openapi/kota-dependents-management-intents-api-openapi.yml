@@ -1,12 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons Dependents Management Intents API
-  version: 1.0.0
+  title: Kota Dependents Management Intents API
+  version: '1.0'
 servers:
 - url: https://test.api.kota.io
-  description: test
+  description: Test Kota API
+  x-fern-server-name: test
 - url: https://api.kota.io
-  description: production
+  description: Production Kota API
+  x-fern-server-name: production
+security:
+- bearerAuth: []
 tags:
 - name: Dependents Management Intents
 paths:
@@ -229,176 +233,77 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    PlanWithPricingResponse:
+    DependentsManagementIntentParentType:
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    PerMemberPricingResponse:
       required:
-      - description
-      - id
-      - name
-      - pricing
+      - currency
+      - member_type_pricing
       type: object
       properties:
-        id:
-          pattern: pl_.+
-          type: string
-          description: Unique identifier for the plan. Prefixed with `pl_`.
-          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        name:
-          type: string
-          description: The name of the plan.
-        description:
-          type: string
-          description: Description of the plan.
-        pricing:
+        currency:
           allOf:
-          - $ref: '#/components/schemas/PlanPricingResponse'
-          description: Pricing information for the plan.
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code (e.g., 'eur', 'usd').
+        member_type_pricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/MemberTypePricingResponse'
+          description: Pricing for each member type.
       additionalProperties: false
-    PlanCoverageOptionInputType:
-      enum:
-      - single_select
-      - multi_select
-      type: string
-    PlanCoverageOptionScope:
-      enum:
-      - group_policy
-      - policy
-      - member
-      type: string
-    PlanCoverageResponse:
+    DependentsManagementIntentActionRequiredResponse:
       required:
-      - id
-      - input_type
-      - name
-      - options
-      - required
-      - scope
+      - code
+      - due_by
+      - reason
+      - reason_description
       type: object
       properties:
-        id:
-          pattern: pc_.+
+        code:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentActionCode'
+          description: The action code indicating what action is required.
+        reason:
           type: string
-          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
-          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action. This is intended to be understandable by the end user.
+        due_by:
+          type: string
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    FamilyTierCode:
+      enum:
+      - single
+      - couple
+      - single_parent
+      - family
+      type: string
+    MemberTypeCode:
+      enum:
+      - adult
+      - young_adult
+      - child
+      type: string
+    PlanCoverageOptionBenefitResponse:
+      required:
+      - name
+      type: object
+      properties:
         name:
           type: string
-          description: Title for this coverage selection. Typically used as the display heading.
+          description: Benefit name.
         description:
           type:
           - 'null'
           - string
-          description: Full description of this coverage selection.
-        scope:
-          allOf:
-          - $ref: '#/components/schemas/PlanCoverageOptionScope'
-          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
-        input_type:
-          allOf:
-          - $ref: '#/components/schemas/PlanCoverageOptionInputType'
-          description: Describes whether this input allows selecting a single option or multiple options.
-        required:
-          type: boolean
-          description: Whether a selection is mandatory.
-          example: true
-        min_selections:
-          type:
-          - 'null'
-          - integer
-          description: Minimum required selections (multi-select only).
-          format: int32
-        max_selections:
-          type:
-          - 'null'
-          - integer
-          description: Maximum allowed selections (multi-select only).
-          format: int32
-        sort_order:
-          type:
-          - 'null'
-          - integer
-          description: Display ordering hint.
-          format: int32
-        group_label:
-          type:
-          - 'null'
-          - string
-          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionResponse'
-          description: Available options within this coverage selection.
-      additionalProperties: false
-    PlanCoverageOptionSelectionRequest:
-      required:
-      - configuration_id
-      - options
-      type: object
-      properties:
-        configuration_id:
-          pattern: pc_.+
-          type: string
-          description: Configuration ID (prefixed with `pc_`).
-          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedOptionRequest'
-          description: Selected options with optional sub-options.
-      additionalProperties: false
-    DependentsManagementIntentStatus:
-      enum:
-      - action_required
-      - processing
-      - completed
-      - not_undertaken
-      type: string
-      x-fern-enum:
-        action_required:
-          description: Dependents information needs to be provided.
-        processing:
-          description: Dependents are being validated and processed.
-        completed:
-          description: Dependents have been successfully processed and validated.
-        not_undertaken:
-          description: Dependents management intent has been aborted.
-    AssociatedPersonEligibilityResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssociatedPersonEligibilityResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
+          description: Benefit description.
       additionalProperties: false
     TierBasedPricingResponse:
       required:
@@ -416,6 +321,12 @@ components:
             $ref: '#/components/schemas/PricingTierResponse'
           description: Pricing tiers for different family compositions.
       additionalProperties: false
+    EmployerEligibilityCriterionType:
+      enum:
+      - employees_count
+      - members_count
+      - industry_exclusions
+      type: string
     DependentCoverageSelectionsRequest:
       required:
       - associated_person_id
@@ -433,160 +344,84 @@ components:
             $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
           description: Coverage option selections for member-scoped configurations.
       additionalProperties: false
-    SelectedOptionRequest:
+    PricingTierResponse:
       required:
-      - option_id
+      - annual_premium
+      - code
+      - display_dependent_requirements
+      - display_name
+      - monthly_premium
       type: object
       properties:
-        option_id:
-          pattern: pco_.+
-          type: string
-          description: Option ID (prefixed with `pco_`).
-          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        sub_options:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/SelectedOptionRequest'
-          description: Sub-option selections, if applicable.
-      additionalProperties: false
-    PlanPricingResponse:
-      required:
-      - type
-      type: object
-      properties:
-        type:
+        code:
           allOf:
-          - $ref: '#/components/schemas/PlanPricingType'
-          description: Type of pricing structure
-        per_member:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/PerMemberPricingResponse'
-          description: Per-member pricing details (populated when type is 'per_member').
-        tier_based:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/TierBasedPricingResponse'
-          description: Tier-based pricing details (populated when type is 'tier_based').
-      additionalProperties: false
-    PlanCoverageOptionResponse:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          pattern: pco_.+
+          - $ref: '#/components/schemas/FamilyTierCode'
+          description: Tier code.
+        display_name:
           type: string
-          description: Unique identifier for this coverage option. Prefixed with `pco_`.
-          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        name:
-          type: string
-          description: Display name for this coverage option.
-        description:
-          type:
-          - 'null'
-          - string
-          description: Longer explanation of this coverage option.
-        learn_more_url:
-          type:
-          - 'null'
-          - string
-          description: Link to learn more about this coverage option.
-        from_price:
-          type:
-          - 'null'
-          - number
-          description: Lowest applicable monthly price for this coverage option.
+          description: Display name for the tier.
+        monthly_premium:
+          type: number
+          description: Monthly premium amount for this tier.
           format: double
-        benefits:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
-          description: Benefit items included with this coverage option.
-        sub_options:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/PlanCoverageOptionResponse'
-          description: Nested sub-options available when this option is selected.
-        eligibility_criteria:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
-          description: Eligibility criteria that must be met to select this coverage option.
+          example: 123.45
+        annual_premium:
+          type: number
+          description: Annual premium amount for this tier.
+          format: double
+          example: 123.45
+        display_dependent_requirements:
+          type: string
+          description: Description of dependent requirements for this tier.
       additionalProperties: false
-    PlanPricingType:
-      enum:
-      - per_member
-      - tier_based
-      type: string
-    RelationshipType:
-      enum:
-      - spouse
-      - partner
-      - child
-      - other
-      type: string
-    SexAtBirth:
-      enum:
-      - male
-      - female
-      type: string
-    DependentsManagementIntentDependentStatus:
-      enum:
-      - pending_confirmation
-      - action_required
-      - ineligible
-      - processing
-      - restricted
-      - ready
-      type: string
-    MemberTypeCode:
-      enum:
-      - adult
-      - young_adult
-      - child
-      type: string
-    DisclosureType:
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      type: string
-    EmployerEligibilityCriterionType:
-      enum:
-      - employees_count
-      - members_count
-      - industry_exclusions
-      type: string
-    MembersCountDetails:
+    AssociatedPersonEligibilityResponse:
+      required:
+      - associated_person_id
+      - date_of_birth
+      - eligibility_status
+      - first_name
+      - last_name
+      - relationship
+      - sex_at_birth
       type: object
       properties:
-        min:
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        first_name:
+          type: string
+          description: First name of the associated person.
+        last_name:
+          type: string
+          description: Last name of the associated person.
+        date_of_birth:
+          type: string
+          description: Date of birth of the associated person.
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth'
+          description: Sex at birth of the associated person.
+        relationship:
+          allOf:
+          - $ref: '#/components/schemas/RelationshipType'
+          description: Relationship type to the employee.
+        eligibility_status:
+          allOf:
+          - $ref: '#/components/schemas/EligibilityStatus'
+          description: Eligibility status for the policy/plan.
+        ineligibility_reason:
           type:
           - 'null'
-          - integer
-          description: Minimum number of members required.
-          format: int32
-        max:
-          type:
-          - 'null'
-          - integer
-          description: Maximum number of members allowed.
-          format: int32
+          - string
+          description: Reason for ineligibility if status is ineligible.
+        object:
+          type: string
+          description: The object type
+          readOnly: true
       additionalProperties: false
     CurrencyCode:
       enum:
@@ -760,154 +595,18 @@ components:
       - zmw
       - zwl
       type: string
-    PricingTierResponse:
-      required:
-      - annual_premium
-      - code
-      - display_dependent_requirements
-      - display_name
-      - monthly_premium
-      type: object
-      properties:
-        code:
-          allOf:
-          - $ref: '#/components/schemas/FamilyTierCode'
-          description: Tier code.
-        display_name:
-          type: string
-          description: Display name for the tier.
-        monthly_premium:
-          type: number
-          description: Monthly premium amount for this tier.
-          format: double
-          example: 123.45
-        annual_premium:
-          type: number
-          description: Annual premium amount for this tier.
-          format: double
-          example: 123.45
-        display_dependent_requirements:
-          type: string
-          description: Description of dependent requirements for this tier.
-      additionalProperties: false
-    MemberTypePricingResponse:
-      required:
-      - code
-      - display_name
-      - monthly_premium
-      type: object
-      properties:
-        code:
-          allOf:
-          - $ref: '#/components/schemas/MemberTypeCode'
-          description: Member type code.
-        display_name:
-          type: string
-          description: Display name for the member type.
-        monthly_premium:
-          type: number
-          description: Monthly premium amount.
-          format: double
-          example: 123.45
-      additionalProperties: false
-    IndustryExclusionsDetails:
-      required:
-      - excluded_industries
-      type: object
-      properties:
-        excluded_industries:
-          type: array
-          items:
-            type: string
-          description: List of excluded industries.
-      additionalProperties: false
-    FamilyTierCode:
+    DisclosureCategory:
       enum:
-      - single
-      - couple
-      - single_parent
-      - family
+      - regulatory
+      - provider
+      - intermediary
       type: string
-    DependentsManagementIntentActionRequiredResponse:
-      required:
-      - code
-      - due_by
-      - reason
-      - reason_description
-      type: object
-      properties:
-        code:
-          allOf:
-          - $ref: '#/components/schemas/DependentsManagementIntentActionCode'
-          description: The action code indicating what action is required.
-        reason:
-          type: string
-          description: Brief reason for the required action.
-        reason_description:
-          type: string
-          description: Detailed description of the required action. This is intended to be understandable by the end user.
-        due_by:
-          type: string
-          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-      additionalProperties: false
-    AssociatedPersonEligibilityResponse:
-      required:
-      - associated_person_id
-      - date_of_birth
-      - eligibility_status
-      - first_name
-      - last_name
-      - relationship
-      - sex_at_birth
-      type: object
-      properties:
-        associated_person_id:
-          pattern: ap_.+
-          type: string
-          description: The associated person ID. Prefixed with `ap_`.
-          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        first_name:
-          type: string
-          description: First name of the associated person.
-        last_name:
-          type: string
-          description: Last name of the associated person.
-        date_of_birth:
-          type: string
-          description: Date of birth of the associated person.
-          format: date
-          example: '2024-12-01'
-        sex_at_birth:
-          allOf:
-          - $ref: '#/components/schemas/SexAtBirth'
-          description: Sex at birth of the associated person.
-        relationship:
-          allOf:
-          - $ref: '#/components/schemas/RelationshipType'
-          description: Relationship type to the employee.
-        eligibility_status:
-          allOf:
-          - $ref: '#/components/schemas/EligibilityStatus'
-          description: Eligibility status for the policy/plan.
-        ineligibility_reason:
-          type:
-          - 'null'
-          - string
-          description: Reason for ineligibility if status is ineligible.
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    DependentsManagementIntentActionCode:
+    EligibilityStatus:
       enum:
-      - remove_restricted_or_ineligible_dependents
+      - pending
+      - eligible
+      - ineligible
       type: string
-      x-fern-enum:
-        remove_restricted_or_ineligible_dependents:
-          description: One or more dependents are restricted or ineligible and must be removed before proceeding.
     DependentInfoResponse:
       required:
       - associated_person_id
@@ -937,31 +636,22 @@ components:
           description: The adaptive requirement ID for this dependent. Populated when the dependent has an open adaptive requirement (status is `pending_requirement`).
           format: uuid
       additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
+    DependentsManagementIntentStatus:
+      enum:
+      - action_required
+      - processing
+      - completed
+      - not_undertaken
+      type: string
+      x-fern-enum:
+        action_required:
+          description: Dependents information needs to be provided.
+        processing:
+          description: Dependents are being validated and processed.
+        completed:
+          description: Dependents have been successfully processed and validated.
+        not_undertaken:
+          description: Dependents management intent has been aborted.
     DependentsManagementIntentResponse:
       required:
       - dependents
@@ -1020,19 +710,25 @@ components:
           - $ref: '#/components/schemas/DependentsManagementIntentActionRequiredResponse'
           description: Details of the action required from the caller. Populated only when `status` is `action_required` and a required action has been recorded on the intent (e.g. restricted dependents detected by compliance screening).
       additionalProperties: false
-    PlanCoverageOptionBenefitResponse:
+    AddDependentsRequest:
       required:
-      - name
+      - associated_person_ids
       type: object
       properties:
-        name:
-          type: string
-          description: Benefit name.
-        description:
+        associated_person_ids:
+          type: array
+          items:
+            pattern: ap_.+
+            type: string
+            example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          description: List of associated person IDs to add as dependents. Must not be empty.
+        dependent_coverage_selections:
           type:
           - 'null'
-          - string
-          description: Benefit description.
+          - array
+          items:
+            $ref: '#/components/schemas/DependentCoverageSelectionsRequest'
+          description: Optional coverage selections per dependent. Keyed by associated person ID.
       additionalProperties: false
     DisclosureResponse:
       required:
@@ -1053,6 +749,361 @@ components:
           type: string
           description: The disclosure statement text.
       additionalProperties: false
+    SexAtBirth:
+      enum:
+      - male
+      - female
+      type: string
+    DisclosureType:
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      type: string
+    PlanCoverageOptionResponse:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          pattern: pco_.+
+          type: string
+          description: Unique identifier for this coverage option. Prefixed with `pco_`.
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Display name for this coverage option.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Longer explanation of this coverage option.
+        learn_more_url:
+          type:
+          - 'null'
+          - string
+          description: Link to learn more about this coverage option.
+        from_price:
+          type:
+          - 'null'
+          - number
+          description: Lowest applicable monthly price for this coverage option.
+          format: double
+        benefits:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionBenefitResponse'
+          description: Benefit items included with this coverage option.
+        sub_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Nested sub-options available when this option is selected.
+        eligibility_criteria:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/EmployerEligibilityCriterionResponse'
+          description: Eligibility criteria that must be met to select this coverage option.
+      additionalProperties: false
+    MembersCountDetails:
+      type: object
+      properties:
+        min:
+          type:
+          - 'null'
+          - integer
+          description: Minimum number of members required.
+          format: int32
+        max:
+          type:
+          - 'null'
+          - integer
+          description: Maximum number of members allowed.
+          format: int32
+      additionalProperties: false
+    DependentsManagementIntentDependentStatus:
+      enum:
+      - pending_confirmation
+      - action_required
+      - ineligible
+      - processing
+      - restricted
+      - ready
+      type: string
+    PlanCoverageOptionInputType:
+      enum:
+      - single_select
+      - multi_select
+      type: string
+    MemberTypePricingResponse:
+      required:
+      - code
+      - display_name
+      - monthly_premium
+      type: object
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/MemberTypeCode'
+          description: Member type code.
+        display_name:
+          type: string
+          description: Display name for the member type.
+        monthly_premium:
+          type: number
+          description: Monthly premium amount.
+          format: double
+          example: 123.45
+      additionalProperties: false
+    PlanPricingType:
+      enum:
+      - per_member
+      - tier_based
+      type: string
+    PlanCoverageOptionSelectionResponse:
+      required:
+      - configuration_id
+      - options
+      type: object
+      properties:
+        configuration_id:
+          pattern: pc_.+
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionResponse'
+          description: Selected options.
+      additionalProperties: false
+    DependentsManagementIntentActionCode:
+      enum:
+      - remove_restricted_or_ineligible_dependents
+      type: string
+      x-fern-enum:
+        remove_restricted_or_ineligible_dependents:
+          description: One or more dependents are restricted or ineligible and must be removed before proceeding.
+    PlanPricingResponse:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/PlanPricingType'
+          description: Type of pricing structure
+        per_member:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/PerMemberPricingResponse'
+          description: Per-member pricing details (populated when type is 'per_member').
+        tier_based:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/TierBasedPricingResponse'
+          description: Tier-based pricing details (populated when type is 'tier_based').
+      additionalProperties: false
+    IndustryExclusionsDetails:
+      required:
+      - excluded_industries
+      type: object
+      properties:
+        excluded_industries:
+          type: array
+          items:
+            type: string
+          description: List of excluded industries.
+      additionalProperties: false
+    RelationshipType:
+      enum:
+      - spouse
+      - partner
+      - child
+      - other
+      type: string
+    SelectedOptionRequest:
+      required:
+      - option_id
+      type: object
+      properties:
+        option_id:
+          pattern: pco_.+
+          type: string
+          description: Option ID (prefixed with `pco_`).
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        sub_options:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Sub-option selections, if applicable.
+      additionalProperties: false
+    AssociatedPersonEligibilityResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssociatedPersonEligibilityResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    PlanWithPricingResponse:
+      required:
+      - description
+      - id
+      - name
+      - pricing
+      type: object
+      properties:
+        id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: The name of the plan.
+        description:
+          type: string
+          description: Description of the plan.
+        pricing:
+          allOf:
+          - $ref: '#/components/schemas/PlanPricingResponse'
+          description: Pricing information for the plan.
+      additionalProperties: false
+    PlanCoverageResponse:
+      required:
+      - id
+      - input_type
+      - name
+      - options
+      - required
+      - scope
+      type: object
+      properties:
+        id:
+          pattern: pc_.+
+          type: string
+          description: Unique identifier for the coverage selection. Prefixed with `pc_`.
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: Title for this coverage selection. Typically used as the display heading.
+        description:
+          type:
+          - 'null'
+          - string
+          description: Full description of this coverage selection.
+        scope:
+          allOf:
+          - $ref: '#/components/schemas/PlanCoverageOptionScope'
+          description: 'Scope of selection for this coverage selection: `group_policy` (employer selects for the group), `policy` (per-policy selection), or `member` (individual member selects).'
+        input_type:
+          allOf:
+          - $ref: '#/components/schemas/PlanCoverageOptionInputType'
+          description: Describes whether this input allows selecting a single option or multiple options.
+        required:
+          type: boolean
+          description: Whether a selection is mandatory.
+          example: true
+        min_selections:
+          type:
+          - 'null'
+          - integer
+          description: Minimum required selections (multi-select only).
+          format: int32
+        max_selections:
+          type:
+          - 'null'
+          - integer
+          description: Maximum allowed selections (multi-select only).
+          format: int32
+        sort_order:
+          type:
+          - 'null'
+          - integer
+          description: Display ordering hint.
+          format: int32
+        group_label:
+          type:
+          - 'null'
+          - string
+          description: Optional grouping label for UI rendering. Indicates which coverage selections are best presented together from a UX standpoint.
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionResponse'
+          description: Available options within this coverage selection.
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
     SelectedOptionResponse:
       required:
       - option_id
@@ -1071,70 +1122,27 @@ components:
             $ref: '#/components/schemas/SelectedOptionResponse'
           description: Selected sub-options, if applicable.
       additionalProperties: false
-    PlanCoverageOptionSelectionResponse:
-      required:
-      - configuration_id
-      - options
-      type: object
-      properties:
-        configuration_id:
-          pattern: pc_.+
-          type: string
-          description: Configuration ID (prefixed with `pc_`).
-          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedOptionResponse'
-          description: Selected options.
-      additionalProperties: false
-    EligibilityStatus:
+    PlanCoverageOptionScope:
       enum:
-      - pending
-      - eligible
-      - ineligible
+      - group_policy
+      - policy
+      - member
       type: string
-    DisclosureCategory:
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      type: string
-    PerMemberPricingResponse:
-      required:
-      - currency
-      - member_type_pricing
+    EmployeesCountDetails:
       type: object
       properties:
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/CurrencyCode'
-          description: Currency code (e.g., 'eur', 'usd').
-        member_type_pricing:
-          type: array
-          items:
-            $ref: '#/components/schemas/MemberTypePricingResponse'
-          description: Pricing for each member type.
-      additionalProperties: false
-    AddDependentsRequest:
-      required:
-      - associated_person_ids
-      type: object
-      properties:
-        associated_person_ids:
-          type: array
-          items:
-            pattern: ap_.+
-            type: string
-            example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
-          description: List of associated person IDs to add as dependents. Must not be empty.
-        dependent_coverage_selections:
+        min:
           type:
           - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/DependentCoverageSelectionsRequest'
-          description: Optional coverage selections per dependent. Keyed by associated person ID.
+          - integer
+          description: Minimum number of employees required.
+          format: int32
+        max:
+          type:
+          - 'null'
+          - integer
+          description: Maximum number of employees allowed.
+          format: int32
       additionalProperties: false
     EmployerEligibilityCriterionResponse:
       required:
@@ -1165,29 +1173,28 @@ components:
           - $ref: '#/components/schemas/IndustryExclusionsDetails'
           description: Industry exclusion details. Only populated when type is `industry_exclusions`.
       additionalProperties: false
-    DependentsManagementIntentParentType:
-      enum:
-      - policy_amendment_intent
-      - enrolment_intent
-      type: string
-    EmployeesCountDetails:
+    PlanCoverageOptionSelectionRequest:
+      required:
+      - configuration_id
+      - options
       type: object
       properties:
-        min:
-          type:
-          - 'null'
-          - integer
-          description: Minimum number of employees required.
-          format: int32
-        max:
-          type:
-          - 'null'
-          - integer
-          description: Maximum number of employees allowed.
-          format: int32
+        configuration_id:
+          pattern: pc_.+
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Selected options with optional sub-options.
       additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
-      scheme: bearer
       description: Authorization header using the Bearer scheme
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: KOTA_API_KEY

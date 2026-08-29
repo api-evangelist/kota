@@ -1,7 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons providers API
-  version: 1.0.0
+  title: Kota Providers API
+  version: '1.0'
+  description: 'Operations tagged providers across 2 of this provider''s published API definitions: kota-api-reference-openapi.json, kota-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://test.api.kota.io
   description: test
@@ -55,6 +56,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HttpValidationProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /providers/{provider_id}:
     get:
       operationId: retrieve-provider
@@ -87,8 +93,150 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
 components:
   schemas:
+    ProviderResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Object type. Always `provider`.
+        id:
+          type: string
+          description: Unique identifier for the provider. Prefixed with `pr_`.
+        name:
+          type: string
+          description: The name of the provider.
+        description:
+          type: string
+          description: Description of the provider.
+        website_url:
+          type: string
+          description: The provider's main website URL.
+        logo_url:
+          type: string
+          description: URL to the provider's logo image.
+        employer_platform_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the employer portal/platform for this provider, if available.
+        kota_hub_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the Kota Hub page for this platform, if configured.
+        support_phone:
+          type: string
+          description: Customer support phone number.
+        supported_countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryCode'
+          description: List of countries supported by this provider.
+      required:
+      - id
+      - name
+      - description
+      - website_url
+      - logo_url
+      - support_phone
+      - supported_countries
+      title: ProviderResponse
+    ProviderResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: ProviderResponsePagedList
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    CountryCodeEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/CountryCode'
+      title: CountryCodeEnumParameter
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
     CountryCode:
       type: string
       enum:
@@ -343,75 +491,26 @@ components:
       - zm
       - zw
       title: CountryCode
-    CountryCodeEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/CountryCode'
-      title: CountryCodeEnumParameter
-    HttpValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      title: HttpValidationProblemDetails
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    ProviderResponse:
+    ProviderResponse_2:
+      required:
+      - description
+      - id
+      - logo_url
+      - name
+      - support_phone
+      - supported_countries
+      - website_url
       type: object
       properties:
         object:
           type: string
           description: Object type. Always `provider`.
+          readOnly: true
         id:
+          pattern: pr_.+
           type: string
           description: Unique identifier for the provider. Prefixed with `pr_`.
+          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
         name:
           type: string
           description: The name of the provider.
@@ -426,13 +525,13 @@ components:
           description: URL to the provider's logo image.
         employer_platform_url:
           type:
-          - string
           - 'null'
+          - string
           description: URL to the employer portal/platform for this provider, if available.
         kota_hub_url:
           type:
-          - string
           - 'null'
+          - string
           description: URL to the Kota Hub page for this platform, if configured.
         support_phone:
           type: string
@@ -440,48 +539,369 @@ components:
         supported_countries:
           type: array
           items:
-            $ref: '#/components/schemas/CountryCode'
+            $ref: '#/components/schemas/CountryCode_2'
           description: List of countries supported by this provider.
-      required:
-      - id
-      - name
-      - description
-      - website_url
-      - logo_url
-      - support_phone
-      - supported_countries
-      title: ProviderResponse
-    ProviderResponsePagedList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProviderResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
+      additionalProperties: false
+    ProviderResponsePagedList_2:
       required:
       - items
       - page
       - page_size
       - total_count
-      title: ProviderResponsePagedList
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    CountryCodeEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+      additionalProperties: false
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    CountryCode_2:
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Authorization header using the Bearer scheme
+x-refined-from:
+- kota-api-reference-openapi.json
+- kota-openapi-original.json

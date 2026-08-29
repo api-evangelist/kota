@@ -1,12 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons Hosted Sessions API
-  version: 1.0.0
+  title: Kota Hosted Sessions API
+  version: '1.0'
 servers:
 - url: https://test.api.kota.io
-  description: test
+  description: Test Kota API
+  x-fern-server-name: test
 - url: https://api.kota.io
-  description: production
+  description: Production Kota API
+  x-fern-server-name: production
+security:
+- bearerAuth: []
 tags:
 - name: Hosted Sessions
 paths:
@@ -95,5 +99,8 @@ components:
   securitySchemes:
     bearerAuth:
       type: http
-      scheme: bearer
       description: Authorization header using the Bearer scheme
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: KOTA_API_KEY

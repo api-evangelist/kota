@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons groupPolicies API
+  title: Reference Group Policies API
   version: 1.0.0
 servers:
 - url: https://test.api.kota.io
@@ -95,12 +95,22 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    PolicyType:
+    GroupPolicyStatus:
       type: string
       enum:
-      - health_insurance
-      - life_assurance
-      title: PolicyType
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      title: GroupPolicyStatus
+    HealthInsuranceFamilyCostSharingType:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      title: HealthInsuranceFamilyCostSharingType
     HealthInsurancePolicyRenewalResponse:
       type: object
       properties:
@@ -130,171 +140,12 @@ components:
       - window_end_date
       - status
       title: HealthInsurancePolicyRenewalResponse
-    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
-          description: Employer coverage family type
-      required:
-      - type
-      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
-    GroupPolicyStatus:
+    PolicyType:
       type: string
       enum:
-      - scheduled
-      - active
-      - expired
-      - cancelled
-      title: GroupPolicyStatus
-    PolicyPlanResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the plan. Prefixed with pl_.
-        name:
-          type: string
-          description: Plan display name.
-        description:
-          type: string
-          description: Short description of the plan.
-        currency:
-          $ref: '#/components/schemas/CurrencyCode'
-          description: ISO 4217 currency code for pricing under this plan.
-        documents:
-          type: array
-          items:
-            $ref: '#/components/schemas/PlanDocumentResponse'
-          description: List of plan documents (e.g., IPIDs, T&Cs).
-      required:
-      - id
-      - name
-      - description
-      - currency
-      - documents
-      title: PolicyPlanResponse
-    HealthInsuranceGroupPolicyResponse:
-      type: object
-      properties:
-        group_policy_number:
-          type:
-          - string
-          - 'null'
-          description: Provider-issued policy number. May be null if not yet issued.
-        renewal:
-          $ref: '#/components/schemas/HealthInsurancePolicyRenewalResponse'
-          description: Renewal information for the policy.
-        configuration:
-          $ref: '#/components/schemas/HealthInsuranceGroupPolicyConfigurationResponse'
-          description: How the policy is configured by default, such as cost sharing and other options.
-      required:
-      - renewal
-      - configuration
-      title: HealthInsuranceGroupPolicyResponse
-    GroupPolicyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the group policy. Prefixed with `gp_`.
-        group_id:
-          type: string
-          description: Identifier for the group associated with this group policy.
-        employer_id:
-          type: string
-          description: Identifier for the employer associated with this group policy.
-        start_date:
-          type: string
-          format: date
-          description: Policy start (effective) date in ISO 8601 (YYYY-MM-DD).
-        end_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: Policy end date (inclusive) in ISO 8601 (YYYY-MM-DD), or null if open-ended.
-        cancellation_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: Policy cancellation date (inclusive) in ISO 8610 (YYYY-MM-DD), or null if not applicable.
-        status:
-          $ref: '#/components/schemas/GroupPolicyStatus'
-          description: "Current lifecycle state of the `group_policy`, indicating its progress from creation to activation. Possible values are:\n - `scheduled`: Group policy has been scheduled for activation.\n - `active`: Group policy is now active\n - `expired`: Group policy is no longer active as it reached its end date\n - `cancelled`: Group policy is now cancelled for any reason."
-        type:
-          $ref: '#/components/schemas/PolicyType'
-          description: Policy type. Determines which sub-object is populated.
-        provider:
-          $ref: '#/components/schemas/PolicyProviderResponse'
-          description: Provider information for this policy.
-        plan:
-          $ref: '#/components/schemas/PolicyPlanResponse'
-          description: Plan information for this policy
-        health_insurance:
-          $ref: '#/components/schemas/HealthInsuranceGroupPolicyResponse'
-          description: Health insurance–specific fields (present when `type=health_insurance`).
-        disclosures:
-          type: array
-          items:
-            $ref: '#/components/schemas/DisclosureResponse'
-          description: Disclosures associated with this group policy.
-        object:
-          type: string
-          description: The object type
-      required:
-      - id
-      - start_date
-      - status
-      - type
-      - provider
-      - plan
-      - disclosures
-      title: GroupPolicyResponse
-    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
-      type: object
-      properties:
-        partner:
-          type: boolean
-          description: If a spouse/partner is covered.
-        children:
-          type: boolean
-          description: If children are covered.
-      required:
-      - partner
-      - children
-      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
-    HealthInsuranceGroupPolicyConfigurationResponse:
-      type: object
-      properties:
-        cost_sharing:
-          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Defines how the policies total cost is shared between employer and employee.
-      required:
-      - cost_sharing
-      title: HealthInsuranceGroupPolicyConfigurationResponse
-    HealthInsuranceCostSharingType:
-      type: string
-      enum:
-      - member_count
-      - member_selection
-      - percentage
-      - policyholder_only
-      - family_type
-      title: HealthInsuranceCostSharingType
-    DisclosureType:
-      type: string
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      title: DisclosureType
+      - health_insurance
+      - life_assurance
+      title: PolicyType
     CurrencyCode:
       type: string
       enum:
@@ -477,43 +328,6 @@ components:
       required:
       - percentage
       title: HealthInsurancePercentageCostSharingConfigurationResponse
-    HealthInsuranceMemberCountCostSharingConfigurationResponse:
-      type: object
-      properties:
-        adults:
-          type: integer
-          description: Number of additional adults covered, including partner/spouse.
-        children:
-          type: integer
-          description: Number of additional children covered.
-      required:
-      - adults
-      - children
-      title: HealthInsuranceMemberCountCostSharingConfigurationResponse
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
     HealthInsuranceCostSharingConfigurationResponse:
       type: object
       properties:
@@ -535,31 +349,6 @@ components:
       required:
       - type
       title: HealthInsuranceCostSharingConfigurationResponse
-    DisclosureResponse:
-      type: object
-      properties:
-        category:
-          $ref: '#/components/schemas/DisclosureCategory'
-          description: The category of the disclosure.
-        type:
-          $ref: '#/components/schemas/DisclosureType'
-          description: The specific type of disclosure within its category.
-        text:
-          type: string
-          description: The disclosure statement text.
-      required:
-      - category
-      - type
-      - text
-      title: DisclosureResponse
-    HealthInsurancePolicyRenewalStatus:
-      type: string
-      enum:
-      - upcoming
-      - open
-      - renewed
-      - cancelled
-      title: HealthInsurancePolicyRenewalStatus
     PlanDocumentResponse:
       type: object
       properties:
@@ -576,13 +365,6 @@ components:
       - title
       - link
       title: PlanDocumentResponse
-    DisclosureCategory:
-      type: string
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      title: DisclosureCategory
     PlanDocumentType:
       type: string
       enum:
@@ -594,6 +376,53 @@ components:
       - terms_and_conditions
       - other
       title: PlanDocumentType
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+        children:
+          type: integer
+          description: Number of additional children covered.
+      required:
+      - adults
+      - children
+      title: HealthInsuranceMemberCountCostSharingConfigurationResponse
+    PolicyPlanResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan. Prefixed with pl_.
+        name:
+          type: string
+          description: Plan display name.
+        description:
+          type: string
+          description: Short description of the plan.
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: ISO 4217 currency code for pricing under this plan.
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanDocumentResponse'
+          description: List of plan documents (e.g., IPIDs, T&Cs).
+      required:
+      - id
+      - name
+      - description
+      - currency
+      - documents
+      title: PolicyPlanResponse
     GroupPolicyResponsePagedList:
       type: object
       properties:
@@ -623,6 +452,71 @@ components:
       - page_size
       - total_count
       title: GroupPolicyResponsePagedList
+    HealthInsuranceGroupPolicyResponse:
+      type: object
+      properties:
+        group_policy_number:
+          type:
+          - string
+          - 'null'
+          description: Provider-issued policy number. May be null if not yet issued.
+        renewal:
+          $ref: '#/components/schemas/HealthInsurancePolicyRenewalResponse'
+          description: Renewal information for the policy.
+        configuration:
+          $ref: '#/components/schemas/HealthInsuranceGroupPolicyConfigurationResponse'
+          description: How the policy is configured by default, such as cost sharing and other options.
+      required:
+      - renewal
+      - configuration
+      title: HealthInsuranceGroupPolicyResponse
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    HealthInsuranceGroupPolicyConfigurationResponse:
+      type: object
+      properties:
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Defines how the policies total cost is shared between employer and employee.
+      required:
+      - cost_sharing
+      title: HealthInsuranceGroupPolicyConfigurationResponse
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    HealthInsuranceCostSharingType:
+      type: string
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      title: HealthInsuranceCostSharingType
     PolicyProviderResponse:
       type: object
       properties:
@@ -658,14 +552,120 @@ components:
       - description
       - logo_url
       title: PolicyProviderResponse
-    HealthInsuranceFamilyCostSharingType:
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      required:
+      - type
+      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+        children:
+          type: boolean
+          description: If children are covered.
+      required:
+      - partner
+      - children
+      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
+    HealthInsurancePolicyRenewalStatus:
       type: string
       enum:
-      - single
-      - couple
-      - single_with_children
-      - family
-      title: HealthInsuranceFamilyCostSharingType
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      title: HealthInsurancePolicyRenewalStatus
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    GroupPolicyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the group policy. Prefixed with `gp_`.
+        group_id:
+          type: string
+          description: Identifier for the group associated with this group policy.
+        employer_id:
+          type: string
+          description: Identifier for the employer associated with this group policy.
+        start_date:
+          type: string
+          format: date
+          description: Policy start (effective) date in ISO 8601 (YYYY-MM-DD).
+        end_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Policy end date (inclusive) in ISO 8601 (YYYY-MM-DD), or null if open-ended.
+        cancellation_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Policy cancellation date (inclusive) in ISO 8610 (YYYY-MM-DD), or null if not applicable.
+        status:
+          $ref: '#/components/schemas/GroupPolicyStatus'
+          description: "Current lifecycle state of the `group_policy`, indicating its progress from creation to activation. Possible values are:\n - `scheduled`: Group policy has been scheduled for activation.\n - `active`: Group policy is now active\n - `expired`: Group policy is no longer active as it reached its end date\n - `cancelled`: Group policy is now cancelled for any reason."
+        type:
+          $ref: '#/components/schemas/PolicyType'
+          description: Policy type. Determines which sub-object is populated.
+        provider:
+          $ref: '#/components/schemas/PolicyProviderResponse'
+          description: Provider information for this policy.
+        plan:
+          $ref: '#/components/schemas/PolicyPlanResponse'
+          description: Plan information for this policy
+        health_insurance:
+          $ref: '#/components/schemas/HealthInsuranceGroupPolicyResponse'
+          description: Health insurance–specific fields (present when `type=health_insurance`).
+        disclosures:
+          type: array
+          items:
+            $ref: '#/components/schemas/DisclosureResponse'
+          description: Disclosures associated with this group policy.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - start_date
+      - status
+      - type
+      - provider
+      - plan
+      - disclosures
+      title: GroupPolicyResponse
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,0 +1,5592 @@
+openapi: 3.2.0
+info:
+  title: API Reference API
+  version: 1.0.0
+servers:
+- url: https://test.api.kota.io
+  description: test
+- url: https://api.kota.io
+  description: production
+tags:
+- name: API Reference
+paths: {}
+webhooks:
+  employee-created-webhook:
+    post:
+      operationId: employee-created-webhook
+      summary: employee.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreatedWebhook'
+      tags:
+      - API Reference
+  employee-updated-webhook:
+    post:
+      operationId: employee-updated-webhook
+      summary: employee.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdatedWebhook'
+      tags:
+      - API Reference
+  employee-offboarded-webhook:
+    post:
+      operationId: employee-offboarded-webhook
+      summary: employee.offboarded
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeOffboardedWebhook'
+      tags:
+      - API Reference
+  employer-created-webhook:
+    post:
+      operationId: employer-created-webhook
+      summary: employer.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerCreatedWebhook'
+      tags:
+      - API Reference
+  employer-updated-webhook:
+    post:
+      operationId: employer-updated-webhook
+      summary: employer.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerUpdatedWebhook'
+      tags:
+      - API Reference
+  employer-offboarded-webhook:
+    post:
+      operationId: employer-offboarded-webhook
+      summary: employer.offboarded
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerOffboardedWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-created-webhook:
+    post:
+      operationId: employer-health-insurance-quote-created-webhook
+      summary: employer.health_insurance.quote.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote request was created for an employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteCreatedWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-action-required-webhook:
+    post:
+      operationId: employer-health-insurance-quote-action-required-webhook
+      summary: employer.health_insurance.quote.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote requires an action from the employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteActionRequiredWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-not-undertaken-webhook:
+    post:
+      operationId: employer-health-insurance-quote-not-undertaken-webhook
+      summary: employer.health_insurance.quote.not_undertaken
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote was not taken out
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteNotUndertakenWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-accepted-webhook:
+    post:
+      operationId: employer-health-insurance-quote-accepted-webhook
+      summary: employer.health_insurance.quote.accepted
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote was accepted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteAcceptedWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-pending-webhook:
+    post:
+      operationId: employer-health-insurance-quote-pending-webhook
+      summary: employer.health_insurance.quote.pending_quote
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance request for quote was made
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingWebhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-pending-insurer-acceptance-webhook:
+    post:
+      operationId: employer-health-insurance-quote-pending-insurer-acceptance-webhook
+      summary: employer.health_insurance.quote.pending_insurer_acceptance
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote is now pending acceptance by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook'
+      tags:
+      - API Reference
+  employee-health-insurance-offer-action-required-webhook:
+    post:
+      operationId: employee-health-insurance-offer-action-required-webhook
+      summary: employee.health_insurance.offer.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A health insurance offer requires action from an employee.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsuranceOfferActionRequiredWebhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-activated-webhook:
+    post:
+      operationId: employee-health-insurance-policy-activated-webhook
+      summary: employee.health_insurance.policy.activated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is successfully activated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyActivatedWebhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-cancelled-webhook:
+    post:
+      operationId: employee-health-insurance-policy-cancelled-webhook
+      summary: employee.health_insurance.policy.cancelled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is successfully cancelled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyCancelledWebhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-expired-webhook:
+    post:
+      operationId: employee-health-insurance-policy-expired-webhook
+      summary: employee.health_insurance.policy.expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is expired.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyExpiredWebhook'
+      tags:
+      - API Reference
+  contribution-report-finalized-webhook:
+    post:
+      operationId: contribution-report-finalized-webhook
+      summary: contribution_report.finalized
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A contribution report has been finalized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContributionReportFinalizedWebhook'
+      tags:
+      - API Reference
+  employee-created-v-2-webhook:
+    post:
+      operationId: employee-created-v-2-webhook
+      summary: employee.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreatedV2Webhook'
+      tags:
+      - API Reference
+  employee-updated-v-2-webhook:
+    post:
+      operationId: employee-updated-v-2-webhook
+      summary: employee.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdatedV2Webhook'
+      tags:
+      - API Reference
+  employee-offboarded-v-2-webhook:
+    post:
+      operationId: employee-offboarded-v-2-webhook
+      summary: employee.offboarded
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeOffboardedV2Webhook'
+      tags:
+      - API Reference
+  employer-created-v-2-webhook:
+    post:
+      operationId: employer-created-v-2-webhook
+      summary: employer.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerCreatedV2Webhook'
+      tags:
+      - API Reference
+  employer-updated-v-2-webhook:
+    post:
+      operationId: employer-updated-v-2-webhook
+      summary: employer.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerUpdatedV2Webhook'
+      tags:
+      - API Reference
+  employer-offboarded-v-2-webhook:
+    post:
+      operationId: employer-offboarded-v-2-webhook
+      summary: employer.offboarded
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employer was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerOffboardedV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-created-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-created-v-2-webhook
+      summary: employer.health_insurance.quote.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote request was created for an employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteCreatedV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-action-required-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-action-required-v-2-webhook
+      summary: employer.health_insurance.quote.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote requires an action from the employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-not-undertaken-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-not-undertaken-v-2-webhook
+      summary: employer.health_insurance.quote.not_undertaken
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote was not taken out
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteNotUndertakenV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-accepted-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-accepted-v-2-webhook
+      summary: employer.health_insurance.quote.accepted
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote was accepted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteAcceptedV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-pending-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-pending-v-2-webhook
+      summary: employer.health_insurance.quote.pending_quote
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance request for quote was made
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingV2Webhook'
+      tags:
+      - API Reference
+  employer-health-insurance-quote-pending-insurer-acceptance-v-2-webhook:
+    post:
+      operationId: employer-health-insurance-quote-pending-insurer-acceptance-v-2-webhook
+      summary: employer.health_insurance.quote.pending_insurer_acceptance
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group health insurance quote is now pending acceptance by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook'
+      tags:
+      - API Reference
+  employee-health-insurance-offer-action-required-v-2-webhook:
+    post:
+      operationId: employee-health-insurance-offer-action-required-v-2-webhook
+      summary: employee.health_insurance.offer.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A health insurance offer requires action from an employee.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsuranceOfferActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-activated-v-2-webhook:
+    post:
+      operationId: employee-health-insurance-policy-activated-v-2-webhook
+      summary: employee.health_insurance.policy.activated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is successfully activated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyActivatedV2Webhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-cancelled-v-2-webhook:
+    post:
+      operationId: employee-health-insurance-policy-cancelled-v-2-webhook
+      summary: employee.health_insurance.policy.cancelled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is successfully cancelled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyCancelledV2Webhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-expired-v-2-webhook:
+    post:
+      operationId: employee-health-insurance-policy-expired-v-2-webhook
+      summary: employee.health_insurance.policy.expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy is expired.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyExpiredV2Webhook'
+      tags:
+      - API Reference
+  employee-health-insurance-policy-imported-v-2-webhook:
+    post:
+      operationId: employee-health-insurance-policy-imported-v-2-webhook
+      summary: employee.health_insurance.policy.imported
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An Employee health insurance policy was imported from an external system.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyImportedV2Webhook'
+      tags:
+      - API Reference
+  contribution-report-finalized-v-2-webhook:
+    post:
+      operationId: contribution-report-finalized-v-2-webhook
+      summary: contribution_report.finalized
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A contribution report has been finalized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContributionReportFinalizedV2Webhook'
+      tags:
+      - API Reference
+  group-created-v-2-webhook:
+    post:
+      operationId: group-created-v-2-webhook
+      summary: group.created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreatedV2Webhook'
+      tags:
+      - API Reference
+  group-ready-v-2-webhook:
+    post:
+      operationId: group-ready-v-2-webhook
+      summary: group.ready
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group is ready
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupReadyV2Webhook'
+      tags:
+      - API Reference
+  group-archived-v-2-webhook:
+    post:
+      operationId: group-archived-v-2-webhook
+      summary: group.archived
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group is archived
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupArchivedV2Webhook'
+      tags:
+      - API Reference
+  group-updated-v-2-webhook:
+    post:
+      operationId: group-updated-v-2-webhook
+      summary: group.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdatedV2Webhook'
+      tags:
+      - API Reference
+  group-employee-added-v-2-webhook:
+    post:
+      operationId: group-employee-added-v-2-webhook
+      summary: group.employee.added
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was successfully added to the group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeAddedV2Webhook'
+      tags:
+      - API Reference
+  group-employee-removed-v-2-webhook:
+    post:
+      operationId: group-employee-removed-v-2-webhook
+      summary: group.employee.removed
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was removed from the group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeRemovedV2Webhook'
+      tags:
+      - API Reference
+  group-employee-eligible-v-2-webhook:
+    post:
+      operationId: group-employee-eligible-v-2-webhook
+      summary: group.employee.eligible
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee in the group that was previously `Ineligible` is now `Eligible`
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeEligibleV2Webhook'
+      tags:
+      - API Reference
+  group-employee-moved-v-2-webhook:
+    post:
+      operationId: group-employee-moved-v-2-webhook
+      summary: group.employee.moved
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee was moved from one group to another
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeMovedV2Webhook'
+      tags:
+      - API Reference
+  group-employee-move-scheduled-v-2-webhook:
+    post:
+      operationId: group-employee-move-scheduled-v-2-webhook
+      summary: group.employee.move.scheduled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An employee has been scheduled to move to a different group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeMoveScheduledV2Webhook'
+      tags:
+      - API Reference
+  policy-scheduled-v-2-webhook:
+    post:
+      operationId: policy-scheduled-v-2-webhook
+      summary: policy.scheduled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyScheduledV2Webhook'
+      tags:
+      - API Reference
+  policy-active-v-2-webhook:
+    post:
+      operationId: policy-active-v-2-webhook
+      summary: policy.active
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been activated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyActiveV2Webhook'
+      tags:
+      - API Reference
+  policy-imported-v-2-webhook:
+    post:
+      operationId: policy-imported-v-2-webhook
+      summary: policy.imported
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been imported from an external system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportedV2Webhook'
+      tags:
+      - API Reference
+  policy-expired-v-2-webhook:
+    post:
+      operationId: policy-expired-v-2-webhook
+      summary: policy.expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyExpiredV2Webhook'
+      tags:
+      - API Reference
+  policy-cancelled-v-2-webhook:
+    post:
+      operationId: policy-cancelled-v-2-webhook
+      summary: policy.cancelled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been cancelled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyCancelledV2Webhook'
+      tags:
+      - API Reference
+  policy-updated-v-2-webhook:
+    post:
+      operationId: policy-updated-v-2-webhook
+      summary: policy.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyUpdatedV2Webhook'
+      tags:
+      - API Reference
+  policy-renewal-opened-v-2-webhook:
+    post:
+      operationId: policy-renewal-opened-v-2-webhook
+      summary: policy.renewal.opened
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy renewal has been opened
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalOpenedV2Webhook'
+      tags:
+      - API Reference
+  policy-renewal-renewed-v-2-webhook:
+    post:
+      operationId: policy-renewal-renewed-v-2-webhook
+      summary: policy.renewal.renewed
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy has been renewed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalRenewedV2Webhook'
+      tags:
+      - API Reference
+  policy-renewal-canceled-v-2-webhook:
+    post:
+      operationId: policy-renewal-canceled-v-2-webhook
+      summary: policy.renewal.canceled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy renewal has been canceled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalCanceledV2Webhook'
+      tags:
+      - API Reference
+  group-policy-scheduled-v-2-webhook:
+    post:
+      operationId: group-policy-scheduled-v-2-webhook
+      summary: group_policy.scheduled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyScheduledV2Webhook'
+      tags:
+      - API Reference
+  group-policy-active-v-2-webhook:
+    post:
+      operationId: group-policy-active-v-2-webhook
+      summary: group_policy.active
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has been activated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyActiveV2Webhook'
+      tags:
+      - API Reference
+  group-policy-expired-v-2-webhook:
+    post:
+      operationId: group-policy-expired-v-2-webhook
+      summary: group_policy.expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyExpiredV2Webhook'
+      tags:
+      - API Reference
+  group-policy-cancelled-v-2-webhook:
+    post:
+      operationId: group-policy-cancelled-v-2-webhook
+      summary: group_policy.cancelled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has been cancelled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyCancelledV2Webhook'
+      tags:
+      - API Reference
+  group-policy-updated-v-2-webhook:
+    post:
+      operationId: group-policy-updated-v-2-webhook
+      summary: group_policy.updated
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has been updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyUpdatedV2Webhook'
+      tags:
+      - API Reference
+  group-policy-renewal-opened-v-2-webhook:
+    post:
+      operationId: group-policy-renewal-opened-v-2-webhook
+      summary: group_policy.renewal.opened
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy renewal has been opened
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalOpenedV2Webhook'
+      tags:
+      - API Reference
+  group-policy-renewal-renewed-v-2-webhook:
+    post:
+      operationId: group-policy-renewal-renewed-v-2-webhook
+      summary: group_policy.renewal.renewed
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy has been renewed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalRenewedV2Webhook'
+      tags:
+      - API Reference
+  group-policy-renewal-canceled-v-2-webhook:
+    post:
+      operationId: group-policy-renewal-canceled-v-2-webhook
+      summary: group_policy.renewal.canceled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy renewal has been canceled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalCanceledV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-processing-v-2-webhook:
+    post:
+      operationId: enrolment-intent-processing-v-2-webhook
+      summary: enrolment_intent.processing
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentProcessingV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-scheduled-v-2-webhook:
+    post:
+      operationId: enrolment-intent-scheduled-v-2-webhook
+      summary: enrolment_intent.scheduled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentScheduledV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-action-required-v-2-webhook:
+    post:
+      operationId: enrolment-intent-action-required-v-2-webhook
+      summary: enrolment_intent.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-enrolling-v-2-webhook:
+    post:
+      operationId: enrolment-intent-enrolling-v-2-webhook
+      summary: enrolment_intent.enrolling
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent is currently enrolling an employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentEnrollingV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-enrolled-v-2-webhook:
+    post:
+      operationId: enrolment-intent-enrolled-v-2-webhook
+      summary: enrolment_intent.enrolled
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent has successfully enrolled an employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentEnrolledV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-not-undertaken-v-2-webhook:
+    post:
+      operationId: enrolment-intent-not-undertaken-v-2-webhook
+      summary: enrolment_intent.not_undertaken
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentNotUndertakenV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-ineligible-v-2-webhook:
+    post:
+      operationId: enrolment-intent-ineligible-v-2-webhook
+      summary: enrolment_intent.ineligible
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent can't progress because the employee is not eligible
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentIneligibleV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-pending-confirmation-v-2-webhook:
+    post:
+      operationId: enrolment-intent-pending-confirmation-v-2-webhook
+      summary: enrolment_intent.pending_confirmation
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent requires a confirmation from employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentPendingConfirmationV2Webhook'
+      tags:
+      - API Reference
+  enrolment-intent-addon-selection-required-v-2-webhook:
+    post:
+      operationId: enrolment-intent-addon-selection-required-v-2-webhook
+      summary: enrolment_intent.addon_selection_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: An enrolment intent requires addon coverage selections
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentAddonSelectionRequiredV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-action-required-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-action-required-v-2-webhook
+      summary: policy_amendment_intent.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent requires action from the platform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-awaiting-quote-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-awaiting-quote-v-2-webhook
+      summary: policy_amendment_intent.awaiting_quote
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent is waiting for a quote from the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentAwaitingQuoteV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-pending-confirmation-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-pending-confirmation-v-2-webhook
+      summary: policy_amendment_intent.pending_confirmation
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent is awaiting employee confirmation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentPendingConfirmationV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-processing-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-processing-v-2-webhook
+      summary: policy_amendment_intent.processing
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent is being processed by the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentProcessingV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-amended-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-amended-v-2-webhook
+      summary: policy_amendment_intent.amended
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentAmendedV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-processing-error-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-processing-error-v-2-webhook
+      summary: policy_amendment_intent.processing_error
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent encountered a processing error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentProcessingErrorV2Webhook'
+      tags:
+      - API Reference
+  policy-amendment-intent-not-undertaken-v-2-webhook:
+    post:
+      operationId: policy-amendment-intent-not-undertaken-v-2-webhook
+      summary: policy_amendment_intent.not_undertaken
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy amendment intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentNotUndertakenV2Webhook'
+      tags:
+      - API Reference
+  dependents-management-intent-action-required-v-2-webhook:
+    post:
+      operationId: dependents-management-intent-action-required-v-2-webhook
+      summary: dependents_management_intent.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A dependents management intent requires action from the platform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  dependents-management-intent-completed-v-2-webhook:
+    post:
+      operationId: dependents-management-intent-completed-v-2-webhook
+      summary: dependents_management_intent.completed
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A dependents management intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentCompletedV2Webhook'
+      tags:
+      - API Reference
+  dependents-management-intent-not-undertaken-v-2-webhook:
+    post:
+      operationId: dependents-management-intent-not-undertaken-v-2-webhook
+      summary: dependents_management_intent.not_undertaken
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A dependents management intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentNotUndertakenV2Webhook'
+      tags:
+      - API Reference
+  policy-import-intent-processing-v-2-webhook:
+    post:
+      operationId: policy-import-intent-processing-v-2-webhook
+      summary: policy_import_intent.processing
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy import intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentProcessingV2Webhook'
+      tags:
+      - API Reference
+  policy-import-intent-success-v-2-webhook:
+    post:
+      operationId: policy-import-intent-success-v-2-webhook
+      summary: policy_import_intent.success
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy import intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentSuccessV2Webhook'
+      tags:
+      - API Reference
+  policy-import-intent-failed-v-2-webhook:
+    post:
+      operationId: policy-import-intent-failed-v-2-webhook
+      summary: policy_import_intent.failed
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A policy import intent has failed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentFailedV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-processing-v-2-webhook:
+    post:
+      operationId: group-quote-intent-processing-v-2-webhook
+      summary: group_quote_intent.processing
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentProcessingV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-action-required-v-2-webhook:
+    post:
+      operationId: group-quote-intent-action-required-v-2-webhook
+      summary: group_quote_intent.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-awaiting-quote-v-2-webhook:
+    post:
+      operationId: group-quote-intent-awaiting-quote-v-2-webhook
+      summary: group_quote_intent.awaiting_quote
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent is awaiting quote from insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentAwaitingQuoteV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-quote-available-v-2-webhook:
+    post:
+      operationId: group-quote-intent-quote-available-v-2-webhook
+      summary: group_quote_intent.quote_available
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent has a quote available
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentQuoteAvailableV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-rejected-v-2-webhook:
+    post:
+      operationId: group-quote-intent-rejected-v-2-webhook
+      summary: group_quote_intent.rejected
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent was rejected by employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentRejectedV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-rejected-by-insurer-v-2-webhook:
+    post:
+      operationId: group-quote-intent-rejected-by-insurer-v-2-webhook
+      summary: group_quote_intent.rejected_by_insurer
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent was rejected by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentRejectedByInsurerV2Webhook'
+      tags:
+      - API Reference
+  group-quote-intent-quote-expired-v-2-webhook:
+    post:
+      operationId: group-quote-intent-quote-expired-v-2-webhook
+      summary: group_quote_intent.quote_expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group quote intent quote has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentQuoteExpiredV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-processing-v-2-webhook:
+    post:
+      operationId: group-policy-intent-processing-v-2-webhook
+      summary: group_policy_intent.processing
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentProcessingV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-action-required-v-2-webhook:
+    post:
+      operationId: group-policy-intent-action-required-v-2-webhook
+      summary: group_policy_intent.action_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentActionRequiredV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-pending-provider-approval-v-2-webhook:
+    post:
+      operationId: group-policy-intent-pending-provider-approval-v-2-webhook
+      summary: group_policy_intent.pending_provider_approval
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent is pending provider approval
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentPendingProviderApprovalV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-policy-created-v-2-webhook:
+    post:
+      operationId: group-policy-intent-policy-created-v-2-webhook
+      summary: group_policy_intent.policy_created
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent has completed setup
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentPolicyCreatedV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-expired-v-2-webhook:
+    post:
+      operationId: group-policy-intent-expired-v-2-webhook
+      summary: group_policy_intent.expired
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentExpiredV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-provider-rejected-v-2-webhook:
+    post:
+      operationId: group-policy-intent-provider-rejected-v-2-webhook
+      summary: group_policy_intent.provider_rejected
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent was rejected by the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentProviderRejectedV2Webhook'
+      tags:
+      - API Reference
+  group-policy-intent-manual-renewal-gathering-required-v-2-webhook:
+    post:
+      operationId: group-policy-intent-manual-renewal-gathering-required-v-2-webhook
+      summary: group_policy_intent.manual_renewal_gathering_required
+      responses:
+        '200':
+          description: Webhook received successfully
+      requestBody:
+        description: A group policy intent requires manual renewal gathering
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook'
+      tags:
+      - API Reference
+components:
+  schemas:
+    HealthInsuranceCoverageLevelResponse:
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: Unique identifier for the health insurance plan
+        plan_name:
+          type: string
+          description: Name of the health insurance plan
+        plan_currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code of the health insurance plan
+        provider_name:
+          type: string
+          description: Name of the health insurance provider
+        provider_logo_url:
+          type: string
+          description: Logo URL of the health insurance provider
+        provider_employer_platform_url:
+          type:
+          - string
+          - 'null'
+          description: URL to the health insurance provider's website for Employer Management
+        provider_support_phone:
+          type:
+          - string
+          - 'null'
+          description: Support phone number to the health insurance provider's website for Employer Management
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelDocumentResponse'
+          description: Documents related to the health insurance plan, these documents may change at renewal, this includes the documents like `Insurance Product Information Document`, `Hospital Lists`, `Table of Cover` etc
+      required:
+      - plan_id
+      - plan_name
+      - plan_currency
+      - provider_name
+      - provider_logo_url
+      - documents
+      title: HealthInsuranceCoverageLevelResponse
+    GroupPolicyUpdatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyUpdatedV2Webhook
+    DependentsManagementIntentParentType:
+      type: string
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      title: DependentsManagementIntentParentType
+    PolicyUpdatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyUpdatedV2Webhook
+    PolicyAmendmentIntentNotUndertakenV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentNotUndertakenV2Webhook
+    PolicyImportIntentEventResponse:
+      type: object
+      properties:
+        policy_import_intent_id:
+          type: string
+          description: Identifier of the policy import intent associated with this event. Prefixed with `pii_`.
+        employee_id:
+          type: string
+          description: Identifier of the employee associated with this policy import intent. Prefixed with `ee_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this policy import intent. Prefixed with `g_`.
+        policy_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the policy created from this import intent. Prefixed with `p_`. Only present on success.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - policy_import_intent_id
+      - employee_id
+      - group_id
+      title: PolicyImportIntentEventResponse
+    EmployeeHealthInsurancePolicyCancelledWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeHealthInsurancePolicyCancelledWebhook
+    EmployeeHealthInsurancePolicyEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the policy
+        employer_id:
+          type: string
+          description: The Id of the employer for which the policy is created
+        employee_id:
+          type: string
+          description: The Id of the employee for which the policy is created
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      - employee_id
+      title: EmployeeHealthInsurancePolicyEventResponse
+    EmployerHealthInsuranceQuoteEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the quote
+        employer_id:
+          type: string
+          description: The Id of the employer for which the is created
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      title: EmployerHealthInsuranceQuoteEventResponse
+    EnrolmentIntentActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentActionRequiredV2Webhook
+    GroupQuoteIntentRejectedByInsurerV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentRejectedByInsurerV2Webhook
+    EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook
+    EmployeeResponse:
+      type: object
+      properties:
+        platform_id:
+          type: string
+          description: Unique identifier for the platform
+        id:
+          type: string
+          description: Unique identifier for the employee
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        status:
+          $ref: '#/components/schemas/EmployeeStatus'
+          description: Current status of the employee
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        first_name:
+          type: string
+          description: First name of the employee. It can include the middle name
+        last_name:
+          type: string
+          description: Last name of the employee
+        date_of_birth:
+          type: string
+          format: date
+          description: Date of birth of the employee
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
+        national_tax_id:
+          type: string
+          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
+        start_on:
+          type: string
+          format: date
+          description: Employment start date
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        phone_number:
+          type: string
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type: string
+          description: Email address of the employee
+        offboard_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Date when the employee was or will be offboarded
+        bank_account:
+          $ref: '#/components/schemas/EmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - national_tax_id
+      - phone_number
+      - email
+      title: EmployeeResponse
+    EmployerResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        platform_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/EmployerStatus'
+        legal_name:
+          type: string
+        registration_number:
+          type:
+          - string
+          - 'null'
+        legal_address:
+          $ref: '#/components/schemas/AddressModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+        offboard_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - legal_name
+      - legal_address
+      - contact
+      title: EmployerResponse
+    GroupQuoteIntentProcessingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentProcessingV2Webhook
+    GroupPolicyIntentProviderRejectedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentProviderRejectedV2Webhook
+    GroupQuoteIntentAwaitingQuoteV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentAwaitingQuoteV2Webhook
+    EnrolmentIntentEventResponse:
+      type: object
+      properties:
+        enrolment_intent_id:
+          type: string
+          description: Identifier of the enrolment intent associated with this event. Prefixed with `ei_`.
+        employee_id:
+          type: string
+          description: Identifier of the employee associated with this enrolment intent. Prefixed with `ee_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this enrolment intent. Prefixed with `gp_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - enrolment_intent_id
+      - employee_id
+      - group_id
+      title: EnrolmentIntentEventResponse
+    PolicyImportIntentSuccessV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyImportIntentSuccessV2Webhook
+    DependentsManagementIntentNotUndertakenV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: DependentsManagementIntentNotUndertakenV2Webhook
+    GroupPolicyActiveV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyActiveV2Webhook
+    GroupPolicyRenewalRenewedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyRenewalRenewedV2Webhook
+    DependentsManagementIntentCompletedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: DependentsManagementIntentCompletedV2Webhook
+    EmployeeHealthInsurancePolicyExpiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeHealthInsurancePolicyExpiredV2Webhook
+    EmployeeHealthInsurancePolicyStatus:
+      type: string
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      title: EmployeeHealthInsurancePolicyStatus
+    GetContributionReportPeriod:
+      type: object
+      properties:
+        from_date:
+          type: string
+          format: date
+          description: Start date of the period
+        to_date:
+          type: string
+          format: date
+          description: End date of the period
+      required:
+      - from_date
+      - to_date
+      title: GetContributionReportPeriod
+    PolicyScheduledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyScheduledV2Webhook
+    GroupPolicyExpiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyExpiredV2Webhook
+    EmployeeOffboardedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeOffboardedV2Webhook
+    PolicyExpiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyExpiredV2Webhook
+    EmployeeHealthInsuranceOfferEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the offer
+        employer_id:
+          type: string
+          description: The Id of the employer for which the offer is available
+        employee_id:
+          type: string
+          description: The Id of the employee for which the offer is available
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      - employee_id
+      title: EmployeeHealthInsuranceOfferEventResponse
+    EmployerHealthInsurancePolicyRenewalStatus:
+      type: string
+      enum:
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      title: EmployerHealthInsurancePolicyRenewalStatus
+    GroupPolicyRenewalOpenedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyRenewalOpenedV2Webhook
+    GroupEmployeeMoveScheduledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEmployeeMoveScheduledEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupEmployeeMoveScheduledV2Webhook
+    EnrolmentType:
+      type: string
+      enum:
+      - opt_out
+      - opt_in
+      title: EnrolmentType
+    GroupPolicyCancelledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyCancelledV2Webhook
+    EmployerHealthInsuranceQuoteCreatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuoteCreatedV2Webhook
+    HealthInsuranceEstimatedGrossPremiumResponse:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/CurrencyCode'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      required:
+      - currency
+      - monthly
+      - term
+      title: HealthInsuranceEstimatedGrossPremiumResponse
+    GroupEmployeeEventResponse:
+      type: object
+      properties:
+        group_id:
+          type: string
+          description: Unique identifier for the group
+        employee_id:
+          type: string
+          description: Unique identifier for the employee
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - group_id
+      - employee_id
+      title: GroupEmployeeEventResponse
+    EmployerCreatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerCreatedV2Webhook
+    EmployeeHealthInsurancePolicyExpiredWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeHealthInsurancePolicyExpiredWebhook
+    EnrolmentIntentAddonSelectionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentAddonSelectionRequiredV2Webhook
+    PolicyAmendmentIntentProcessingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentProcessingV2Webhook
+    EmployeeEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the employee
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      title: EmployeeEventResponse
+    ContributionReportResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for the contribution report
+        employer_id:
+          type: string
+          description: Unique identifier of the employer for which the report is created
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        period:
+          $ref: '#/components/schemas/GetContributionReportPeriod'
+          description: Period covered by the contribution report
+        status:
+          $ref: '#/components/schemas/ContributionReportStatus'
+          description: Current status of the contribution report
+        finalized_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Date and time the report was finalized, if applicable
+        created_at:
+          type: string
+          format: date-time
+          description: Date and time the report was created
+        last_updated_at:
+          type: string
+          format: date-time
+          description: Date and time of the last update to the report
+      required:
+      - id
+      - employer_id
+      - period
+      - status
+      - created_at
+      - last_updated_at
+      title: ContributionReportResponse
+    GroupEmployeeRemovedEventResponse:
+      type: object
+      properties:
+        platform_id:
+          type: string
+          description: Unique identifier for the platform
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        group_id:
+          type: string
+          description: Unique identifier for the group
+        employee_id:
+          type: string
+          description: Unique identifier for the employee
+        removed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the employee was removed from the group
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - platform_id
+      - employer_id
+      - group_id
+      - employee_id
+      - removed_at
+      title: GroupEmployeeRemovedEventResponse
+    PolicyRenewalRenewedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyRenewalRenewedV2Webhook
+    CountryCode:
+      type: string
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      title: CountryCode
+    EmployeeUpdatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeUpdatedV2Webhook
+    GroupArchivedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupArchivedV2Webhook
+    EmployerHealthInsuranceQuoteNotUndertakenWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuoteNotUndertakenWebhook
+    GroupEmployeeMoveScheduledEventResponse:
+      type: object
+      properties:
+        employee_id:
+          type: string
+          description: Unique identifier for the employee
+        current_group_id:
+          type: string
+          description: Unique identifier for the employee's current group
+        new_group_id:
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+        scheduled_date:
+          type: string
+          format: date
+          description: The date when the employee will be moved to the new group
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - employee_id
+      - current_group_id
+      - new_group_id
+      - scheduled_date
+      title: GroupEmployeeMoveScheduledEventResponse
+    HealthInsuranceCoverageLevelDocumentResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Health Insurance Document Title
+        link:
+          type: string
+          description: Health Insurance Document Link (can be a link to a website or a file path)
+      required:
+      - title
+      - link
+      title: HealthInsuranceCoverageLevelDocumentResponse
+    PolicyEventResponse:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          description: Identifier of the policy associated with this event. Prefixed with `p_`.
+        employee_id:
+          type: string
+          description: Identifier of the employee associated with this policy. Prefixed with `ee_`.
+        group_policy_id:
+          type: string
+          description: Identifier of the group policy id associated with this policy. Prefixed with `gp_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this policy. Prefixed with `gr_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - policy_id
+      - employee_id
+      - group_policy_id
+      - group_id
+      title: PolicyEventResponse
+    GroupCreatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupCreatedV2Webhook
+    GroupPolicyIntentPolicyCreatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentPolicyCreatedV2Webhook
+    GroupEmployeeMovedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEmployeeMovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupEmployeeMovedV2Webhook
+    CurrencyCode:
+      type: string
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      title: CurrencyCode
+    GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook
+    GroupQuoteIntentQuoteExpiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentQuoteExpiredV2Webhook
+    PolicyRenewalOpenedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyRenewalOpenedV2Webhook
+    EmployerHealthInsuranceQuoteStatus:
+      type: string
+      enum:
+      - pending_quote
+      - action_required
+      - not_undertaken
+      - accepted
+      - pending_insurer_acceptance
+      title: EmployerHealthInsuranceQuoteStatus
+    EmployeeHealthInsuranceOfferActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeHealthInsuranceOfferActionRequiredV2Webhook
+    GroupEmployeeEligibleV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupEmployeeEligibleV2Webhook
+    ContributionReportStatus:
+      type: string
+      enum:
+      - open
+      - finalized
+      title: ContributionReportStatus
+    PolicyAmendmentIntentAmendedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentAmendedV2Webhook
+    EmployerOffboardedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerOffboardedV2Webhook
+    EmployerHealthInsuranceQuoteNotUndertakenV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuoteNotUndertakenV2Webhook
+    EmployerHealthInsuranceQuoteAcceptedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuoteAcceptedV2Webhook
+    GroupQuoteIntentEventResponse:
+      type: object
+      properties:
+        group_quote_intent_id:
+          type: string
+          description: Identifier of the group quote intent associated with this event. Prefixed with `gqi_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this group quote intent. Prefixed with `gr_`.
+        plan_id:
+          type: string
+          description: Identifier of the plan associated with this group quote intent. Prefixed with `pl_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - group_quote_intent_id
+      - group_id
+      - plan_id
+      title: GroupQuoteIntentEventResponse
+    GroupReadyV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupReadyV2Webhook
+    GroupQuoteIntentActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentActionRequiredV2Webhook
+    EnrolmentIntentNotUndertakenV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentNotUndertakenV2Webhook
+    EmployeeOffboardedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeOffboardedWebhook
+    ContributionReportEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the contribution report
+        employer_id:
+          type: string
+          description: Unique identifier of the employer for which the report is created
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      title: ContributionReportEventResponse
+    ContributionReportFinalizedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContributionReportEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: ContributionReportFinalizedV2Webhook
+    PolicyAmendmentIntentAwaitingQuoteV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentAwaitingQuoteV2Webhook
+    EmployerCreatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerCreatedWebhook
+    GroupUpdatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupUpdatedV2Webhook
+    EmployerHealthInsuranceQuotePendingWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuotePendingWebhook
+    ContactModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Contact person name. NOTE: This field will be normalized according to our internal formatting rules.'
+        email:
+          type: string
+          description: 'Contact email address. NOTE: This field will be normalized according to our internal formatting rules.'
+      required:
+      - name
+      - email
+      title: ContactModel
+    EmployerStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      title: EmployerStatus
+    AddressModel:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      required:
+      - line1
+      - city
+      - postal_code
+      - country_code
+      title: AddressModel
+    GroupPolicyIntentPendingProviderApprovalV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentPendingProviderApprovalV2Webhook
+    GroupQuoteIntentQuoteAvailableV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentQuoteAvailableV2Webhook
+    EmployerHealthInsuranceQuoteActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuoteActionRequiredV2Webhook
+    PolicyAmendmentIntentActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentActionRequiredV2Webhook
+    EmployeeHealthInsurancePolicyActivatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeHealthInsurancePolicyActivatedV2Webhook
+    HealthInsuranceRequiredActionResponse:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Concise reason for the required action
+        reason_description:
+          type: string
+          description: Description for the required action
+        code:
+          type: string
+          description: Identified the type of action required, not unique across health insurance providers
+        due_at:
+          type: string
+          format: date
+          description: Date and time by which the action is due, if this is not completed then the policy will not be issued.
+      required:
+      - reason
+      - reason_description
+      - code
+      - due_at
+      title: HealthInsuranceRequiredActionResponse
+    GroupQuoteIntentRejectedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupQuoteIntentRejectedV2Webhook
+    EnrolmentIntentIneligibleV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentIneligibleV2Webhook
+    PolicyCancelledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyCancelledV2Webhook
+    EnrolmentIntentScheduledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentScheduledV2Webhook
+    GroupPolicyIntentActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentActionRequiredV2Webhook
+    PolicyAmendmentIntentPendingConfirmationV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentPendingConfirmationV2Webhook
+    EmployerHealthInsuranceQuoteCreatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuoteCreatedWebhook
+    GroupPolicyScheduledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyScheduledV2Webhook
+    EmployeeHealthPolicyRenewal:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          format: date
+          description: Policy renewal date
+        window_start_date:
+          type: string
+          format: date
+          description: Renewal window starts on this day
+        window_end_date:
+          type: string
+          format: date
+          description: Renewal window ends at the end of this day
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+        renewed_health_insurance_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the renewed health insurance policy, if renewed
+      required:
+      - status
+      - renewal_date
+      - window_start_date
+      - window_end_date
+      - decision_confirmed
+      title: EmployeeHealthPolicyRenewal
+    EmployerEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the employer
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      title: EmployerEventResponse
+    GroupPolicyIntentEventResponse:
+      type: object
+      properties:
+        group_policy_intent_id:
+          type: string
+          description: Identifier of the group policy intent associated with this event. Prefixed with `gpi_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this group policy intent. Prefixed with `gr_`.
+        plan_id:
+          type: string
+          description: Identifier of the plan associated with this group policy intent. Prefixed with `pl_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - group_policy_intent_id
+      - group_id
+      - plan_id
+      title: GroupPolicyIntentEventResponse
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
+    EmployeeHealthInsuranceOfferResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for offer
+        employer_id:
+          type: string
+          description: The Id of the employer for which the offer is available
+        employee_id:
+          type: string
+          description: The Id of the employee for which the offer is available
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        status:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferStatus'
+          description: Current status of offer
+        required_action:
+          $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Required action to progress the offer, if any. Set only when `status` is `action_required`.
+        coverage_level:
+          $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Details about the coverage level for the offer. Only a single level of cover is available for a specific employee!
+      required:
+      - id
+      - employer_id
+      - employee_id
+      - status
+      - coverage_level
+      title: EmployeeHealthInsuranceOfferResponse
+    GroupEmployeeMovedEventResponse:
+      type: object
+      properties:
+        previous_group_id:
+          type: string
+          description: Unique identifier for the group the employee was moved from
+        new_group_id:
+          type: string
+          description: Unique identifier for the group the employee was moved to
+        employee_id:
+          type: string
+          description: Unique identifier for the employee
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - previous_group_id
+      - new_group_id
+      - employee_id
+      title: GroupEmployeeMovedEventResponse
+    EmployeeCreatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeCreatedV2Webhook
+    PolicyImportIntentFailedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyImportIntentFailedV2Webhook
+    PolicyActiveV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyActiveV2Webhook
+    EmployeeCreatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeCreatedWebhook
+    GroupPolicyIntentExpiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentExpiredV2Webhook
+    EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook
+    DependentsManagementIntentEventResponse:
+      type: object
+      properties:
+        dependents_management_intent_id:
+          type: string
+          description: Identifier of the dependents management intent associated with this event. Prefixed with `dmi_`.
+        parent_intent_id:
+          type: string
+          format: uuid
+          description: Identifier of the parent intent associated with this dependents management intent.
+        parent_intent_type:
+          $ref: '#/components/schemas/DependentsManagementIntentParentType'
+          description: Type of the parent intent.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - dependents_management_intent_id
+      - parent_intent_id
+      - parent_intent_type
+      title: DependentsManagementIntentEventResponse
+    EmployerUpdatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerUpdatedWebhook
+    GroupEmployeeRemovedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEmployeeRemovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupEmployeeRemovedV2Webhook
+    ContributionReportFinalizedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContributionReportResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: ContributionReportFinalizedWebhook
+    EmployerHealthInsuranceQuoteActionRequiredWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuoteActionRequiredWebhook
+    EmployeeStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      title: EmployeeStatus
+    EmployeeHealthInsuranceOfferStatus:
+      type: string
+      enum:
+      - action_required
+      - not_undertaken
+      - accepted
+      title: EmployeeHealthInsuranceOfferStatus
+    PolicyImportIntentProcessingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyImportIntentProcessingV2Webhook
+    GroupPolicyRenewalCanceledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyRenewalCanceledV2Webhook
+    DependentsManagementIntentActionRequiredV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: DependentsManagementIntentActionRequiredV2Webhook
+    HealthInsuranceGrossEstimationAmountResponse:
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount deducted from employee payroll
+        employer_contribution:
+          type: number
+          format: double
+          description: Estimated gross premium amount paid by the employer
+        total:
+          type: number
+          format: double
+          description: Total gross premium amount (sum of employee and employer contributions).
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      title: HealthInsuranceGrossEstimationAmountResponse
+    EmployeeHealthInsurancePolicyActivatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeHealthInsurancePolicyActivatedWebhook
+    EmployerHealthInsuranceQuotePendingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerHealthInsuranceQuotePendingV2Webhook
+    EmployeeHealthInsuranceOfferActionRequiredWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeHealthInsuranceOfferActionRequiredWebhook
+    EmployeeHealthInsurancePolicyCancelledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeHealthInsurancePolicyCancelledV2Webhook
+    GroupEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the group
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - employer_id
+      title: GroupEventResponse
+    GroupPolicyIntentProcessingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupPolicyIntentProcessingV2Webhook
+    EmployerOffboardedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerOffboardedWebhook
+    EmployeeBankAccount:
+      type: object
+      properties:
+        account_number_last4:
+          type: string
+          description: Last 4 digits of the account number
+      required:
+      - account_number_last4
+      title: EmployeeBankAccount
+    GroupEmployeeAddedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: GroupEmployeeAddedV2Webhook
+    EnrolmentIntentPendingConfirmationV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentPendingConfirmationV2Webhook
+    PolicyAmendmentIntentProcessingErrorV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyAmendmentIntentProcessingErrorV2Webhook
+    PolicyAmendmentIntentEventResponse:
+      type: object
+      properties:
+        policy_amendment_intent_id:
+          type: string
+          description: Identifier of the policy amendment intent associated with this event. Prefixed with `pai_`.
+        policy_id:
+          type: string
+          description: Identifier of the policy associated with this policy amendment intent. Prefixed with `p_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - policy_amendment_intent_id
+      - policy_id
+      title: PolicyAmendmentIntentEventResponse
+    EmployeeUpdatedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployeeUpdatedWebhook
+    EnrolmentIntentEnrollingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentEnrollingV2Webhook
+    GroupPolicyEventResponse:
+      type: object
+      properties:
+        group_policy_id:
+          type: string
+          description: Identifier of the group policy associated with this event. Prefixed with `gp_`.
+        group_id:
+          type: string
+          description: Identifier of the group associated with this group policy. Prefixed with `gr_`.
+        employer_id:
+          type: string
+          description: Identifier for the employer associated with this group policy. Prefixed with `er_`.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+        object:
+          type: string
+          description: Object type
+      required:
+      - group_policy_id
+      - group_id
+      - employer_id
+      title: GroupPolicyEventResponse
+    EmployeeHealthInsurancePolicyImportedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployeeHealthInsurancePolicyImportedV2Webhook
+    EmployerHealthInsuranceQuoteAcceptedWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        api_version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      title: EmployerHealthInsuranceQuoteAcceptedWebhook
+    EmployeeHealthInsurancePolicyResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for policy
+        employer_id:
+          type: string
+          description: The Id of the employer for which the policy is created
+        employee_id:
+          type: string
+          description: The Id of the employee for which the policy is created
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        start_date:
+          type: string
+          format: date
+          description: Policy starts on this date
+        end_date:
+          type: string
+          format: date
+          description: Policy ends on this date
+        cancellation_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: Policy was cancelled on this date, if cancellation occured
+        policy_number:
+          type:
+          - string
+          - 'null'
+          description: Health insurance policy number, if available
+        status:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyStatus'
+          description: Current status of policy
+        enrolment_type:
+          $ref: '#/components/schemas/EnrolmentType'
+          description: Enrolment type of the policy
+        renewal:
+          $ref: '#/components/schemas/EmployeeHealthPolicyRenewal'
+          description: Renewal information for the policy
+        opt_out_deadline_date:
+          type: string
+          format: date
+          description: Last day to opt out from the policy
+        coverage_level:
+          $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Represents the current coverage level for the policy
+        enrolled_dependants_count:
+          type: integer
+          description: Number of dependants (spouse, children, or other eligible family members) currently enrolled in this health insurance policy.
+        estimated_gross_premium:
+          $ref: '#/components/schemas/HealthInsuranceEstimatedGrossPremiumResponse'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
+      required:
+      - id
+      - employer_id
+      - employee_id
+      - start_date
+      - end_date
+      - status
+      - enrolment_type
+      - renewal
+      - opt_out_deadline_date
+      - coverage_level
+      - enrolled_dependants_count
+      - estimated_gross_premium
+      title: EmployeeHealthInsurancePolicyResponse
+    PolicyRenewalCanceledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyRenewalCanceledV2Webhook
+    EnrolmentIntentEnrolledV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentEnrolledV2Webhook
+    EmployerHealthInsuranceQuoteResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+        id:
+          type: string
+          description: Unique identifier for the quote
+        employer_id:
+          type: string
+          description: The Id of the employer for which the is created
+        quoted_at:
+          type: string
+          format: date-time
+          description: Date and time the quote was created at
+        status:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteStatus'
+          description: Current status of the quote
+        required_action:
+          $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Actions required by the employer to proceed with the quote. Set only when `status` is `action_required`.
+        coverage_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: List of levels covered under the policy, each item representing details about the plan’s cover. Currently Kota only supports a single level of cover.
+      required:
+      - id
+      - employer_id
+      - quoted_at
+      - status
+      - coverage_levels
+      title: EmployerHealthInsuranceQuoteResponse
+    PolicyImportedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: PolicyImportedV2Webhook
+    EmployerUpdatedV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EmployerUpdatedV2Webhook
+    EnrolmentIntentProcessingV2Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        platform_id:
+          type: string
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+        object:
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      title: EnrolmentIntentProcessingV2Webhook
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Authorization header using the Bearer scheme

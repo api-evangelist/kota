@@ -1,0 +1,5123 @@
+openapi: 3.2.0
+info:
+  title: Kota Types of events V2 API
+  version: '1.0'
+servers:
+- url: https://test.api.kota.io
+  description: Test Kota API
+  x-fern-server-name: test
+- url: https://api.kota.io
+  description: Production Kota API
+  x-fern-server-name: production
+security:
+- bearerAuth: []
+tags:
+- name: Types of events V2
+paths: {}
+webhooks:
+  EmployeeCreatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.created
+      operationId: EmployeeCreatedV2Webhook
+      requestBody:
+        description: An employee was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.updated
+      operationId: EmployeeUpdatedV2Webhook
+      requestBody:
+        description: An employee was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeOffboardedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.offboarded
+      operationId: EmployeeOffboardedV2Webhook
+      requestBody:
+        description: An employee was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeOffboardedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerCreatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.created
+      operationId: EmployerCreatedV2Webhook
+      requestBody:
+        description: An employer was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerCreatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.updated
+      operationId: EmployerUpdatedV2Webhook
+      requestBody:
+        description: An employer was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerOffboardedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.offboarded
+      operationId: EmployerOffboardedV2Webhook
+      requestBody:
+        description: An employer was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerOffboardedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteCreatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.created
+      operationId: EmployerHealthInsuranceQuoteCreatedV2Webhook
+      requestBody:
+        description: A group health insurance quote request was created for an employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteCreatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.action_required
+      operationId: EmployerHealthInsuranceQuoteActionRequiredV2Webhook
+      requestBody:
+        description: A group health insurance quote requires an action from the employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteNotUndertakenV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.not_undertaken
+      operationId: EmployerHealthInsuranceQuoteNotUndertakenV2Webhook
+      requestBody:
+        description: A group health insurance quote was not taken out
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteNotUndertakenV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteAcceptedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.accepted
+      operationId: EmployerHealthInsuranceQuoteAcceptedV2Webhook
+      requestBody:
+        description: A group health insurance quote was accepted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteAcceptedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuotePendingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.pending_quote
+      operationId: EmployerHealthInsuranceQuotePendingV2Webhook
+      requestBody:
+        description: A group health insurance request for quote was made
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employer.health_insurance.quote.pending_insurer_acceptance
+      operationId: EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook
+      requestBody:
+        description: A group health insurance quote is now pending acceptance by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsuranceOfferActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.health_insurance.offer.action_required
+      operationId: EmployeeHealthInsuranceOfferActionRequiredV2Webhook
+      requestBody:
+        description: A health insurance offer requires action from an employee.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsuranceOfferActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyActivatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.health_insurance.policy.activated
+      operationId: EmployeeHealthInsurancePolicyActivatedV2Webhook
+      requestBody:
+        description: An Employee health insurance policy is successfully activated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyActivatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyCancelledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.health_insurance.policy.cancelled
+      operationId: EmployeeHealthInsurancePolicyCancelledV2Webhook
+      requestBody:
+        description: An Employee health insurance policy is successfully cancelled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyCancelledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyExpiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.health_insurance.policy.expired
+      operationId: EmployeeHealthInsurancePolicyExpiredV2Webhook
+      requestBody:
+        description: An Employee health insurance policy is expired.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyExpiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyImportedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: employee.health_insurance.policy.imported
+      operationId: EmployeeHealthInsurancePolicyImportedV2Webhook
+      requestBody:
+        description: An Employee health insurance policy was imported from an external system.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyImportedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  ContributionReportFinalizedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: contribution_report.finalized
+      operationId: ContributionReportFinalizedV2Webhook
+      requestBody:
+        description: A contribution report has been finalized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContributionReportFinalizedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupCreatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.created
+      operationId: GroupCreatedV2Webhook
+      requestBody:
+        description: A group was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupCreatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupReadyV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.ready
+      operationId: GroupReadyV2Webhook
+      requestBody:
+        description: A group is ready
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupReadyV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupArchivedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.archived
+      operationId: GroupArchivedV2Webhook
+      requestBody:
+        description: A group is archived
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupArchivedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.updated
+      operationId: GroupUpdatedV2Webhook
+      requestBody:
+        description: A group was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupEmployeeAddedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.employee.added
+      operationId: GroupEmployeeAddedV2Webhook
+      requestBody:
+        description: An employee was successfully added to the group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeAddedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupEmployeeRemovedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.employee.removed
+      operationId: GroupEmployeeRemovedV2Webhook
+      requestBody:
+        description: An employee was removed from the group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeRemovedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupEmployeeEligibleV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.employee.eligible
+      operationId: GroupEmployeeEligibleV2Webhook
+      requestBody:
+        description: An employee in the group that was previously `Ineligible` is now `Eligible`
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeEligibleV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupEmployeeMovedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.employee.moved
+      operationId: GroupEmployeeMovedV2Webhook
+      requestBody:
+        description: An employee was moved from one group to another
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeMovedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupEmployeeMoveScheduledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group.employee.move.scheduled
+      operationId: GroupEmployeeMoveScheduledV2Webhook
+      requestBody:
+        description: An employee has been scheduled to move to a different group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupEmployeeMoveScheduledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyScheduledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.scheduled
+      operationId: PolicyScheduledV2Webhook
+      requestBody:
+        description: A policy has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyScheduledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyActiveV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.active
+      operationId: PolicyActiveV2Webhook
+      requestBody:
+        description: A policy has been activated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyActiveV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyImportedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.imported
+      operationId: PolicyImportedV2Webhook
+      requestBody:
+        description: A policy has been imported from an external system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyExpiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.expired
+      operationId: PolicyExpiredV2Webhook
+      requestBody:
+        description: A policy has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyExpiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyCancelledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.cancelled
+      operationId: PolicyCancelledV2Webhook
+      requestBody:
+        description: A policy has been cancelled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyCancelledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.updated
+      operationId: PolicyUpdatedV2Webhook
+      requestBody:
+        description: A policy has been updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyRenewalOpenedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.renewal.opened
+      operationId: PolicyRenewalOpenedV2Webhook
+      requestBody:
+        description: A policy renewal has been opened
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalOpenedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyRenewalRenewedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.renewal.renewed
+      operationId: PolicyRenewalRenewedV2Webhook
+      requestBody:
+        description: A policy has been renewed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalRenewedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyRenewalCanceledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy.renewal.canceled
+      operationId: PolicyRenewalCanceledV2Webhook
+      requestBody:
+        description: A policy renewal has been canceled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRenewalCanceledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyScheduledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.scheduled
+      operationId: GroupPolicyScheduledV2Webhook
+      requestBody:
+        description: A group policy has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyScheduledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyActiveV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.active
+      operationId: GroupPolicyActiveV2Webhook
+      requestBody:
+        description: A group policy has been activated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyActiveV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyExpiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.expired
+      operationId: GroupPolicyExpiredV2Webhook
+      requestBody:
+        description: A group policy has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyExpiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyCancelledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.cancelled
+      operationId: GroupPolicyCancelledV2Webhook
+      requestBody:
+        description: A group policy has been cancelled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyCancelledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.updated
+      operationId: GroupPolicyUpdatedV2Webhook
+      requestBody:
+        description: A group policy has been updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyRenewalOpenedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.renewal.opened
+      operationId: GroupPolicyRenewalOpenedV2Webhook
+      requestBody:
+        description: A group policy renewal has been opened
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalOpenedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyRenewalRenewedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.renewal.renewed
+      operationId: GroupPolicyRenewalRenewedV2Webhook
+      requestBody:
+        description: A group policy has been renewed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalRenewedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyRenewalCanceledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy.renewal.canceled
+      operationId: GroupPolicyRenewalCanceledV2Webhook
+      requestBody:
+        description: A group policy renewal has been canceled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyRenewalCanceledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentProcessingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.processing
+      operationId: EnrolmentIntentProcessingV2Webhook
+      requestBody:
+        description: An enrolment intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentProcessingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentScheduledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.scheduled
+      operationId: EnrolmentIntentScheduledV2Webhook
+      requestBody:
+        description: An enrolment intent has been scheduled
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentScheduledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.action_required
+      operationId: EnrolmentIntentActionRequiredV2Webhook
+      requestBody:
+        description: An enrolment intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentEnrollingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.enrolling
+      operationId: EnrolmentIntentEnrollingV2Webhook
+      requestBody:
+        description: An enrolment intent is currently enrolling an employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentEnrollingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentEnrolledV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.enrolled
+      operationId: EnrolmentIntentEnrolledV2Webhook
+      requestBody:
+        description: An enrolment intent has successfully enrolled an employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentEnrolledV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentNotUndertakenV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.not_undertaken
+      operationId: EnrolmentIntentNotUndertakenV2Webhook
+      requestBody:
+        description: An enrolment intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentNotUndertakenV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentIneligibleV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.ineligible
+      operationId: EnrolmentIntentIneligibleV2Webhook
+      requestBody:
+        description: An enrolment intent can't progress because the employee is not eligible
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentIneligibleV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentPendingConfirmationV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.pending_confirmation
+      operationId: EnrolmentIntentPendingConfirmationV2Webhook
+      requestBody:
+        description: An enrolment intent requires a confirmation from employee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentPendingConfirmationV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EnrolmentIntentAddonSelectionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: enrolment_intent.addon_selection_required
+      operationId: EnrolmentIntentAddonSelectionRequiredV2Webhook
+      requestBody:
+        description: An enrolment intent requires addon coverage selections
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrolmentIntentAddonSelectionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.action_required
+      operationId: PolicyAmendmentIntentActionRequiredV2Webhook
+      requestBody:
+        description: A policy amendment intent requires action from the platform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentAwaitingQuoteV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.awaiting_quote
+      operationId: PolicyAmendmentIntentAwaitingQuoteV2Webhook
+      requestBody:
+        description: A policy amendment intent is waiting for a quote from the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentAwaitingQuoteV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentPendingConfirmationV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.pending_confirmation
+      operationId: PolicyAmendmentIntentPendingConfirmationV2Webhook
+      requestBody:
+        description: A policy amendment intent is awaiting employee confirmation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentPendingConfirmationV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentProcessingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.processing
+      operationId: PolicyAmendmentIntentProcessingV2Webhook
+      requestBody:
+        description: A policy amendment intent is being processed by the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentProcessingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentAmendedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.amended
+      operationId: PolicyAmendmentIntentAmendedV2Webhook
+      requestBody:
+        description: A policy amendment intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentAmendedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentProcessingErrorV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.processing_error
+      operationId: PolicyAmendmentIntentProcessingErrorV2Webhook
+      requestBody:
+        description: A policy amendment intent encountered a processing error
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentProcessingErrorV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyAmendmentIntentNotUndertakenV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_amendment_intent.not_undertaken
+      operationId: PolicyAmendmentIntentNotUndertakenV2Webhook
+      requestBody:
+        description: A policy amendment intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyAmendmentIntentNotUndertakenV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  DependentsManagementIntentActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: dependents_management_intent.action_required
+      operationId: DependentsManagementIntentActionRequiredV2Webhook
+      requestBody:
+        description: A dependents management intent requires action from the platform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  DependentsManagementIntentCompletedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: dependents_management_intent.completed
+      operationId: DependentsManagementIntentCompletedV2Webhook
+      requestBody:
+        description: A dependents management intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentCompletedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  DependentsManagementIntentNotUndertakenV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: dependents_management_intent.not_undertaken
+      operationId: DependentsManagementIntentNotUndertakenV2Webhook
+      requestBody:
+        description: A dependents management intent was not undertaken
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DependentsManagementIntentNotUndertakenV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyImportIntentProcessingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_import_intent.processing
+      operationId: PolicyImportIntentProcessingV2Webhook
+      requestBody:
+        description: A policy import intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentProcessingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyImportIntentSuccessV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_import_intent.success
+      operationId: PolicyImportIntentSuccessV2Webhook
+      requestBody:
+        description: A policy import intent has been successfully completed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentSuccessV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  PolicyImportIntentFailedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: policy_import_intent.failed
+      operationId: PolicyImportIntentFailedV2Webhook
+      requestBody:
+        description: A policy import intent has failed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyImportIntentFailedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentProcessingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.processing
+      operationId: GroupQuoteIntentProcessingV2Webhook
+      requestBody:
+        description: A group quote intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentProcessingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.action_required
+      operationId: GroupQuoteIntentActionRequiredV2Webhook
+      requestBody:
+        description: A group quote intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentAwaitingQuoteV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.awaiting_quote
+      operationId: GroupQuoteIntentAwaitingQuoteV2Webhook
+      requestBody:
+        description: A group quote intent is awaiting quote from insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentAwaitingQuoteV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentQuoteAvailableV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.quote_available
+      operationId: GroupQuoteIntentQuoteAvailableV2Webhook
+      requestBody:
+        description: A group quote intent has a quote available
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentQuoteAvailableV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentRejectedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.rejected
+      operationId: GroupQuoteIntentRejectedV2Webhook
+      requestBody:
+        description: A group quote intent was rejected by employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentRejectedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentRejectedByInsurerV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.rejected_by_insurer
+      operationId: GroupQuoteIntentRejectedByInsurerV2Webhook
+      requestBody:
+        description: A group quote intent was rejected by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentRejectedByInsurerV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupQuoteIntentQuoteExpiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_quote_intent.quote_expired
+      operationId: GroupQuoteIntentQuoteExpiredV2Webhook
+      requestBody:
+        description: A group quote intent quote has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupQuoteIntentQuoteExpiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentProcessingV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.processing
+      operationId: GroupPolicyIntentProcessingV2Webhook
+      requestBody:
+        description: A group policy intent is being processed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentProcessingV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentActionRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.action_required
+      operationId: GroupPolicyIntentActionRequiredV2Webhook
+      requestBody:
+        description: A group policy intent requires action
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentActionRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentPendingProviderApprovalV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.pending_provider_approval
+      operationId: GroupPolicyIntentPendingProviderApprovalV2Webhook
+      requestBody:
+        description: A group policy intent is pending provider approval
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentPendingProviderApprovalV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentPolicyCreatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.policy_created
+      operationId: GroupPolicyIntentPolicyCreatedV2Webhook
+      requestBody:
+        description: A group policy intent has completed setup
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentPolicyCreatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentExpiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.expired
+      operationId: GroupPolicyIntentExpiredV2Webhook
+      requestBody:
+        description: A group policy intent has expired
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentExpiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentProviderRejectedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.provider_rejected
+      operationId: GroupPolicyIntentProviderRejectedV2Webhook
+      requestBody:
+        description: A group policy intent was rejected by the provider
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentProviderRejectedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: group_policy_intent.manual_renewal_gathering_required
+      operationId: GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook
+      requestBody:
+        description: A group policy intent requires manual renewal gathering
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  AssociatedPersonUpdatedV2Webhook:
+    post:
+      tags:
+      - Types of events V2
+      summary: associated_person.updated
+      operationId: AssociatedPersonUpdatedV2Webhook
+      requestBody:
+        description: An associated person was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssociatedPersonUpdatedV2Webhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+components:
+  schemas:
+    GroupPolicyUpdatedV2Webhook:
+      title: GroupPolicyUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyUpdatedV2Webhook:
+      title: PolicyUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentParentType:
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    PolicyAmendmentIntentNotUndertakenV2Webhook:
+      title: PolicyAmendmentIntentNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportIntentEventResponse:
+      required:
+      - employee_id
+      - group_id
+      - policy_import_intent_id
+      type: object
+      properties:
+        policy_import_intent_id:
+          pattern: pii_.+
+          type: string
+          description: Identifier of the policy import intent associated with this event. Prefixed with `pii_`.
+          example: pii_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy import intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this policy import intent. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policy_id:
+          pattern: p_.+
+          type:
+          - 'null'
+          - string
+          description: Identifier of the policy created from this import intent. Prefixed with `p_`. Only present on success.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: eehp_.+
+          type: string
+          description: Unique identifier for the policy
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the policy is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the policy is created
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployerHealthInsuranceQuoteEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: erhq_.+
+          type: string
+          description: Unique identifier for the quote
+          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EnrolmentIntentActionRequiredV2Webhook:
+      title: EnrolmentIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentRejectedByInsurerV2Webhook:
+      title: GroupQuoteIntentRejectedByInsurerV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.rejected_by_insurer
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentProcessingV2Webhook:
+      title: GroupQuoteIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentProviderRejectedV2Webhook:
+      title: GroupPolicyIntentProviderRejectedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.provider_rejected
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentAwaitingQuoteV2Webhook:
+      title: GroupQuoteIntentAwaitingQuoteV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.awaiting_quote
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEventResponse:
+      required:
+      - employee_id
+      - enrolment_intent_id
+      - group_id
+      type: object
+      properties:
+        enrolment_intent_id:
+          pattern: ei_.+
+          type: string
+          description: Identifier of the enrolment intent associated with this event. Prefixed with `ei_`.
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this enrolment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this enrolment intent. Prefixed with `gp_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    PolicyImportIntentSuccessV2Webhook:
+      title: PolicyImportIntentSuccessV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_import_intent.success
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentNotUndertakenV2Webhook:
+      title: DependentsManagementIntentNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: dependents_management_intent.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyActiveV2Webhook:
+      title: GroupPolicyActiveV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.active
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyRenewalRenewedV2Webhook:
+      title: GroupPolicyRenewalRenewedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.renewal.renewed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentCompletedV2Webhook:
+      title: DependentsManagementIntentCompletedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: dependents_management_intent.completed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsurancePolicyExpiredV2Webhook:
+      title: EmployeeHealthInsurancePolicyExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyScheduledV2Webhook:
+      title: PolicyScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyExpiredV2Webhook:
+      title: GroupPolicyExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeOffboardedV2Webhook:
+      title: EmployeeOffboardedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyExpiredV2Webhook:
+      title: PolicyExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsuranceOfferEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: eeho_.+
+          type: string
+          description: Unique identifier for the offer
+          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the offer is available
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the offer is available
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyRenewalOpenedV2Webhook:
+      title: GroupPolicyRenewalOpenedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.renewal.opened
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeMoveScheduledV2Webhook:
+      title: GroupEmployeeMoveScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.move.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeMoveScheduledEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyCancelledV2Webhook:
+      title: GroupPolicyCancelledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.cancelled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteCreatedV2Webhook:
+      title: EmployerHealthInsuranceQuoteCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeEventResponse:
+      required:
+      - employee_id
+      - group_id
+      type: object
+      properties:
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployerCreatedV2Webhook:
+      title: EmployerCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentAddonSelectionRequiredV2Webhook:
+      title: EnrolmentIntentAddonSelectionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.addon_selection_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentProcessingV2Webhook:
+      title: PolicyAmendmentIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupEmployeeRemovedEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - group_id
+      - platform_id
+      - removed_at
+      type: object
+      properties:
+        platform_id:
+          pattern: pt_.+
+          type: string
+          description: Unique identifier for the platform
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        removed_at:
+          type: string
+          description: Timestamp when the employee was removed from the group
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyRenewalRenewedV2Webhook:
+      title: PolicyRenewalRenewedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.renewal.renewed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupArchivedV2Webhook:
+      title: GroupArchivedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.archived
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeUpdatedV2Webhook:
+      title: EmployeeUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeMoveScheduledEventResponse:
+      required:
+      - current_group_id
+      - employee_id
+      - new_group_id
+      - scheduled_date
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        current_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the employee's current group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        new_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        scheduled_date:
+          type: string
+          description: The date when the employee will be moved to the new group
+          format: date
+          example: '2024-12-01'
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyEventResponse:
+      required:
+      - employee_id
+      - group_id
+      - group_policy_id
+      - policy_id
+      type: object
+      properties:
+        policy_id:
+          pattern: p_.+
+          type: string
+          description: Identifier of the policy associated with this event. Prefixed with `p_`.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_policy_id:
+          pattern: gp_.+
+          type: string
+          description: Identifier of the group policy id associated with this policy. Prefixed with `gp_`.
+          example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this policy. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupCreatedV2Webhook:
+      title: GroupCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentPolicyCreatedV2Webhook:
+      title: GroupPolicyIntentPolicyCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.policy_created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeMovedV2Webhook:
+      title: GroupEmployeeMovedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.moved
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeMovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook:
+      title: GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.manual_renewal_gathering_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentQuoteExpiredV2Webhook:
+      title: GroupQuoteIntentQuoteExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.quote_expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyRenewalOpenedV2Webhook:
+      title: PolicyRenewalOpenedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.renewal.opened
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeEligibleV2Webhook:
+      title: GroupEmployeeEligibleV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.eligible
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsuranceOfferActionRequiredV2Webhook:
+      title: EmployeeHealthInsuranceOfferActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.offer.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentAmendedV2Webhook:
+      title: PolicyAmendmentIntentAmendedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.amended
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerOffboardedV2Webhook:
+      title: EmployerOffboardedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteNotUndertakenV2Webhook:
+      title: EmployerHealthInsuranceQuoteNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteAcceptedV2Webhook:
+      title: EmployerHealthInsuranceQuoteAcceptedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.accepted
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentEventResponse:
+      required:
+      - group_id
+      - group_quote_intent_id
+      - plan_id
+      type: object
+      properties:
+        group_quote_intent_id:
+          pattern: gqi_.+
+          type: string
+          description: Identifier of the group quote intent associated with this event. Prefixed with `gqi_`.
+          example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group quote intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Identifier of the plan associated with this group quote intent. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupReadyV2Webhook:
+      title: GroupReadyV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.ready
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentActionRequiredV2Webhook:
+      title: GroupQuoteIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentNotUndertakenV2Webhook:
+      title: EnrolmentIntentNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    ContributionReportEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ctr_.+
+          type: string
+          description: Unique identifier for the contribution report
+          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier of the employer for which the report is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    ContributionReportFinalizedV2Webhook:
+      title: ContributionReportFinalizedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: contribution_report.finalized
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/ContributionReportEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    AssociatedPersonUpdatedV2Webhook:
+      title: AssociatedPersonUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: associated_person.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/AssociatedPersonEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentAwaitingQuoteV2Webhook:
+      title: PolicyAmendmentIntentAwaitingQuoteV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.awaiting_quote
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupUpdatedV2Webhook:
+      title: GroupUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    AssociatedPersonEventResponse:
+      required:
+      - employee_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ap_.+
+          type: string
+          description: Unique identifier for the associated person
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee this person is associated with
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyIntentPendingProviderApprovalV2Webhook:
+      title: GroupPolicyIntentPendingProviderApprovalV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.pending_provider_approval
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentQuoteAvailableV2Webhook:
+      title: GroupQuoteIntentQuoteAvailableV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.quote_available
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteActionRequiredV2Webhook:
+      title: EmployerHealthInsuranceQuoteActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentActionRequiredV2Webhook:
+      title: PolicyAmendmentIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsurancePolicyActivatedV2Webhook:
+      title: EmployeeHealthInsurancePolicyActivatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.activated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentRejectedV2Webhook:
+      title: GroupQuoteIntentRejectedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.rejected
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentIneligibleV2Webhook:
+      title: EnrolmentIntentIneligibleV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.ineligible
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyCancelledV2Webhook:
+      title: PolicyCancelledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.cancelled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentScheduledV2Webhook:
+      title: EnrolmentIntentScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentActionRequiredV2Webhook:
+      title: GroupPolicyIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentPendingConfirmationV2Webhook:
+      title: PolicyAmendmentIntentPendingConfirmationV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.pending_confirmation
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyScheduledV2Webhook:
+      title: GroupPolicyScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerEventResponse:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyIntentEventResponse:
+      required:
+      - group_id
+      - group_policy_intent_id
+      - plan_id
+      type: object
+      properties:
+        group_policy_intent_id:
+          pattern: gpi_.+
+          type: string
+          description: Identifier of the group policy intent associated with this event. Prefixed with `gpi_`.
+          example: gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group policy intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Identifier of the plan associated with this group policy intent. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupEmployeeMovedEventResponse:
+      required:
+      - employee_id
+      - new_group_id
+      - previous_group_id
+      type: object
+      properties:
+        previous_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee was moved from
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        new_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee was moved to
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployeeCreatedV2Webhook:
+      title: EmployeeCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportIntentFailedV2Webhook:
+      title: PolicyImportIntentFailedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_import_intent.failed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyActiveV2Webhook:
+      title: PolicyActiveV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.active
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentExpiredV2Webhook:
+      title: GroupPolicyIntentExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook:
+      title: EmployerHealthInsuranceQuotePendingInsurerAcceptanceV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.pending_insurer_acceptance
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentEventResponse:
+      required:
+      - dependents_management_intent_id
+      - parent_intent_id
+      - parent_intent_type
+      type: object
+      properties:
+        dependents_management_intent_id:
+          pattern: dmi_.+
+          type: string
+          description: Identifier of the dependents management intent associated with this event. Prefixed with `dmi_`.
+          example: dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        parent_intent_id:
+          type: string
+          description: Identifier of the parent intent associated with this dependents management intent.
+          format: uuid
+        parent_intent_type:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentParentType'
+          description: Type of the parent intent.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupEmployeeRemovedV2Webhook:
+      title: GroupEmployeeRemovedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.removed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeRemovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportIntentProcessingV2Webhook:
+      title: PolicyImportIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_import_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyRenewalCanceledV2Webhook:
+      title: GroupPolicyRenewalCanceledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.renewal.canceled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentActionRequiredV2Webhook:
+      title: DependentsManagementIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: dependents_management_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuotePendingV2Webhook:
+      title: EmployerHealthInsuranceQuotePendingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.pending_quote
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsurancePolicyCancelledV2Webhook:
+      title: EmployeeHealthInsurancePolicyCancelledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.cancelled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyIntentProcessingV2Webhook:
+      title: GroupPolicyIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeAddedV2Webhook:
+      title: GroupEmployeeAddedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.added
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentPendingConfirmationV2Webhook:
+      title: EnrolmentIntentPendingConfirmationV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.pending_confirmation
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - policy_amendment_intent_id
+      - policy_id
+      type: object
+      properties:
+        policy_amendment_intent_id:
+          pattern: pai_.+
+          type: string
+          description: Identifier of the policy amendment intent associated with this event. Prefixed with `pai_`.
+          example: pai_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policy_id:
+          pattern: p_.+
+          type: string
+          description: Identifier of the policy associated with this policy amendment intent. Prefixed with `p_`.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy amendment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier of the employer associated with this policy amendment intent. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    PolicyAmendmentIntentProcessingErrorV2Webhook:
+      title: PolicyAmendmentIntentProcessingErrorV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.processing_error
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEnrollingV2Webhook:
+      title: EnrolmentIntentEnrollingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.enrolling
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyEventResponse:
+      required:
+      - employer_id
+      - group_id
+      - group_policy_id
+      type: object
+      properties:
+        group_policy_id:
+          pattern: gp_.+
+          type: string
+          description: Identifier of the group policy associated with this event. Prefixed with `gp_`.
+          example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group policy. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier for the employer associated with this group policy. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyImportedV2Webhook:
+      title: EmployeeHealthInsurancePolicyImportedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.imported
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyRenewalCanceledV2Webhook:
+      title: PolicyRenewalCanceledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.renewal.canceled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEnrolledV2Webhook:
+      title: EnrolmentIntentEnrolledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.enrolled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportedV2Webhook:
+      title: PolicyImportedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.imported
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerUpdatedV2Webhook:
+      title: EmployerUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentProcessingV2Webhook:
+      title: EnrolmentIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Authorization header using the Bearer scheme
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: KOTA_API_KEY

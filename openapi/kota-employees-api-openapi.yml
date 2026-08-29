@@ -1,7 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons employees API
-  version: 1.0.0
+  title: Kota Employees API
+  version: '1.0'
+  description: 'Operations tagged employees across 2 of this provider''s published API definitions: kota-api-reference-openapi.json, kota-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://test.api.kota.io
   description: test
@@ -109,6 +110,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateEmployeeRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /employees/{employee_id}:
     get:
       operationId: retrieve-employee
@@ -195,6 +201,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateEmployeeRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /employees/{employee_id}/offboard:
     post:
       operationId: offboard-employee
@@ -238,6 +249,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OffboardEmployeeRequest'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /employees/{employee_id}/offboard/cancel:
     post:
       operationId: cancel-offboarding-employee
@@ -282,8 +298,328 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
 components:
   schemas:
+    SexAtBirth:
+      type: string
+      enum:
+      - male
+      - female
+      title: SexAtBirth
+    AddressModel:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      required:
+      - line1
+      - city
+      - postal_code
+      - country_code
+      title: AddressModel
+    EmployeeBankAccount:
+      type: object
+      properties:
+        account_number_last4:
+          type: string
+          description: Last 4 digits of the account number
+      required:
+      - account_number_last4
+      title: EmployeeBankAccount
+    OffboardEmployeeRequest:
+      type: object
+      properties:
+        offboard_on:
+          type: string
+          format: date-time
+          description: The date when the employee should be offboarded. Can be a future date, today, or up to 30 days in the past if the employee has active insurance policies. Past dates beyond 30 days are allowed only if there are no active policies.
+        offboard_reason:
+          type: string
+      required:
+      - offboard_on
+      - offboard_reason
+      title: OffboardEmployeeRequest
+    EmployeeStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      title: EmployeeStatus
+    EmployeeResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployeeResponsePagedList
+    CreateEmployeeBankAccount:
+      type: object
+      properties:
+        account_number:
+          type: string
+          description: 'Account number in IBAN format. NOTE: This field will be normalized according to our internal formatting rules.'
+      required:
+      - account_number
+      title: CreateEmployeeBankAccount
+    CreateEmployeeRequest:
+      type: object
+      properties:
+        employer_id:
+          type: string
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only required for EoR platforms.
+        first_name:
+          type: string
+          description: 'It can include the middle name. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        last_name:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        date_of_birth:
+          type: string
+          format: date
+          description: Must be in the past, but after 1900-01-01
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+        national_tax_id:
+          type: string
+          description: 'PPSN in Ireland, NINo in the UK, DNI/NIE in Spain. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        start_on:
+          type: string
+          format: date
+          description: Employment start date. Must be after 1900-01-01, can be in the future
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
+
+
+            **Constraints:**
+
+
+            - Must be a valid date.
+
+
+            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        phone_number:
+          type: string
+          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
+        email:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        bank_account:
+          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+      required:
+      - employer_id
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - home_address
+      - national_tax_id
+      - start_on
+      - phone_number
+      - email
+      title: CreateEmployeeRequest
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    UpdateEmployeeRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        home_address:
+          $ref: '#/components/schemas/AddressModelWithoutCountry'
+          description: Treated as a single object that is updated entirely, `null` sub-fields (e.g. Line 3) will delete the existing values
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+        national_tax_id:
+          type:
+          - string
+          - 'null'
+          description: National tax ID, e.g. PPSN in Ireland, NINO in the UK, DNI/NIE in Spain
+        phone_number:
+          type:
+          - string
+          - 'null'
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type:
+          - string
+          - 'null'
+        start_on:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The start date of the employee.
+
+
+            **Constraints:**
+
+
+            - On update, may only be changed if no policy or offer exists for this employee.
+
+            - Must be a valid date.
+
+            - The employee''s existing start_on and the new start_on date must both be in the future.'
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
+
+
+            **Constraints:**
+
+
+            - On update, may only be changed if no policy or offer exists for this employee.
+
+            - Must be a valid date.
+
+            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        bank_account:
+          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          description: Treated as a single object that is updated entirely.
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
+      title: UpdateEmployeeRequest
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
     AddressModelWithoutCountry:
       type: object
       properties:
@@ -316,24 +652,92 @@ components:
       - city
       - postal_code
       title: AddressModelWithoutCountry
-    EmployeeBankAccount:
+    EmployeeResponse:
       type: object
       properties:
-        account_number_last4:
+        platform_id:
           type: string
-          description: Last 4 digits of the account number
+          description: Unique identifier for the platform
+        id:
+          type: string
+          description: Unique identifier for the employee
+        employer_id:
+          type: string
+          description: Unique identifier for the employer
+        status:
+          $ref: '#/components/schemas/EmployeeStatus'
+          description: Current status of the employee
+        external_customer_id:
+          type:
+          - string
+          - 'null'
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        first_name:
+          type: string
+          description: First name of the employee. It can include the middle name
+        last_name:
+          type: string
+          description: Last name of the employee
+        date_of_birth:
+          type: string
+          format: date
+          description: Date of birth of the employee
+        sex_at_birth:
+          $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          $ref: '#/components/schemas/CountryCode'
+          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
+        national_tax_id:
+          type: string
+          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
+        start_on:
+          type: string
+          format: date
+          description: Employment start date
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+        phone_number:
+          type: string
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type: string
+          description: Email address of the employee
+        offboard_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Date when the employee was or will be offboarded
+        bank_account:
+          $ref: '#/components/schemas/EmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
       required:
-      - account_number_last4
-      title: EmployeeBankAccount
-    EmployeeStatus:
-      type: string
-      enum:
-      - pending
-      - active
-      - offboarding
-      - inactive
-      - restricted
-      title: EmployeeStatus
+      - first_name
+      - last_name
+      - date_of_birth
+      - sex_at_birth
+      - national_tax_id
+      - phone_number
+      - email
+      title: EmployeeResponse
     CountryCode:
       type: string
       enum:
@@ -588,7 +992,17 @@ components:
       - zm
       - zw
       title: CountryCode
-    AddressModel:
+    SexAtBirth_2:
+      enum:
+      - male
+      - female
+      type: string
+    AddressModel_2:
+      required:
+      - city
+      - country_code
+      - line1
+      - postal_code
       type: object
       properties:
         line1:
@@ -596,160 +1010,260 @@ components:
           description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         line2:
           type:
-          - string
           - 'null'
+          - string
           description: 'NOTE: This field will be normalized according to our internal formatting rules.'
         line3:
           type:
-          - string
           - 'null'
+          - string
           description: 'NOTE: This field will be normalized according to our internal formatting rules.'
         city:
           type: string
           description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         state:
           type:
-          - string
           - 'null'
+          - string
           description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
         postal_code:
           type: string
           description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
         country_code:
-          $ref: '#/components/schemas/CountryCode'
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+      additionalProperties: false
+    EmployeeBankAccount_2:
       required:
-      - line1
-      - city
-      - postal_code
-      - country_code
-      title: AddressModel
-    SexAtBirth:
-      type: string
-      enum:
-      - male
-      - female
-      title: SexAtBirth
-    EmployeeResponse:
+      - account_number_last4
       type: object
       properties:
-        platform_id:
+        account_number_last4:
           type: string
-          description: Unique identifier for the platform
-        id:
+          description: Last 4 digits of the account number
+      additionalProperties: false
+    OffboardEmployeeRequest_2:
+      required:
+      - offboard_on
+      - offboard_reason
+      type: object
+      properties:
+        offboard_on:
           type: string
-          description: Unique identifier for the employee
+          description: The date when the employee should be offboarded. Can be a future date, today, or up to 30 days in the past if the employee has active insurance policies. Past dates beyond 30 days are allowed only if there are no active policies.
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        offboard_reason:
+          type: string
+      additionalProperties: false
+    EmployeeStatus_2:
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      type: string
+    EmployeeResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    CreateEmployeeBankAccount_2:
+      required:
+      - account_number
+      type: object
+      properties:
+        account_number:
+          type: string
+          description: 'Account number in IBAN format. NOTE: This field will be normalized according to our internal formatting rules.'
+      additionalProperties: false
+    CreateEmployeeRequest_2:
+      required:
+      - date_of_birth
+      - email
+      - employer_id
+      - first_name
+      - home_address
+      - last_name
+      - national_tax_id
+      - phone_number
+      - sex_at_birth
+      - start_on
+      type: object
+      properties:
         employer_id:
+          pattern: er_.+
           type: string
-          description: Unique identifier for the employer
-        status:
-          $ref: '#/components/schemas/EmployeeStatus'
-          description: Current status of the employee
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
         external_customer_id:
           type:
-          - string
           - 'null'
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only required for EoR platforms.
         first_name:
           type: string
-          description: First name of the employee. It can include the middle name
+          description: 'It can include the middle name. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         last_name:
           type: string
-          description: Last name of the employee
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         date_of_birth:
           type: string
+          description: Must be in the past, but after 1900-01-01
           format: date
-          description: Date of birth of the employee
+          example: '2024-12-01'
         sex_at_birth:
-          $ref: '#/components/schemas/SexAtBirth'
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth_2'
           description: The sex assigned to the employee at birth
         home_address:
-          $ref: '#/components/schemas/AddressModel'
+          allOf:
+          - $ref: '#/components/schemas/AddressModel_2'
           description: Location where the employee is legally registered to live
         nationality:
-          $ref: '#/components/schemas/CountryCode'
-          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
         national_tax_id:
           type: string
-          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
+          description: 'PPSN in Ireland, NINo in the UK, DNI/NIE in Spain. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         start_on:
           type: string
+          description: Employment start date. Must be after 1900-01-01, can be in the future
           format: date
-          description: Employment start date
+          example: '2024-12-01'
         earliest_benefits_start_date:
           type:
-          - string
           - 'null'
+          - string
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
+
+
+            **Constraints:**
+
+
+            - Must be a valid date.
+
+
+            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
           format: date
-          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+          example: '2024-12-01'
         phone_number:
           type: string
-          description: Phone number in E.164 international format (e.g. +447700900999)
+          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
         email:
           type: string
-          description: Email address of the employee
-        offboard_on:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Date when the employee was or will be offboarded
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
         bank_account:
-          $ref: '#/components/schemas/EmployeeBankAccount'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CreateEmployeeBankAccount_2'
           description: Bank account details
         metadata:
           type:
-          - object
           - 'null'
+          - object
           additionalProperties:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-        object:
-          type: string
-          description: The object type
-      required:
-      - first_name
-      - last_name
-      - date_of_birth
-      - sex_at_birth
-      - national_tax_id
-      - phone_number
-      - email
-      title: EmployeeResponse
-    UpdateEmployeeRequest:
+      additionalProperties: false
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    UpdateEmployeeRequest_2:
       type: object
       properties:
         first_name:
           type:
-          - string
           - 'null'
+          - string
         last_name:
           type:
-          - string
           - 'null'
+          - string
         home_address:
-          $ref: '#/components/schemas/AddressModelWithoutCountry'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/AddressModelWithoutCountry_2'
           description: Treated as a single object that is updated entirely, `null` sub-fields (e.g. Line 3) will delete the existing values
         nationality:
-          $ref: '#/components/schemas/CountryCode'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
         national_tax_id:
           type:
-          - string
           - 'null'
+          - string
           description: National tax ID, e.g. PPSN in Ireland, NINO in the UK, DNI/NIE in Spain
         phone_number:
           type:
-          - string
           - 'null'
+          - string
           description: Phone number in E.164 international format (e.g. +447700900999)
         email:
           type:
-          - string
           - 'null'
+          - string
         start_on:
           type:
-          - string
           - 'null'
-          format: date
+          - string
           description: 'The start date of the employee.
 
 
@@ -761,11 +1275,12 @@ components:
             - Must be a valid date.
 
             - The employee''s existing start_on and the new start_on date must both be in the future.'
+          format: date
+          example: '2024-12-01'
         earliest_benefits_start_date:
           type:
-          - string
           - 'null'
-          format: date
+          - string
           description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
 
 
@@ -777,202 +1292,447 @@ components:
             - Must be a valid date.
 
             - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+          format: date
+          example: '2024-12-01'
         bank_account:
-          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CreateEmployeeBankAccount_2'
           description: Treated as a single object that is updated entirely.
         metadata:
           type:
-          - object
           - 'null'
+          - object
           additionalProperties:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
-      title: UpdateEmployeeRequest
-    CreateEmployeeBankAccount:
-      type: object
-      properties:
-        account_number:
-          type: string
-          description: 'Account number in IBAN format. NOTE: This field will be normalized according to our internal formatting rules.'
-      required:
-      - account_number
-      title: CreateEmployeeBankAccount
-    HttpValidationProblemDetails:
+      additionalProperties: false
+    HttpValidationProblemDetails_2:
       type: object
       properties:
         type:
           type:
-          - string
           - 'null'
+          - string
         title:
           type:
-          - string
           - 'null'
+          - string
         status:
           type:
-          - integer
           - 'null'
+          - integer
+          format: int32
         detail:
           type:
-          - string
           - 'null'
+          - string
         instance:
           type:
-          - string
           - 'null'
+          - string
         errors:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-      title: HttpValidationProblemDetails
-    CreateEmployeeRequest:
+      additionalProperties: {}
+    AddressModelWithoutCountry_2:
+      required:
+      - city
+      - line1
+      - postal_code
       type: object
       properties:
-        employer_id:
+        line1:
           type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - 'null'
+          - string
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+      additionalProperties: false
+    EmployeeResponse_2:
+      required:
+      - date_of_birth
+      - email
+      - first_name
+      - last_name
+      - national_tax_id
+      - phone_number
+      - sex_at_birth
+      type: object
+      properties:
+        platform_id:
+          pattern: pt_.+
+          type: string
+          description: Unique identifier for the platform
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeStatus_2'
+          description: Current status of the employee
         external_customer_id:
           type:
-          - string
           - 'null'
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only required for EoR platforms.
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
         first_name:
           type: string
-          description: 'It can include the middle name. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+          description: First name of the employee. It can include the middle name
         last_name:
           type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+          description: Last name of the employee
         date_of_birth:
           type: string
+          description: Date of birth of the employee
           format: date
-          description: Must be in the past, but after 1900-01-01
+          example: '2024-12-01'
         sex_at_birth:
-          $ref: '#/components/schemas/SexAtBirth'
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth_2'
           description: The sex assigned to the employee at birth
         home_address:
-          $ref: '#/components/schemas/AddressModel'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/AddressModel_2'
           description: Location where the employee is legally registered to live
         nationality:
-          $ref: '#/components/schemas/CountryCode'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
         national_tax_id:
           type: string
-          description: 'PPSN in Ireland, NINo in the UK, DNI/NIE in Spain. Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
         start_on:
           type: string
+          description: Employment start date
           format: date
-          description: Employment start date. Must be after 1900-01-01, can be in the future
+          example: '2024-12-01'
         earliest_benefits_start_date:
           type:
-          - string
           - 'null'
+          - string
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
           format: date
-          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation.
-
-
-            **Constraints:**
-
-
-            - Must be a valid date.
-
-
-            - Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+          example: '2024-12-01'
         phone_number:
           type: string
-          description: 'Phone number in E.164 international format (e.g. +447700900999). NOTE: This field will be normalized according to our internal formatting rules.'
+          description: Phone number in E.164 international format (e.g. +447700900999)
         email:
           type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+          description: Email address of the employee
+        offboard_on:
+          type:
+          - 'null'
+          - string
+          description: Date when the employee was or will be offboarded
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
         bank_account:
-          $ref: '#/components/schemas/CreateEmployeeBankAccount'
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EmployeeBankAccount_2'
           description: Bank account details
         metadata:
           type:
-          - object
           - 'null'
+          - object
           additionalProperties:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-      required:
-      - employer_id
-      - first_name
-      - last_name
-      - date_of_birth
-      - sex_at_birth
-      - home_address
-      - national_tax_id
-      - start_on
-      - phone_number
-      - email
-      title: CreateEmployeeRequest
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    EmployeeResponsePagedList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployeeResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: EmployeeResponsePagedList
-    OffboardEmployeeRequest:
-      type: object
-      properties:
-        offboard_on:
+        object:
           type: string
-          format: date-time
-          description: The date when the employee should be offboarded. Can be a future date, today, or up to 30 days in the past if the employee has active insurance policies. Past dates beyond 30 days are allowed only if there are no active policies.
-        offboard_reason:
-          type: string
-      required:
-      - offboard_on
-      - offboard_reason
-      title: OffboardEmployeeRequest
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    CountryCode_2:
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Authorization header using the Bearer scheme
+x-refined-from:
+- kota-api-reference-openapi.json
+- kota-openapi-original.json

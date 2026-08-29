@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons groupQuoteIntents API
+  title: Reference Group Quote Intents API
   version: 1.0.0
 servers:
 - url: https://test.api.kota.io
@@ -249,7 +249,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Group Quote Intents_RejectGroupQuoteIntent_Response_204'
+                $ref: '#/components/schemas/Group_Quote_Intents_RejectGroupQuoteIntent_Response_204'
         '400':
           description: Bad Request
           content:
@@ -293,6 +293,292 @@ components:
       - page_size
       - total_count
       title: GroupQuoteIntentResponsePagedList
+    HealthInsuranceFamilyCostSharingType:
+      type: string
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      title: HealthInsuranceFamilyCostSharingType
+    Group_Quote_Intents_RejectGroupQuoteIntent_Response_204:
+      type: object
+      properties: {}
+      description: Empty response body
+      title: Group Quote Intents_RejectGroupQuoteIntent_Response_204
+    GroupQuoteIntentRequirementResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupQuoteIntentRequirementResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: GroupQuoteIntentRequirementResponsePagedList
+    RequirementObjectType:
+      type: string
+      enum:
+      - employee
+      - employer
+      - associated_person
+      title: RequirementObjectType
+    HealthInsurancePercentageCostSharingConfigurationResponse:
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+      required:
+      - percentage
+      title: HealthInsurancePercentageCostSharingConfigurationResponse
+    HealthInsuranceCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingType'
+          description: Cost sharing type. Determines which sub-object is populated.
+        member_count:
+          $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
+          description: Numbers of additional members covered by the employer.
+        member_selection:
+          $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
+          description: Whether specific member types are covered by the employer.
+        percentage:
+          $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
+          description: Percentage of the premium the employer covers.
+        family_type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
+          description: Type of the family covered by the employer.
+      required:
+      - type
+      title: HealthInsuranceCostSharingConfigurationResponse
+    GroupQuoteIntentActionRequiredResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/IntentActionType'
+          description: The action code indicating what action is required.
+        reason:
+          type: string
+          description: Brief reason for the required action.
+        reason_description:
+          type: string
+          description: Detailed description of the required action.
+        due_by:
+          type: string
+          format: date-time
+          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+      required:
+      - code
+      - reason
+      - reason_description
+      - due_by
+      title: GroupQuoteIntentActionRequiredResponse
+    DisclosureCategory:
+      type: string
+      enum:
+      - regulatory
+      - provider
+      - intermediary
+      title: DisclosureCategory
+    PlanCoverageOptionSelectionRequest:
+      type: object
+      properties:
+        configuration_id:
+          type: string
+          description: Configuration ID (prefixed with `pc_`).
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedOptionRequest'
+          description: Selected options with optional sub-options.
+      required:
+      - configuration_id
+      - options
+      title: PlanCoverageOptionSelectionRequest
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+        children:
+          type: integer
+          description: Number of additional children covered.
+      required:
+      - adults
+      - children
+      title: HealthInsuranceMemberCountCostSharingConfigurationResponse
+    RequirementObjectTypeEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/RequirementObjectType'
+      title: RequirementObjectTypeEnumParameter
+    GroupQuoteIntentRequirementResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the requirement
+        object_type:
+          $ref: '#/components/schemas/RequirementObjectType'
+          description: Type of object this requirement is for (employee or employer)
+        object_id:
+          type: string
+          description: Identifier of the object (employee ID or employer ID)
+        is_fulfilled:
+          type: boolean
+          description: Whether the requirement has been fulfilled
+        requirement_type:
+          $ref: '#/components/schemas/RequirementType'
+          description: Type of requirement
+        object:
+          type: string
+          description: Object type identifier
+      required:
+      - id
+      - object_type
+      - object_id
+      - is_fulfilled
+      - requirement_type
+      title: GroupQuoteIntentRequirementResponse
+    DisclosureResponse:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      required:
+      - category
+      - type
+      - text
+      title: DisclosureResponse
+    DisclosureType:
+      type: string
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      title: DisclosureType
+    GroupQuoteResponse:
+      type: object
+      properties:
+        employee_count:
+          type: integer
+          description: Number of employees covered by the quote
+        cost_sharing:
+          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        total_monthly_premium:
+          type: number
+          format: double
+          description: Total monthly premium for the group
+        currency:
+          type: string
+          description: Currency of the premium (e.g. EUR, GBP)
+        pdf_url:
+          type:
+          - string
+          - 'null'
+          description: URL to download the quote PDF
+        pdf_expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the PDF URL expires
+        generated_at:
+          type: string
+          format: date-time
+          description: When the quote was generated
+        expires_at:
+          type: string
+          format: date-time
+          description: When the quote expires
+        object:
+          type: string
+          description: Object type identifier
+      required:
+      - employee_count
+      - cost_sharing
+      - total_monthly_premium
+      - currency
+      - generated_at
+      - expires_at
+      title: GroupQuoteResponse
+    HealthInsuranceCostSharingType:
+      type: string
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      title: HealthInsuranceCostSharingType
+    ConsentType:
+      type: string
+      enum:
+      - terms_of_business
+      - privacy_policy
+      title: ConsentType
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      required:
+      - type
+      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
+    ConsentLinkResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ConsentType'
+          description: Type of consent
+        url:
+          type: string
+          description: URL to the consent document
+        version:
+          type: string
+          description: Version of the consent document
+      required:
+      - type
+      - url
+      - version
+      title: ConsentLinkResponse
     GroupQuoteIntentResponse:
       type: object
       properties:
@@ -341,67 +627,26 @@ components:
       - consent_links
       - disclosures
       title: GroupQuoteIntentResponse
-    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
-          description: Employer coverage family type
-      required:
-      - type
-      title: HealthInsuranceFamilyTypeCostSharingConfigurationResponse
-    RequirementType:
+    IntentActionType:
       type: string
       enum:
-      - group_quote_intent
-      - group_policy_intent
-      - dependent_management_intent
-      - policy_amendment_intent
-      - enrolment_intent
-      title: RequirementType
-    GroupQuoteIntentActionRequiredResponse:
+      - provide_dependant_information
+      - provide_beneficiary_information
+      - provide_missing_information
+      title: IntentActionType
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
       type: object
       properties:
-        code:
-          $ref: '#/components/schemas/IntentActionType'
-          description: The action code indicating what action is required.
-        reason:
-          type: string
-          description: Brief reason for the required action.
-        reason_description:
-          type: string
-          description: Detailed description of the required action.
-        due_by:
-          type: string
-          format: date-time
-          description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+        children:
+          type: boolean
+          description: If children are covered.
       required:
-      - code
-      - reason
-      - reason_description
-      - due_by
-      title: GroupQuoteIntentActionRequiredResponse
-    PlanCoverageOptionSelectionRequest:
-      type: object
-      properties:
-        configuration_id:
-          type: string
-          description: Configuration ID (prefixed with `pc_`).
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedOptionRequest'
-          description: Selected options with optional sub-options.
-      required:
-      - configuration_id
-      - options
-      title: PlanCoverageOptionSelectionRequest
-    ConsentType:
-      type: string
-      enum:
-      - terms_of_business
-      - privacy_policy
-      title: ConsentType
+      - partner
+      - children
+      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
     SelectedOptionRequest:
       type: object
       properties:
@@ -418,6 +663,50 @@ components:
       required:
       - option_id
       title: SelectedOptionRequest
+    GroupQuoteIntentStatus:
+      type: string
+      enum:
+      - processing
+      - action_required
+      - awaiting_quote
+      - quote_available
+      - rejected
+      - rejected_by_insurer
+      - quote_expired
+      title: GroupQuoteIntentStatus
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    RequirementType:
+      type: string
+      enum:
+      - group_quote_intent
+      - group_policy_intent
+      - dependent_management_intent
+      - policy_amendment_intent
+      - enrolment_intent
+      title: RequirementType
     CreateGroupQuoteIntentRequest:
       type: object
       properties:
@@ -447,295 +736,6 @@ components:
       - group_id
       - plan_id
       title: CreateGroupQuoteIntentRequest
-    GroupQuoteIntentRequirementResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the requirement
-        object_type:
-          $ref: '#/components/schemas/RequirementObjectType'
-          description: Type of object this requirement is for (employee or employer)
-        object_id:
-          type: string
-          description: Identifier of the object (employee ID or employer ID)
-        is_fulfilled:
-          type: boolean
-          description: Whether the requirement has been fulfilled
-        requirement_type:
-          $ref: '#/components/schemas/RequirementType'
-          description: Type of requirement
-        object:
-          type: string
-          description: Object type identifier
-      required:
-      - id
-      - object_type
-      - object_id
-      - is_fulfilled
-      - requirement_type
-      title: GroupQuoteIntentRequirementResponse
-    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
-      type: object
-      properties:
-        partner:
-          type: boolean
-          description: If a spouse/partner is covered.
-        children:
-          type: boolean
-          description: If children are covered.
-      required:
-      - partner
-      - children
-      title: HealthInsuranceMemberSelectionCostSharingConfigurationResponse
-    GroupQuoteIntentStatus:
-      type: string
-      enum:
-      - processing
-      - action_required
-      - awaiting_quote
-      - quote_available
-      - rejected
-      - rejected_by_insurer
-      - quote_expired
-      title: GroupQuoteIntentStatus
-    HealthInsuranceCostSharingType:
-      type: string
-      enum:
-      - member_count
-      - member_selection
-      - percentage
-      - policyholder_only
-      - family_type
-      title: HealthInsuranceCostSharingType
-    RequirementObjectType:
-      type: string
-      enum:
-      - employee
-      - employer
-      - associated_person
-      title: RequirementObjectType
-    GroupQuoteIntentRequirementResponsePagedList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupQuoteIntentRequirementResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: GroupQuoteIntentRequirementResponsePagedList
-    DisclosureType:
-      type: string
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      title: DisclosureType
-    HealthInsurancePercentageCostSharingConfigurationResponse:
-      type: object
-      properties:
-        percentage:
-          type: integer
-          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
-      required:
-      - percentage
-      title: HealthInsurancePercentageCostSharingConfigurationResponse
-    HealthInsuranceMemberCountCostSharingConfigurationResponse:
-      type: object
-      properties:
-        adults:
-          type: integer
-          description: Number of additional adults covered, including partner/spouse.
-        children:
-          type: integer
-          description: Number of additional children covered.
-      required:
-      - adults
-      - children
-      title: HealthInsuranceMemberCountCostSharingConfigurationResponse
-    GroupQuoteResponse:
-      type: object
-      properties:
-        employee_count:
-          type: integer
-          description: Number of employees covered by the quote
-        cost_sharing:
-          $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Cost sharing configuration for the quote
-        total_monthly_premium:
-          type: number
-          format: double
-          description: Total monthly premium for the group
-        currency:
-          type: string
-          description: Currency of the premium (e.g. EUR, GBP)
-        pdf_url:
-          type:
-          - string
-          - 'null'
-          description: URL to download the quote PDF
-        pdf_expires_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the PDF URL expires
-        generated_at:
-          type: string
-          format: date-time
-          description: When the quote was generated
-        expires_at:
-          type: string
-          format: date-time
-          description: When the quote expires
-        object:
-          type: string
-          description: Object type identifier
-      required:
-      - employee_count
-      - cost_sharing
-      - total_monthly_premium
-      - currency
-      - generated_at
-      - expires_at
-      title: GroupQuoteResponse
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    IntentActionType:
-      type: string
-      enum:
-      - provide_dependant_information
-      - provide_beneficiary_information
-      - provide_missing_information
-      title: IntentActionType
-    Group Quote Intents_RejectGroupQuoteIntent_Response_204:
-      type: object
-      properties: {}
-      description: Empty response body
-      title: Group Quote Intents_RejectGroupQuoteIntent_Response_204
-    HealthInsuranceCostSharingConfigurationResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/HealthInsuranceCostSharingType'
-          description: Cost sharing type. Determines which sub-object is populated.
-        member_count:
-          $ref: '#/components/schemas/HealthInsuranceMemberCountCostSharingConfigurationResponse'
-          description: Numbers of additional members covered by the employer.
-        member_selection:
-          $ref: '#/components/schemas/HealthInsuranceMemberSelectionCostSharingConfigurationResponse'
-          description: Whether specific member types are covered by the employer.
-        percentage:
-          $ref: '#/components/schemas/HealthInsurancePercentageCostSharingConfigurationResponse'
-          description: Percentage of the premium the employer covers.
-        family_type:
-          $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
-          description: Type of the family covered by the employer.
-      required:
-      - type
-      title: HealthInsuranceCostSharingConfigurationResponse
-    RequirementObjectTypeEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/RequirementObjectType'
-      title: RequirementObjectTypeEnumParameter
-    DisclosureResponse:
-      type: object
-      properties:
-        category:
-          $ref: '#/components/schemas/DisclosureCategory'
-          description: The category of the disclosure.
-        type:
-          $ref: '#/components/schemas/DisclosureType'
-          description: The specific type of disclosure within its category.
-        text:
-          type: string
-          description: The disclosure statement text.
-      required:
-      - category
-      - type
-      - text
-      title: DisclosureResponse
-    ConsentLinkResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ConsentType'
-          description: Type of consent
-        url:
-          type: string
-          description: URL to the consent document
-        version:
-          type: string
-          description: Version of the consent document
-      required:
-      - type
-      - url
-      - version
-      title: ConsentLinkResponse
-    DisclosureCategory:
-      type: string
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      title: DisclosureCategory
-    HealthInsuranceFamilyCostSharingType:
-      type: string
-      enum:
-      - single
-      - couple
-      - single_with_children
-      - family
-      title: HealthInsuranceFamilyCostSharingType
   securitySchemes:
     bearerAuth:
       type: http

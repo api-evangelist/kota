@@ -1,7 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons events API
-  version: 1.0.0
+  title: Kota Events API
+  version: '1.0'
+  description: 'Operations tagged events across 2 of this provider''s published API definitions: kota-api-reference-openapi.json, kota-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://test.api.kota.io
   description: test
@@ -71,6 +72,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HttpValidationProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /events/{event_id}:
     get:
       operationId: retrieve-event
@@ -106,6 +112,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
   /events/{event_id}/replay:
     post:
       operationId: replay-event
@@ -138,40 +149,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+    servers:
+    - url: https://test.api.kota.io
+      description: test
+    - url: https://api.kota.io
+      description: production
 components:
   schemas:
-    ReplayDeliveryResponse:
-      type: object
-      properties:
-        delivery_id:
-          type: string
-        success:
-          type: boolean
-        response_status_code:
-          type:
-          - integer
-          - 'null'
-        elapsed_time_ms:
-          type: number
-          format: double
-      required:
-      - delivery_id
-      - success
-      - response_status_code
-      - elapsed_time_ms
-      title: ReplayDeliveryResponse
-    WebhookVersion:
-      type: string
-      enum:
-      - v1
-      - v2
-      title: WebhookVersion
     JsonNodeOptions:
       type: object
       properties:
         property_name_case_insensitive:
           type: boolean
       title: JsonNodeOptions
+    ReplayEventResponse:
+      type: object
+      properties:
+        event_id:
+          type: string
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayDeliveryResponse'
+      required:
+      - event_id
+      - deliveries
+      title: ReplayEventResponse
+    WebhookVersionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/WebhookVersion'
+      title: WebhookVersionEnumParameter
     OrderDirectionEnumParameter:
       type: object
       properties:
@@ -201,36 +210,6 @@ components:
       - type
       - data
       title: EventResponse
-    HttpValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      title: HttpValidationProblemDetails
     EventResponsePagedList:
       type: object
       properties:
@@ -284,19 +263,6 @@ components:
           - string
           - 'null'
       title: ProblemDetails
-    ReplayEventResponse:
-      type: object
-      properties:
-        event_id:
-          type: string
-        deliveries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReplayDeliveryResponse'
-      required:
-      - event_id
-      - deliveries
-      title: ReplayEventResponse
     JsonNode:
       type: object
       properties:
@@ -313,14 +279,282 @@ components:
       - asc
       - desc
       title: OrderDirection
-    WebhookVersionEnumParameter:
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    WebhookVersion:
+      type: string
+      enum:
+      - v1
+      - v2
+      title: WebhookVersion
+    ReplayDeliveryResponse:
+      type: object
+      properties:
+        delivery_id:
+          type: string
+        success:
+          type: boolean
+        response_status_code:
+          type:
+          - integer
+          - 'null'
+        elapsed_time_ms:
+          type: number
+          format: double
+      required:
+      - delivery_id
+      - success
+      - response_status_code
+      - elapsed_time_ms
+      title: ReplayDeliveryResponse
+    JsonNodeOptions_2:
+      type: object
+      properties:
+        property_name_case_insensitive:
+          type: boolean
+          example: true
+      additionalProperties: false
+    ReplayEventResponse_2:
+      required:
+      - deliveries
+      - event_id
+      type: object
+      properties:
+        event_id:
+          pattern: evt_.+
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayDeliveryResponse_2'
+      additionalProperties: false
+    OrderDirectionEnumParameter_2:
       type: object
       properties:
         value:
-          $ref: '#/components/schemas/WebhookVersion'
-      title: WebhookVersionEnumParameter
+          allOf:
+          - $ref: '#/components/schemas/OrderDirection_2'
+      additionalProperties: false
+    WebhookVersionEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/WebhookVersion_2'
+      additionalProperties: false
+    EventResponse_2:
+      required:
+      - created
+      - data
+      - id
+      - platform_id
+      - type
+      type: object
+      properties:
+        id:
+          pattern: evt_.+
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        created:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        type:
+          type: string
+        data:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+        api_version:
+          type: string
+          readOnly: true
+      additionalProperties: false
+    EventResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    JsonNode_2:
+      type: object
+      properties:
+        options:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNodeOptions_2'
+          readOnly: true
+        parent:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+          readOnly: true
+        root:
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+          readOnly: true
+      additionalProperties: false
+    OrderDirection_2:
+      enum:
+      - asc
+      - desc
+      type: string
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    WebhookVersion_2:
+      enum:
+      - v1
+      - v2
+      type: string
+    ReplayDeliveryResponse_2:
+      required:
+      - delivery_id
+      - elapsed_time_ms
+      - response_status_code
+      - success
+      type: object
+      properties:
+        delivery_id:
+          pattern: evtd_.+
+          type: string
+          example: evtd_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        success:
+          type: boolean
+          example: true
+        response_status_code:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        elapsed_time_ms:
+          type: number
+          format: double
+          example: 123.45
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Authorization header using the Bearer scheme
+x-refined-from:
+- kota-api-reference-openapi.json
+- kota-openapi-original.json

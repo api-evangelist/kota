@@ -1,12 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Associated Persons Contribution Reports API
-  version: 1.0.0
+  title: Kota Contribution Reports API
+  version: '1.0'
 servers:
 - url: https://test.api.kota.io
-  description: test
+  description: Test Kota API
+  x-fern-server-name: test
 - url: https://api.kota.io
-  description: production
+  description: Production Kota API
+  x-fern-server-name: production
+security:
+- bearerAuth: []
 tags:
 - name: Contribution Reports
 paths:
@@ -209,197 +213,76 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    ContributionReportEmployeeBreakdownResponsePagedList:
+    GetEmployeeBreakdownContribution:
       required:
-      - items
-      - page
-      - page_size
-      - total_count
+      - adjustment
+      - amount
+      - category
+      - cover_period
+      - employee_policy_id
+      - id
+      - member_type
+      - policy_id
+      - reporting_month
+      - type
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContributionReportEmployeeBreakdownResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    HealthInsuranceContributionType:
-      enum:
-      - recurring
-      - one_off
-      type: string
-    ContributionReportResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContributionReportResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    HealthInsuranceContributionMemberType:
-      enum:
-      - policyholder
-      - partner_dependant
-      - child_dependant
-      type: string
-    ContributionReportEmployeeBreakdownResponse:
-      required:
-      - contribution_report_id
-      - created_at
-      - currency
-      - employee_id
-      - employer_id
-      - health_insurance
-      - last_updated_at
-      - period
-      - status
-      type: object
-      properties:
-        object:
+        id:
+          pattern: ct_.+
           type: string
-          description: The object type
-          readOnly: true
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier of the employee for which the breakdown is created
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        contribution_report_id:
-          pattern: ctr_.+
-          type: string
-          description: Unique identifier of the related contribution report
-          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier of the employer for which the breakdown is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
+          description: Unique identifier for the contribution entry
+          example: ct_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        category:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceContributionCategory'
+          description: Category of the contribution
+        member_type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceContributionMemberType'
+          description: Type of member for the contribution
+        adjustment:
+          type: boolean
+          description: Indicates if this contribution is an adjustment to a previous charge
+          example: true
+        adjustment_for:
+          pattern: ct_.+
           type:
           - 'null'
           - string
-          description: Unique identifier of the customer for which the breakdown is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
-        period:
+          description: Unique identifier of the original contribution being adjusted, if applicable
+          example: ct_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        amount:
+          type: number
+          description: The monetary value of the contribution
+          format: double
+          example: 123.45
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceContributionType'
+          description: Type of the contribution
+        note:
+          type:
+          - 'null'
+          - string
+          description: Optional field for additional context, e.g. if the amount is pro-rated or backdated
+        cover_period:
           allOf:
           - $ref: '#/components/schemas/GetEmployeeBreakdownPeriod'
-          description: Period covered by the employee breakdown
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/CurrencyCode'
-          description: The currency in which all the amounts in this breakdown are presented (e.g. `eur`)
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ContributionReportStatus'
-          description: Current status of the breakdown
-        finalized_at:
-          type:
-          - 'null'
-          - string
-          description: Date and time the breakdown was finalized, if applicable
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        created_at:
+          description: The health insurance period the contribution applies to
+        policy_id:
+          pattern: p_.+
           type: string
-          description: Date and time the breakdown was created
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        last_updated_at:
+          description: The policy the contribution applies to. Prefixed with `p_`.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_policy_id:
+          pattern: eehp_.+
           type: string
-          description: Date and time of the last update to the breakdown
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        health_insurance:
-          allOf:
-          - $ref: '#/components/schemas/GetEmployeeBreakdownHealthInsurance'
-          description: Health insurance contribution details
-      additionalProperties: false
-    GetContributionReportPeriod:
-      required:
-      - from_date
-      - to_date
-      type: object
-      properties:
-        from_date:
+          description: 'DEPRECATED: Use `policy_id` instead. The employee health insurance policy the contribution applies to. Prefixed with `eehp_`.'
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+          deprecated: true
+        reporting_month:
           type: string
-          description: Start date of the period
-          format: date
-          example: '2024-12-01'
-        to_date:
-          type: string
-          description: End date of the period
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    GetEmployeeBreakdownPeriod:
-      required:
-      - from_date
-      - to_date
-      type: object
-      properties:
-        from_date:
-          type: string
-          description: Start date of the period
-          format: date
-          example: '2024-12-01'
-        to_date:
-          type: string
-          description: End date of the period
+          description: The primary month for which the contribution is relevant, helping to align contributions with standard monthly reporting cycles. It allows for consistent monthly categorisation in systems that require calendar-based reporting. Provided in `YYYY-MM-DD` format (with the day set to `01` as a convention), only the year and month are relevant.
           format: date
           example: '2024-12-01'
       additionalProperties: false
@@ -575,6 +458,63 @@ components:
       - zmw
       - zwl
       type: string
+    GetEmployeeBreakdownPeriod:
+      required:
+      - from_date
+      - to_date
+      type: object
+      properties:
+        from_date:
+          type: string
+          description: Start date of the period
+          format: date
+          example: '2024-12-01'
+        to_date:
+          type: string
+          description: End date of the period
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    GetContributionReportPeriod:
+      required:
+      - from_date
+      - to_date
+      type: object
+      properties:
+        from_date:
+          type: string
+          description: Start date of the period
+          format: date
+          example: '2024-12-01'
+        to_date:
+          type: string
+          description: End date of the period
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    GetEmployeeBreakdownHealthInsurance:
+      required:
+      - employee_contributions
+      - employer_contributions
+      type: object
+      properties:
+        employer_contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
+          description: Employer health insurance contributions
+        employee_contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
+          description: Employee health insurance contributions
+      additionalProperties: false
+    HealthInsuranceContributionCategory:
+      enum:
+      - gross_premium
+      - tax
+      - tax_relief
+      type: string
     ProblemDetails:
       type: object
       properties:
@@ -600,29 +540,50 @@ components:
           - 'null'
           - string
       additionalProperties: {}
-    GetEmployeeBreakdownHealthInsurance:
+    HealthInsuranceContributionType:
+      enum:
+      - recurring
+      - one_off
+      type: string
+    ContributionReportEmployeeBreakdownResponsePagedList:
       required:
-      - employee_contributions
-      - employer_contributions
+      - items
+      - page
+      - page_size
+      - total_count
       type: object
       properties:
-        employer_contributions:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
-          description: Employer health insurance contributions
-        employee_contributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
-          description: Employee health insurance contributions
+            $ref: '#/components/schemas/ContributionReportEmployeeBreakdownResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
       additionalProperties: false
-    HealthInsuranceContributionCategory:
-      enum:
-      - gross_premium
-      - tax
-      - tax_relief
-      type: string
     ContributionReportResponse:
       required:
       - created_at
@@ -678,86 +639,132 @@ components:
           format: date-time
           example: '2024-12-01T00:00:00Z'
       additionalProperties: false
+    ContributionReportResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContributionReportResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
     ContributionReportStatus:
       enum:
       - open
       - finalized
       type: string
-    GetEmployeeBreakdownContribution:
+    ContributionReportEmployeeBreakdownResponse:
       required:
-      - adjustment
-      - amount
-      - category
-      - cover_period
-      - employee_policy_id
-      - id
-      - member_type
-      - policy_id
-      - reporting_month
-      - type
+      - contribution_report_id
+      - created_at
+      - currency
+      - employee_id
+      - employer_id
+      - health_insurance
+      - last_updated_at
+      - period
+      - status
       type: object
       properties:
-        id:
-          pattern: ct_.+
+        object:
           type: string
-          description: Unique identifier for the contribution entry
-          example: ct_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        category:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceContributionCategory'
-          description: Category of the contribution
-        member_type:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceContributionMemberType'
-          description: Type of member for the contribution
-        adjustment:
-          type: boolean
-          description: Indicates if this contribution is an adjustment to a previous charge
-          example: true
-        adjustment_for:
-          pattern: ct_.+
+          description: The object type
+          readOnly: true
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier of the employee for which the breakdown is created
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        contribution_report_id:
+          pattern: ctr_.+
+          type: string
+          description: Unique identifier of the related contribution report
+          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier of the employer for which the breakdown is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
           type:
           - 'null'
           - string
-          description: Unique identifier of the original contribution being adjusted, if applicable
-          example: ct_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        amount:
-          type: number
-          description: The monetary value of the contribution
-          format: double
-          example: 123.45
-        type:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceContributionType'
-          description: Type of the contribution
-        note:
-          type:
-          - 'null'
-          - string
-          description: Optional field for additional context, e.g. if the amount is pro-rated or backdated
-        cover_period:
+          description: Unique identifier of the customer for which the breakdown is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        period:
           allOf:
           - $ref: '#/components/schemas/GetEmployeeBreakdownPeriod'
-          description: The health insurance period the contribution applies to
-        policy_id:
-          pattern: p_.+
+          description: Period covered by the employee breakdown
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: The currency in which all the amounts in this breakdown are presented (e.g. `eur`)
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ContributionReportStatus'
+          description: Current status of the breakdown
+        finalized_at:
+          type:
+          - 'null'
+          - string
+          description: Date and time the breakdown was finalized, if applicable
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        created_at:
           type: string
-          description: The policy the contribution applies to. Prefixed with `p_`.
-          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_policy_id:
-          pattern: eehp_.+
+          description: Date and time the breakdown was created
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        last_updated_at:
           type: string
-          description: 'DEPRECATED: Use `policy_id` instead. The employee health insurance policy the contribution applies to. Prefixed with `eehp_`.'
-          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-          deprecated: true
-        reporting_month:
-          type: string
-          description: The primary month for which the contribution is relevant, helping to align contributions with standard monthly reporting cycles. It allows for consistent monthly categorisation in systems that require calendar-based reporting. Provided in `YYYY-MM-DD` format (with the day set to `01` as a convention), only the year and month are relevant.
-          format: date
-          example: '2024-12-01'
+          description: Date and time of the last update to the breakdown
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        health_insurance:
+          allOf:
+          - $ref: '#/components/schemas/GetEmployeeBreakdownHealthInsurance'
+          description: Health insurance contribution details
       additionalProperties: false
+    HealthInsuranceContributionMemberType:
+      enum:
+      - policyholder
+      - partner_dependant
+      - child_dependant
+      type: string
   securitySchemes:
     bearerAuth:
       type: http
-      scheme: bearer
       description: Authorization header using the Bearer scheme
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: KOTA_API_KEY

@@ -1,0 +1,2082 @@
+openapi: 3.2.0
+info:
+  title: Kota Types of events API
+  version: '1.0'
+servers:
+- url: https://test.api.kota.io
+  description: Test Kota API
+  x-fern-server-name: test
+- url: https://api.kota.io
+  description: Production Kota API
+  x-fern-server-name: production
+security:
+- bearerAuth: []
+tags:
+- name: Types of events
+paths: {}
+webhooks:
+  EmployeeCreatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.created
+      operationId: EmployeeCreatedWebhook
+      requestBody:
+        description: An employee was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeUpdatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.updated
+      operationId: EmployeeUpdatedWebhook
+      requestBody:
+        description: An employee was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeOffboardedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.offboarded
+      operationId: EmployeeOffboardedWebhook
+      requestBody:
+        description: An employee was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeOffboardedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerCreatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.created
+      operationId: EmployerCreatedWebhook
+      requestBody:
+        description: An employer was created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerCreatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerUpdatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.updated
+      operationId: EmployerUpdatedWebhook
+      requestBody:
+        description: An employer was updated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerUpdatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerOffboardedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.offboarded
+      operationId: EmployerOffboardedWebhook
+      requestBody:
+        description: An employer was offboarded
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerOffboardedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteCreatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.created
+      operationId: EmployerHealthInsuranceQuoteCreatedWebhook
+      requestBody:
+        description: A group health insurance quote request was created for an employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteCreatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteActionRequiredWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.action_required
+      operationId: EmployerHealthInsuranceQuoteActionRequiredWebhook
+      requestBody:
+        description: A group health insurance quote requires an action from the employer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteActionRequiredWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteNotUndertakenWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.not_undertaken
+      operationId: EmployerHealthInsuranceQuoteNotUndertakenWebhook
+      requestBody:
+        description: A group health insurance quote was not taken out
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteNotUndertakenWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuoteAcceptedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.accepted
+      operationId: EmployerHealthInsuranceQuoteAcceptedWebhook
+      requestBody:
+        description: A group health insurance quote was accepted
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuoteAcceptedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuotePendingWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.pending_quote
+      operationId: EmployerHealthInsuranceQuotePendingWebhook
+      requestBody:
+        description: A group health insurance request for quote was made
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employer.health_insurance.quote.pending_insurer_acceptance
+      operationId: EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook
+      requestBody:
+        description: A group health insurance quote is now pending acceptance by the insurer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsuranceOfferActionRequiredWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.health_insurance.offer.action_required
+      operationId: EmployeeHealthInsuranceOfferActionRequiredWebhook
+      requestBody:
+        description: A health insurance offer requires action from an employee.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsuranceOfferActionRequiredWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyActivatedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.health_insurance.policy.activated
+      operationId: EmployeeHealthInsurancePolicyActivatedWebhook
+      requestBody:
+        description: An Employee health insurance policy is successfully activated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyActivatedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyCancelledWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.health_insurance.policy.cancelled
+      operationId: EmployeeHealthInsurancePolicyCancelledWebhook
+      requestBody:
+        description: An Employee health insurance policy is successfully cancelled.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyCancelledWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  EmployeeHealthInsurancePolicyExpiredWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: employee.health_insurance.policy.expired
+      operationId: EmployeeHealthInsurancePolicyExpiredWebhook
+      requestBody:
+        description: An Employee health insurance policy is expired.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeHealthInsurancePolicyExpiredWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+  ContributionReportFinalizedWebhook:
+    post:
+      tags:
+      - Types of events
+      summary: contribution_report.finalized
+      operationId: ContributionReportFinalizedWebhook
+      requestBody:
+        description: A contribution report has been finalized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContributionReportFinalizedWebhook'
+      responses:
+        2xx:
+          description: Your server implementation should return this HTTP status code if the data was received successfully
+        4xx:
+          description: If your server returns an HTTP status code indicating it does not understand the format of the payload the delivery will be treated as a failure. Multiple retries will be attempted!
+        5xx:
+          description: If your server returns an HTTP status code indicating a server-side error the delivery will be treated as a failure. Multiple retries will be attempted!
+      x-fern-webhook: true
+components:
+  schemas:
+    ContactModel:
+      required:
+      - email
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Contact person name. NOTE: This field will be normalized according to our internal formatting rules.'
+        email:
+          type: string
+          description: 'Contact email address. NOTE: This field will be normalized according to our internal formatting rules.'
+      additionalProperties: false
+    HealthInsuranceCoverageLevelResponse:
+      required:
+      - documents
+      - plan_currency
+      - plan_id
+      - plan_name
+      - provider_logo_url
+      - provider_name
+      type: object
+      properties:
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the health insurance plan
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_name:
+          type: string
+          description: Name of the health insurance plan
+        plan_currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Currency code of the health insurance plan
+        provider_name:
+          type: string
+          description: Name of the health insurance provider
+        provider_logo_url:
+          type: string
+          description: Logo URL of the health insurance provider
+        provider_employer_platform_url:
+          type:
+          - 'null'
+          - string
+          description: URL to the health insurance provider's website for Employer Management
+        provider_support_phone:
+          type:
+          - 'null'
+          - string
+          description: Support phone number to the health insurance provider's website for Employer Management
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelDocumentResponse'
+          description: Documents related to the health insurance plan, these documents may change at renewal, this includes the documents like `Insurance Product Information Document`, `Hospital Lists`, `Table of Cover` etc
+      additionalProperties: false
+    EmployerStatus:
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      type: string
+    AddressModel:
+      required:
+      - city
+      - country_code
+      - line1
+      - postal_code
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - 'null'
+          - string
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+      additionalProperties: false
+    ContributionReportFinalizedWebhook:
+      title: ContributionReportFinalizedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: contribution_report.finalized
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/ContributionReportResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployerHealthInsuranceQuoteNotUndertakenWebhook:
+      title: EmployerHealthInsuranceQuoteNotUndertakenWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    HealthInsuranceRequiredActionResponse:
+      required:
+      - code
+      - due_at
+      - reason
+      - reason_description
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Concise reason for the required action
+        reason_description:
+          type: string
+          description: Description for the required action
+        code:
+          type: string
+          description: Identified the type of action required, not unique across health insurance providers
+        due_at:
+          type: string
+          description: Date and time by which the action is due, if this is not completed then the policy will not be issued.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    EmployerHealthInsuranceQuoteActionRequiredWebhook:
+      title: EmployerHealthInsuranceQuoteActionRequiredWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeStatus:
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      type: string
+    EmployeeHealthInsuranceOfferStatus:
+      enum:
+      - action_required
+      - not_undertaken
+      - accepted
+      type: string
+    EmployeeHealthInsurancePolicyCancelledWebhook:
+      title: EmployeeHealthInsurancePolicyCancelledWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.cancelled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    HealthInsuranceCoverageLevelDocumentResponse:
+      required:
+      - link
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Health Insurance Document Title
+        link:
+          type: string
+          description: Health Insurance Document Link (can be a link to a website or a file path)
+      additionalProperties: false
+    EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook:
+      title: EmployerHealthInsuranceQuotePendingInsurerAcceptanceWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.pending_insurer_acceptance
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeResponse:
+      required:
+      - date_of_birth
+      - email
+      - first_name
+      - last_name
+      - national_tax_id
+      - phone_number
+      - sex_at_birth
+      type: object
+      properties:
+        platform_id:
+          pattern: pt_.+
+          type: string
+          description: Unique identifier for the platform
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeStatus'
+          description: Current status of the employee
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        first_name:
+          type: string
+          description: First name of the employee. It can include the middle name
+        last_name:
+          type: string
+          description: Last name of the employee
+        date_of_birth:
+          type: string
+          description: Date of birth of the employee
+          format: date
+          example: '2024-12-01'
+        sex_at_birth:
+          allOf:
+          - $ref: '#/components/schemas/SexAtBirth'
+          description: The sex assigned to the employee at birth
+        home_address:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/AddressModel'
+          description: Location where the employee is legally registered to live
+        nationality:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/CountryCode'
+          description: Nationality of the employee (e.g. IE for Ireland, GB for United Kingdom, ES for Spain)
+        national_tax_id:
+          type: string
+          description: PPSN in Ireland, NINo in the UK, DNI/NIE in Spain
+        start_on:
+          type: string
+          description: Employment start date
+          format: date
+          example: '2024-12-01'
+        earliest_benefits_start_date:
+          type:
+          - 'null'
+          - string
+          description: 'The earliest date this employee can be enrolled in any benefits. Before this date, the employee remains in a Pending state and is excluded from benefit activation. Ignored for statutory schemes where immediate coverage is legally required. Example: Local Netherlands and UAE schemes.'
+          format: date
+          example: '2024-12-01'
+        phone_number:
+          type: string
+          description: Phone number in E.164 international format (e.g. +447700900999)
+        email:
+          type: string
+          description: Email address of the employee
+        offboard_on:
+          type:
+          - 'null'
+          - string
+          description: Date when the employee was or will be offboarded
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        bank_account:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/EmployeeBankAccount'
+          description: Bank account details
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    HealthInsuranceGrossEstimationAmountResponse:
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          description: Estimated gross premium amount deducted from employee payroll
+          format: double
+          example: 123.45
+        employer_contribution:
+          type: number
+          description: Estimated gross premium amount paid by the employer
+          format: double
+          example: 123.45
+        total:
+          type: number
+          description: Total gross premium amount (sum of employee and employer contributions).
+          format: double
+          example: 123.45
+      additionalProperties: false
+    EmployerResponse:
+      required:
+      - contact
+      - id
+      - legal_address
+      - legal_name
+      type: object
+      properties:
+        id:
+          pattern: er_.+
+          type: string
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerStatus'
+        legal_name:
+          type: string
+        registration_number:
+          type:
+          - 'null'
+          - string
+        legal_address:
+          allOf:
+          - $ref: '#/components/schemas/AddressModel'
+        contact:
+          allOf:
+          - $ref: '#/components/schemas/ContactModel'
+        offboard_on:
+          type:
+          - 'null'
+          - string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        earliest_benefits_start_date:
+          type:
+          - 'null'
+          - string
+          format: date
+          example: '2024-12-01'
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyActivatedWebhook:
+      title: EmployeeHealthInsurancePolicyActivatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.activated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    CurrencyCode:
+      enum:
+      - eur
+      - aed
+      - afn
+      - xcd
+      - all
+      - amd
+      - aoa
+      - ars
+      - usd
+      - aud
+      - awg
+      - azn
+      - bam
+      - bbd
+      - bdt
+      - xof
+      - bgn
+      - bhd
+      - bif
+      - bmd
+      - bnd
+      - bob
+      - bov
+      - brl
+      - bsd
+      - inr
+      - btn
+      - nok
+      - bwp
+      - byn
+      - bzd
+      - cad
+      - xaf
+      - cdf
+      - chf
+      - che
+      - chw
+      - nzd
+      - clp
+      - clf
+      - cny
+      - cop
+      - cou
+      - crc
+      - cup
+      - cuc
+      - cve
+      - ang
+      - czk
+      - djf
+      - dkk
+      - dop
+      - dzd
+      - egp
+      - mad
+      - ern
+      - etb
+      - fjd
+      - fkp
+      - mdl
+      - gbp
+      - gel
+      - ghs
+      - gip
+      - gmd
+      - gnf
+      - gtq
+      - gyd
+      - hkd
+      - hnl
+      - hrk
+      - htg
+      - huf
+      - idr
+      - xdr
+      - ils
+      - iqd
+      - irr
+      - isk
+      - jmd
+      - jod
+      - jpy
+      - kes
+      - kgs
+      - khr
+      - kmf
+      - kpw
+      - krw
+      - kwd
+      - kyd
+      - kzt
+      - lak
+      - lbp
+      - lkr
+      - lrd
+      - lsl
+      - zar
+      - lyd
+      - mga
+      - mkd
+      - mmk
+      - mnt
+      - mop
+      - mru
+      - mur
+      - mvr
+      - mwk
+      - mxn
+      - mxv
+      - myr
+      - mzn
+      - nad
+      - xpf
+      - ngn
+      - nio
+      - npr
+      - omr
+      - pab
+      - pen
+      - pgk
+      - php
+      - pkr
+      - pln
+      - pyg
+      - qar
+      - ron
+      - rsd
+      - rub
+      - rwf
+      - sar
+      - sbd
+      - scr
+      - sdg
+      - sek
+      - sgd
+      - shp
+      - sll
+      - sos
+      - srd
+      - ssp
+      - stn
+      - svc
+      - xsu
+      - syp
+      - twd
+      - szl
+      - thb
+      - tjs
+      - tmt
+      - tnd
+      - top
+      - try
+      - ttd
+      - tzs
+      - uah
+      - ugx
+      - usn
+      - uyu
+      - uyi
+      - uyw
+      - uzs
+      - ves
+      - vnd
+      - vuv
+      - wst
+      - yer
+      - xua
+      - zmw
+      - zwl
+      type: string
+    EmployerHealthInsuranceQuoteCreatedWebhook:
+      title: EmployerHealthInsuranceQuoteCreatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployerHealthInsuranceQuoteStatus:
+      enum:
+      - pending_quote
+      - action_required
+      - not_undertaken
+      - accepted
+      - pending_insurer_acceptance
+      type: string
+    EmployeeHealthInsuranceOfferActionRequiredWebhook:
+      title: EmployeeHealthInsuranceOfferActionRequiredWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.offer.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeHealthPolicyRenewal:
+      required:
+      - decision_confirmed
+      - renewal_date
+      - status
+      - window_end_date
+      - window_start_date
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          description: Policy renewal date
+          format: date
+          example: '2024-12-01'
+        window_start_date:
+          type: string
+          description: Renewal window starts on this day
+          format: date
+          example: '2024-12-01'
+        window_end_date:
+          type: string
+          description: Renewal window ends at the end of this day
+          format: date
+          example: '2024-12-01'
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+          example: true
+        renewed_health_insurance_id:
+          pattern: eehp_.+
+          type:
+          - 'null'
+          - string
+          description: The ID of the renewed health insurance policy, if renewed
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    EmployerOffboardedWebhook:
+      title: EmployerOffboardedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    ContributionReportStatus:
+      enum:
+      - open
+      - finalized
+      type: string
+    SexAtBirth:
+      enum:
+      - male
+      - female
+      type: string
+    EmployeeBankAccount:
+      required:
+      - account_number_last4
+      type: object
+      properties:
+        account_number_last4:
+          type: string
+          description: Last 4 digits of the account number
+      additionalProperties: false
+    EmployerHealthInsuranceQuotePendingWebhook:
+      title: EmployerHealthInsuranceQuotePendingWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.pending_quote
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeHealthInsurancePolicyStatus:
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      type: string
+    EmployeeHealthInsuranceOfferResponse:
+      required:
+      - coverage_level
+      - employee_id
+      - employer_id
+      - id
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: eeho_.+
+          type: string
+          description: Unique identifier for offer
+          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the offer is available
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the offer is available
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthInsuranceOfferStatus'
+          description: Current status of offer
+        required_action:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Required action to progress the offer, if any. Set only when `status` is `action_required`.
+        coverage_level:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Details about the coverage level for the offer. Only a single level of cover is available for a specific employee!
+      additionalProperties: false
+    GetContributionReportPeriod:
+      required:
+      - from_date
+      - to_date
+      type: object
+      properties:
+        from_date:
+          type: string
+          description: Start date of the period
+          format: date
+          example: '2024-12-01'
+        to_date:
+          type: string
+          description: End date of the period
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    EmployeeUpdatedWebhook:
+      title: EmployeeUpdatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployerHealthInsurancePolicyRenewalStatus:
+      enum:
+      - upcoming
+      - open
+      - renewed
+      - cancelled
+      type: string
+    EmployeeOffboardedWebhook:
+      title: EmployeeOffboardedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployerHealthInsuranceQuoteAcceptedWebhook:
+      title: EmployerHealthInsuranceQuoteAcceptedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.accepted
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeCreatedWebhook:
+      title: EmployeeCreatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EnrolmentType:
+      enum:
+      - opt_out
+      - opt_in
+      type: string
+    EmployeeHealthInsurancePolicyResponse:
+      required:
+      - coverage_level
+      - employee_id
+      - employer_id
+      - end_date
+      - enrolled_dependants_count
+      - enrolment_type
+      - estimated_gross_premium
+      - id
+      - opt_out_deadline_date
+      - renewal
+      - start_date
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: eehp_.+
+          type: string
+          description: Unique identifier for policy
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the policy is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the policy is created
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        start_date:
+          type: string
+          description: Policy starts on this date
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type: string
+          description: Policy ends on this date
+          format: date
+          example: '2024-12-01'
+        cancellation_date:
+          type:
+          - 'null'
+          - string
+          description: Policy was cancelled on this date, if cancellation occured
+          format: date
+          example: '2024-12-01'
+        policy_number:
+          type:
+          - 'null'
+          - string
+          description: Health insurance policy number, if available
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthInsurancePolicyStatus'
+          description: Current status of policy
+        enrolment_type:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentType'
+          description: Enrolment type of the policy
+        renewal:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthPolicyRenewal'
+          description: Renewal information for the policy
+        opt_out_deadline_date:
+          type: string
+          description: Last day to opt out from the policy
+          format: date
+          example: '2024-12-01'
+        coverage_level:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Represents the current coverage level for the policy
+        enrolled_dependants_count:
+          type: integer
+          description: Number of dependants (spouse, children, or other eligible family members) currently enrolled in this health insurance policy.
+          format: int32
+          example: 123
+        estimated_gross_premium:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceEstimatedGrossPremiumResponse'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
+      additionalProperties: false
+    HealthInsuranceEstimatedGrossPremiumResponse:
+      required:
+      - currency
+      - monthly
+      - term
+      type: object
+      properties:
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      additionalProperties: false
+    EmployerUpdatedWebhook:
+      title: EmployerUpdatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployeeHealthInsurancePolicyExpiredWebhook:
+      title: EmployeeHealthInsurancePolicyExpiredWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    EmployerHealthInsuranceQuoteResponse:
+      required:
+      - coverage_levels
+      - employer_id
+      - id
+      - quoted_at
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: erhq_.+
+          type: string
+          description: Unique identifier for the quote
+          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        quoted_at:
+          type: string
+          description: Date and time the quote was created at
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerHealthInsuranceQuoteStatus'
+          description: Current status of the quote
+        required_action:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Actions required by the employer to proceed with the quote. Set only when `status` is `action_required`.
+        coverage_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: List of levels covered under the policy, each item representing details about the plan’s cover. Currently Kota only supports a single level of cover.
+      additionalProperties: false
+    EmployerCreatedWebhook:
+      title: EmployerCreatedWebhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - api_version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        api_version:
+          type: string
+          example: '1.0'
+    ContributionReportResponse:
+      required:
+      - created_at
+      - employer_id
+      - id
+      - last_updated_at
+      - period
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: ctr_.+
+          type: string
+          description: Unique identifier for the contribution report
+          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier of the employer for which the report is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        period:
+          allOf:
+          - $ref: '#/components/schemas/GetContributionReportPeriod'
+          description: Period covered by the contribution report
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ContributionReportStatus'
+          description: Current status of the contribution report
+        finalized_at:
+          type:
+          - 'null'
+          - string
+          description: Date and time the report was finalized, if applicable
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        created_at:
+          type: string
+          description: Date and time the report was created
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        last_updated_at:
+          type: string
+          description: Date and time of the last update to the report
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    CountryCode:
+      enum:
+      - af
+      - ax
+      - al
+      - dz
+      - as
+      - ad
+      - ao
+      - ai
+      - aq
+      - ag
+      - ar
+      - am
+      - aw
+      - au
+      - at
+      - az
+      - bs
+      - bh
+      - bd
+      - bb
+      - by
+      - be
+      - bz
+      - bj
+      - bm
+      - bt
+      - bo
+      - bq
+      - ba
+      - bw
+      - bv
+      - br
+      - io
+      - bn
+      - bg
+      - bf
+      - bi
+      - cv
+      - kh
+      - cm
+      - ca
+      - ky
+      - cf
+      - td
+      - cl
+      - cn
+      - cx
+      - cc
+      - co
+      - km
+      - cg
+      - cd
+      - ck
+      - cr
+      - ci
+      - hr
+      - cu
+      - cw
+      - cy
+      - cz
+      - dk
+      - dj
+      - dm
+      - do
+      - ec
+      - eg
+      - sv
+      - gq
+      - er
+      - ee
+      - sz
+      - et
+      - fk
+      - fo
+      - fj
+      - fi
+      - fr
+      - gf
+      - pf
+      - tf
+      - ga
+      - gm
+      - ge
+      - de
+      - gh
+      - gi
+      - gr
+      - gl
+      - gd
+      - gp
+      - gu
+      - gt
+      - gg
+      - gn
+      - gw
+      - gy
+      - ht
+      - hm
+      - va
+      - hn
+      - hk
+      - hu
+      - is
+      - in
+      - id
+      - ir
+      - iq
+      - ie
+      - im
+      - il
+      - it
+      - jm
+      - jp
+      - je
+      - jo
+      - kz
+      - ke
+      - ki
+      - kp
+      - kr
+      - xk
+      - kw
+      - kg
+      - la
+      - lv
+      - lb
+      - ls
+      - lr
+      - ly
+      - li
+      - lt
+      - lu
+      - mo
+      - mg
+      - mw
+      - my
+      - mv
+      - ml
+      - mt
+      - mh
+      - mq
+      - mr
+      - mu
+      - yt
+      - mx
+      - fm
+      - md
+      - mc
+      - mn
+      - me
+      - ms
+      - ma
+      - mz
+      - mm
+      - na
+      - nr
+      - np
+      - nl
+      - nc
+      - nz
+      - ni
+      - ne
+      - ng
+      - nu
+      - nf
+      - mk
+      - mp
+      - 'no'
+      - om
+      - pk
+      - pw
+      - ps
+      - pa
+      - pg
+      - py
+      - pe
+      - ph
+      - pn
+      - pl
+      - pt
+      - pr
+      - qa
+      - re
+      - ro
+      - ru
+      - rw
+      - bl
+      - sh
+      - kn
+      - lc
+      - mf
+      - pm
+      - vc
+      - ws
+      - sm
+      - st
+      - sa
+      - sn
+      - rs
+      - sc
+      - sl
+      - sg
+      - sx
+      - sk
+      - si
+      - sb
+      - so
+      - za
+      - gs
+      - ss
+      - es
+      - lk
+      - sd
+      - sr
+      - sj
+      - se
+      - ch
+      - sy
+      - tw
+      - tj
+      - tz
+      - th
+      - tl
+      - tg
+      - tk
+      - to
+      - tt
+      - tn
+      - tr
+      - tm
+      - tc
+      - tv
+      - ug
+      - ua
+      - ae
+      - gb
+      - um
+      - us
+      - uy
+      - uz
+      - vu
+      - ve
+      - vn
+      - vg
+      - vi
+      - wf
+      - eh
+      - ye
+      - zm
+      - zw
+      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Authorization header using the Bearer scheme
+      scheme: bearer
+      x-fern-bearer:
+        name: apiKey
+        env: KOTA_API_KEY
