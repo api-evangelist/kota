@@ -80,7 +80,8 @@ apis:
   description: The associatedPersons API from Kota — 2 operation(s) for associatedpersons.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Associated Persons
   tags_raw:
   - associatedPersons
   properties:
@@ -109,7 +110,8 @@ apis:
   description: The contributionReports API from Kota — 5 operation(s) for contributionreports.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Contribution Reports
   tags_raw:
   - contributionReports
   properties:
@@ -140,7 +142,8 @@ apis:
     The dependentsManagementIntents API from Kota — 6 operation(s) for dependentsmanagementintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Dependents Management Intents
   tags_raw:
   - dependentsManagementIntents
   properties:
@@ -169,7 +172,8 @@ apis:
   description: The embedSessions API from Kota — 1 operation(s) for embedsessions.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Embed Sessions
   tags_raw:
   - embedSessions
   properties:
@@ -185,7 +189,7 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
-  - employees
+  - Employees
   tags_raw:
   - employees
   properties:
@@ -201,7 +205,7 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
-  - employers
+  - Employers
   tags_raw:
   - employers
   properties:
@@ -230,7 +234,8 @@ apis:
   description: The enrolmentIntents API from Kota — 7 operation(s) for enrolmentintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Enrolment Intents
   tags_raw:
   - enrolmentIntents
   properties:
@@ -303,7 +308,8 @@ apis:
   description: The groupPolicies API from Kota — 2 operation(s) for grouppolicies.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Group Policies
   tags_raw:
   - groupPolicies
   properties:
@@ -318,7 +324,8 @@ apis:
   description: The groupPolicyIntents API from Kota — 3 operation(s) for grouppolicyintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Group Policy Intents
   tags_raw:
   - groupPolicyIntents
   properties:
@@ -333,7 +340,8 @@ apis:
   description: The groupQuoteIntents API from Kota — 5 operation(s) for groupquoteintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Group Quote Intents
   tags_raw:
   - groupQuoteIntents
   properties:
@@ -378,7 +386,8 @@ apis:
   description: The healthInsurance API from Kota — 8 operation(s) for healthinsurance.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Health Insurance
   tags_raw:
   - healthInsurance
   properties:
@@ -407,7 +416,8 @@ apis:
   description: The hostedSessions API from Kota — 1 operation(s) for hostedsessions.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Hosted Sessions
   tags_raw:
   - hostedSessions
   properties:
@@ -483,7 +493,8 @@ apis:
   description: The policyAmendmentIntents API from Kota — 5 operation(s) for policyamendmentintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Policy Amendment Intents
   tags_raw:
   - policyAmendmentIntents
   properties:
@@ -498,7 +509,8 @@ apis:
   description: The policyImportIntents API from Kota — 2 operation(s) for policyimportintents.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
-  tags: []
+  tags:
+  - Policy Import Intents
   tags_raw:
   - policyImportIntents
   properties:
@@ -530,7 +542,7 @@ apis:
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
   tags:
-  - requirements
+  - Requirements
   tags_raw:
   - requirements
   properties:
