@@ -11,8 +11,33 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 9
+edge_count: 18
 edges:
+- tag: enrolmentIntents
+  spec_file: kota-enrolment-intents-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.9
+  evidence: POST /enrolment_intents/{enrolment_intent_id}/coverage-selections 'Submit coverage selections
+    for an enrolment intent'; schemas EnrolmentIntentIneligibilityReasonCode, HealthInsuranceFamilyTypeCostSharingConfigurationResponse
+  reason: 'End-to-end benefits enrolment: create, confirm/reject enrolment intents, check eligibility
+    requirements and submit health insurance coverage selections — benefits administration within Compensation
+    & Benefits Management.'
+  recovered_from: sweep-20260829T005356Z-edges.json
+  reanchored_from: kota-enrolmentintents-api-openapi.yml
+- tag: dependentsManagementIntents
+  spec_file: kota-dependents-management-intents-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.85
+  evidence: '''Retrieve associated persons eligibility for a dependents management intent''; ''Add dependents
+    to a dependents management intent''; schemas DependentCoverageSelectionsRequest, FamilyTierCode'
+  reason: Manages dependent eligibility and coverage selections on employee insurance plans — clearly
+    benefits administration under Compensation & Benefits Management.
+  recovered_from: sweep-20260829T005356Z-edges.json
+  reanchored_from: kota-dependentsmanagementintents-api-openapi.yml
 - tag: policyAmendmentIntents
   spec_file: kota-policy-amendment-intents-api-openapi.yml
   reanchored_from: kota-policyamendmentintents-api-openapi.yml
@@ -24,6 +49,29 @@ edges:
     schemas PolicyAmendmentQualifyingLifeEventResponse, RequestedChangeType, PolicyAmendmentQuoteContributionsResponse
   reason: Creates, prices (quote contributions) and confirms amendments to an existing policy including
     dependent changes triggered by qualifying life events — mid-term adjustment/endorsement handling.
+- tag: contributionReports
+  spec_file: kota-contribution-reports-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.8
+  evidence: POST /contribution_reports/{contribution_report_id}/finalize 'Finalize a contribution report';
+    schemas HealthInsuranceContributionType, ContributionReportEmployeeBreakdownResponse
+  reason: Produces and finalises per-employee health insurance contribution breakdowns for payroll — benefits
+    administration/contribution reporting within Compensation & Benefits Management.
+  recovered_from: sweep-20260829T005356Z-edges.json
+  reanchored_from: kota-contributionreports-api-openapi.yml
+- tag: groups
+  spec_file: kota-groups-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.8
+  evidence: POST /groups/{group_id}/eligibility_check  Check employee eligibility for a group; AddEmployeeToGroupRequest;
+    EnrolmentStatus
+  reason: Benefit groups with employee membership, eligibility checking and enrolment references — classic
+    benefits eligibility and enrolment administration.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Policy Amendment Intents
   spec_file: kota-policy-amendment-intents-api-openapi.yml
   capability_id: BC-2140.20
@@ -45,6 +93,19 @@ edges:
     HealthInsurancePolicyRenewalResponse, PolicyPlanResponse, PlanDocumentResponse
   reason: Read surface over in-force group insurance policies including plans, cost-sharing configuration,
     renewal and plan documents — group/master policy administration.
+- tag: groupPolicyIntents
+  spec_file: kota-group-policy-intents-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.78
+  evidence: POST /group_policy_intents create-group-policy-intent; schemas HealthInsuranceCostSharingConfigurationResponse,
+    GroupPolicyIntentStatus
+  reason: Operations create and track intents to put group health-insurance policies in place for an employer,
+    with employer/employee cost-sharing configuration — employee benefits administration, i.e. Compensation
+    & Benefits Management.
+  recovered_from: sweep-20260829T005356Z-edges.json
+  reanchored_from: kota-grouppolicyintents-api-openapi.yml
 - tag: plans
   spec_file: kota-plans-api-openapi.yml
   capability_id: BC-2100.10
@@ -55,6 +116,19 @@ edges:
     PlanDocumentResponse, DisclosureResponse, PricingTierResponse
   reason: Read-only catalogue of insurance plans with coverage options, benefit definitions, plan documents
     and disclosures — insurance product catalogue and master data.
+- tag: Associated Persons
+  spec_file: kota-associated-persons-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.75
+  evidence: POST /employees/{employee_id}/associated_persons 'Create an associated person'; schemas RelationshipType,
+    SexAtBirth
+  reason: Maintains the register of persons associated with an employee (spouse/dependents, captured with
+    relationship type and sex at birth) on an employee-benefits platform. These records exist to drive
+    health-insurance and benefits eligibility, so the capability realised is benefits administration within
+    Compensation & Benefits Management rather than generic person master data.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Group Policies
   spec_file: kota-group-policies-api-openapi.yml
   capability_id: BC-2140.60
@@ -65,6 +139,17 @@ edges:
     PlanDocumentResponse
   reason: Read access to in-force group health insurance policies with plan documents, cost-sharing configuration
     and renewal state — group/master policy administration.
+- tag: events
+  spec_file: kota-events-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.75
+  evidence: POST /events/{event_id}/replay 'Replay an event'; schemas ReplayDeliveryResponse, WebhookVersion,
+    EventResponsePagedList
+  reason: Lists platform events and replays their webhook delivery — outbound webhook/event delivery reliability
+    for API consumers, not any benefits business function.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: groupQuoteIntents
   spec_file: kota-group-quote-intents-api-openapi.yml
   reanchored_from: kota-groupquoteintents-api-openapi.yml
@@ -109,3 +194,27 @@ edges:
     quote for a group quote intent; RejectGroupQuoteIntent; schema GroupQuoteResponse
   reason: Submission of group insurance quote requests, retrieval of the resulting quote, and accept/reject
     handling — quote and submission flow ahead of binding.
+- tag: Policy Import Intents
+  spec_file: kota-policy-import-intents-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.7
+  evidence: POST /policy_import_intents 'Create a new policy import intent'; schemas PolicyImportIntentAssociatedPersonResponse,
+    PolicyImportIntentStatus
+  reason: Imports existing employee benefit (insurance) policies with their associated persons into the
+    benefits platform — benefits administration. Confidence moderated because the operations are thin
+    (create/list/retrieve) with no explicit benefit-type detail.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: employees
+  spec_file: kota-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /employees/{employee_id}/offboard 'Offboard an employee'; schemas EmployeeResponse, EmployeeBankAccount,
+    EmployeeStatus
+  reason: CRUD over employee master records including status, address, bank account and offboarding —
+    employee record administration (HR Operations). Not the benefits selection itself, which lives in
+    the enrolment/policy tags.
+  recovered_from: sweep-20260829T005356Z-edges.json
