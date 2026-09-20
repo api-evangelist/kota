@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: business-product
 pricing_basis: per-seat
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
 published: true
 note: Prices shown as "€/£ 9" and "€/£ 6" per employee monthly platform fee; currency ambiguous between
   EUR and GBP. Page notes pricing updated March 4th 2026, applies to new customers only.
