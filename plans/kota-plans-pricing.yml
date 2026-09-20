@@ -1,0 +1,33 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.kota.io/pricing
+sources:
+- https://www.kota.io/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+published: true
+note: Prices shown as "€/£ 9" and "€/£ 6" per employee monthly platform fee; currency ambiguous between
+  EUR and GBP. Page notes pricing updated March 4th 2026, applies to new customers only.
+plan_count: 3
+plans:
+- name: Startup
+  price_text: '9'
+  price: 9
+  period: month
+  unit: per employee monthly platform fee
+  included_quota: 1-30
+- name: Scaleup
+  price_text: '6'
+  price: 6
+  period: month
+  unit: per employee monthly platform fee
+  included_quota: 31-200
+- name: Enterprise
+  price_text: Talk to our team
+  period: none
+  included_quota: 201+
