@@ -14,7 +14,8 @@ capability_model:
 edge_count: 9
 edges:
 - tag: policyAmendmentIntents
-  spec_file: kota-policyamendmentintents-api-openapi.yml
+  spec_file: kota-policy-amendment-intents-api-openapi.yml
+  reanchored_from: kota-policyamendmentintents-api-openapi.yml
   capability_id: BC-2140.20
   capability_id_l1: BC-2140
   capability_name: Policy Endorsement & Mid-Term Adjustment
@@ -34,7 +35,8 @@ edges:
   reason: Creates, prices and confirms amendments to an existing insurance policy driven by qualifying
     life events — mid-term adjustment/endorsement of in-force cover.
 - tag: groupPolicies
-  spec_file: kota-grouppolicies-api-openapi.yml
+  spec_file: kota-group-policies-api-openapi.yml
+  reanchored_from: kota-grouppolicies-api-openapi.yml
   capability_id: BC-2140.60
   capability_id_l1: BC-2140
   capability_name: Group & Master Policy Administration
@@ -64,7 +66,8 @@ edges:
   reason: Read access to in-force group health insurance policies with plan documents, cost-sharing configuration
     and renewal state — group/master policy administration.
 - tag: groupQuoteIntents
-  spec_file: kota-groupquoteintents-api-openapi.yml
+  spec_file: kota-group-quote-intents-api-openapi.yml
+  reanchored_from: kota-groupquoteintents-api-openapi.yml
   capability_id: BC-2110.60
   capability_id_l1: BC-2110
   capability_name: Quote & Submission Management
@@ -84,7 +87,8 @@ edges:
   reason: Exposes in-force insurance policy records, status and renewal data — policy administration.
     Read-only retrieval does not name a single narrower sub-capability.
 - tag: healthInsurance
-  spec_file: kota-healthinsurance-api-openapi.yml
+  spec_file: kota-health-insurance-api-openapi.yml
+  reanchored_from: kota-healthinsurance-api-openapi.yml
   capability_id: BC-2140
   capability_id_l1: BC-2140
   capability_name: Policy Administration Management
