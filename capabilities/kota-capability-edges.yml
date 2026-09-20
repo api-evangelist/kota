@@ -1,0 +1,107 @@
+slug: kota
+provider: Kota
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: policyAmendmentIntents
+  spec_file: kota-policyamendmentintents-api-openapi.yml
+  capability_id: BC-2140.20
+  capability_id_l1: BC-2140
+  capability_name: Policy Endorsement & Mid-Term Adjustment
+  confidence: 0.82
+  evidence: POST /policies/{policy_id}/policy_amendment_intents  create-policy-amendment-intent; confirm-policy-amendment-intent;
+    schemas PolicyAmendmentQualifyingLifeEventResponse, RequestedChangeType, PolicyAmendmentQuoteContributionsResponse
+  reason: Creates, prices (quote contributions) and confirms amendments to an existing policy including
+    dependent changes triggered by qualifying life events — mid-term adjustment/endorsement handling.
+- tag: Policy Amendment Intents
+  spec_file: kota-policy-amendment-intents-api-openapi.yml
+  capability_id: BC-2140.20
+  capability_id_l1: BC-2140
+  capability_name: Policy Endorsement & Mid-Term Adjustment
+  confidence: 0.78
+  evidence: POST /policies/{policy_id}/policy_amendment_intents CreatePolicyAmendmentIntent; schemas PolicyAmendmentQualifyingLifeEventResponse,
+    RequestedChangeType, PolicyAmendmentQuoteContributionsResponse
+  reason: Creates, prices and confirms amendments to an existing insurance policy driven by qualifying
+    life events — mid-term adjustment/endorsement of in-force cover.
+- tag: groupPolicies
+  spec_file: kota-grouppolicies-api-openapi.yml
+  capability_id: BC-2140.60
+  capability_id_l1: BC-2140
+  capability_name: Group & Master Policy Administration
+  confidence: 0.78
+  evidence: GET /group_policies 'List all group policies'; schemas HealthInsuranceGroupPolicyResponse,
+    HealthInsurancePolicyRenewalResponse, PolicyPlanResponse, PlanDocumentResponse
+  reason: Read surface over in-force group insurance policies including plans, cost-sharing configuration,
+    renewal and plan documents — group/master policy administration.
+- tag: plans
+  spec_file: kota-plans-api-openapi.yml
+  capability_id: BC-2100.10
+  capability_id_l1: BC-2100
+  capability_name: Insurance Product Catalogue Management
+  confidence: 0.78
+  evidence: GET /plans  list-plans  List all plans; schemas PlanHealthInsuranceResponse, PlanCoverageOptionBenefitResponse,
+    PlanDocumentResponse, DisclosureResponse, PricingTierResponse
+  reason: Read-only catalogue of insurance plans with coverage options, benefit definitions, plan documents
+    and disclosures — insurance product catalogue and master data.
+- tag: Group Policies
+  spec_file: kota-group-policies-api-openapi.yml
+  capability_id: BC-2140.60
+  capability_id_l1: BC-2140
+  capability_name: Group & Master Policy Administration
+  confidence: 0.75
+  evidence: GET /group_policies ListGroupPolicies; schemas HealthInsuranceGroupPolicyResponse, HealthInsurancePolicyRenewalResponse,
+    PlanDocumentResponse
+  reason: Read access to in-force group health insurance policies with plan documents, cost-sharing configuration
+    and renewal state — group/master policy administration.
+- tag: groupQuoteIntents
+  spec_file: kota-groupquoteintents-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.75
+  evidence: GET /group_quote_intents/{group_quote_intent_id}/quote 'Retrieve the quote for a group quote
+    intent'; POST .../reject 'Reject a group quote intent'; schemas GroupQuoteResponse, PlanCoverageOptionSelectionRequest
+  reason: Submission intake with requirements/consents, quote generation and retrieval, and rejection
+    for group insurance — quote and submission management in the distribution flow.
+- tag: policies
+  spec_file: kota-policies-api-openapi.yml
+  capability_id: BC-2140
+  capability_id_l1: BC-2140
+  capability_name: Policy Administration Management
+  confidence: 0.75
+  evidence: GET /policies/{policy_id}  retrieve-policy; schemas HealthInsurancePolicyResponse, PolicyStatus,
+    HealthInsurancePolicyRenewalResponse, PolicyPlanResponse
+  reason: Exposes in-force insurance policy records, status and renewal data — policy administration.
+    Read-only retrieval does not name a single narrower sub-capability.
+- tag: healthInsurance
+  spec_file: kota-healthinsurance-api-openapi.yml
+  capability_id: BC-2140
+  capability_id_l1: BC-2140
+  capability_name: Policy Administration Management
+  confidence: 0.72
+  evidence: GET /employers/{employer_id}/health_insurance/policies  list-employer-health-insurance-policies;
+    GET /employees/{employee_id}/health_insurance/policies  list-employee-health-insurance-policies; schema
+    EmployerHealthInsurancePolicyRenewalStatus
+  reason: Surface exposes employer and employee health insurance policies, statuses and renewals — in-force
+    insurance contract administration. Spans quotes, offers and policies so no single L2 is clearly named;
+    L1 only.
+- tag: Group Quote Intents
+  spec_file: kota-group-quote-intents-api-openapi.yml
+  capability_id: BC-2110.60
+  capability_id_l1: BC-2110
+  capability_name: Quote & Submission Management
+  confidence: 0.7
+  evidence: GET /group_quote_intents/{group_quote_intent_id}/quote GetGroupQuoteIntentQuote Retrieve the
+    quote for a group quote intent; RejectGroupQuoteIntent; schema GroupQuoteResponse
+  reason: Submission of group insurance quote requests, retrieval of the resulting quote, and accept/reject
+    handling — quote and submission flow ahead of binding.
