@@ -9,7 +9,7 @@ servers:
 - url: https://api.kota.io
   description: production
 tags:
-- name: events
+- name: Events
 paths:
   /events:
     get:
@@ -20,7 +20,7 @@ paths:
 
         Each `event`’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version.'
       tags:
-      - events
+      - Events
       parameters:
       - name: created_after
         in: query
@@ -86,7 +86,7 @@ paths:
 
         The event’s data is rendered according to the API version at the time of its creation, as specified by the `api_version` attribute in the event object, rather than the current API version'
       tags:
-      - events
+      - Events
       parameters:
       - name: event_id
         in: path
@@ -123,7 +123,7 @@ paths:
       summary: Replay an event
       description: Replays an event by creating new deliveries to all currently matching subscription endpoints. Each delivery performs a single attempt and does not trigger automatic retries.
       tags:
-      - events
+      - Events
       parameters:
       - name: event_id
         in: path
@@ -156,12 +156,32 @@ paths:
       description: production
 components:
   schemas:
-    JsonNodeOptions:
+    ReplayDeliveryResponse:
       type: object
       properties:
-        property_name_case_insensitive:
+        delivery_id:
+          type: string
+        success:
           type: boolean
-      title: JsonNodeOptions
+        response_status_code:
+          type:
+          - integer
+          - 'null'
+        elapsed_time_ms:
+          type: number
+          format: double
+      required:
+      - delivery_id
+      - success
+      - response_status_code
+      - elapsed_time_ms
+      title: ReplayDeliveryResponse
+    OrderDirectionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/OrderDirection'
+      title: OrderDirectionEnumParameter
     ReplayEventResponse:
       type: object
       properties:
@@ -175,41 +195,6 @@ components:
       - event_id
       - deliveries
       title: ReplayEventResponse
-    WebhookVersionEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/WebhookVersion'
-      title: WebhookVersionEnumParameter
-    OrderDirectionEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/OrderDirection'
-      title: OrderDirectionEnumParameter
-    EventResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        platform_id:
-          type: string
-        created:
-          type: string
-          format: date-time
-        type:
-          type: string
-        data:
-          $ref: '#/components/schemas/JsonNode'
-        api_version:
-          type: string
-      required:
-      - id
-      - platform_id
-      - created
-      - type
-      - data
-      title: EventResponse
     EventResponsePagedList:
       type: object
       properties:
@@ -239,46 +224,18 @@ components:
       - page_size
       - total_count
       title: EventResponsePagedList
-    ProblemDetails:
+    WebhookVersionEnumParameter:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    JsonNode:
-      type: object
-      properties:
-        options:
-          $ref: '#/components/schemas/JsonNodeOptions'
-        parent:
-          $ref: '#/components/schemas/JsonNode'
-        root:
-          $ref: '#/components/schemas/JsonNode'
-      title: JsonNode
-    OrderDirection:
+        value:
+          $ref: '#/components/schemas/WebhookVersion'
+      title: WebhookVersionEnumParameter
+    WebhookVersion:
       type: string
       enum:
-      - asc
-      - desc
-      title: OrderDirection
+      - v1
+      - v2
+      title: WebhookVersion
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -309,38 +266,106 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
-    WebhookVersion:
-      type: string
-      enum:
-      - v1
-      - v2
-      title: WebhookVersion
-    ReplayDeliveryResponse:
+    JsonNode:
       type: object
       properties:
-        delivery_id:
-          type: string
-        success:
-          type: boolean
-        response_status_code:
-          type:
-          - integer
-          - 'null'
-        elapsed_time_ms:
-          type: number
-          format: double
-      required:
-      - delivery_id
-      - success
-      - response_status_code
-      - elapsed_time_ms
-      title: ReplayDeliveryResponse
-    JsonNodeOptions_2:
+        options:
+          $ref: '#/components/schemas/JsonNodeOptions'
+        parent:
+          $ref: '#/components/schemas/JsonNode'
+        root:
+          $ref: '#/components/schemas/JsonNode'
+      title: JsonNode
+    JsonNodeOptions:
       type: object
       properties:
         property_name_case_insensitive:
           type: boolean
+      title: JsonNodeOptions
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    EventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        platform_id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        type:
+          type: string
+        data:
+          $ref: '#/components/schemas/JsonNode'
+        api_version:
+          type: string
+      required:
+      - id
+      - platform_id
+      - created
+      - type
+      - data
+      title: EventResponse
+    OrderDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: OrderDirection
+    ReplayDeliveryResponse_2:
+      required:
+      - delivery_id
+      - elapsed_time_ms
+      - response_status_code
+      - success
+      type: object
+      properties:
+        delivery_id:
+          pattern: evtd_.+
+          type: string
+          example: evtd_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        success:
+          type: boolean
           example: true
+        response_status_code:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        elapsed_time_ms:
+          type: number
+          format: double
+          example: 123.45
+      additionalProperties: false
+    OrderDirectionEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/OrderDirection_2'
       additionalProperties: false
     ReplayEventResponse_2:
       required:
@@ -356,51 +381,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReplayDeliveryResponse_2'
-      additionalProperties: false
-    OrderDirectionEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/OrderDirection_2'
-      additionalProperties: false
-    WebhookVersionEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/WebhookVersion_2'
-      additionalProperties: false
-    EventResponse_2:
-      required:
-      - created
-      - data
-      - id
-      - platform_id
-      - type
-      type: object
-      properties:
-        id:
-          pattern: evt_.+
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        platform_id:
-          pattern: pt_.+
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        created:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        type:
-          type: string
-        data:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/JsonNode_2'
-        api_version:
-          type: string
-          readOnly: true
       additionalProperties: false
     EventResponsePagedList_2:
       required:
@@ -441,53 +421,17 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    ProblemDetails_2:
+    WebhookVersionEnumParameter_2:
       type: object
       properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    JsonNode_2:
-      type: object
-      properties:
-        options:
-          type: 'null'
+        value:
           allOf:
-          - $ref: '#/components/schemas/JsonNodeOptions_2'
-          readOnly: true
-        parent:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/JsonNode_2'
-          readOnly: true
-        root:
-          allOf:
-          - $ref: '#/components/schemas/JsonNode_2'
-          readOnly: true
+          - $ref: '#/components/schemas/WebhookVersion_2'
       additionalProperties: false
-    OrderDirection_2:
+    WebhookVersion_2:
       enum:
-      - asc
-      - desc
+      - v1
+      - v2
       type: string
     HttpValidationProblemDetails_2:
       type: object
@@ -520,36 +464,92 @@ components:
             items:
               type: string
       additionalProperties: {}
-    WebhookVersion_2:
-      enum:
-      - v1
-      - v2
-      type: string
-    ReplayDeliveryResponse_2:
-      required:
-      - delivery_id
-      - elapsed_time_ms
-      - response_status_code
-      - success
+    JsonNode_2:
       type: object
       properties:
-        delivery_id:
-          pattern: evtd_.+
-          type: string
-          example: evtd_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        success:
+        options:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNodeOptions_2'
+          readOnly: true
+        parent:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+          readOnly: true
+        root:
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+          readOnly: true
+      additionalProperties: false
+    JsonNodeOptions_2:
+      type: object
+      properties:
+        property_name_case_insensitive:
           type: boolean
           example: true
-        response_status_code:
+      additionalProperties: false
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
           type:
           - 'null'
           - integer
           format: int32
-        elapsed_time_ms:
-          type: number
-          format: double
-          example: 123.45
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    EventResponse_2:
+      required:
+      - created
+      - data
+      - id
+      - platform_id
+      - type
+      type: object
+      properties:
+        id:
+          pattern: evt_.+
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        created:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        type:
+          type: string
+        data:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+        api_version:
+          type: string
+          readOnly: true
       additionalProperties: false
+    OrderDirection_2:
+      enum:
+      - asc
+      - desc
+      type: string
   securitySchemes:
     bearerAuth:
       type: http

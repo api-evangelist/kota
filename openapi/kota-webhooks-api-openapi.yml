@@ -9,7 +9,7 @@ servers:
 - url: https://api.kota.io
   description: production
 tags:
-- name: webhooks
+- name: Webhooks
 paths:
   /webhooks/endpoints:
     get:
@@ -17,7 +17,7 @@ paths:
       summary: List all webhook endpoints
       description: Get all registered webhook endpoints for the platform.
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: page
         in: query
@@ -61,7 +61,7 @@ paths:
       summary: Retrieve a webhook endpoint
       description: Get a registered webhook endpoint by its Id.
       tags:
-      - webhooks
+      - Webhooks
       parameters:
       - name: webhook_endpoint_id
         in: path
@@ -94,30 +94,6 @@ paths:
       description: production
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
     WebhookEndpointResponsePagedList:
       type: object
       properties:
@@ -177,6 +153,30 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
     WebhookEndpointResponse:
       type: object
       properties:
@@ -204,37 +204,6 @@ components:
       - subscribed_events
       - created_at
       title: WebhookEndpointResponse
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      additionalProperties: {}
     WebhookEndpointResponsePagedList_2:
       required:
       - items
@@ -274,6 +243,37 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
     ProblemDetails_2:
       type: object
       properties:

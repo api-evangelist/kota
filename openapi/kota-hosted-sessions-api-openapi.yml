@@ -43,6 +43,34 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    CreateSessionTokenLinkRequest:
+      required:
+      - employee_id
+      - employer_id
+      type: object
+      properties:
+        employer_id:
+          pattern: er_.+
+          type: string
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    CreateHostedSessionTokenResponse:
+      required:
+      - expiry
+      - link
+      type: object
+      properties:
+        link:
+          type: string
+        expiry:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
     ProblemDetails:
       type: object
       properties:
@@ -68,34 +96,6 @@ components:
           - 'null'
           - string
       additionalProperties: {}
-    CreateHostedSessionTokenResponse:
-      required:
-      - expiry
-      - link
-      type: object
-      properties:
-        link:
-          type: string
-        expiry:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-      additionalProperties: false
-    CreateSessionTokenLinkRequest:
-      required:
-      - employee_id
-      - employer_id
-      type: object
-      properties:
-        employer_id:
-          pattern: er_.+
-          type: string
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

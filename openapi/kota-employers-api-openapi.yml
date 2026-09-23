@@ -9,7 +9,7 @@ servers:
 - url: https://api.kota.io
   description: production
 tags:
-- name: employers
+- name: Employers
 paths:
   /employers:
     get:
@@ -17,7 +17,7 @@ paths:
       summary: List all employers
       description: Returns a list of your `employers`. The `employers` are returned sorted by creation date, with the most recent `employers` appearing first.
       tags:
-      - employers
+      - Employers
       parameters:
       - name: filter
         in: query
@@ -67,7 +67,7 @@ paths:
       summary: Create an employer
       description: Creates an `employer`.
       tags:
-      - employers
+      - Employers
       parameters:
       - name: Authorization
         in: header
@@ -110,7 +110,7 @@ paths:
       summary: Retrieve an employer
       description: Retrieves an `employer` object.
       tags:
-      - employers
+      - Employers
       parameters:
       - name: employer_id
         in: path
@@ -147,7 +147,7 @@ paths:
 
         This request accepts mostly the same arguments as the `employer` creation call.'
       tags:
-      - employers
+      - Employers
       parameters:
       - name: employer_id
         in: path
@@ -195,7 +195,7 @@ paths:
       summary: Offboard an employer
       description: Immediately offboard an `employer`. The `employer`’s scheme will be terminated and all `employees` associated with the `employer` will be offboarded and have their insurance terminated. `Employee` offboarding cannot be cancelled if triggered via this call.
       tags:
-      - employers
+      - Employers
       parameters:
       - name: employer_id
         in: path
@@ -234,6 +234,76 @@ paths:
       description: production
 components:
   schemas:
+    CreateEmployerRequest:
+      type: object
+      properties:
+        legal_name:
+          type: string
+          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
+        registration_number:
+          type:
+          - string
+          - 'null'
+          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
+        legal_address:
+          $ref: '#/components/schemas/AddressModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
+
+
+            **Constraints:**
+
+
+            - Can only be set or updated if no group policy or group quote exists.
+
+            - Must be a valid date in the future.'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+      required:
+      - legal_name
+      - legal_address
+      - contact
+      title: CreateEmployerRequest
+    EmployerResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: EmployerResponsePagedList
     ContactModel:
       type: object
       properties:
@@ -247,6 +317,36 @@ components:
       - name
       - email
       title: ContactModel
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
     EmployerResponse:
       type: object
       properties:
@@ -292,6 +392,100 @@ components:
       - legal_address
       - contact
       title: EmployerResponse
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    AddressModelWithoutCountry:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+      required:
+      - line1
+      - city
+      - postal_code
+      title: AddressModelWithoutCountry
+    UpdateEmployerRequest:
+      type: object
+      properties:
+        legal_name:
+          type:
+          - string
+          - 'null'
+        registration_number:
+          type:
+          - string
+          - 'null'
+        legal_address:
+          $ref: '#/components/schemas/AddressModelWithoutCountry'
+          description: Treated as a single object that is updated entirely, `null` sub-fields (e.g. Line 3) will delete the existing values
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
+
+
+            **Constraints:**
+
+
+            - Can only be set or updated if no group policy or group quote exists.
+
+            - Must be a valid date.'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
+      title: UpdateEmployerRequest
     EmployerStatus:
       type: string
       enum:
@@ -336,200 +530,6 @@ components:
       - postal_code
       - country_code
       title: AddressModel
-    CreateEmployerRequest:
-      type: object
-      properties:
-        legal_name:
-          type: string
-          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
-        registration_number:
-          type:
-          - string
-          - 'null'
-          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
-        legal_address:
-          $ref: '#/components/schemas/AddressModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-        earliest_benefits_start_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
-
-
-            **Constraints:**
-
-
-            - Can only be set or updated if no group policy or group quote exists.
-
-            - Must be a valid date in the future.'
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-      required:
-      - legal_name
-      - legal_address
-      - contact
-      title: CreateEmployerRequest
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    EmployerResponsePagedList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployerResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: EmployerResponsePagedList
-    UpdateEmployerRequest:
-      type: object
-      properties:
-        legal_name:
-          type:
-          - string
-          - 'null'
-        registration_number:
-          type:
-          - string
-          - 'null'
-        legal_address:
-          $ref: '#/components/schemas/AddressModelWithoutCountry'
-          description: Treated as a single object that is updated entirely, `null` sub-fields (e.g. Line 3) will delete the existing values
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-        earliest_benefits_start_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
-
-
-            **Constraints:**
-
-
-            - Can only be set or updated if no group policy or group quote exists.
-
-            - Must be a valid date.'
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
-      title: UpdateEmployerRequest
-    HttpValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      title: HttpValidationProblemDetails
-    AddressModelWithoutCountry:
-      type: object
-      properties:
-        line1:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        line2:
-          type:
-          - string
-          - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        line3:
-          type:
-          - string
-          - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        city:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        state:
-          type:
-          - string
-          - 'null'
-          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
-        postal_code:
-          type: string
-          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-      required:
-      - line1
-      - city
-      - postal_code
-      title: AddressModelWithoutCountry
     CountryCode:
       type: string
       enum:
@@ -784,6 +784,89 @@ components:
       - zm
       - zw
       title: CountryCode
+    CreateEmployerRequest_2:
+      required:
+      - contact
+      - legal_address
+      - legal_name
+      type: object
+      properties:
+        legal_name:
+          type: string
+          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
+        registration_number:
+          type:
+          - 'null'
+          - string
+          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
+        legal_address:
+          allOf:
+          - $ref: '#/components/schemas/AddressModel_2'
+        contact:
+          allOf:
+          - $ref: '#/components/schemas/ContactModel_2'
+        earliest_benefits_start_date:
+          type:
+          - 'null'
+          - string
+          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
+
+
+            **Constraints:**
+
+
+            - Can only be set or updated if no group policy or group quote exists.
+
+            - Must be a valid date in the future.'
+          format: date
+          example: '2024-12-01'
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+      additionalProperties: false
+    EmployerResponsePagedList_2:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerResponse_2'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
     ContactModel_2:
       required:
       - email
@@ -797,6 +880,37 @@ components:
           type: string
           description: 'Contact email address. NOTE: This field will be normalized according to our internal formatting rules.'
       additionalProperties: false
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
     EmployerResponse_2:
       required:
       - contact
@@ -852,18 +966,34 @@ components:
           description: The object type
           readOnly: true
       additionalProperties: false
-    EmployerStatus_2:
-      enum:
-      - pending
-      - active
-      - offboarding
-      - inactive
-      - restricted
-      type: string
-    AddressModel_2:
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    AddressModelWithoutCountry_2:
       required:
       - city
-      - country_code
       - line1
       - postal_code
       type: object
@@ -892,117 +1022,6 @@ components:
         postal_code:
           type: string
           description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-        country_code:
-          allOf:
-          - $ref: '#/components/schemas/CountryCode_2'
-      additionalProperties: false
-    CreateEmployerRequest_2:
-      required:
-      - contact
-      - legal_address
-      - legal_name
-      type: object
-      properties:
-        legal_name:
-          type: string
-          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
-        registration_number:
-          type:
-          - 'null'
-          - string
-          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
-        legal_address:
-          allOf:
-          - $ref: '#/components/schemas/AddressModel_2'
-        contact:
-          allOf:
-          - $ref: '#/components/schemas/ContactModel_2'
-        earliest_benefits_start_date:
-          type:
-          - 'null'
-          - string
-          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
-
-
-            **Constraints:**
-
-
-            - Can only be set or updated if no group policy or group quote exists.
-
-            - Must be a valid date in the future.'
-          format: date
-          example: '2024-12-01'
-        metadata:
-          type:
-          - 'null'
-          - object
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-      additionalProperties: false
-    ProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    EmployerResponsePagedList_2:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployerResponse_2'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
       additionalProperties: false
     UpdateEmployerRequest_2:
       type: object
@@ -1047,40 +1066,18 @@ components:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
       additionalProperties: false
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      additionalProperties: {}
-    AddressModelWithoutCountry_2:
+    EmployerStatus_2:
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      type: string
+    AddressModel_2:
       required:
       - city
+      - country_code
       - line1
       - postal_code
       type: object
@@ -1109,6 +1106,9 @@ components:
         postal_code:
           type: string
           description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
       additionalProperties: false
     CountryCode_2:
       enum:

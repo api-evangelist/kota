@@ -365,6 +365,428 @@ components:
             $ref: '#/components/schemas/HealthInsuranceCoverageLevelDocumentResponse'
           description: Documents related to the health insurance plan, these documents may change at renewal, this includes the documents like `Insurance Product Information Document`, `Hospital Lists`, `Table of Cover` etc
       additionalProperties: false
+    HealthInsuranceCoverageLevelDocumentResponse:
+      required:
+      - link
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+          description: Health Insurance Document Title
+        link:
+          type: string
+          description: Health Insurance Document Link (can be a link to a website or a file path)
+      additionalProperties: false
+    HealthInsuranceEstimatedGrossPremiumResponse:
+      required:
+      - currency
+      - monthly
+      - term
+      type: object
+      properties:
+        currency:
+          allOf:
+          - $ref: '#/components/schemas/CurrencyCode'
+          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
+        monthly:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: Estimated monthly gross premium amounts representing regular monthly charges.
+        term:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
+          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
+      additionalProperties: false
+    EmployerHealthInsuranceQuoteResponse:
+      required:
+      - coverage_levels
+      - employer_id
+      - id
+      - quoted_at
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: erhq_.+
+          type: string
+          description: Unique identifier for the quote
+          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        quoted_at:
+          type: string
+          description: Date and time the quote was created at
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerHealthInsuranceQuoteStatus'
+          description: Current status of the quote
+        required_action:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Actions required by the employer to proceed with the quote. Set only when `status` is `action_required`.
+        coverage_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: List of levels covered under the policy, each item representing details about the plan’s cover. Currently Kota only supports a single level of cover.
+      additionalProperties: false
+    HealthInsuranceGrossEstimationAmountResponse:
+      required:
+      - employee_contribution
+      - employer_contribution
+      - total
+      type: object
+      properties:
+        employee_contribution:
+          type: number
+          description: Estimated gross premium amount deducted from employee payroll
+          format: double
+          example: 123.45
+        employer_contribution:
+          type: number
+          description: Estimated gross premium amount paid by the employer
+          format: double
+          example: 123.45
+        total:
+          type: number
+          description: Total gross premium amount (sum of employee and employer contributions).
+          format: double
+          example: 123.45
+      additionalProperties: false
+    EmployeeHealthPolicyRenewal:
+      required:
+      - decision_confirmed
+      - renewal_date
+      - status
+      - window_end_date
+      - window_start_date
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          description: Policy renewal date
+          format: date
+          example: '2024-12-01'
+        window_start_date:
+          type: string
+          description: Renewal window starts on this day
+          format: date
+          example: '2024-12-01'
+        window_end_date:
+          type: string
+          description: Renewal window ends at the end of this day
+          format: date
+          example: '2024-12-01'
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+          example: true
+        renewed_health_insurance_id:
+          pattern: eehp_.+
+          type:
+          - 'null'
+          - string
+          description: The ID of the renewed health insurance policy, if renewed
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyResponse:
+      required:
+      - coverage_level
+      - employee_id
+      - employer_id
+      - end_date
+      - enrolled_dependants_count
+      - enrolment_type
+      - estimated_gross_premium
+      - id
+      - opt_out_deadline_date
+      - renewal
+      - start_date
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: eehp_.+
+          type: string
+          description: Unique identifier for policy
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the policy is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the policy is created
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        start_date:
+          type: string
+          description: Policy starts on this date
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type: string
+          description: Policy ends on this date
+          format: date
+          example: '2024-12-01'
+        cancellation_date:
+          type:
+          - 'null'
+          - string
+          description: Policy was cancelled on this date, if cancellation occured
+          format: date
+          example: '2024-12-01'
+        policy_number:
+          type:
+          - 'null'
+          - string
+          description: Health insurance policy number, if available
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthInsurancePolicyStatus'
+          description: Current status of policy
+        enrolment_type:
+          allOf:
+          - $ref: '#/components/schemas/EnrolmentType'
+          description: Enrolment type of the policy
+        renewal:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthPolicyRenewal'
+          description: Renewal information for the policy
+        opt_out_deadline_date:
+          type: string
+          description: Last day to opt out from the policy
+          format: date
+          example: '2024-12-01'
+        coverage_level:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Represents the current coverage level for the policy
+        enrolled_dependants_count:
+          type: integer
+          description: Number of dependants (spouse, children, or other eligible family members) currently enrolled in this health insurance policy.
+          format: int32
+          example: 123
+        estimated_gross_premium:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceEstimatedGrossPremiumResponse'
+          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    EmployerHealthInsuranceQuoteResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyStatus:
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      type: string
+    EmployerHealthInsurancePolicyResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerHealthInsurancePolicyResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    EnrolmentType:
+      enum:
+      - opt_out
+      - opt_in
+      type: string
+    EmployeeHealthInsuranceOfferResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    EmployeeHealthInsuranceOfferStatus:
+      enum:
+      - action_required
+      - not_undertaken
+      - accepted
+      type: string
+    HealthInsuranceRequiredActionResponse:
+      required:
+      - code
+      - due_at
+      - reason
+      - reason_description
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Concise reason for the required action
+        reason_description:
+          type: string
+          description: Description for the required action
+        code:
+          type: string
+          description: Identified the type of action required, not unique across health insurance providers
+        due_at:
+          type: string
+          description: Date and time by which the action is due, if this is not completed then the policy will not be issued.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    EmployerHealthInsurancePolicyStatus:
+      enum:
+      - scheduled
+      - active
+      - expired
+      - cancelled
+      type: string
     EmployerHealthInsurancePolicyResponse:
       required:
       - coverage_levels
@@ -437,36 +859,15 @@ components:
             $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
           description: Represents the available coverage levels for this policy
       additionalProperties: false
-    HealthInsuranceRequiredActionResponse:
-      required:
-      - code
-      - due_at
-      - reason
-      - reason_description
-      type: object
-      properties:
-        reason:
-          type: string
-          description: Concise reason for the required action
-        reason_description:
-          type: string
-          description: Description for the required action
-        code:
-          type: string
-          description: Identified the type of action required, not unique across health insurance providers
-        due_at:
-          type: string
-          description: Date and time by which the action is due, if this is not completed then the policy will not be issued.
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    EmployeeHealthInsuranceOfferStatus:
+    EmployerHealthInsuranceQuoteStatus:
       enum:
+      - pending_quote
       - action_required
       - not_undertaken
       - accepted
+      - pending_insurer_acceptance
       type: string
-    EmployerHealthInsuranceQuoteResponsePagedList:
+    EmployeeHealthInsurancePolicyResponsePagedList:
       required:
       - items
       - page
@@ -477,7 +878,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/EmployerHealthInsuranceQuoteResponse'
+            $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
           description: A paginated array containing the response elements
         page:
           type: integer
@@ -505,48 +906,99 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    HealthInsuranceCoverageLevelDocumentResponse:
-      required:
-      - link
-      - title
-      type: object
-      properties:
-        title:
-          type: string
-          description: Health Insurance Document Title
-        link:
-          type: string
-          description: Health Insurance Document Link (can be a link to a website or a file path)
-      additionalProperties: false
-    EmployerHealthInsurancePolicyStatus:
+    EmployerHealthInsurancePolicyRenewalStatus:
       enum:
-      - scheduled
-      - active
-      - expired
+      - upcoming
+      - open
+      - renewed
       - cancelled
       type: string
-    HealthInsuranceGrossEstimationAmountResponse:
+    GetEmployerHealthPolicyRenewal:
       required:
-      - employee_contribution
-      - employer_contribution
-      - total
+      - decision_confirmed
+      - renewal_date
+      - status
+      - window_end_date
+      - window_start_date
       type: object
       properties:
-        employee_contribution:
-          type: number
-          description: Estimated gross premium amount deducted from employee payroll
-          format: double
-          example: 123.45
-        employer_contribution:
-          type: number
-          description: Estimated gross premium amount paid by the employer
-          format: double
-          example: 123.45
-        total:
-          type: number
-          description: Total gross premium amount (sum of employee and employer contributions).
-          format: double
-          example: 123.45
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
+          description: The current status of the renewal
+        renewal_date:
+          type: string
+          description: Policy renewal date
+          format: date
+          example: '2024-12-01'
+        window_start_date:
+          type: string
+          description: Renewal window starts on this day
+          format: date
+          example: '2024-12-01'
+        window_end_date:
+          type: string
+          description: Renewal window ends at the end of this day
+          format: date
+          example: '2024-12-01'
+        decision_confirmed:
+          type: boolean
+          description: Whether the decision to renew the policy has been confirmed
+          example: true
+        renewed_health_insurance_id:
+          pattern: erhp_.+
+          type:
+          - 'null'
+          - string
+          description: The ID of the renewed health insurance policy, if renewed
+          example: erhp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+      additionalProperties: false
+    EmployeeHealthInsuranceOfferResponse:
+      required:
+      - coverage_level
+      - employee_id
+      - employer_id
+      - id
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: eeho_.+
+          type: string
+          description: Unique identifier for offer
+          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the offer is available
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the offer is available
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployeeHealthInsuranceOfferStatus'
+          description: Current status of offer
+        required_action:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
+          description: Required action to progress the offer, if any. Set only when `status` is `action_required`.
+        coverage_level:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
+          description: Details about the coverage level for the offer. Only a single level of cover is available for a specific employee!
       additionalProperties: false
     CurrencyCode:
       enum:
@@ -720,458 +1172,6 @@ components:
       - zmw
       - zwl
       type: string
-    EmployerHealthInsuranceQuoteStatus:
-      enum:
-      - pending_quote
-      - action_required
-      - not_undertaken
-      - accepted
-      - pending_insurer_acceptance
-      type: string
-    EmployeeHealthPolicyRenewal:
-      required:
-      - decision_confirmed
-      - renewal_date
-      - status
-      - window_end_date
-      - window_start_date
-      type: object
-      properties:
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
-          description: The current status of the renewal
-        renewal_date:
-          type: string
-          description: Policy renewal date
-          format: date
-          example: '2024-12-01'
-        window_start_date:
-          type: string
-          description: Renewal window starts on this day
-          format: date
-          example: '2024-12-01'
-        window_end_date:
-          type: string
-          description: Renewal window ends at the end of this day
-          format: date
-          example: '2024-12-01'
-        decision_confirmed:
-          type: boolean
-          description: Whether the decision to renew the policy has been confirmed
-          example: true
-        renewed_health_insurance_id:
-          pattern: eehp_.+
-          type:
-          - 'null'
-          - string
-          description: The ID of the renewed health insurance policy, if renewed
-          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-      additionalProperties: false
-    EmployeeHealthInsurancePolicyStatus:
-      enum:
-      - scheduled
-      - active
-      - expired
-      - cancelled
-      type: string
-    EmployeeHealthInsuranceOfferResponse:
-      required:
-      - coverage_level
-      - employee_id
-      - employer_id
-      - id
-      - status
-      type: object
-      properties:
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-        id:
-          pattern: eeho_.+
-          type: string
-          description: Unique identifier for offer
-          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the offer is available
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: The Id of the employee for which the offer is available
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployeeHealthInsuranceOfferStatus'
-          description: Current status of offer
-        required_action:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
-          description: Required action to progress the offer, if any. Set only when `status` is `action_required`.
-        coverage_level:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
-          description: Details about the coverage level for the offer. Only a single level of cover is available for a specific employee!
-      additionalProperties: false
-    EmployerHealthInsurancePolicyRenewalStatus:
-      enum:
-      - upcoming
-      - open
-      - renewed
-      - cancelled
-      type: string
-    EmployerHealthInsurancePolicyResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployerHealthInsurancePolicyResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    EnrolmentType:
-      enum:
-      - opt_out
-      - opt_in
-      type: string
-    EmployeeHealthInsurancePolicyResponse:
-      required:
-      - coverage_level
-      - employee_id
-      - employer_id
-      - end_date
-      - enrolled_dependants_count
-      - enrolment_type
-      - estimated_gross_premium
-      - id
-      - opt_out_deadline_date
-      - renewal
-      - start_date
-      - status
-      type: object
-      properties:
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-        id:
-          pattern: eehp_.+
-          type: string
-          description: Unique identifier for policy
-          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the policy is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: The Id of the employee for which the policy is created
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
-        start_date:
-          type: string
-          description: Policy starts on this date
-          format: date
-          example: '2024-12-01'
-        end_date:
-          type: string
-          description: Policy ends on this date
-          format: date
-          example: '2024-12-01'
-        cancellation_date:
-          type:
-          - 'null'
-          - string
-          description: Policy was cancelled on this date, if cancellation occured
-          format: date
-          example: '2024-12-01'
-        policy_number:
-          type:
-          - 'null'
-          - string
-          description: Health insurance policy number, if available
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployeeHealthInsurancePolicyStatus'
-          description: Current status of policy
-        enrolment_type:
-          allOf:
-          - $ref: '#/components/schemas/EnrolmentType'
-          description: Enrolment type of the policy
-        renewal:
-          allOf:
-          - $ref: '#/components/schemas/EmployeeHealthPolicyRenewal'
-          description: Renewal information for the policy
-        opt_out_deadline_date:
-          type: string
-          description: Last day to opt out from the policy
-          format: date
-          example: '2024-12-01'
-        coverage_level:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
-          description: Represents the current coverage level for the policy
-        enrolled_dependants_count:
-          type: integer
-          description: Number of dependants (spouse, children, or other eligible family members) currently enrolled in this health insurance policy.
-          format: int32
-          example: 123
-        estimated_gross_premium:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceEstimatedGrossPremiumResponse'
-          description: 'Estimated gross premium amounts for this health insurance policy based on current enrollment and policy configuration. Important: These estimates are for planning purposes only and may differ from actual billed amounts due to life events, policy changes, insurer billing practices, or timing adjustments. For accurate payroll amounts, use the Contribution Reporting API.'
-      additionalProperties: false
-    HealthInsuranceEstimatedGrossPremiumResponse:
-      required:
-      - currency
-      - monthly
-      - term
-      type: object
-      properties:
-        currency:
-          allOf:
-          - $ref: '#/components/schemas/CurrencyCode'
-          description: Three-letter currency code (e.g., "EUR", "USD", "GBP") for all monetary amounts in this object.
-        monthly:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
-          description: Estimated monthly gross premium amounts representing regular monthly charges.
-        term:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceGrossEstimationAmountResponse'
-          description: 'Estimated total gross premium amounts for the complete policy term from start date to renewal date. Note: These amounts reflect the full policy term and do not adjust for early cancellation.'
-      additionalProperties: false
-    GetEmployerHealthPolicyRenewal:
-      required:
-      - decision_confirmed
-      - renewal_date
-      - status
-      - window_end_date
-      - window_start_date
-      type: object
-      properties:
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployerHealthInsurancePolicyRenewalStatus'
-          description: The current status of the renewal
-        renewal_date:
-          type: string
-          description: Policy renewal date
-          format: date
-          example: '2024-12-01'
-        window_start_date:
-          type: string
-          description: Renewal window starts on this day
-          format: date
-          example: '2024-12-01'
-        window_end_date:
-          type: string
-          description: Renewal window ends at the end of this day
-          format: date
-          example: '2024-12-01'
-        decision_confirmed:
-          type: boolean
-          description: Whether the decision to renew the policy has been confirmed
-          example: true
-        renewed_health_insurance_id:
-          pattern: erhp_.+
-          type:
-          - 'null'
-          - string
-          description: The ID of the renewed health insurance policy, if renewed
-          example: erhp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-      additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    EmployerHealthInsuranceQuoteResponse:
-      required:
-      - coverage_levels
-      - employer_id
-      - id
-      - quoted_at
-      - status
-      type: object
-      properties:
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-        id:
-          pattern: erhq_.+
-          type: string
-          description: Unique identifier for the quote
-          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        quoted_at:
-          type: string
-          description: Date and time the quote was created at
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployerHealthInsuranceQuoteStatus'
-          description: Current status of the quote
-        required_action:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceRequiredActionResponse'
-          description: Actions required by the employer to proceed with the quote. Set only when `status` is `action_required`.
-        coverage_levels:
-          type: array
-          items:
-            $ref: '#/components/schemas/HealthInsuranceCoverageLevelResponse'
-          description: List of levels covered under the policy, each item representing details about the plan’s cover. Currently Kota only supports a single level of cover.
-      additionalProperties: false
-    EmployeeHealthInsurancePolicyResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployeeHealthInsurancePolicyResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    EmployeeHealthInsuranceOfferResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EmployeeHealthInsuranceOfferResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

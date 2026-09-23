@@ -213,6 +213,113 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    GetContributionReportPeriod:
+      required:
+      - from_date
+      - to_date
+      type: object
+      properties:
+        from_date:
+          type: string
+          description: Start date of the period
+          format: date
+          example: '2024-12-01'
+        to_date:
+          type: string
+          description: End date of the period
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    GetEmployeeBreakdownPeriod:
+      required:
+      - from_date
+      - to_date
+      type: object
+      properties:
+        from_date:
+          type: string
+          description: Start date of the period
+          format: date
+          example: '2024-12-01'
+        to_date:
+          type: string
+          description: End date of the period
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
+    HealthInsuranceContributionType:
+      enum:
+      - recurring
+      - one_off
+      type: string
+    ContributionReportEmployeeBreakdownResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContributionReportEmployeeBreakdownResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    HealthInsuranceContributionMemberType:
+      enum:
+      - policyholder
+      - partner_dependant
+      - child_dependant
+      type: string
+    HealthInsuranceContributionCategory:
+      enum:
+      - gross_premium
+      - tax
+      - tax_relief
+      type: string
+    GetEmployeeBreakdownHealthInsurance:
+      required:
+      - employee_contributions
+      - employer_contributions
+      type: object
+      properties:
+        employer_contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
+          description: Employer health insurance contributions
+        employee_contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
+          description: Employee health insurance contributions
+      additionalProperties: false
     GetEmployeeBreakdownContribution:
       required:
       - adjustment
@@ -286,6 +393,86 @@ components:
           format: date
           example: '2024-12-01'
       additionalProperties: false
+    ContributionReportResponse:
+      required:
+      - created_at
+      - employer_id
+      - id
+      - last_updated_at
+      - period
+      - status
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+        id:
+          pattern: ctr_.+
+          type: string
+          description: Unique identifier for the contribution report
+          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier of the employer for which the report is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        period:
+          allOf:
+          - $ref: '#/components/schemas/GetContributionReportPeriod'
+          description: Period covered by the contribution report
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ContributionReportStatus'
+          description: Current status of the contribution report
+        finalized_at:
+          type:
+          - 'null'
+          - string
+          description: Date and time the report was finalized, if applicable
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        created_at:
+          type: string
+          description: Date and time the report was created
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        last_updated_at:
+          type: string
+          description: Date and time of the last update to the report
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
     CurrencyCode:
       enum:
       - eur
@@ -458,226 +645,6 @@ components:
       - zmw
       - zwl
       type: string
-    GetEmployeeBreakdownPeriod:
-      required:
-      - from_date
-      - to_date
-      type: object
-      properties:
-        from_date:
-          type: string
-          description: Start date of the period
-          format: date
-          example: '2024-12-01'
-        to_date:
-          type: string
-          description: End date of the period
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    GetContributionReportPeriod:
-      required:
-      - from_date
-      - to_date
-      type: object
-      properties:
-        from_date:
-          type: string
-          description: Start date of the period
-          format: date
-          example: '2024-12-01'
-        to_date:
-          type: string
-          description: End date of the period
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    GetEmployeeBreakdownHealthInsurance:
-      required:
-      - employee_contributions
-      - employer_contributions
-      type: object
-      properties:
-        employer_contributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
-          description: Employer health insurance contributions
-        employee_contributions:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetEmployeeBreakdownContribution'
-          description: Employee health insurance contributions
-      additionalProperties: false
-    HealthInsuranceContributionCategory:
-      enum:
-      - gross_premium
-      - tax
-      - tax_relief
-      type: string
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    HealthInsuranceContributionType:
-      enum:
-      - recurring
-      - one_off
-      type: string
-    ContributionReportEmployeeBreakdownResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContributionReportEmployeeBreakdownResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    ContributionReportResponse:
-      required:
-      - created_at
-      - employer_id
-      - id
-      - last_updated_at
-      - period
-      - status
-      type: object
-      properties:
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-        id:
-          pattern: ctr_.+
-          type: string
-          description: Unique identifier for the contribution report
-          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier of the employer for which the report is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
-        period:
-          allOf:
-          - $ref: '#/components/schemas/GetContributionReportPeriod'
-          description: Period covered by the contribution report
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ContributionReportStatus'
-          description: Current status of the contribution report
-        finalized_at:
-          type:
-          - 'null'
-          - string
-          description: Date and time the report was finalized, if applicable
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        created_at:
-          type: string
-          description: Date and time the report was created
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        last_updated_at:
-          type: string
-          description: Date and time of the last update to the report
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-      additionalProperties: false
-    ContributionReportResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContributionReportResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
     ContributionReportStatus:
       enum:
       - open
@@ -754,12 +721,45 @@ components:
           - $ref: '#/components/schemas/GetEmployeeBreakdownHealthInsurance'
           description: Health insurance contribution details
       additionalProperties: false
-    HealthInsuranceContributionMemberType:
-      enum:
-      - policyholder
-      - partner_dependant
-      - child_dependant
-      type: string
+    ContributionReportResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContributionReportResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

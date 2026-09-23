@@ -9,7 +9,7 @@ servers:
 - url: https://api.kota.io
   description: production
 tags:
-- name: providers
+- name: Providers
 paths:
   /providers:
     get:
@@ -17,7 +17,7 @@ paths:
       summary: List all providers
       description: Returns a list of `providers`.
       tags:
-      - providers
+      - Providers
       parameters:
       - name: country
         in: query
@@ -67,7 +67,7 @@ paths:
       summary: Retrieve a provider
       description: Retrieves a `provider` object by its ID.
       tags:
-      - providers
+      - Providers
       parameters:
       - name: provider_id
         in: path
@@ -100,6 +100,12 @@ paths:
       description: production
 components:
   schemas:
+    CountryCodeEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/CountryCode'
+      title: CountryCodeEnumParameter
     ProviderResponse:
       type: object
       properties:
@@ -148,6 +154,36 @@ components:
       - support_phone
       - supported_countries
       title: ProviderResponse
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
     ProviderResponsePagedList:
       type: object
       properties:
@@ -201,42 +237,6 @@ components:
           - string
           - 'null'
       title: ProblemDetails
-    CountryCodeEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/CountryCode'
-      title: CountryCodeEnumParameter
-    HttpValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      title: HttpValidationProblemDetails
     CountryCode:
       type: string
       enum:
@@ -491,6 +491,13 @@ components:
       - zm
       - zw
       title: CountryCode
+    CountryCodeEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+      additionalProperties: false
     ProviderResponse_2:
       required:
       - description
@@ -542,6 +549,37 @@ components:
             $ref: '#/components/schemas/CountryCode_2'
           description: List of countries supported by this provider.
       additionalProperties: false
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
     ProviderResponsePagedList_2:
       required:
       - items
@@ -605,44 +643,6 @@ components:
           type:
           - 'null'
           - string
-      additionalProperties: {}
-    CountryCodeEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/CountryCode_2'
-      additionalProperties: false
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
       additionalProperties: {}
     CountryCode_2:
       enum:

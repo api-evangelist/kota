@@ -181,6 +181,132 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    ConsentApprovalInput:
+      required:
+      - ip
+      - type
+      - user_id
+      - version
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ConsentType'
+          description: Type of consent being approved
+        ip:
+          type: string
+          description: IP address of the user approving
+        version:
+          type: string
+          description: Version of the consent document being approved
+        user_id:
+          type: string
+          description: User ID approving the consent
+      additionalProperties: false
+    IntentActionType:
+      enum:
+      - provide_dependant_information
+      - provide_beneficiary_information
+      - provide_missing_information
+      type: string
+    GroupPolicyIntentResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupPolicyIntentResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    DisclosureResponse:
+      required:
+      - category
+      - text
+      - type
+      type: object
+      properties:
+        category:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      additionalProperties: false
+    RequirementType:
+      enum:
+      - group_quote_intent
+      - group_policy_intent
+      - dependent_management_intent
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    HealthInsuranceCostSharingType:
+      enum:
+      - member_count
+      - member_selection
+      - percentage
+      - policyholder_only
+      - family_type
+      type: string
+      x-fern-enum:
+        member_count:
+          description: The number of additional adults and children to cover is specified.
+        member_selection:
+          description: Dependent categories to cover are selected (partner and/or children).
+        percentage:
+          description: A percentage of the total premium is covered.
+        policyholder_only:
+          description: Only the policyholder is covered.
+        family_type:
+          description: Coverage is based on a predefined family tier (e.g. Single, Couple, Family).
+    HealthInsuranceFamilyCostSharingType:
+      enum:
+      - single
+      - couple
+      - single_with_children
+      - family
+      type: string
+    RequirementObjectType:
+      enum:
+      - employee
+      - employer
+      - associated_person
+      type: string
     GroupPolicyIntentResponse:
       required:
       - disclosures
@@ -242,87 +368,6 @@ components:
           description: Object type identifier
           readOnly: true
       additionalProperties: false
-    HealthInsuranceFamilyCostSharingType:
-      enum:
-      - single
-      - couple
-      - single_with_children
-      - family
-      type: string
-    GroupPolicyIntentRequirementResponse:
-      required:
-      - id
-      - is_fulfilled
-      - object_id
-      - object_type
-      - requirement_type
-      type: object
-      properties:
-        id:
-          pattern: ar_.+
-          type: string
-          description: Unique identifier for the requirement
-          example: ar_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        object_type:
-          allOf:
-          - $ref: '#/components/schemas/RequirementObjectType'
-          description: Type of object this requirement is for (employee or employer)
-        object_id:
-          type: string
-          description: Identifier of the object (employee ID or employer ID)
-        is_fulfilled:
-          type: boolean
-          description: Whether the requirement has been fulfilled
-          example: true
-        requirement_type:
-          allOf:
-          - $ref: '#/components/schemas/RequirementType'
-          description: Type of requirement
-        object:
-          type: string
-          description: Object type identifier
-          readOnly: true
-      additionalProperties: false
-    CreateGroupPolicyIntentRequest:
-      required:
-      - quote_intent_id
-      type: object
-      properties:
-        quote_intent_id:
-          pattern: gqi_.+
-          type: string
-          description: Unique identifier for the group quote intent to create a policy intent from
-          example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        cost_sharing:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Cost sharing configuration override for the setup. If not provided, falls back to the quote intent's cost sharing.
-        consent_approvals:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/ConsentApprovalInput'
-          description: Consent approvals to record at the time of intent creation
-      additionalProperties: false
-    DisclosureCategory:
-      enum:
-      - regulatory
-      - provider
-      - intermediary
-      type: string
-    HealthInsurancePercentageCostSharingConfigurationResponse:
-      required:
-      - percentage
-      type: object
-      properties:
-        percentage:
-          type: integer
-          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
-          format: int32
-          example: 123
-      additionalProperties: false
     HealthInsuranceCostSharingConfigurationResponse:
       required:
       - type
@@ -353,29 +398,12 @@ components:
           - $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
           description: Type of the family covered by the employer.
       additionalProperties: false
-    RequirementObjectType:
+    DisclosureCategory:
       enum:
-      - employee
-      - employer
-      - associated_person
+      - regulatory
+      - provider
+      - intermediary
       type: string
-    HealthInsuranceMemberCountCostSharingConfigurationResponse:
-      required:
-      - adults
-      - children
-      type: object
-      properties:
-        adults:
-          type: integer
-          description: Number of additional adults covered, including partner/spouse.
-          format: int32
-          example: 123
-        children:
-          type: integer
-          description: Number of additional children covered.
-          format: int32
-          example: 123
-      additionalProperties: false
     GroupPolicyIntentActionRequiredResponse:
       required:
       - code
@@ -399,193 +427,6 @@ components:
           description: The deadline by which the action must be completed. The day is included (i.e. the action can be completed any time during this day in the user's local time).
           format: date-time
           example: '2024-12-01T00:00:00Z'
-      additionalProperties: false
-    GroupPolicyIntentStatus:
-      enum:
-      - processing
-      - action_required
-      - pending_provider_approval
-      - policy_created
-      - expired
-      - provider_rejected
-      - manual_renewal_gathering_required
-      type: string
-    RequirementObjectTypeEnumParameter:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/RequirementObjectType'
-      additionalProperties: false
-    DisclosureResponse:
-      required:
-      - category
-      - text
-      - type
-      type: object
-      properties:
-        category:
-          allOf:
-          - $ref: '#/components/schemas/DisclosureCategory'
-          description: The category of the disclosure.
-        type:
-          allOf:
-          - $ref: '#/components/schemas/DisclosureType'
-          description: The specific type of disclosure within its category.
-        text:
-          type: string
-          description: The disclosure statement text.
-      additionalProperties: false
-    DisclosureType:
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      type: string
-    HealthInsuranceCostSharingType:
-      enum:
-      - member_count
-      - member_selection
-      - percentage
-      - policyholder_only
-      - family_type
-      type: string
-      x-fern-enum:
-        member_count:
-          description: The number of additional adults and children to cover is specified.
-        member_selection:
-          description: Dependent categories to cover are selected (partner and/or children).
-        percentage:
-          description: A percentage of the total premium is covered.
-        policyholder_only:
-          description: Only the policyholder is covered.
-        family_type:
-          description: Coverage is based on a predefined family tier (e.g. Single, Couple, Family).
-    GroupPolicyIntentRequirementResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupPolicyIntentRequirementResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    ConsentType:
-      enum:
-      - terms_of_business
-      - privacy_policy
-      type: string
-    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
-      required:
-      - type
-      type: object
-      properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
-          description: Employer coverage family type
-      additionalProperties: false
-    IntentActionType:
-      enum:
-      - provide_dependant_information
-      - provide_beneficiary_information
-      - provide_missing_information
-      type: string
-    GroupPolicyIntentResponsePagedList:
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupPolicyIntentResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
-          example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-          readOnly: true
-          example: true
-      additionalProperties: false
-    ConsentApprovalInput:
-      required:
-      - ip
-      - type
-      - user_id
-      - version
-      type: object
-      properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/ConsentType'
-          description: Type of consent being approved
-        ip:
-          type: string
-          description: IP address of the user approving
-        version:
-          type: string
-          description: Version of the consent document being approved
-        user_id:
-          type: string
-          description: User ID approving the consent
       additionalProperties: false
     HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
       required:
@@ -627,13 +468,172 @@ components:
           - 'null'
           - string
       additionalProperties: {}
-    RequirementType:
+    HealthInsurancePercentageCostSharingConfigurationResponse:
+      required:
+      - percentage
+      type: object
+      properties:
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+          format: int32
+          example: 123
+      additionalProperties: false
+    ConsentType:
       enum:
-      - group_quote_intent
-      - group_policy_intent
-      - dependent_management_intent
-      - policy_amendment_intent
-      - enrolment_intent
+      - terms_of_business
+      - privacy_policy
+      type: string
+    GroupPolicyIntentRequirementResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupPolicyIntentRequirementResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    GroupPolicyIntentStatus:
+      enum:
+      - processing
+      - action_required
+      - pending_provider_approval
+      - policy_created
+      - expired
+      - provider_rejected
+      - manual_renewal_gathering_required
+      type: string
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      required:
+      - adults
+      - children
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+          format: int32
+          example: 123
+        children:
+          type: integer
+          description: Number of additional children covered.
+          format: int32
+          example: 123
+      additionalProperties: false
+    GroupPolicyIntentRequirementResponse:
+      required:
+      - id
+      - is_fulfilled
+      - object_id
+      - object_type
+      - requirement_type
+      type: object
+      properties:
+        id:
+          pattern: ar_.+
+          type: string
+          description: Unique identifier for the requirement
+          example: ar_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+          description: Type of object this requirement is for (employee or employer)
+        object_id:
+          type: string
+          description: Identifier of the object (employee ID or employer ID)
+        is_fulfilled:
+          type: boolean
+          description: Whether the requirement has been fulfilled
+          example: true
+        requirement_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementType'
+          description: Type of requirement
+        object:
+          type: string
+          description: Object type identifier
+          readOnly: true
+      additionalProperties: false
+    RequirementObjectTypeEnumParameter:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+      additionalProperties: false
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
+      additionalProperties: false
+    CreateGroupPolicyIntentRequest:
+      required:
+      - quote_intent_id
+      type: object
+      properties:
+        quote_intent_id:
+          pattern: gqi_.+
+          type: string
+          description: Unique identifier for the group quote intent to create a policy intent from
+          example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        cost_sharing:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration override for the setup. If not provided, falls back to the quote intent's cost sharing.
+        consent_approvals:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/ConsentApprovalInput'
+          description: Consent approvals to record at the time of intent creation
+      additionalProperties: false
+    DisclosureType:
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
       type: string
   securitySchemes:
     bearerAuth:
