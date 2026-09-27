@@ -49,31 +49,6 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -139,6 +114,31 @@ components:
           format: date-time
           example: '2024-12-01T00:00:00Z'
       additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
   securitySchemes:
     bearerAuth:
       type: http

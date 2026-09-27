@@ -100,60 +100,65 @@ paths:
       description: production
 components:
   schemas:
+    ProviderResponsePagedList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      title: ProviderResponsePagedList
     CountryCodeEnumParameter:
       type: object
       properties:
         value:
           $ref: '#/components/schemas/CountryCode'
       title: CountryCodeEnumParameter
-    ProviderResponse:
+    ProblemDetails:
       type: object
       properties:
-        object:
-          type: string
-          description: Object type. Always `provider`.
-        id:
-          type: string
-          description: Unique identifier for the provider. Prefixed with `pr_`.
-        name:
-          type: string
-          description: The name of the provider.
-        description:
-          type: string
-          description: Description of the provider.
-        website_url:
-          type: string
-          description: The provider's main website URL.
-        logo_url:
-          type: string
-          description: URL to the provider's logo image.
-        employer_platform_url:
+        type:
           type:
           - string
           - 'null'
-          description: URL to the employer portal/platform for this provider, if available.
-        kota_hub_url:
+        title:
           type:
           - string
           - 'null'
-          description: URL to the Kota Hub page for this platform, if configured.
-        support_phone:
-          type: string
-          description: Customer support phone number.
-        supported_countries:
-          type: array
-          items:
-            $ref: '#/components/schemas/CountryCode'
-          description: List of countries supported by this provider.
-      required:
-      - id
-      - name
-      - description
-      - website_url
-      - logo_url
-      - support_phone
-      - supported_countries
-      title: ProviderResponse
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -184,59 +189,6 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
-    ProviderResponsePagedList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProviderResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-        has_next_page:
-          type: boolean
-          description: Whether there are more pages available after this page
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
-      required:
-      - items
-      - page
-      - page_size
-      - total_count
-      title: ProviderResponsePagedList
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
     CountryCode:
       type: string
       enum:
@@ -491,33 +443,15 @@ components:
       - zm
       - zw
       title: CountryCode
-    CountryCodeEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/CountryCode_2'
-      additionalProperties: false
-    ProviderResponse_2:
-      required:
-      - description
-      - id
-      - logo_url
-      - name
-      - support_phone
-      - supported_countries
-      - website_url
+    ProviderResponse:
       type: object
       properties:
         object:
           type: string
           description: Object type. Always `provider`.
-          readOnly: true
         id:
-          pattern: pr_.+
           type: string
           description: Unique identifier for the provider. Prefixed with `pr_`.
-          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
         name:
           type: string
           description: The name of the provider.
@@ -532,13 +466,13 @@ components:
           description: URL to the provider's logo image.
         employer_platform_url:
           type:
-          - 'null'
           - string
+          - 'null'
           description: URL to the employer portal/platform for this provider, if available.
         kota_hub_url:
           type:
-          - 'null'
           - string
+          - 'null'
           description: URL to the Kota Hub page for this platform, if configured.
         support_phone:
           type: string
@@ -546,40 +480,17 @@ components:
         supported_countries:
           type: array
           items:
-            $ref: '#/components/schemas/CountryCode_2'
+            $ref: '#/components/schemas/CountryCode'
           description: List of countries supported by this provider.
-      additionalProperties: false
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      additionalProperties: {}
+      required:
+      - id
+      - name
+      - description
+      - website_url
+      - logo_url
+      - support_phone
+      - supported_countries
+      title: ProviderResponse
     ProviderResponsePagedList_2:
       required:
       - items
@@ -619,6 +530,13 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
+    CountryCodeEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+      additionalProperties: false
     ProblemDetails_2:
       type: object
       properties:
@@ -643,6 +561,37 @@ components:
           type:
           - 'null'
           - string
+      additionalProperties: {}
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
       additionalProperties: {}
     CountryCode_2:
       enum:
@@ -897,6 +846,57 @@ components:
       - zm
       - zw
       type: string
+    ProviderResponse_2:
+      required:
+      - description
+      - id
+      - logo_url
+      - name
+      - support_phone
+      - supported_countries
+      - website_url
+      type: object
+      properties:
+        object:
+          type: string
+          description: Object type. Always `provider`.
+          readOnly: true
+        id:
+          pattern: pr_.+
+          type: string
+          description: Unique identifier for the provider. Prefixed with `pr_`.
+          example: pr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        name:
+          type: string
+          description: The name of the provider.
+        description:
+          type: string
+          description: Description of the provider.
+        website_url:
+          type: string
+          description: The provider's main website URL.
+        logo_url:
+          type: string
+          description: URL to the provider's logo image.
+        employer_platform_url:
+          type:
+          - 'null'
+          - string
+          description: URL to the employer portal/platform for this provider, if available.
+        kota_hub_url:
+          type:
+          - 'null'
+          - string
+          description: URL to the Kota Hub page for this platform, if configured.
+        support_phone:
+          type: string
+          description: Customer support phone number.
+        supported_countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountryCode_2'
+          description: List of countries supported by this provider.
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

@@ -121,7 +121,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-employees-api
-  name: Kota employees API
+  name: Kota Employees API
   description: The employees API from Kota — 4 operation(s) for employees.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -137,7 +137,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-employers-api
-  name: Kota employers API
+  name: Kota Employers API
   description: The employers API from Kota — 3 operation(s) for employers.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -167,7 +167,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-events-api
-  name: Kota events API
+  name: Kota Events API
   description: The events API from Kota — 3 operation(s) for events.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -225,7 +225,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-groups-api
-  name: Kota groups API
+  name: Kota Groups API
   description: The groups API from Kota — 4 operation(s) for groups.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -269,7 +269,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-plans-api
-  name: Kota plans API
+  name: Kota Plans API
   description: The plans API from Kota — 2 operation(s) for plans.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -285,7 +285,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-policies-api
-  name: Kota policies API
+  name: Kota Policies API
   description: The policies API from Kota — 2 operation(s) for policies.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -330,7 +330,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-providers-api
-  name: Kota providers API
+  name: Kota Providers API
   description: The providers API from Kota — 2 operation(s) for providers.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -346,7 +346,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-requirements-api
-  name: Kota requirements API
+  name: Kota Requirements API
   description: The requirements API from Kota — 1 operation(s) for requirements.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io
@@ -362,7 +362,7 @@ apis:
   - type: APIReference
     url: https://docs.kota.io/api-reference
 - aid: kota:kota-webhooks-api
-  name: Kota webhooks API
+  name: Kota Webhooks API
   description: The webhooks API from Kota — 2 operation(s) for webhooks.
   humanURL: https://docs.kota.io/api-reference
   baseURL: https://api.kota.io

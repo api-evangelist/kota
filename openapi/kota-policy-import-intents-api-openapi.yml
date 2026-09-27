@@ -132,6 +132,41 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    PolicyImportIntentAssociatedPersonResponse:
+      required:
+      - associated_person_id
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the associated person import.
+          format: uuid
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        member_number:
+          type:
+          - 'null'
+          - string
+          description: The member number assigned by the provider for this associated person.
+        start_date:
+          type:
+          - 'null'
+          - string
+          description: The start date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
     PolicyImportIntentResponse:
       required:
       - associated_persons
@@ -230,49 +265,6 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    CreatePolicyImportIntentAssociatedPersonRequest:
-      required:
-      - associated_person_id
-      type: object
-      properties:
-        associated_person_id:
-          pattern: ap_.+
-          type: string
-          description: The associated person ID. Prefixed with `ap_`.
-          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        member_number:
-          type:
-          - 'null'
-          - string
-          description: The member number assigned by the provider for this associated person.
-        start_date:
-          type:
-          - 'null'
-          - string
-          description: The start date for this associated person's coverage.
-          format: date
-          example: '2024-12-01'
-        end_date:
-          type:
-          - 'null'
-          - string
-          description: The end date for this associated person's coverage.
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    PolicyImportIntentStatus:
-      enum:
-      - processing
-      - failed
-      - success
-      type: string
-      x-fern-enum:
-        processing:
-          description: The policy import is being processed.
-        failed:
-          description: The policy import has failed.
-        success:
-          description: The policy import has completed successfully.
     ProblemDetails:
       type: object
       properties:
@@ -298,16 +290,24 @@ components:
           - 'null'
           - string
       additionalProperties: {}
-    PolicyImportIntentAssociatedPersonResponse:
+    PolicyImportIntentStatus:
+      enum:
+      - processing
+      - failed
+      - success
+      type: string
+      x-fern-enum:
+        processing:
+          description: The policy import is being processed.
+        failed:
+          description: The policy import has failed.
+        success:
+          description: The policy import has completed successfully.
+    CreatePolicyImportIntentAssociatedPersonRequest:
       required:
       - associated_person_id
-      - id
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the associated person import.
-          format: uuid
         associated_person_id:
           pattern: ap_.+
           type: string

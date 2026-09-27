@@ -245,78 +245,116 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    IntentActionType:
+    HealthInsuranceFamilyCostSharingType:
       enum:
-      - provide_dependant_information
-      - provide_beneficiary_information
-      - provide_missing_information
+      - single
+      - couple
+      - single_with_children
+      - family
       type: string
-    GroupQuoteIntentRequirementResponsePagedList:
+    ConsentType:
+      enum:
+      - terms_of_business
+      - privacy_policy
+      type: string
+    GroupQuoteIntentRequirementResponse:
       required:
-      - items
-      - page
-      - page_size
-      - total_count
+      - id
+      - is_fulfilled
+      - object_id
+      - object_type
+      - requirement_type
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupQuoteIntentRequirementResponse'
-          description: A paginated array containing the response elements
-        page:
-          type: integer
-          description: The current page of the results
-          format: int32
-          example: 123
-        page_size:
-          type: integer
-          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
-          format: int32
-          example: 123
-        total_count:
-          type: integer
-          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
-          format: int32
-          example: 123
-        has_next_page:
+        id:
+          pattern: ar_.+
+          type: string
+          description: Unique identifier for the requirement
+          example: ar_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        object_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+          description: Type of object this requirement is for (employee or employer)
+        object_id:
+          type: string
+          description: Identifier of the object (employee ID or employer ID)
+        is_fulfilled:
           type: boolean
-          description: Whether there are more pages available after this page
-          readOnly: true
+          description: Whether the requirement has been fulfilled
           example: true
-        has_previous_page:
-          type: boolean
-          description: Whether there are more pages available before this page
+        requirement_type:
+          allOf:
+          - $ref: '#/components/schemas/RequirementType'
+          description: Type of requirement
+        object:
+          type: string
+          description: Object type identifier
           readOnly: true
-          example: true
       additionalProperties: false
-    DisclosureResponse:
+    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
       required:
-      - category
-      - text
       - type
       type: object
       properties:
-        category:
-          allOf:
-          - $ref: '#/components/schemas/DisclosureCategory'
-          description: The category of the disclosure.
         type:
           allOf:
-          - $ref: '#/components/schemas/DisclosureType'
-          description: The specific type of disclosure within its category.
-        text:
-          type: string
-          description: The disclosure statement text.
+          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
+          description: Employer coverage family type
       additionalProperties: false
-    RequirementType:
-      enum:
-      - group_quote_intent
-      - group_policy_intent
-      - dependent_management_intent
-      - policy_amendment_intent
-      - enrolment_intent
-      type: string
+    GroupQuoteResponse:
+      required:
+      - cost_sharing
+      - currency
+      - employee_count
+      - expires_at
+      - generated_at
+      - total_monthly_premium
+      type: object
+      properties:
+        employee_count:
+          type: integer
+          description: Number of employees covered by the quote
+          format: int32
+          example: 123
+        cost_sharing:
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        total_monthly_premium:
+          type: number
+          description: Total monthly premium for the group
+          format: double
+          example: 123.45
+        currency:
+          type: string
+          description: Currency of the premium (e.g. EUR, GBP)
+        pdf_url:
+          type:
+          - 'null'
+          - string
+          description: URL to download the quote PDF
+        pdf_expires_at:
+          type:
+          - 'null'
+          - string
+          description: When the PDF URL expires
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        generated_at:
+          type: string
+          description: When the quote was generated
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        expires_at:
+          type: string
+          description: When the quote expires
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          description: Object type identifier
+          readOnly: true
+      additionalProperties: false
     HealthInsuranceCostSharingType:
       enum:
       - member_count
@@ -336,6 +374,25 @@ components:
           description: Only the policyholder is covered.
         family_type:
           description: Coverage is based on a predefined family tier (e.g. Single, Couple, Family).
+    DisclosureType:
+      enum:
+      - intermediary_role
+      - intermediary_commission
+      - underwriter_disclaimer
+      - anti_selection_notice
+      - statement_of_needs
+      - product_information
+      - pre_existing_conditions
+      - statutory_warning
+      type: string
+    RequirementType:
+      enum:
+      - group_quote_intent
+      - group_policy_intent
+      - dependent_management_intent
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
     GroupQuoteIntentActionRequiredResponse:
       required:
       - code
@@ -360,37 +417,45 @@ components:
           format: date-time
           example: '2024-12-01T00:00:00Z'
       additionalProperties: false
-    HealthInsuranceFamilyCostSharingType:
-      enum:
-      - single
-      - couple
-      - single_with_children
-      - family
-      type: string
-    SelectedOptionRequest:
+    PlanCoverageOptionSelectionRequest:
       required:
-      - option_id
+      - configuration_id
+      - options
       type: object
       properties:
-        option_id:
-          pattern: pco_.+
+        configuration_id:
+          pattern: pc_.+
           type: string
-          description: Option ID (prefixed with `pco_`).
-          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        sub_options:
-          type:
-          - 'null'
-          - array
+          description: Configuration ID (prefixed with `pc_`).
+          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        options:
+          type: array
           items:
             $ref: '#/components/schemas/SelectedOptionRequest'
-          description: Sub-option selections, if applicable.
+          description: Selected options with optional sub-options.
       additionalProperties: false
-    RequirementObjectType:
-      enum:
-      - employee
-      - employer
-      - associated_person
-      type: string
+    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+      required:
+      - children
+      - partner
+      type: object
+      properties:
+        partner:
+          type: boolean
+          description: If a spouse/partner is covered.
+          example: true
+        children:
+          type: boolean
+          description: If children are covered.
+          example: true
+      additionalProperties: false
+    RequirementObjectTypeEnumParameter:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/RequirementObjectType'
+      additionalProperties: false
     HealthInsuranceCostSharingConfigurationResponse:
       required:
       - type
@@ -421,27 +486,83 @@ components:
           - $ref: '#/components/schemas/HealthInsuranceFamilyTypeCostSharingConfigurationResponse'
           description: Type of the family covered by the employer.
       additionalProperties: false
+    DisclosureResponse:
+      required:
+      - category
+      - text
+      - type
+      type: object
+      properties:
+        category:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureCategory'
+          description: The category of the disclosure.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DisclosureType'
+          description: The specific type of disclosure within its category.
+        text:
+          type: string
+          description: The disclosure statement text.
+      additionalProperties: false
+    HealthInsuranceMemberCountCostSharingConfigurationResponse:
+      required:
+      - adults
+      - children
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: Number of additional adults covered, including partner/spouse.
+          format: int32
+          example: 123
+        children:
+          type: integer
+          description: Number of additional children covered.
+          format: int32
+          example: 123
+      additionalProperties: false
+    ConsentLinkResponse:
+      required:
+      - type
+      - url
+      - version
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/ConsentType'
+          description: Type of consent
+        url:
+          type: string
+          description: URL to the consent document
+        version:
+          type: string
+          description: Version of the consent document
+      additionalProperties: false
     DisclosureCategory:
       enum:
       - regulatory
       - provider
       - intermediary
       type: string
-    HealthInsuranceMemberSelectionCostSharingConfigurationResponse:
+    HealthInsurancePercentageCostSharingConfigurationResponse:
       required:
-      - children
-      - partner
+      - percentage
       type: object
       properties:
-        partner:
-          type: boolean
-          description: If a spouse/partner is covered.
-          example: true
-        children:
-          type: boolean
-          description: If children are covered.
-          example: true
+        percentage:
+          type: integer
+          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
+          format: int32
+          example: 123
       additionalProperties: false
+    RequirementObjectType:
+      enum:
+      - employee
+      - employer
+      - associated_person
+      type: string
     GroupQuoteIntentResponse:
       required:
       - consent_links
@@ -503,6 +624,81 @@ components:
           description: Object type identifier
           readOnly: true
       additionalProperties: false
+    GroupQuoteIntentRequirementResponsePagedList:
+      required:
+      - items
+      - page
+      - page_size
+      - total_count
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupQuoteIntentRequirementResponse'
+          description: A paginated array containing the response elements
+        page:
+          type: integer
+          description: The current page of the results
+          format: int32
+          example: 123
+        page_size:
+          type: integer
+          description: The number of results on this page. This can be different from the requested page size if the total number of results is less than the requested page size
+          format: int32
+          example: 123
+        total_count:
+          type: integer
+          description: The total number of elements available in the response. This is the total number of elements available across all pages, not just the current page.
+          format: int32
+          example: 123
+        has_next_page:
+          type: boolean
+          description: Whether there are more pages available after this page
+          readOnly: true
+          example: true
+        has_previous_page:
+          type: boolean
+          description: Whether there are more pages available before this page
+          readOnly: true
+          example: true
+      additionalProperties: false
+    CreateGroupQuoteIntentRequest:
+      required:
+      - group_id
+      - plan_id
+      type: object
+      properties:
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group to get a quote for
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Unique identifier for the plan to get a quote for
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        cost_sharing:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
+          description: Cost sharing configuration for the quote
+        expected_start_date:
+          type:
+          - 'null'
+          - string
+          description: Expected start date for the insurance coverage
+          format: date
+          example: '2024-12-01'
+        coverage_selections:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
+          description: Plan coverage option selections for group-policy-scoped configurations.
+      additionalProperties: false
     GroupQuoteIntentResponsePagedList:
       required:
       - items
@@ -542,40 +738,16 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    GroupQuoteIntentRequirementResponse:
-      required:
-      - id
-      - is_fulfilled
-      - object_id
-      - object_type
-      - requirement_type
-      type: object
-      properties:
-        id:
-          pattern: ar_.+
-          type: string
-          description: Unique identifier for the requirement
-          example: ar_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        object_type:
-          allOf:
-          - $ref: '#/components/schemas/RequirementObjectType'
-          description: Type of object this requirement is for (employee or employer)
-        object_id:
-          type: string
-          description: Identifier of the object (employee ID or employer ID)
-        is_fulfilled:
-          type: boolean
-          description: Whether the requirement has been fulfilled
-          example: true
-        requirement_type:
-          allOf:
-          - $ref: '#/components/schemas/RequirementType'
-          description: Type of requirement
-        object:
-          type: string
-          description: Object type identifier
-          readOnly: true
-      additionalProperties: false
+    GroupQuoteIntentStatus:
+      enum:
+      - processing
+      - action_required
+      - awaiting_quote
+      - quote_available
+      - rejected
+      - rejected_by_insurer
+      - quote_expired
+      type: string
     ProblemDetails:
       type: object
       properties:
@@ -601,202 +773,30 @@ components:
           - 'null'
           - string
       additionalProperties: {}
-    HealthInsurancePercentageCostSharingConfigurationResponse:
-      required:
-      - percentage
-      type: object
-      properties:
-        percentage:
-          type: integer
-          description: "Employer coverage percentage:\n For 40% send 40.\n For 100% send 100."
-          format: int32
-          example: 123
-      additionalProperties: false
-    ConsentType:
+    IntentActionType:
       enum:
-      - terms_of_business
-      - privacy_policy
+      - provide_dependant_information
+      - provide_beneficiary_information
+      - provide_missing_information
       type: string
-    ConsentLinkResponse:
+    SelectedOptionRequest:
       required:
-      - type
-      - url
-      - version
+      - option_id
       type: object
       properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/ConsentType'
-          description: Type of consent
-        url:
+        option_id:
+          pattern: pco_.+
           type: string
-          description: URL to the consent document
-        version:
-          type: string
-          description: Version of the consent document
-      additionalProperties: false
-    GroupQuoteIntentStatus:
-      enum:
-      - processing
-      - action_required
-      - awaiting_quote
-      - quote_available
-      - rejected
-      - rejected_by_insurer
-      - quote_expired
-      type: string
-    GroupQuoteResponse:
-      required:
-      - cost_sharing
-      - currency
-      - employee_count
-      - expires_at
-      - generated_at
-      - total_monthly_premium
-      type: object
-      properties:
-        employee_count:
-          type: integer
-          description: Number of employees covered by the quote
-          format: int32
-          example: 123
-        cost_sharing:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Cost sharing configuration for the quote
-        total_monthly_premium:
-          type: number
-          description: Total monthly premium for the group
-          format: double
-          example: 123.45
-        currency:
-          type: string
-          description: Currency of the premium (e.g. EUR, GBP)
-        pdf_url:
-          type:
-          - 'null'
-          - string
-          description: URL to download the quote PDF
-        pdf_expires_at:
-          type:
-          - 'null'
-          - string
-          description: When the PDF URL expires
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        generated_at:
-          type: string
-          description: When the quote was generated
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        expires_at:
-          type: string
-          description: When the quote expires
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          description: Object type identifier
-          readOnly: true
-      additionalProperties: false
-    CreateGroupQuoteIntentRequest:
-      required:
-      - group_id
-      - plan_id
-      type: object
-      properties:
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group to get a quote for
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        plan_id:
-          pattern: pl_.+
-          type: string
-          description: Unique identifier for the plan to get a quote for
-          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        cost_sharing:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceCostSharingConfigurationResponse'
-          description: Cost sharing configuration for the quote
-        expected_start_date:
-          type:
-          - 'null'
-          - string
-          description: Expected start date for the insurance coverage
-          format: date
-          example: '2024-12-01'
-        coverage_selections:
+          description: Option ID (prefixed with `pco_`).
+          example: pco_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        sub_options:
           type:
           - 'null'
           - array
           items:
-            $ref: '#/components/schemas/PlanCoverageOptionSelectionRequest'
-          description: Plan coverage option selections for group-policy-scoped configurations.
-      additionalProperties: false
-    HealthInsuranceMemberCountCostSharingConfigurationResponse:
-      required:
-      - adults
-      - children
-      type: object
-      properties:
-        adults:
-          type: integer
-          description: Number of additional adults covered, including partner/spouse.
-          format: int32
-          example: 123
-        children:
-          type: integer
-          description: Number of additional children covered.
-          format: int32
-          example: 123
-      additionalProperties: false
-    PlanCoverageOptionSelectionRequest:
-      required:
-      - configuration_id
-      - options
-      type: object
-      properties:
-        configuration_id:
-          pattern: pc_.+
-          type: string
-          description: Configuration ID (prefixed with `pc_`).
-          example: pc_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        options:
-          type: array
-          items:
             $ref: '#/components/schemas/SelectedOptionRequest'
-          description: Selected options with optional sub-options.
+          description: Sub-option selections, if applicable.
       additionalProperties: false
-    RequirementObjectTypeEnumParameter:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/RequirementObjectType'
-      additionalProperties: false
-    HealthInsuranceFamilyTypeCostSharingConfigurationResponse:
-      required:
-      - type
-      type: object
-      properties:
-        type:
-          allOf:
-          - $ref: '#/components/schemas/HealthInsuranceFamilyCostSharingType'
-          description: Employer coverage family type
-      additionalProperties: false
-    DisclosureType:
-      enum:
-      - intermediary_role
-      - intermediary_commission
-      - underwriter_disclaimer
-      - anti_selection_notice
-      - statement_of_needs
-      - product_information
-      - pre_existing_conditions
-      - statutory_warning
-      type: string
     Group_Quote_Intents_RejectGroupQuoteIntent_Response_204:
       type: object
       properties: {}

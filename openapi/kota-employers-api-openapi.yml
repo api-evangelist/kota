@@ -234,47 +234,82 @@ paths:
       description: production
 components:
   schemas:
-    CreateEmployerRequest:
+    AddressModelWithoutCountry:
       type: object
       properties:
-        legal_name:
+        line1:
           type: string
-          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
-        registration_number:
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
           type:
           - string
           - 'null'
-          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
-        legal_address:
-          $ref: '#/components/schemas/AddressModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-        earliest_benefits_start_date:
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
           type:
           - string
           - 'null'
-          format: date
-          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
-
-
-            **Constraints:**
-
-
-            - Can only be set or updated if no group policy or group quote exists.
-
-            - Must be a valid date in the future.'
-        metadata:
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
           type:
-          - object
+          - string
           - 'null'
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
       required:
-      - legal_name
-      - legal_address
-      - contact
-      title: CreateEmployerRequest
+      - line1
+      - city
+      - postal_code
+      title: AddressModelWithoutCountry
+    AddressModel:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - string
+          - 'null'
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - string
+          - 'null'
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          $ref: '#/components/schemas/CountryCode'
+      required:
+      - line1
+      - city
+      - postal_code
+      - country_code
+      title: AddressModel
+    EmployerStatus:
+      type: string
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      title: EmployerStatus
     EmployerResponsePagedList:
       type: object
       properties:
@@ -317,137 +352,6 @@ components:
       - name
       - email
       title: ContactModel
-    HttpValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      title: HttpValidationProblemDetails
-    EmployerResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        platform_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/EmployerStatus'
-        legal_name:
-          type: string
-        registration_number:
-          type:
-          - string
-          - 'null'
-        legal_address:
-          $ref: '#/components/schemas/AddressModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-        offboard_on:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        earliest_benefits_start_date:
-          type:
-          - string
-          - 'null'
-          format: date
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-        object:
-          type: string
-          description: The object type
-      required:
-      - id
-      - legal_name
-      - legal_address
-      - contact
-      title: EmployerResponse
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    AddressModelWithoutCountry:
-      type: object
-      properties:
-        line1:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        line2:
-          type:
-          - string
-          - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        line3:
-          type:
-          - string
-          - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        city:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        state:
-          type:
-          - string
-          - 'null'
-          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
-        postal_code:
-          type: string
-          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-      required:
-      - line1
-      - city
-      - postal_code
-      title: AddressModelWithoutCountry
     UpdateEmployerRequest:
       type: object
       properties:
@@ -486,50 +390,101 @@ components:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
       title: UpdateEmployerRequest
-    EmployerStatus:
-      type: string
-      enum:
-      - pending
-      - active
-      - offboarding
-      - inactive
-      - restricted
-      title: EmployerStatus
-    AddressModel:
+    ProblemDetails:
       type: object
       properties:
-        line1:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        line2:
+        type:
           type:
           - string
           - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        line3:
+        title:
           type:
           - string
           - 'null'
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        city:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        state:
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
           type:
           - string
           - 'null'
-          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
-        postal_code:
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    HttpValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      title: HttpValidationProblemDetails
+    CreateEmployerRequest:
+      type: object
+      properties:
+        legal_name:
           type: string
-          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-        country_code:
-          $ref: '#/components/schemas/CountryCode'
+          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
+        registration_number:
+          type:
+          - string
+          - 'null'
+          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
+        legal_address:
+          $ref: '#/components/schemas/AddressModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+        earliest_benefits_start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
+
+
+            **Constraints:**
+
+
+            - Can only be set or updated if no group policy or group quote exists.
+
+            - Must be a valid date in the future.'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
       required:
-      - line1
-      - city
-      - postal_code
-      - country_code
-      title: AddressModel
+      - legal_name
+      - legal_address
+      - contact
+      title: CreateEmployerRequest
     CountryCode:
       type: string
       enum:
@@ -784,50 +739,127 @@ components:
       - zm
       - zw
       title: CountryCode
-    CreateEmployerRequest_2:
-      required:
-      - contact
-      - legal_address
-      - legal_name
+    EmployerResponse:
       type: object
       properties:
+        id:
+          type: string
+        platform_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/EmployerStatus'
         legal_name:
           type: string
-          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
         registration_number:
           type:
-          - 'null'
           - string
-          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
+          - 'null'
         legal_address:
-          allOf:
-          - $ref: '#/components/schemas/AddressModel_2'
+          $ref: '#/components/schemas/AddressModel'
         contact:
-          allOf:
-          - $ref: '#/components/schemas/ContactModel_2'
+          $ref: '#/components/schemas/ContactModel'
+        offboard_on:
+          type:
+          - string
+          - 'null'
+          format: date-time
         earliest_benefits_start_date:
           type:
-          - 'null'
           - string
-          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
-
-
-            **Constraints:**
-
-
-            - Can only be set or updated if no group policy or group quote exists.
-
-            - Must be a valid date in the future.'
+          - 'null'
           format: date
-          example: '2024-12-01'
         metadata:
           type:
-          - 'null'
           - object
+          - 'null'
           additionalProperties:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+      required:
+      - id
+      - legal_name
+      - legal_address
+      - contact
+      title: EmployerResponse
+    AddressModelWithoutCountry_2:
+      required:
+      - city
+      - line1
+      - postal_code
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - 'null'
+          - string
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
       additionalProperties: false
+    AddressModel_2:
+      required:
+      - city
+      - country_code
+      - line1
+      - postal_code
+      type: object
+      properties:
+        line1:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        line2:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        line3:
+          type:
+          - 'null'
+          - string
+          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
+        city:
+          type: string
+          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
+        state:
+          type:
+          - 'null'
+          - string
+          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
+        postal_code:
+          type: string
+          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
+        country_code:
+          allOf:
+          - $ref: '#/components/schemas/CountryCode_2'
+      additionalProperties: false
+    EmployerStatus_2:
+      enum:
+      - pending
+      - active
+      - offboarding
+      - inactive
+      - restricted
+      type: string
     EmployerResponsePagedList_2:
       required:
       - items
@@ -880,149 +912,6 @@ components:
           type: string
           description: 'Contact email address. NOTE: This field will be normalized according to our internal formatting rules.'
       additionalProperties: false
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      additionalProperties: {}
-    EmployerResponse_2:
-      required:
-      - contact
-      - id
-      - legal_address
-      - legal_name
-      type: object
-      properties:
-        id:
-          pattern: er_.+
-          type: string
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        platform_id:
-          pattern: pt_.+
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        status:
-          allOf:
-          - $ref: '#/components/schemas/EmployerStatus_2'
-        legal_name:
-          type: string
-        registration_number:
-          type:
-          - 'null'
-          - string
-        legal_address:
-          allOf:
-          - $ref: '#/components/schemas/AddressModel_2'
-        contact:
-          allOf:
-          - $ref: '#/components/schemas/ContactModel_2'
-        offboard_on:
-          type:
-          - 'null'
-          - string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        earliest_benefits_start_date:
-          type:
-          - 'null'
-          - string
-          format: date
-          example: '2024-12-01'
-        metadata:
-          type:
-          - 'null'
-          - object
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    ProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    AddressModelWithoutCountry_2:
-      required:
-      - city
-      - line1
-      - postal_code
-      type: object
-      properties:
-        line1:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        line2:
-          type:
-          - 'null'
-          - string
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        line3:
-          type:
-          - 'null'
-          - string
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        city:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        state:
-          type:
-          - 'null'
-          - string
-          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
-        postal_code:
-          type: string
-          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-      additionalProperties: false
     UpdateEmployerRequest_2:
       type: object
       properties:
@@ -1066,49 +955,105 @@ components:
             type: string
           description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters. Treated as a single object that is updated entirely.
       additionalProperties: false
-    EmployerStatus_2:
-      enum:
-      - pending
-      - active
-      - offboarding
-      - inactive
-      - restricted
-      type: string
-    AddressModel_2:
-      required:
-      - city
-      - country_code
-      - line1
-      - postal_code
+    ProblemDetails_2:
       type: object
       properties:
-        line1:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        line2:
+        type:
           type:
           - 'null'
           - string
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        line3:
+        title:
           type:
           - 'null'
           - string
-          description: 'NOTE: This field will be normalized according to our internal formatting rules.'
-        city:
-          type: string
-          description: 'Must not be empty. NOTE: This field will be normalized according to our internal formatting rules.'
-        state:
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
           type:
           - 'null'
           - string
-          description: 'Required for United States (State), and Canada (Province). NOTE: This field will be normalized according to our internal formatting rules.'
-        postal_code:
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    CreateEmployerRequest_2:
+      required:
+      - contact
+      - legal_address
+      - legal_name
+      type: object
+      properties:
+        legal_name:
           type: string
-          description: 'Must not be empty, and a valid postal code for the specified country. NOTE: This field will be normalized according to our internal formatting rules.'
-        country_code:
+          description: 'Legal name of the company. NOTE: This field will be normalized according to our internal formatting rules.'
+        registration_number:
+          type:
+          - 'null'
+          - string
+          description: 'Company registration number. NOTE: This field will be normalized according to our internal formatting rules.'
+        legal_address:
           allOf:
-          - $ref: '#/components/schemas/CountryCode_2'
+          - $ref: '#/components/schemas/AddressModel_2'
+        contact:
+          allOf:
+          - $ref: '#/components/schemas/ContactModel_2'
+        earliest_benefits_start_date:
+          type:
+          - 'null'
+          - string
+          description: 'The earliest date this employer is permitted to set up any benefits scheme. If this date is in the future, benefit setup will be blocked until then. Used to delay scheme setup access (e.g., for onboarding alignment).
+
+
+            **Constraints:**
+
+
+            - Can only be set or updated if no group policy or group quote exists.
+
+            - Must be a valid date in the future.'
+          format: date
+          example: '2024-12-01'
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
       additionalProperties: false
     CountryCode_2:
       enum:
@@ -1363,6 +1308,61 @@ components:
       - zm
       - zw
       type: string
+    EmployerResponse_2:
+      required:
+      - contact
+      - id
+      - legal_address
+      - legal_name
+      type: object
+      properties:
+        id:
+          pattern: er_.+
+          type: string
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        status:
+          allOf:
+          - $ref: '#/components/schemas/EmployerStatus_2'
+        legal_name:
+          type: string
+        registration_number:
+          type:
+          - 'null'
+          - string
+        legal_address:
+          allOf:
+          - $ref: '#/components/schemas/AddressModel_2'
+        contact:
+          allOf:
+          - $ref: '#/components/schemas/ContactModel_2'
+        offboard_on:
+          type:
+          - 'null'
+          - string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        earliest_benefits_start_date:
+          type:
+          - 'null'
+          - string
+          format: date
+          example: '2024-12-01'
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
