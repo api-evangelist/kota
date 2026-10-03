@@ -132,6 +132,51 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
+    CreatePolicyImportIntentRequest:
+      required:
+      - employee_id
+      - group_id
+      - member_number
+      - policy_start_date
+      - provider_policy_number
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The employee ID for the policy import. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: The group ID for the policy import. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        provider_policy_number:
+          type: string
+          description: The provider's policy number.
+        member_number:
+          type: string
+          description: The member number assigned by the provider.
+        policy_start_date:
+          type: string
+          description: The start date of the policy.
+          format: date
+          example: '2024-12-01'
+        policy_end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date of the policy. Leave null if the policy has no end date.
+          format: date
+          example: '2024-12-01'
+        associated_persons:
+          type:
+          - 'null'
+          - array
+          items:
+            $ref: '#/components/schemas/CreatePolicyImportIntentAssociatedPersonRequest'
+          description: List of associated persons to be linked to this policy import.
+      additionalProperties: false
     PolicyImportIntentAssociatedPersonResponse:
       required:
       - associated_person_id
@@ -167,6 +212,31 @@ components:
           format: date
           example: '2024-12-01'
       additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
     PolicyImportIntentResponse:
       required:
       - associated_persons
@@ -226,6 +296,36 @@ components:
             $ref: '#/components/schemas/PolicyImportIntentAssociatedPersonResponse'
           description: List of associated persons linked to this policy import.
       additionalProperties: false
+    CreatePolicyImportIntentAssociatedPersonRequest:
+      required:
+      - associated_person_id
+      type: object
+      properties:
+        associated_person_id:
+          pattern: ap_.+
+          type: string
+          description: The associated person ID. Prefixed with `ap_`.
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        member_number:
+          type:
+          - 'null'
+          - string
+          description: The member number assigned by the provider for this associated person.
+        start_date:
+          type:
+          - 'null'
+          - string
+          description: The start date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+        end_date:
+          type:
+          - 'null'
+          - string
+          description: The end date for this associated person's coverage.
+          format: date
+          example: '2024-12-01'
+      additionalProperties: false
     PolicyImportIntentResponsePagedList:
       required:
       - items
@@ -265,31 +365,6 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
     PolicyImportIntentStatus:
       enum:
       - processing
@@ -303,81 +378,6 @@ components:
           description: The policy import has failed.
         success:
           description: The policy import has completed successfully.
-    CreatePolicyImportIntentAssociatedPersonRequest:
-      required:
-      - associated_person_id
-      type: object
-      properties:
-        associated_person_id:
-          pattern: ap_.+
-          type: string
-          description: The associated person ID. Prefixed with `ap_`.
-          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        member_number:
-          type:
-          - 'null'
-          - string
-          description: The member number assigned by the provider for this associated person.
-        start_date:
-          type:
-          - 'null'
-          - string
-          description: The start date for this associated person's coverage.
-          format: date
-          example: '2024-12-01'
-        end_date:
-          type:
-          - 'null'
-          - string
-          description: The end date for this associated person's coverage.
-          format: date
-          example: '2024-12-01'
-      additionalProperties: false
-    CreatePolicyImportIntentRequest:
-      required:
-      - employee_id
-      - group_id
-      - member_number
-      - policy_start_date
-      - provider_policy_number
-      type: object
-      properties:
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: The employee ID for the policy import. Prefixed with `ee_`.
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: The group ID for the policy import. Prefixed with `g_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        provider_policy_number:
-          type: string
-          description: The provider's policy number.
-        member_number:
-          type: string
-          description: The member number assigned by the provider.
-        policy_start_date:
-          type: string
-          description: The start date of the policy.
-          format: date
-          example: '2024-12-01'
-        policy_end_date:
-          type:
-          - 'null'
-          - string
-          description: The end date of the policy. Leave null if the policy has no end date.
-          format: date
-          example: '2024-12-01'
-        associated_persons:
-          type:
-          - 'null'
-          - array
-          items:
-            $ref: '#/components/schemas/CreatePolicyImportIntentAssociatedPersonRequest'
-          description: List of associated persons to be linked to this policy import.
-      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
