@@ -94,33 +94,30 @@ paths:
       description: production
 components:
   schemas:
-    WebhookEndpointResponse:
+    ProblemDetails:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the endpoint
-        endpoint_url:
-          type: string
-          description: The registered URL of the endpoint
-        subscribed_events:
-          type: array
-          items:
-            type: string
-          description: The events the endpoint is subscribed to
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time the endpoint was created
-        object:
-          type: string
-          description: The object type
-      required:
-      - id
-      - endpoint_url
-      - subscribed_events
-      - created_at
-      title: WebhookEndpointResponse
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
     WebhookEndpointResponsePagedList:
       type: object
       properties:
@@ -150,30 +147,6 @@ components:
       - page_size
       - total_count
       title: WebhookEndpointResponsePagedList
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -204,19 +177,12 @@ components:
             items:
               type: string
       title: HttpValidationProblemDetails
-    WebhookEndpointResponse_2:
-      required:
-      - created_at
-      - endpoint_url
-      - id
-      - subscribed_events
+    WebhookEndpointResponse:
       type: object
       properties:
         id:
-          pattern: whe_.+
           type: string
           description: The unique identifier of the endpoint
-          example: whe_3b1333d87d9d4fd6ad83ba7f6b0e951a
         endpoint_url:
           type: string
           description: The registered URL of the endpoint
@@ -227,14 +193,73 @@ components:
           description: The events the endpoint is subscribed to
         created_at:
           type: string
-          description: The date and time the endpoint was created
           format: date-time
-          example: '2024-12-01T00:00:00Z'
+          description: The date and time the endpoint was created
         object:
           type: string
           description: The object type
-          readOnly: true
-      additionalProperties: false
+      required:
+      - id
+      - endpoint_url
+      - subscribed_events
+      - created_at
+      title: WebhookEndpointResponse
+    HttpValidationProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+      additionalProperties: {}
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
     WebhookEndpointResponsePagedList_2:
       required:
       - items
@@ -274,62 +299,37 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    ProblemDetails_2:
+    WebhookEndpointResponse_2:
+      required:
+      - created_at
+      - endpoint_url
+      - id
+      - subscribed_events
       type: object
       properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    HttpValidationProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-      additionalProperties: {}
+        id:
+          pattern: whe_.+
+          type: string
+          description: The unique identifier of the endpoint
+          example: whe_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        endpoint_url:
+          type: string
+          description: The registered URL of the endpoint
+        subscribed_events:
+          type: array
+          items:
+            type: string
+          description: The events the endpoint is subscribed to
+        created_at:
+          type: string
+          description: The date and time the endpoint was created
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

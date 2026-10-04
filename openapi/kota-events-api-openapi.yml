@@ -156,6 +156,44 @@ paths:
       description: production
 components:
   schemas:
+    ReplayDeliveryResponse:
+      type: object
+      properties:
+        delivery_id:
+          type: string
+        success:
+          type: boolean
+        response_status_code:
+          type:
+          - integer
+          - 'null'
+        elapsed_time_ms:
+          type: number
+          format: double
+      required:
+      - delivery_id
+      - success
+      - response_status_code
+      - elapsed_time_ms
+      title: ReplayDeliveryResponse
+    WebhookVersionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/WebhookVersion'
+      title: WebhookVersionEnumParameter
+    OrderDirectionEnumParameter:
+      type: object
+      properties:
+        value:
+          $ref: '#/components/schemas/OrderDirection'
+      title: OrderDirectionEnumParameter
+    OrderDirection:
+      type: string
+      enum:
+      - asc
+      - desc
+      title: OrderDirection
     JsonNode:
       type: object
       properties:
@@ -166,12 +204,72 @@ components:
         root:
           $ref: '#/components/schemas/JsonNode'
       title: JsonNode
-    OrderDirection:
+    EventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        platform_id:
+          type: string
+        created:
+          type: string
+          format: date-time
+        type:
+          type: string
+        data:
+          $ref: '#/components/schemas/JsonNode'
+        api_version:
+          type: string
+      required:
+      - id
+      - platform_id
+      - created
+      - type
+      - data
+      title: EventResponse
+    WebhookVersion:
       type: string
       enum:
-      - asc
-      - desc
-      title: OrderDirection
+      - v1
+      - v2
+      title: WebhookVersion
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      title: ProblemDetails
+    ReplayEventResponse:
+      type: object
+      properties:
+        event_id:
+          type: string
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayDeliveryResponse'
+      required:
+      - event_id
+      - deliveries
+      title: ReplayEventResponse
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -231,110 +329,56 @@ components:
       - page_size
       - total_count
       title: EventResponsePagedList
-    EventResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        platform_id:
-          type: string
-        created:
-          type: string
-          format: date-time
-        type:
-          type: string
-        data:
-          $ref: '#/components/schemas/JsonNode'
-        api_version:
-          type: string
-      required:
-      - id
-      - platform_id
-      - created
-      - type
-      - data
-      title: EventResponse
     JsonNodeOptions:
       type: object
       properties:
         property_name_case_insensitive:
           type: boolean
       title: JsonNodeOptions
-    WebhookVersion:
-      type: string
-      enum:
-      - v1
-      - v2
-      title: WebhookVersion
-    WebhookVersionEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/WebhookVersion'
-      title: WebhookVersionEnumParameter
-    OrderDirectionEnumParameter:
-      type: object
-      properties:
-        value:
-          $ref: '#/components/schemas/OrderDirection'
-      title: OrderDirectionEnumParameter
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      title: ProblemDetails
-    ReplayDeliveryResponse:
+    ReplayDeliveryResponse_2:
+      required:
+      - delivery_id
+      - elapsed_time_ms
+      - response_status_code
+      - success
       type: object
       properties:
         delivery_id:
+          pattern: evtd_.+
           type: string
+          example: evtd_3b1333d87d9d4fd6ad83ba7f6b0e951a
         success:
           type: boolean
+          example: true
         response_status_code:
           type:
-          - integer
           - 'null'
+          - integer
+          format: int32
         elapsed_time_ms:
           type: number
           format: double
-      required:
-      - delivery_id
-      - success
-      - response_status_code
-      - elapsed_time_ms
-      title: ReplayDeliveryResponse
-    ReplayEventResponse:
+          example: 123.45
+      additionalProperties: false
+    WebhookVersionEnumParameter_2:
       type: object
       properties:
-        event_id:
-          type: string
-        deliveries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReplayDeliveryResponse'
-      required:
-      - event_id
-      - deliveries
-      title: ReplayEventResponse
+        value:
+          allOf:
+          - $ref: '#/components/schemas/WebhookVersion_2'
+      additionalProperties: false
+    OrderDirectionEnumParameter_2:
+      type: object
+      properties:
+        value:
+          allOf:
+          - $ref: '#/components/schemas/OrderDirection_2'
+      additionalProperties: false
+    OrderDirection_2:
+      enum:
+      - asc
+      - desc
+      type: string
     JsonNode_2:
       type: object
       properties:
@@ -353,11 +397,82 @@ components:
           - $ref: '#/components/schemas/JsonNode_2'
           readOnly: true
       additionalProperties: false
-    OrderDirection_2:
+    EventResponse_2:
+      required:
+      - created
+      - data
+      - id
+      - platform_id
+      - type
+      type: object
+      properties:
+        id:
+          pattern: evt_.+
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        platform_id:
+          pattern: pt_.+
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        created:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        type:
+          type: string
+        data:
+          type: 'null'
+          allOf:
+          - $ref: '#/components/schemas/JsonNode_2'
+        api_version:
+          type: string
+          readOnly: true
+      additionalProperties: false
+    WebhookVersion_2:
       enum:
-      - asc
-      - desc
+      - v1
+      - v2
       type: string
+    ProblemDetails_2:
+      type: object
+      properties:
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
+    ReplayEventResponse_2:
+      required:
+      - deliveries
+      - event_id
+      type: object
+      properties:
+        event_id:
+          pattern: evt_.+
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReplayDeliveryResponse_2'
+      additionalProperties: false
     HttpValidationProblemDetails_2:
       type: object
       properties:
@@ -428,127 +543,12 @@ components:
           readOnly: true
           example: true
       additionalProperties: false
-    EventResponse_2:
-      required:
-      - created
-      - data
-      - id
-      - platform_id
-      - type
-      type: object
-      properties:
-        id:
-          pattern: evt_.+
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        platform_id:
-          pattern: pt_.+
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        created:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        type:
-          type: string
-        data:
-          type: 'null'
-          allOf:
-          - $ref: '#/components/schemas/JsonNode_2'
-        api_version:
-          type: string
-          readOnly: true
-      additionalProperties: false
     JsonNodeOptions_2:
       type: object
       properties:
         property_name_case_insensitive:
           type: boolean
           example: true
-      additionalProperties: false
-    WebhookVersion_2:
-      enum:
-      - v1
-      - v2
-      type: string
-    WebhookVersionEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/WebhookVersion_2'
-      additionalProperties: false
-    OrderDirectionEnumParameter_2:
-      type: object
-      properties:
-        value:
-          allOf:
-          - $ref: '#/components/schemas/OrderDirection_2'
-      additionalProperties: false
-    ProblemDetails_2:
-      type: object
-      properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
-    ReplayDeliveryResponse_2:
-      required:
-      - delivery_id
-      - elapsed_time_ms
-      - response_status_code
-      - success
-      type: object
-      properties:
-        delivery_id:
-          pattern: evtd_.+
-          type: string
-          example: evtd_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        success:
-          type: boolean
-          example: true
-        response_status_code:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        elapsed_time_ms:
-          type: number
-          format: double
-          example: 123.45
-      additionalProperties: false
-    ReplayEventResponse_2:
-      required:
-      - deliveries
-      - event_id
-      type: object
-      properties:
-        event_id:
-          pattern: evt_.+
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        deliveries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReplayDeliveryResponse_2'
       additionalProperties: false
   securitySchemes:
     bearerAuth:
