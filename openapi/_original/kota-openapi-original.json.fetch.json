@@ -1,0 +1,12 @@
+{
+ "url": "https://api.kota.io/openapi.yaml",
+ "requested_url": "https://api.kota.io/openapi.yaml",
+ "status": 200,
+ "content_type": "text/yaml;charset=utf-8",
+ "bytes": 657536,
+ "sha256": "9efe14ca26c9e9b73e26cb43ac86a750eaf23b69f8aef96357d068096afe5498",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.938), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
