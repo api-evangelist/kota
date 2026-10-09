@@ -25,11 +25,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-associated-persons-api
   collections/kota-associatedpersons-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-associatedpersons-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-associatedpersons-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-associatedpersons-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-contribution-reports-api.opencollection.json:
     method: derived
     evidence: openapi/kota-contribution-reports-api
@@ -37,11 +37,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-contribution-reports-api
   collections/kota-contributionreports-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-contributionreports-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-contributionreports-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-contributionreports-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-dependents-management-intents-api.opencollection.json:
     method: derived
     evidence: openapi/kota-dependents-management-intents-api
@@ -49,11 +49,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-dependents-management-intents-api
   collections/kota-dependentsmanagementintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-dependentsmanagementintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-dependentsmanagementintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-dependentsmanagementintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-embed-sessions-api.opencollection.json:
     method: derived
     evidence: openapi/kota-embed-sessions-api
@@ -61,11 +61,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-embed-sessions-api
   collections/kota-embedsessions-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-embedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-embedsessions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-embedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-employees-api.opencollection.json:
     method: derived
     evidence: openapi/kota-employees-api
@@ -85,11 +85,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-enrolment-intents-api
   collections/kota-enrolmentintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-enrolmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-enrolmentintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-enrolmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-events-api.opencollection.json:
     method: derived
     evidence: openapi/kota-events-api
@@ -115,23 +115,23 @@ artifacts:
     method: derived
     evidence: openapi/kota-group-quote-intents-api
   collections/kota-grouppolicies-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicies-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-grouppolicies-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicies-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-grouppolicyintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicyintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-grouppolicyintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicyintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-groupquoteintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-groupquoteintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-groupquoteintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-groupquoteintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-groups-api.opencollection.json:
     method: derived
     evidence: openapi/kota-groups-api
@@ -145,11 +145,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-health-insurance-api
   collections/kota-healthinsurance-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-healthinsurance-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-healthinsurance-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-healthinsurance-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-hosted-sessions-api.opencollection.json:
     method: derived
     evidence: openapi/kota-hosted-sessions-api
@@ -157,11 +157,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-hosted-sessions-api
   collections/kota-hostedsessions-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-hostedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-hostedsessions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-hostedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-plans-api.opencollection.json:
     method: derived
     evidence: openapi/kota-plans-api
@@ -187,17 +187,17 @@ artifacts:
     method: derived
     evidence: openapi/kota-policy-import-intents-api
   collections/kota-policyamendmentintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-policyamendmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-policyamendmentintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-policyamendmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-policyimportintents-api.opencollection.json:
-    method: derived
-    evidence: openapi/kota-policyimportintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-policyimportintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-policyimportintents-api
+    method: unknown
+    evidence: no authorship recorded
   collections/kota-providers-api.opencollection.json:
     method: derived
     evidence: openapi/kota-providers-api
@@ -231,55 +231,10 @@ artifacts:
   errors/kota-problem-types.yml:
     method: searched
     evidence: declared in the artifact
-  kin/checks-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-07T135032.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T093022.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-10T111628.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-11T211707.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-12T193225.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-17T064519.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T080027.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T082702.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-19T114122.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T165047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T191845.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-20T205517.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-21T110057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T064859.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-24T171257.yml:
+  front-door-ai/2026-09-17.yml:
+    method: unknown
+    evidence: no authorship recorded
+  kin/checks-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-25T125852.yml:
@@ -366,6 +321,123 @@ artifacts:
   kin/score-2026-09-05T072335.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T200636.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-07T213054.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T214843.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-08T232836.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T204815.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-10T222408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T062655.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T080032.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T204651.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-12T221936.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-13T214537.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T064754.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T210656.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-14T225847.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T211329.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-15T230249.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T210549.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-16T225339.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T211151.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-17T233623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T205255.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-18T231945.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T165737.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-19T193153.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T205903.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-20T232958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T211425.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-21T233935.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-22T213221.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-23T000603.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T064009.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T090406.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/kota-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -377,35 +449,25 @@ artifacts:
     evidence: declared in the artifact
   openapi/_original/kota-api-reference-openapi.json:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/_original/kota-openapi-original.json:
     method: harvested
-    evidence: fetched from the provider as-is; byte-identical to the source
+    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
+      to the provider's source is unverified
   openapi/kota-api-reference-api-openapi.yml:
     method: unknown
     evidence: no authorship recorded
   openapi/kota-associated-persons-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-associatedpersons-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-contribution-reports-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-contributionreports-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-dependents-management-intents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-dependentsmanagementintents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-embed-sessions-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-embedsessions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-employees-api-openapi.yml:
@@ -415,9 +477,6 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-enrolment-intents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-enrolmentintents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-events-api-openapi.yml:
@@ -432,28 +491,13 @@ artifacts:
   openapi/kota-group-quote-intents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-grouppolicies-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-grouppolicyintents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-groupquoteintents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-groups-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-health-insurance-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-healthinsurance-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-hosted-sessions-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-hostedsessions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-plans-api-openapi.yml:
@@ -466,12 +510,6 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-policy-import-intents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-policyamendmentintents-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/kota-policyimportintents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/kota-providers-api-openapi.yml:
@@ -498,30 +536,33 @@ artifacts:
   packages/kota-packages.yml:
     method: searched
     evidence: declared in the artifact
+  plans/kota-plans-pricing.yml:
+    method: searched
+    evidence: declared in the artifact
   postman/kota-associated-persons-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-associated-persons-api
   postman/kota-associatedpersons-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-associatedpersons-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-contribution-reports-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-contribution-reports-api
   postman/kota-contributionreports-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-contributionreports-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-dependents-management-intents-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-dependents-management-intents-api
   postman/kota-dependentsmanagementintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-dependentsmanagementintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-embed-sessions-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-embed-sessions-api
   postman/kota-embedsessions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-embedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-employees-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-employees-api
@@ -532,8 +573,8 @@ artifacts:
     method: derived
     evidence: openapi/kota-enrolment-intents-api
   postman/kota-enrolmentintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-enrolmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-events-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-events-api
@@ -547,14 +588,14 @@ artifacts:
     method: derived
     evidence: openapi/kota-group-quote-intents-api
   postman/kota-grouppolicies-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicies-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-grouppolicyintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-grouppolicyintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-groupquoteintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-groupquoteintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-groups-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-groups-api
@@ -562,14 +603,14 @@ artifacts:
     method: derived
     evidence: openapi/kota-health-insurance-api
   postman/kota-healthinsurance-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-healthinsurance-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-hosted-sessions-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-hosted-sessions-api
   postman/kota-hostedsessions-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-hostedsessions-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-plans-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-plans-api
@@ -583,11 +624,11 @@ artifacts:
     method: derived
     evidence: openapi/kota-policy-import-intents-api
   postman/kota-policyamendmentintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-policyamendmentintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-policyimportintents-api.postman_collection.json:
-    method: derived
-    evidence: openapi/kota-policyimportintents-api
+    method: unknown
+    evidence: no authorship recorded
   postman/kota-providers-api.postman_collection.json:
     method: derived
     evidence: openapi/kota-providers-api
