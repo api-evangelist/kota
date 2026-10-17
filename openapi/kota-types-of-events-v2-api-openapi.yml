@@ -1637,8 +1637,8 @@ webhooks:
       x-fern-webhook: true
 components:
   schemas:
-    DependentsManagementIntentActionRequiredV2Webhook:
-      title: DependentsManagementIntentActionRequiredV2Webhook
+    EmployerHealthInsuranceQuoteCreatedV2Webhook:
+      title: EmployerHealthInsuranceQuoteCreatedV2Webhook
       required:
       - id
       - type
@@ -1655,13 +1655,1237 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: dependents_management_intent.action_required
+          example: employer.health_insurance.quote.created
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyRenewalRenewedV2Webhook:
+      title: PolicyRenewalRenewedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.renewal.renewed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportedV2Webhook:
+      title: PolicyImportedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.imported
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsurancePolicyActivatedV2Webhook:
+      title: EmployeeHealthInsurancePolicyActivatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.policy.activated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentActionRequiredV2Webhook:
+      title: GroupQuoteIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentEventResponse:
+      required:
+      - dependents_management_intent_id
+      - parent_intent_id
+      - parent_intent_type
+      type: object
+      properties:
+        dependents_management_intent_id:
+          pattern: dmi_.+
+          type: string
+          description: Identifier of the dependents management intent associated with this event. Prefixed with `dmi_`.
+          example: dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        parent_intent_id:
+          type: string
+          description: Identifier of the parent intent associated with this dependents management intent.
+          format: uuid
+        parent_intent_type:
+          allOf:
+          - $ref: '#/components/schemas/DependentsManagementIntentParentType'
+          description: Type of the parent intent.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    PolicyImportIntentSuccessV2Webhook:
+      title: PolicyImportIntentSuccessV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_import_intent.success
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyActiveV2Webhook:
+      title: GroupPolicyActiveV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.active
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeOffboardedV2Webhook:
+      title: EmployeeOffboardedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeCreatedV2Webhook:
+      title: EmployeeCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployerEventResponse:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        metadata:
+          type:
+          - 'null'
+          - object
+          additionalProperties:
+            type: string
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupEmployeeRemovedEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - group_id
+      - platform_id
+      - removed_at
+      type: object
+      properties:
+        platform_id:
+          pattern: pt_.+
+          type: string
+          description: Unique identifier for the platform
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier for the employer
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        removed_at:
+          type: string
+          description: Timestamp when the employee was removed from the group
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyAmendmentIntentActionRequiredV2Webhook:
+      title: PolicyAmendmentIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeAddedV2Webhook:
+      title: GroupEmployeeAddedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.added
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentProviderRejectedV2Webhook:
+      title: GroupPolicyIntentProviderRejectedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.provider_rejected
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentExpiredV2Webhook:
+      title: GroupPolicyIntentExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerOffboardedV2Webhook:
+      title: EmployerOffboardedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.offboarded
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentAmendedV2Webhook:
+      title: PolicyAmendmentIntentAmendedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.amended
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyUpdatedV2Webhook:
+      title: GroupPolicyUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyActiveV2Webhook:
+      title: PolicyActiveV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.active
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    AssociatedPersonUpdatedV2Webhook:
+      title: AssociatedPersonUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: associated_person.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/AssociatedPersonEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeRemovedV2Webhook:
+      title: GroupEmployeeRemovedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.removed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeRemovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeEligibleV2Webhook:
+      title: GroupEmployeeEligibleV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.eligible
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentEventResponse:
+      required:
+      - group_id
+      - group_quote_intent_id
+      - plan_id
+      type: object
+      properties:
+        group_quote_intent_id:
+          pattern: gqi_.+
+          type: string
+          description: Identifier of the group quote intent associated with this event. Prefixed with `gqi_`.
+          example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group quote intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Identifier of the plan associated with this group quote intent. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    EnrolmentIntentAddonSelectionRequiredV2Webhook:
+      title: EnrolmentIntentAddonSelectionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.addon_selection_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    ContributionReportEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ctr_.+
+          type: string
+          description: Unique identifier for the contribution report
+          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Unique identifier of the employer for which the report is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    EmployerCreatedV2Webhook:
+      title: EmployerCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeEventResponse:
+      required:
+      - employee_id
+      - group_id
+      type: object
+      properties:
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyScheduledV2Webhook:
+      title: PolicyScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyExpiredV2Webhook:
+      title: GroupPolicyExpiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.expired
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyImportIntentProcessingV2Webhook:
+      title: PolicyImportIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_import_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEventResponse:
+      required:
+      - employee_id
+      - enrolment_intent_id
+      - group_id
+      type: object
+      properties:
+        enrolment_intent_id:
+          pattern: ei_.+
+          type: string
+          description: Identifier of the enrolment intent associated with this event. Prefixed with `ei_`.
+          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this enrolment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this enrolment intent. Prefixed with `gp_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    EmployeeHealthInsurancePolicyEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: eehp_.+
+          type: string
+          description: Unique identifier for the policy
+          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the policy is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the policy is created
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyImportIntentEventResponse:
+      required:
+      - employee_id
+      - group_id
+      - policy_import_intent_id
+      type: object
+      properties:
+        policy_import_intent_id:
+          pattern: pii_.+
+          type: string
+          description: Identifier of the policy import intent associated with this event. Prefixed with `pii_`.
+          example: pii_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy import intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this policy import intent. Prefixed with `g_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policy_id:
+          pattern: p_.+
+          type:
+          - 'null'
+          - string
+          description: Identifier of the policy created from this import intent. Prefixed with `p_`. Only present on success.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupReadyV2Webhook:
+      title: GroupReadyV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.ready
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyScheduledV2Webhook:
+      title: GroupPolicyScheduledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
         created_at:
           type: string
           format: date-time
@@ -1707,8 +2931,8 @@ components:
         version:
           type: string
           example: V2
-    PolicyAmendmentIntentNotUndertakenV2Webhook:
-      title: PolicyAmendmentIntentNotUndertakenV2Webhook
+    GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook:
+      title: GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook
       required:
       - id
       - type
@@ -1725,13 +2949,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy_amendment_intent.not_undertaken
+          example: group_policy_intent.manual_renewal_gathering_required
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
         created_at:
           type: string
           format: date-time
@@ -1742,8 +2966,8 @@ components:
         version:
           type: string
           example: V2
-    PolicyAmendmentIntentActionRequiredV2Webhook:
-      title: PolicyAmendmentIntentActionRequiredV2Webhook
+    EnrolmentIntentPendingConfirmationV2Webhook:
+      title: EnrolmentIntentPendingConfirmationV2Webhook
       required:
       - id
       - type
@@ -1760,185 +2984,7 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy_amendment_intent.action_required
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupUpdatedV2Webhook:
-      title: GroupUpdatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.updated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupReadyV2Webhook:
-      title: GroupReadyV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.ready
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    ContributionReportFinalizedV2Webhook:
-      title: ContributionReportFinalizedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: contribution_report.finalized
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/ContributionReportEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyImportIntentEventResponse:
-      required:
-      - employee_id
-      - group_id
-      - policy_import_intent_id
-      type: object
-      properties:
-        policy_import_intent_id:
-          pattern: pii_.+
-          type: string
-          description: Identifier of the policy import intent associated with this event. Prefixed with `pii_`.
-          example: pii_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Identifier of the employee associated with this policy import intent. Prefixed with `ee_`.
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Identifier of the group associated with this policy import intent. Prefixed with `g_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        policy_id:
-          pattern: p_.+
-          type:
-          - 'null'
-          - string
-          description: Identifier of the policy created from this import intent. Prefixed with `p_`. Only present on success.
-          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    EnrolmentIntentProcessingV2Webhook:
-      title: EnrolmentIntentProcessingV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.processing
+          example: enrolment_intent.pending_confirmation
         platform_id:
           pattern: pt_*
           type: string
@@ -1955,8 +3001,39 @@ components:
         version:
           type: string
           example: V2
-    PolicyAmendmentIntentAmendedV2Webhook:
-      title: PolicyAmendmentIntentAmendedV2Webhook
+    GroupPolicyEventResponse:
+      required:
+      - employer_id
+      - group_id
+      - group_policy_id
+      type: object
+      properties:
+        group_policy_id:
+          pattern: gp_.+
+          type: string
+          description: Identifier of the group policy associated with this event. Prefixed with `gp_`.
+          example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group policy. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier for the employer associated with this group policy. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    EnrolmentIntentScheduledV2Webhook:
+      title: EnrolmentIntentScheduledV2Webhook
       required:
       - id
       - type
@@ -1973,13 +3050,612 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy_amendment_intent.amended
+          example: enrolment_intent.scheduled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentNotUndertakenV2Webhook:
+      title: EnrolmentIntentNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteNotUndertakenV2Webhook:
+      title: EmployerHealthInsuranceQuoteNotUndertakenV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeMovedV2Webhook:
+      title: GroupEmployeeMovedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.employee.moved
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEmployeeMovedEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentPendingProviderApprovalV2Webhook:
+      title: GroupPolicyIntentPendingProviderApprovalV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.pending_provider_approval
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentActionRequiredV2Webhook:
+      title: GroupPolicyIntentActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteActionRequiredV2Webhook:
+      title: EmployerHealthInsuranceQuoteActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEnrollingV2Webhook:
+      title: EnrolmentIntentEnrollingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.enrolling
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupQuoteIntentRejectedByInsurerV2Webhook:
+      title: GroupQuoteIntentRejectedByInsurerV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.rejected_by_insurer
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentProcessingV2Webhook:
+      title: PolicyAmendmentIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.processing
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
           $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupEmployeeMovedEventResponse:
+      required:
+      - employee_id
+      - new_group_id
+      - previous_group_id
+      type: object
+      properties:
+        previous_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee was moved from
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        new_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee was moved to
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyAmendmentIntentEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - policy_amendment_intent_id
+      - policy_id
+      type: object
+      properties:
+        policy_amendment_intent_id:
+          pattern: pai_.+
+          type: string
+          description: Identifier of the policy amendment intent associated with this event. Prefixed with `pai_`.
+          example: pai_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        policy_id:
+          pattern: p_.+
+          type: string
+          description: Identifier of the policy associated with this policy amendment intent. Prefixed with `p_`.
+          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Identifier of the employee associated with this policy amendment intent. Prefixed with `ee_`.
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: Identifier of the employer associated with this policy amendment intent. Prefixed with `er_`.
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyCancelledV2Webhook:
+      title: GroupPolicyCancelledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.cancelled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentParentType:
+      enum:
+      - policy_amendment_intent
+      - enrolment_intent
+      type: string
+    EmployeeHealthInsuranceOfferEventResponse:
+      required:
+      - employee_id
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: eeho_.+
+          type: string
+          description: Unique identifier for the offer
+          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the offer is available
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: The Id of the employee for which the offer is available
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        external_customer_id:
+          type:
+          - 'null'
+          - string
+          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    PolicyAmendmentIntentProcessingErrorV2Webhook:
+      title: PolicyAmendmentIntentProcessingErrorV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.processing_error
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    DependentsManagementIntentCompletedV2Webhook:
+      title: DependentsManagementIntentCompletedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: dependents_management_intent.completed
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentEnrolledV2Webhook:
+      title: EnrolmentIntentEnrolledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.enrolled
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentPolicyCreatedV2Webhook:
+      title: GroupPolicyIntentPolicyCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.policy_created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
         created_at:
           type: string
           format: date-time
@@ -2060,39 +3736,8 @@ components:
         version:
           type: string
           example: V2
-    EnrolmentIntentEventResponse:
-      required:
-      - employee_id
-      - enrolment_intent_id
-      - group_id
-      type: object
-      properties:
-        enrolment_intent_id:
-          pattern: ei_.+
-          type: string
-          description: Identifier of the enrolment intent associated with this event. Prefixed with `ei_`.
-          example: ei_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Identifier of the employee associated with this enrolment intent. Prefixed with `ee_`.
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Identifier of the group associated with this enrolment intent. Prefixed with `gp_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    EmployerHealthInsuranceQuoteNotUndertakenV2Webhook:
-      title: EmployerHealthInsuranceQuoteNotUndertakenV2Webhook
+    PolicyAmendmentIntentNotUndertakenV2Webhook:
+      title: PolicyAmendmentIntentNotUndertakenV2Webhook
       required:
       - id
       - type
@@ -2109,13 +3754,339 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: employer.health_insurance.quote.not_undertaken
+          example: policy_amendment_intent.not_undertaken
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentAwaitingQuoteV2Webhook:
+      title: PolicyAmendmentIntentAwaitingQuoteV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.awaiting_quote
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupCreatedV2Webhook:
+      title: GroupCreatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.created
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteEventResponse:
+      required:
+      - employer_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: erhq_.+
+          type: string
+          description: Unique identifier for the quote
+          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
+          pattern: er_.+
+          type: string
+          description: The Id of the employer for which the is created
+          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    AssociatedPersonEventResponse:
+      required:
+      - employee_id
+      - id
+      type: object
+      properties:
+        id:
+          pattern: ap_.+
+          type: string
+          description: Unique identifier for the associated person
+          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee this person is associated with
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyIntentProcessingV2Webhook:
+      title: GroupPolicyIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentIneligibleV2Webhook:
+      title: EnrolmentIntentIneligibleV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.ineligible
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupUpdatedV2Webhook:
+      title: GroupUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyIntentEventResponse:
+      required:
+      - group_id
+      - group_policy_intent_id
+      - plan_id
+      type: object
+      properties:
+        group_policy_intent_id:
+          pattern: gpi_.+
+          type: string
+          description: Identifier of the group policy intent associated with this event. Prefixed with `gpi_`.
+          example: gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        group_id:
+          pattern: gr_.+
+          type: string
+          description: Identifier of the group associated with this group policy intent. Prefixed with `gr_`.
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        plan_id:
+          pattern: pl_.+
+          type: string
+          description: Identifier of the plan associated with this group policy intent. Prefixed with `pl_`.
+          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: Object type
+          readOnly: true
+      additionalProperties: false
+    GroupQuoteIntentRejectedV2Webhook:
+      title: GroupQuoteIntentRejectedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_quote_intent.rejected
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyRenewalOpenedV2Webhook:
+      title: PolicyRenewalOpenedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.renewal.opened
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
         created_at:
           type: string
           format: date-time
@@ -2161,8 +4132,8 @@ components:
         version:
           type: string
           example: V2
-    PolicyImportedV2Webhook:
-      title: PolicyImportedV2Webhook
+    EmployeeUpdatedV2Webhook:
+      title: EmployeeUpdatedV2Webhook
       required:
       - id
       - type
@@ -2179,13 +4150,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy.imported
+          example: employee.updated
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/PolicyEventResponse'
+          $ref: '#/components/schemas/EmployeeEventResponse'
         created_at:
           type: string
           format: date-time
@@ -2233,8 +4204,8 @@ components:
           description: Object type
           readOnly: true
       additionalProperties: false
-    EmployeeHealthInsuranceOfferActionRequiredV2Webhook:
-      title: EmployeeHealthInsuranceOfferActionRequiredV2Webhook
+    DependentsManagementIntentActionRequiredV2Webhook:
+      title: DependentsManagementIntentActionRequiredV2Webhook
       required:
       - id
       - type
@@ -2251,13 +4222,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: employee.health_insurance.offer.action_required
+          example: dependents_management_intent.action_required
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferEventResponse'
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
         created_at:
           type: string
           format: date-time
@@ -2268,12 +4239,88 @@ components:
         version:
           type: string
           example: V2
-    EmployerEventResponse:
+    DependentsManagementIntentNotUndertakenV2Webhook:
+      title: DependentsManagementIntentNotUndertakenV2Webhook
       required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: dependents_management_intent.not_undertaken
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyUpdatedV2Webhook:
+      title: PolicyUpdatedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy.updated
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeEventResponse:
+      required:
+      - employer_id
       - id
       type: object
       properties:
         id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        employer_id:
           pattern: er_.+
           type: string
           description: Unique identifier for the employer
@@ -2329,8 +4376,8 @@ components:
         version:
           type: string
           example: V2
-    GroupPolicyRenewalCanceledV2Webhook:
-      title: GroupPolicyRenewalCanceledV2Webhook
+    PolicyImportIntentFailedV2Webhook:
+      title: PolicyImportIntentFailedV2Webhook
       required:
       - id
       - type
@@ -2347,497 +4394,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: group_policy.renewal.canceled
+          example: policy_import_intent.failed
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupEventResponse:
-      required:
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier for the employer
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    GroupEmployeeMoveScheduledEventResponse:
-      required:
-      - current_group_id
-      - employee_id
-      - new_group_id
-      - scheduled_date
-      type: object
-      properties:
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        current_group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the employee's current group
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        new_group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group the employee will be moved to
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        scheduled_date:
-          type: string
-          description: The date when the employee will be moved to the new group
-          format: date
-          example: '2024-12-01'
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    PolicyRenewalOpenedV2Webhook:
-      title: PolicyRenewalOpenedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy.renewal.opened
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyIntentPolicyCreatedV2Webhook:
-      title: GroupPolicyIntentPolicyCreatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.policy_created
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyAmendmentIntentEventResponse:
-      required:
-      - employee_id
-      - employer_id
-      - policy_amendment_intent_id
-      - policy_id
-      type: object
-      properties:
-        policy_amendment_intent_id:
-          pattern: pai_.+
-          type: string
-          description: Identifier of the policy amendment intent associated with this event. Prefixed with `pai_`.
-          example: pai_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        policy_id:
-          pattern: p_.+
-          type: string
-          description: Identifier of the policy associated with this policy amendment intent. Prefixed with `p_`.
-          example: p_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Identifier of the employee associated with this policy amendment intent. Prefixed with `ee_`.
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Identifier of the employer associated with this policy amendment intent. Prefixed with `er_`.
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    GroupPolicyIntentExpiredV2Webhook:
-      title: GroupPolicyIntentExpiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.expired
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentActionRequiredV2Webhook:
-      title: EnrolmentIntentActionRequiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.action_required
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupEmployeeAddedV2Webhook:
-      title: GroupEmployeeAddedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.employee.added
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEmployeeEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyIntentPendingProviderApprovalV2Webhook:
-      title: GroupPolicyIntentPendingProviderApprovalV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.pending_provider_approval
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerHealthInsuranceQuoteActionRequiredV2Webhook:
-      title: EmployerHealthInsuranceQuoteActionRequiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.health_insurance.quote.action_required
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerOffboardedV2Webhook:
-      title: EmployerOffboardedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.offboarded
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployerEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupQuoteIntentRejectedV2Webhook:
-      title: GroupQuoteIntentRejectedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_quote_intent.rejected
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyScheduledV2Webhook:
-      title: PolicyScheduledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy.scheduled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    AssociatedPersonUpdatedV2Webhook:
-      title: AssociatedPersonUpdatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: associated_person.updated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/AssociatedPersonEventResponse'
+          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
         created_at:
           type: string
           format: date-time
@@ -2883,33 +4446,8 @@ components:
         version:
           type: string
           example: V2
-    GroupEmployeeEventResponse:
-      required:
-      - employee_id
-      - group_id
-      type: object
-      properties:
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    GroupPolicyScheduledV2Webhook:
-      title: GroupPolicyScheduledV2Webhook
+    EmployerUpdatedV2Webhook:
+      title: EmployerUpdatedV2Webhook
       required:
       - id
       - type
@@ -2926,1305 +4464,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: group_policy.scheduled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupEmployeeMovedEventResponse:
-      required:
-      - employee_id
-      - new_group_id
-      - previous_group_id
-      type: object
-      properties:
-        previous_group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group the employee was moved from
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        new_group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group the employee was moved to
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    GroupPolicyIntentProviderRejectedV2Webhook:
-      title: GroupPolicyIntentProviderRejectedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.provider_rejected
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyIntentProcessingV2Webhook:
-      title: GroupPolicyIntentProcessingV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.processing
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentScheduledV2Webhook:
-      title: EnrolmentIntentScheduledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.scheduled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployeeHealthInsurancePolicyEventResponse:
-      required:
-      - employee_id
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: eehp_.+
-          type: string
-          description: Unique identifier for the policy
-          example: eehp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the policy is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: The Id of the employee for which the policy is created
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    PolicyImportIntentProcessingV2Webhook:
-      title: PolicyImportIntentProcessingV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_import_intent.processing
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyRenewalRenewedV2Webhook:
-      title: GroupPolicyRenewalRenewedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy.renewal.renewed
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyUpdatedV2Webhook:
-      title: PolicyUpdatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy.updated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyAmendmentIntentProcessingErrorV2Webhook:
-      title: PolicyAmendmentIntentProcessingErrorV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_amendment_intent.processing_error
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupQuoteIntentEventResponse:
-      required:
-      - group_id
-      - group_quote_intent_id
-      - plan_id
-      type: object
-      properties:
-        group_quote_intent_id:
-          pattern: gqi_.+
-          type: string
-          description: Identifier of the group quote intent associated with this event. Prefixed with `gqi_`.
-          example: gqi_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Identifier of the group associated with this group quote intent. Prefixed with `gr_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        plan_id:
-          pattern: pl_.+
-          type: string
-          description: Identifier of the plan associated with this group quote intent. Prefixed with `pl_`.
-          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    GroupEmployeeRemovedEventResponse:
-      required:
-      - employee_id
-      - employer_id
-      - group_id
-      - platform_id
-      - removed_at
-      type: object
-      properties:
-        platform_id:
-          pattern: pt_.+
-          type: string
-          description: Unique identifier for the platform
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier for the employer
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Unique identifier for the group
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        removed_at:
-          type: string
-          description: Timestamp when the employee was removed from the group
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    DependentsManagementIntentParentType:
-      enum:
-      - policy_amendment_intent
-      - enrolment_intent
-      type: string
-    EmployeeHealthInsurancePolicyImportedV2Webhook:
-      title: EmployeeHealthInsurancePolicyImportedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employee.health_insurance.policy.imported
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployeeCreatedV2Webhook:
-      title: EmployeeCreatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employee.created
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployeeEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerHealthInsuranceQuoteCreatedV2Webhook:
-      title: EmployerHealthInsuranceQuoteCreatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.health_insurance.quote.created
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerHealthInsuranceQuoteAcceptedV2Webhook:
-      title: EmployerHealthInsuranceQuoteAcceptedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.health_insurance.quote.accepted
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentEnrolledV2Webhook:
-      title: EnrolmentIntentEnrolledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.enrolled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentIneligibleV2Webhook:
-      title: EnrolmentIntentIneligibleV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.ineligible
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyRenewalOpenedV2Webhook:
-      title: GroupPolicyRenewalOpenedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy.renewal.opened
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyExpiredV2Webhook:
-      title: GroupPolicyExpiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy.expired
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyIntentEventResponse:
-      required:
-      - group_id
-      - group_policy_intent_id
-      - plan_id
-      type: object
-      properties:
-        group_policy_intent_id:
-          pattern: gpi_.+
-          type: string
-          description: Identifier of the group policy intent associated with this event. Prefixed with `gpi_`.
-          example: gpi_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Identifier of the group associated with this group policy intent. Prefixed with `gr_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        plan_id:
-          pattern: pl_.+
-          type: string
-          description: Identifier of the plan associated with this group policy intent. Prefixed with `pl_`.
-          example: pl_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    GroupQuoteIntentQuoteAvailableV2Webhook:
-      title: GroupQuoteIntentQuoteAvailableV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_quote_intent.quote_available
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupEmployeeEligibleV2Webhook:
-      title: GroupEmployeeEligibleV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.employee.eligible
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEmployeeEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyImportIntentFailedV2Webhook:
-      title: PolicyImportIntentFailedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_import_intent.failed
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployeeHealthInsuranceOfferEventResponse:
-      required:
-      - employee_id
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: eeho_.+
-          type: string
-          description: Unique identifier for the offer
-          example: eeho_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the offer is available
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: The Id of the employee for which the offer is available
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: A unique identifier assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This ID groups employees under this Customer, enabling the aggregation of contribution reporting and other values per Customer rather than per legal entity. This parameter is only available to EoR platforms.
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    EmployeeHealthInsurancePolicyActivatedV2Webhook:
-      title: EmployeeHealthInsurancePolicyActivatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employee.health_insurance.policy.activated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentEnrollingV2Webhook:
-      title: EnrolmentIntentEnrollingV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.enrolling
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerCreatedV2Webhook:
-      title: EmployerCreatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.created
+          example: employer.updated
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
           $ref: '#/components/schemas/EmployerEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyUpdatedV2Webhook:
-      title: GroupPolicyUpdatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy.updated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    DependentsManagementIntentEventResponse:
-      required:
-      - dependents_management_intent_id
-      - parent_intent_id
-      - parent_intent_type
-      type: object
-      properties:
-        dependents_management_intent_id:
-          pattern: dmi_.+
-          type: string
-          description: Identifier of the dependents management intent associated with this event. Prefixed with `dmi_`.
-          example: dmi_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        parent_intent_id:
-          type: string
-          description: Identifier of the parent intent associated with this dependents management intent.
-          format: uuid
-        parent_intent_type:
-          allOf:
-          - $ref: '#/components/schemas/DependentsManagementIntentParentType'
-          description: Type of the parent intent.
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    EmployeeOffboardedV2Webhook:
-      title: EmployeeOffboardedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employee.offboarded
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployeeEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployeeHealthInsurancePolicyCancelledV2Webhook:
-      title: EmployeeHealthInsurancePolicyCancelledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employee.health_insurance.policy.cancelled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    DependentsManagementIntentCompletedV2Webhook:
-      title: DependentsManagementIntentCompletedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: dependents_management_intent.completed
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyAmendmentIntentAwaitingQuoteV2Webhook:
-      title: PolicyAmendmentIntentAwaitingQuoteV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_amendment_intent.awaiting_quote
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyIntentActionRequiredV2Webhook:
-      title: GroupPolicyIntentActionRequiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy_intent.action_required
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupArchivedV2Webhook:
-      title: GroupArchivedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.archived
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyRenewalCanceledV2Webhook:
-      title: PolicyRenewalCanceledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy.renewal.canceled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    PolicyAmendmentIntentPendingConfirmationV2Webhook:
-      title: PolicyAmendmentIntentPendingConfirmationV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_amendment_intent.pending_confirmation
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
         created_at:
           type: string
           format: date-time
@@ -4270,40 +4516,8 @@ components:
         version:
           type: string
           example: V2
-    EmployeeEventResponse:
-      required:
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier for the employer
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        metadata:
-          type:
-          - 'null'
-          - object
-          additionalProperties:
-            type: string
-          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Maximum 25 keys. Individual keys can be up to 40 characters and values up to 500 characters.
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    PolicyImportIntentSuccessV2Webhook:
-      title: PolicyImportIntentSuccessV2Webhook
+    EmployeeHealthInsurancePolicyImportedV2Webhook:
+      title: EmployeeHealthInsurancePolicyImportedV2Webhook
       required:
       - id
       - type
@@ -4320,13 +4534,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy_import_intent.success
+          example: employee.health_insurance.policy.imported
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/PolicyImportIntentEventResponse'
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
         created_at:
           type: string
           format: date-time
@@ -4337,8 +4551,8 @@ components:
         version:
           type: string
           example: V2
-    PolicyRenewalRenewedV2Webhook:
-      title: PolicyRenewalRenewedV2Webhook
+    EmployeeHealthInsurancePolicyCancelledV2Webhook:
+      title: EmployeeHealthInsurancePolicyCancelledV2Webhook
       required:
       - id
       - type
@@ -4355,13 +4569,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy.renewal.renewed
+          example: employee.health_insurance.policy.cancelled
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/PolicyEventResponse'
+          $ref: '#/components/schemas/EmployeeHealthInsurancePolicyEventResponse'
         created_at:
           type: string
           format: date-time
@@ -4372,8 +4586,8 @@ components:
         version:
           type: string
           example: V2
-    GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook:
-      title: GroupPolicyIntentManualRenewalGatheringRequiredV2Webhook
+    GroupQuoteIntentQuoteAvailableV2Webhook:
+      title: GroupQuoteIntentQuoteAvailableV2Webhook
       required:
       - id
       - type
@@ -4390,42 +4604,7 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: group_policy_intent.manual_renewal_gathering_required
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupQuoteIntentActionRequiredV2Webhook:
-      title: GroupQuoteIntentActionRequiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_quote_intent.action_required
+          example: group_quote_intent.quote_available
         platform_id:
           pattern: pt_*
           type: string
@@ -4442,33 +4621,8 @@ components:
         version:
           type: string
           example: V2
-    AssociatedPersonEventResponse:
-      required:
-      - employee_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: ap_.+
-          type: string
-          description: Unique identifier for the associated person
-          example: ap_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employee_id:
-          pattern: ee_.+
-          type: string
-          description: Unique identifier for the employee this person is associated with
-          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    GroupPolicyActiveV2Webhook:
-      title: GroupPolicyActiveV2Webhook
+    ContributionReportFinalizedV2Webhook:
+      title: ContributionReportFinalizedV2Webhook
       required:
       - id
       - type
@@ -4485,7 +4639,77 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: group_policy.active
+          example: contribution_report.finalized
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/ContributionReportEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupArchivedV2Webhook:
+      title: GroupArchivedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group.archived
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/GroupEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    GroupPolicyRenewalCanceledV2Webhook:
+      title: GroupPolicyRenewalCanceledV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: group_policy.renewal.canceled
         platform_id:
           pattern: pt_*
           type: string
@@ -4502,8 +4726,45 @@ components:
         version:
           type: string
           example: V2
-    EmployeeUpdatedV2Webhook:
-      title: EmployeeUpdatedV2Webhook
+    GroupEmployeeMoveScheduledEventResponse:
+      required:
+      - current_group_id
+      - employee_id
+      - new_group_id
+      - scheduled_date
+      type: object
+      properties:
+        employee_id:
+          pattern: ee_.+
+          type: string
+          description: Unique identifier for the employee
+          example: ee_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        current_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the employee's current group
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        new_group_id:
+          pattern: gr_.+
+          type: string
+          description: Unique identifier for the group the employee will be moved to
+          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        scheduled_date:
+          type: string
+          description: The date when the employee will be moved to the new group
+          format: date
+          example: '2024-12-01'
+        resource_type:
+          type: string
+          description: Resource type, the underlying resource this event is related to.
+          readOnly: true
+        object:
+          type: string
+          description: The object type
+          readOnly: true
+      additionalProperties: false
+    GroupPolicyRenewalRenewedV2Webhook:
+      title: GroupPolicyRenewalRenewedV2Webhook
       required:
       - id
       - type
@@ -4520,13 +4781,83 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: employee.updated
+          example: group_policy.renewal.renewed
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/EmployeeEventResponse'
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EnrolmentIntentProcessingV2Webhook:
+      title: EnrolmentIntentProcessingV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: enrolment_intent.processing
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployeeHealthInsuranceOfferActionRequiredV2Webhook:
+      title: EmployeeHealthInsuranceOfferActionRequiredV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employee.health_insurance.offer.action_required
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployeeHealthInsuranceOfferEventResponse'
         created_at:
           type: string
           format: date-time
@@ -4572,372 +4903,6 @@ components:
         version:
           type: string
           example: V2
-    GroupEmployeeRemovedV2Webhook:
-      title: GroupEmployeeRemovedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.employee.removed
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEmployeeRemovedEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerHealthInsuranceQuoteEventResponse:
-      required:
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: erhq_.+
-          type: string
-          description: Unique identifier for the quote
-          example: erhq_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: The Id of the employer for which the is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    PolicyAmendmentIntentProcessingV2Webhook:
-      title: PolicyAmendmentIntentProcessingV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: policy_amendment_intent.processing
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentPendingConfirmationV2Webhook:
-      title: EnrolmentIntentPendingConfirmationV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.pending_confirmation
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    ContributionReportEventResponse:
-      required:
-      - employer_id
-      - id
-      type: object
-      properties:
-        id:
-          pattern: ctr_.+
-          type: string
-          description: Unique identifier for the contribution report
-          example: ctr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Unique identifier of the employer for which the report is created
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        external_customer_id:
-          type:
-          - 'null'
-          - string
-          description: Unique identifier of the customer for which the report is created. This identifier is assigned by the Employer of Record (EoR) platform to the Customer (i.e. the company using the EoR service) for which the employee is employed. This parameter is only available to EoR platforms.
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: The object type
-          readOnly: true
-      additionalProperties: false
-    GroupQuoteIntentRejectedByInsurerV2Webhook:
-      title: GroupQuoteIntentRejectedByInsurerV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_quote_intent.rejected_by_insurer
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupQuoteIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyEventResponse:
-      required:
-      - employer_id
-      - group_id
-      - group_policy_id
-      type: object
-      properties:
-        group_policy_id:
-          pattern: gp_.+
-          type: string
-          description: Identifier of the group policy associated with this event. Prefixed with `gp_`.
-          example: gp_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        group_id:
-          pattern: gr_.+
-          type: string
-          description: Identifier of the group associated with this group policy. Prefixed with `gr_`.
-          example: gr_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        employer_id:
-          pattern: er_.+
-          type: string
-          description: Identifier for the employer associated with this group policy. Prefixed with `er_`.
-          example: er_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        resource_type:
-          type: string
-          description: Resource type, the underlying resource this event is related to.
-          readOnly: true
-        object:
-          type: string
-          description: Object type
-          readOnly: true
-      additionalProperties: false
-    GroupEmployeeMovedV2Webhook:
-      title: GroupEmployeeMovedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group.employee.moved
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEmployeeMovedEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    GroupPolicyCancelledV2Webhook:
-      title: GroupPolicyCancelledV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: group_policy.cancelled
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupPolicyEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EmployerUpdatedV2Webhook:
-      title: EmployerUpdatedV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: employer.updated
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EmployerEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentNotUndertakenV2Webhook:
-      title: EnrolmentIntentNotUndertakenV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.not_undertaken
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/EnrolmentIntentEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
     GroupQuoteIntentAwaitingQuoteV2Webhook:
       title: GroupQuoteIntentAwaitingQuoteV2Webhook
       required:
@@ -4973,8 +4938,8 @@ components:
         version:
           type: string
           example: V2
-    GroupCreatedV2Webhook:
-      title: GroupCreatedV2Webhook
+    EnrolmentIntentActionRequiredV2Webhook:
+      title: EnrolmentIntentActionRequiredV2Webhook
       required:
       - id
       - type
@@ -4991,42 +4956,7 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: group.created
-        platform_id:
-          pattern: pt_*
-          type: string
-          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        data:
-          $ref: '#/components/schemas/GroupEventResponse'
-        created_at:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-        object:
-          type: string
-          example: event
-        version:
-          type: string
-          example: V2
-    EnrolmentIntentAddonSelectionRequiredV2Webhook:
-      title: EnrolmentIntentAddonSelectionRequiredV2Webhook
-      required:
-      - id
-      - type
-      - platform_id
-      - data
-      - created_at
-      - object
-      - version
-      type: object
-      properties:
-        id:
-          pattern: evt_*
-          type: string
-          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
-        type:
-          type: string
-          example: enrolment_intent.addon_selection_required
+          example: enrolment_intent.action_required
         platform_id:
           pattern: pt_*
           type: string
@@ -5043,8 +4973,8 @@ components:
         version:
           type: string
           example: V2
-    DependentsManagementIntentNotUndertakenV2Webhook:
-      title: DependentsManagementIntentNotUndertakenV2Webhook
+    PolicyRenewalCanceledV2Webhook:
+      title: PolicyRenewalCanceledV2Webhook
       required:
       - id
       - type
@@ -5061,13 +4991,13 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: dependents_management_intent.not_undertaken
+          example: policy.renewal.canceled
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/DependentsManagementIntentEventResponse'
+          $ref: '#/components/schemas/PolicyEventResponse'
         created_at:
           type: string
           format: date-time
@@ -5078,8 +5008,8 @@ components:
         version:
           type: string
           example: V2
-    PolicyActiveV2Webhook:
-      title: PolicyActiveV2Webhook
+    GroupPolicyRenewalOpenedV2Webhook:
+      title: GroupPolicyRenewalOpenedV2Webhook
       required:
       - id
       - type
@@ -5096,13 +5026,83 @@ components:
           example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         type:
           type: string
-          example: policy.active
+          example: group_policy.renewal.opened
         platform_id:
           pattern: pt_*
           type: string
           example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
         data:
-          $ref: '#/components/schemas/PolicyEventResponse'
+          $ref: '#/components/schemas/GroupPolicyEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    PolicyAmendmentIntentPendingConfirmationV2Webhook:
+      title: PolicyAmendmentIntentPendingConfirmationV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: policy_amendment_intent.pending_confirmation
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/PolicyAmendmentIntentEventResponse'
+        created_at:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+        object:
+          type: string
+          example: event
+        version:
+          type: string
+          example: V2
+    EmployerHealthInsuranceQuoteAcceptedV2Webhook:
+      title: EmployerHealthInsuranceQuoteAcceptedV2Webhook
+      required:
+      - id
+      - type
+      - platform_id
+      - data
+      - created_at
+      - object
+      - version
+      type: object
+      properties:
+        id:
+          pattern: evt_*
+          type: string
+          example: evt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        type:
+          type: string
+          example: employer.health_insurance.quote.accepted
+        platform_id:
+          pattern: pt_*
+          type: string
+          example: pt_3b1333d87d9d4fd6ad83ba7f6b0e951a
+        data:
+          $ref: '#/components/schemas/EmployerHealthInsuranceQuoteEventResponse'
         created_at:
           type: string
           format: date-time

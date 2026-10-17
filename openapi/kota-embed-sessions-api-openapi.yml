@@ -49,19 +49,31 @@ paths:
                 $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
-    CreateSessionTokenResponse:
-      required:
-      - expiry
-      - token
+    ProblemDetails:
       type: object
       properties:
-        token:
-          type: string
-        expiry:
-          type: string
-          format: date-time
-          example: '2024-12-01T00:00:00Z'
-      additionalProperties: false
+        type:
+          type:
+          - 'null'
+          - string
+        title:
+          type:
+          - 'null'
+          - string
+        status:
+          type:
+          - 'null'
+          - integer
+          format: int32
+        detail:
+          type:
+          - 'null'
+          - string
+        instance:
+          type:
+          - 'null'
+          - string
+      additionalProperties: {}
     HttpValidationProblemDetails:
       type: object
       properties:
@@ -93,31 +105,19 @@ components:
             items:
               type: string
       additionalProperties: {}
-    ProblemDetails:
+    CreateSessionTokenResponse:
+      required:
+      - expiry
+      - token
       type: object
       properties:
-        type:
-          type:
-          - 'null'
-          - string
-        title:
-          type:
-          - 'null'
-          - string
-        status:
-          type:
-          - 'null'
-          - integer
-          format: int32
-        detail:
-          type:
-          - 'null'
-          - string
-        instance:
-          type:
-          - 'null'
-          - string
-      additionalProperties: {}
+        token:
+          type: string
+        expiry:
+          type: string
+          format: date-time
+          example: '2024-12-01T00:00:00Z'
+      additionalProperties: false
     CreateSessionTokenRequest:
       required:
       - employer_id

@@ -130,6 +130,154 @@ paths:
               - answers
 components:
   schemas:
+    RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema:
+      type: object
+      properties: {}
+      description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
+      title: RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema
+    Submit-answersRequestInternalServerError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: An internal error occurred.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestInternalServerError
+    RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems:
+      type: object
+      properties:
+        field_id:
+          type: string
+          description: The field that failed validation.
+        error_type:
+          type: string
+          description: The type of validation error.
+        message:
+          type: string
+          description: A human-readable error message.
+      required:
+      - field_id
+      - error_type
+      - message
+      title: RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems
+    Requirements_submit-answers_Response_200:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus'
+          description: The derived submission status. "fulfilled" once the cumulative answers satisfy the whole schema; "in_progress" when answers are stored but the schema is not yet complete; "pending" when no answers are stored.
+        outstanding_fields:
+          type: array
+          items:
+            type: string
+          description: Field IDs still blocking fulfillment. Present only for an "in_progress" submission.
+        schema:
+          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema'
+          description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
+      required:
+      - status
+      - schema
+      title: Requirements_submit-answers_Response_200
+    Submit-answersRequestConflictError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The requirement has already been fulfilled.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestConflictError
+    RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers:
+      type: object
+      properties: {}
+      description: A key-value map of field IDs to answer values.
+      title: RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers
+    Requirements_get-requirement_Response_200:
+      type: object
+      properties:
+        is_fulfilled:
+          type: boolean
+          description: Whether this requirement has already been fulfilled.
+        fulfilled_at:
+          type: string
+          format: date-time
+          description: When the requirement was fulfilled. Present only when fulfilled.
+        schema:
+          $ref: '#/components/schemas/RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema'
+          description: A JSON Schema object describing the fields required for this requirement. Present for pending requirements and may also be returned for fulfilled requirements.
+      required:
+      - is_fulfilled
+      title: Requirements_get-requirement_Response_200
+    Submit-answersRequestUnauthorizedError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The authentication token is invalid or missing.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Submit-answersRequestUnauthorizedError
     Submit-answersRequestBadRequestError:
       type: object
       properties:
@@ -198,80 +346,6 @@ components:
       - error_code
       - trace_id
       title: Submit-answersRequestNotFoundError
-    Requirements_get-requirement_Response_200:
-      type: object
-      properties:
-        is_fulfilled:
-          type: boolean
-          description: Whether this requirement has already been fulfilled.
-        fulfilled_at:
-          type: string
-          format: date-time
-          description: When the requirement was fulfilled. Present only when fulfilled.
-        schema:
-          $ref: '#/components/schemas/RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema'
-          description: A JSON Schema object describing the fields required for this requirement. Present for pending requirements and may also be returned for fulfilled requirements.
-      required:
-      - is_fulfilled
-      title: Requirements_get-requirement_Response_200
-    Submit-answersRequestInternalServerError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A URI reference identifying the problem type (RFC 9110 section URL).
-        title:
-          type: string
-          description: A short human-readable summary of the problem type.
-        status:
-          type: integer
-          description: The HTTP status code.
-        detail:
-          type: string
-          description: An internal error occurred.
-        error_code:
-          type: string
-          description: Stable machine-readable error code. Use this for branching; detail is informational only.
-        trace_id:
-          type: string
-          description: Trace identifier for correlating the error with server-side logs.
-      required:
-      - type
-      - title
-      - status
-      - detail
-      - error_code
-      - trace_id
-      title: Submit-answersRequestInternalServerError
-    Submit-answersRequestUnauthorizedError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A URI reference identifying the problem type (RFC 9110 section URL).
-        title:
-          type: string
-          description: A short human-readable summary of the problem type.
-        status:
-          type: integer
-          description: The HTTP status code.
-        detail:
-          type: string
-          description: The authentication token is invalid or missing.
-        error_code:
-          type: string
-          description: Stable machine-readable error code. Use this for branching; detail is informational only.
-        trace_id:
-          type: string
-          description: Trace identifier for correlating the error with server-side logs.
-      required:
-      - type
-      - title
-      - status
-      - detail
-      - error_code
-      - trace_id
-      title: Submit-answersRequestUnauthorizedError
     Get-requirementRequestBadRequestError:
       type: object
       properties:
@@ -301,52 +375,6 @@ components:
       - error_code
       - trace_id
       title: Get-requirementRequestBadRequestError
-    RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems:
-      type: object
-      properties:
-        field_id:
-          type: string
-          description: The field that failed validation.
-        error_type:
-          type: string
-          description: The type of validation error.
-        message:
-          type: string
-          description: A human-readable error message.
-      required:
-      - field_id
-      - error_type
-      - message
-      title: RequirementsRequirementIdPostResponsesContentApplicationProblemJsonSchemaErrorsItems
-    Submit-answersRequestConflictError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A URI reference identifying the problem type (RFC 9110 section URL).
-        title:
-          type: string
-          description: A short human-readable summary of the problem type.
-        status:
-          type: integer
-          description: The HTTP status code.
-        detail:
-          type: string
-          description: The requirement has already been fulfilled.
-        error_code:
-          type: string
-          description: Stable machine-readable error code. Use this for branching; detail is informational only.
-        trace_id:
-          type: string
-          description: Trace identifier for correlating the error with server-side logs.
-      required:
-      - type
-      - title
-      - status
-      - detail
-      - error_code
-      - trace_id
-      title: Submit-answersRequestConflictError
     Get-requirementRequestUnauthorizedError:
       type: object
       properties:
@@ -381,63 +409,6 @@ components:
       properties: {}
       description: A JSON Schema object describing the fields required for this requirement. Present for pending requirements and may also be returned for fulfilled requirements.
       title: RequirementsRequirementIdGetResponsesContentApplicationJsonSchemaSchema
-    RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema:
-      type: object
-      properties: {}
-      description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
-      title: RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema
-    Requirements_submit-answers_Response_200:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus'
-          description: The derived submission status. "fulfilled" once the cumulative answers satisfy the whole schema; "in_progress" when answers are stored but the schema is not yet complete; "pending" when no answers are stored.
-        outstanding_fields:
-          type: array
-          items:
-            type: string
-          description: Field IDs still blocking fulfillment. Present only for an "in_progress" submission.
-        schema:
-          $ref: '#/components/schemas/RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaSchema'
-          description: The requirement schema with the current cumulative answers injected as field defaults, so the client can render the next step (or confirm completion) without a follow-up GET.
-      required:
-      - status
-      - schema
-      title: Requirements_submit-answers_Response_200
-    RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers:
-      type: object
-      properties: {}
-      description: A key-value map of field IDs to answer values.
-      title: RequirementsRequirementIdPostRequestBodyContentApplicationJsonSchemaAnswers
-    Get-requirementRequestNotFoundError:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A URI reference identifying the problem type (RFC 9110 section URL).
-        title:
-          type: string
-          description: A short human-readable summary of the problem type.
-        status:
-          type: integer
-          description: The HTTP status code.
-        detail:
-          type: string
-          description: The requirement was not found.
-        error_code:
-          type: string
-          description: Stable machine-readable error code. Use this for branching; detail is informational only.
-        trace_id:
-          type: string
-          description: Trace identifier for correlating the error with server-side logs.
-      required:
-      - type
-      - title
-      - status
-      - detail
-      - error_code
-      - trace_id
-      title: Get-requirementRequestNotFoundError
     RequirementsRequirementIdPostResponsesContentApplicationJsonSchemaStatus:
       type: string
       enum:
@@ -475,6 +446,35 @@ components:
       - error_code
       - trace_id
       title: Get-requirementRequestInternalServerError
+    Get-requirementRequestNotFoundError:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A URI reference identifying the problem type (RFC 9110 section URL).
+        title:
+          type: string
+          description: A short human-readable summary of the problem type.
+        status:
+          type: integer
+          description: The HTTP status code.
+        detail:
+          type: string
+          description: The requirement was not found.
+        error_code:
+          type: string
+          description: Stable machine-readable error code. Use this for branching; detail is informational only.
+        trace_id:
+          type: string
+          description: Trace identifier for correlating the error with server-side logs.
+      required:
+      - type
+      - title
+      - status
+      - detail
+      - error_code
+      - trace_id
+      title: Get-requirementRequestNotFoundError
   securitySchemes:
     bearerAuth:
       type: http
